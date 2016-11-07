@@ -1,3 +1,4 @@
+package LN;
 
 public class clsAdministrador 
 {
