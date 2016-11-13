@@ -4,16 +4,21 @@ public class clsUsuario
 {
 
 	private String nombre; 
+	private String apellido;
 	private int edad;
 	private String genero;
 	private float dinero;
+	private String dni;
 	
-	public clsUsuario()
+	
+	public clsUsuario(String nombre2, String apellido1, String dNI2, int edad2, float dinero2)
 	{
 		nombre="";
 		edad=0;
 		genero="";
 		dinero=0;
+		apellido="";
+		dni="";
 		
 	}
 
@@ -49,11 +54,28 @@ public class clsUsuario
 		this.dinero = dinero;
 	}
 	
+	
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
 	public  String toString()
 	{
 		String cadena;
 		
-		cadena= "Al usuario: "+ this.getNombre()+ "le queda el sigiente saldo: " + this.getDinero();
+		cadena= "Al usuario: "+ this.getNombre()+"  "+ this.getApellido()+" le queda el sigiente saldo: " + this.getDinero();
 		
 		
 		return cadena;
