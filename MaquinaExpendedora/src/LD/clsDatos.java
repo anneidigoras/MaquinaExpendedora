@@ -93,7 +93,7 @@ public class clsDatos implements itfDatos
 			}
 	}
 
-	public void Save(clsUsuario objA) 
+	public void Save(Serializable objA) 
 	{
 			try 
 			{
@@ -178,12 +178,7 @@ public class clsDatos implements itfDatos
 	
 	}
 
-	@Override
-	public void Save(Serializable o) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	
 
 	
