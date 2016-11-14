@@ -2,6 +2,7 @@ package Main;
 
 import javax.swing.ImageIcon;
 
+import LN.clsGestor;
 import LP.FrmPrincipal;
 
 
@@ -20,6 +21,7 @@ public class clsMain
 				ventana.createAndShowGUI();
 				//CON ESTA LÍNEA CREO EL ICONO DEL PANDA QUE APARECE AL EJECUTAR EL PROGRAMA Y PULSAR DESPUÉS DE LA BIENVENIDA.
 				ventana.setIconImage(new ImageIcon(getClass().getResource("/img/maquina.jpg")).getImage());
+				clsGestor.creabebidas();
 			}
 		}
 		);
