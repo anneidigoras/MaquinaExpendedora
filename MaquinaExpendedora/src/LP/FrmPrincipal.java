@@ -47,18 +47,7 @@ public class FrmPrincipal extends JFrame implements ActionListener{
 	    setContentPane(desktop);
 	    
 	 
-//	    JPanel panel= new JPanel();
-//	   	
-//		
-//		JButton aceptar= new JButton("Aceptar");
-//		aceptar.addActionListener(this);
-//		aceptar.setActionCommand("Aceptar");
-//		
-//		   
-//	    JPanel basePanel= new JPanel(new GridLayout());
-//	    basePanel.add(aceptar); //basePanel.add(cancelar);
-//	    panel.add(basePanel,BorderLayout.SOUTH);
-//	    this.setContentPane(panel);
+
 	}
 	
 	protected JMenuBar createMenuBar() 
@@ -82,23 +71,6 @@ public class FrmPrincipal extends JFrame implements ActionListener{
         
         
 
-//        //Set up the first menu item.
-//        JMenuItem CrearUsuario = new JMenuItem("Usuario");
-//        CrearUsuario.setMnemonic(KeyEvent.VK_N);
-//        CrearUsuario.setAccelerator(KeyStroke.getKeyStroke(
-//                KeyEvent.VK_N, ActionEvent.ALT_MASK));
-//        CrearUsuario.setActionCommand("Nuevo usuario");
-//        CrearUsuario.addActionListener(this);
-//        menualta.add(CrearUsuario);
-//        
-//        JMenuItem CreaAdmin = new JMenuItem("Admin");
-//        CreaAdmin.setMnemonic(KeyEvent.VK_N);
-//        CreaAdmin.setAccelerator(KeyStroke.getKeyStroke(
-//                KeyEvent.VK_N, ActionEvent.ALT_MASK));
-//        CreaAdmin.setActionCommand("Nuevo admin");
-//        CreaAdmin.addActionListener(this);
-//        menualta.add(CreaAdmin);
-        
       
       
 
