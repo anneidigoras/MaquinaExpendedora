@@ -17,7 +17,22 @@ public class clsGestor
 {
 
 
-	
+	/**
+	 * Este metodo se ejecuta una sola vez al principio del programa para crear las bebidas disponibles 
+	 * Y guardarlas en la base de datos.
+	 */
+	public void creabebidas ()
+	{
+		clsBebida CC= new clsBebida ("CocaCola", (float) 1.2, "b1", 350, "lata" );
+		clsBebida CCL= new clsBebida ("CocaColaLight", (float) 1.2, "b2", 350, "lata");
+		clsBebida Fanta= new clsBebida ("Fanta Naranja", (float) 1.2, "b3", 250, "botella");
+		clsBebida Sprite= new clsBebida ("Sprite", (float) 1.2, "b4", 250, "botella");
+		clsBebida RB= new clsBebida ("RedBull", (float) 1.5, "b5", 335, "lata");
+		clsBebida Aquarius= new clsBebida ("Aquarius", (float) 1.2, "b6", 330, "lata");
+		clsBebida Bifrutas= new clsBebida ("Bifrutas", (float) 1.0, "b7", 250, "lata");
+		clsBebida Agua= new clsBebida ("Agua", (float) 1.5, "b8", 500, "botella");
+		
+	}
 	public  void nuevoUsuario(String nombre, String apellido1, String DNI, int edad, float dinero)throws clsUsuarioExistente
 	{
 		clsUsuario objA = new clsUsuario(nombre,apellido1,DNI,edad,dinero);

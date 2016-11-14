@@ -8,22 +8,32 @@ public class clsBebida extends clsProducto
 	 */
 	private static final long serialVersionUID = 127134869965129608L;
 	private int miliL;
-    public int getMiliL() {
-		return miliL;
-	}
+	private String caracteristica;
 
-    clsBebida (String nombre, float precio, String id, int ml)
+
+	clsBebida (String nombre, float precio, String id, int ml, String carac)
     {
     	super(nombre, precio);
     	
     	this.id_B=id;
     	miliL = ml;
+    	this.caracteristica= carac;
     }
 	
+    public int getMiliL() {
+    	return miliL;
+    }
     public void setMiliL(int miliL) {
 		this.miliL = miliL;
 	}
 
+    public String getCaracteristica() {
+    	return caracteristica;
+    }
+    
+    public void setCaracteristica(String caracteristica) {
+    	this.caracteristica = caracteristica;
+    }
 	private String id_B;
 	
 	clsBebida()

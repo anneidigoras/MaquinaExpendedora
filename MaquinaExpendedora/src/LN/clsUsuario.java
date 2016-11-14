@@ -16,7 +16,7 @@ public class clsUsuario
 		nombre="";
 		edad=0;
 		genero="";
-		dinero=0;
+		dinero=50;
 		apellido="";
 		dni="";
 		

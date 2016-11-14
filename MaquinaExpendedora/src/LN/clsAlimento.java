@@ -7,6 +7,7 @@ public class clsAlimento  extends clsProducto
 	 * 
 	 */
 	private static final long serialVersionUID = 3360300107312162781L;
+	
 	private String id_A;
 	
 	clsAlimento()
