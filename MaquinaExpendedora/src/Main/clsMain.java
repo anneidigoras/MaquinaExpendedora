@@ -19,9 +19,10 @@ public class clsMain
 			{
 				FrmPrincipal ventana = new FrmPrincipal("Maquina Expendedora");
 				ventana.createAndShowGUI();
-				//CON ESTA LÍNEA CREO EL ICONO DEL PANDA QUE APARECE AL EJECUTAR EL PROGRAMA Y PULSAR DESPUÉS DE LA BIENVENIDA.
+				
 				ventana.setIconImage(new ImageIcon(getClass().getResource("/img/maquina.jpg")).getImage());
-				clsGestor.creabebidas();
+				
+				//clsGestor.creabebidas(); ----> ponemos aqui este metodo??
 			}
 		}
 		);

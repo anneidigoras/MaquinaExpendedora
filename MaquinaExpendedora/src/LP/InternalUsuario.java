@@ -2,16 +2,20 @@ package LP;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -69,20 +73,51 @@ public class InternalUsuario extends JInternalFrame implements ActionListener
 		panel.setBackground(Color.CYAN);
 		panel.repaint();
 		
-		JPanel textPanel= new JPanel(new GridLayout(0,1,0,3));
-		textPanel.add(nom);textPanel.add(nombre);textPanel.add(ap1);textPanel.add(ape1);textPanel.add(dni_); textPanel.add(dni);textPanel.add(edad_); textPanel.add(edad);
-		textPanel.add(dinero_);textPanel.add(dinero);
-		
-		panel.add(textPanel, BorderLayout.PAGE_START);
-		//panel.add(texto2, BorderLayout.CENTER);
-	    JPanel basePanel= new JPanel(new GridLayout());
-	    basePanel.add(aceptar); basePanel.add(cancelar);
-	    
-		panel.add(basePanel,BorderLayout.SOUTH);
-		
-		
+		addComponentstoPane(panel);
 		this.setContentPane(panel);
 		
+		this.setVisible(true);	
+		this.setPreferredSize(new Dimension(500,450));
+		this.setResizable(true);
+		this.setIconifiable(true);
+		this.setMaximizable(true);
+		this.setClosable(true);
+		
+//		JPanel textPanel= new JPanel(new GridLayout(0,1,0,3));
+//		textPanel.add(nom);textPanel.add(nombre);textPanel.add(ap1);textPanel.add(ape1);textPanel.add(dni_); textPanel.add(dni);textPanel.add(edad_); textPanel.add(edad);
+//		textPanel.add(dinero_);textPanel.add(dinero);
+//		
+//		panel.add(textPanel, BorderLayout.PAGE_START);
+//		//panel.add(texto2, BorderLayout.CENTER);
+//	    JPanel basePanel= new JPanel(new GridLayout());
+//	    basePanel.add(aceptar); basePanel.add(cancelar);
+//	    
+//		panel.add(basePanel,BorderLayout.SOUTH);
+		
+		
+	
+		
+	}
+	
+	public void addComponentstoPane(Container pane)
+	{
+		pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
+		
+		pane.add(nom);
+		pane.add(nombre);
+		pane.add(ape1);
+		pane.add(ap1);
+		pane.add(dni);
+		pane.add(dni_);
+		pane.add(edad);
+		pane.add(edad_);
+		pane.add(dinero);
+		pane.add(dinero_);
+		
+	
+		pane.add(new JSeparator());
+		pane.add(aceptar);
+		pane.add(cancelar);
 	}
 
 	@Override
