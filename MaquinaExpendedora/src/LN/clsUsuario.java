@@ -16,7 +16,7 @@ public class clsUsuario
 		nombre="";
 		edad=0;
 		genero="";
-		dinero=50;
+		dinero=COMUN.clsConstantes.DINERO_INICIAL;
 		apellido="";
 		dni="";
 		

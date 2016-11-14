@@ -9,6 +9,7 @@ public class clsBebida extends clsProducto
 	private static final long serialVersionUID = 127134869965129608L;
 	private int miliL;
 	private String caracteristica;
+	private int num; //numero de bebidas de cada tipo que quedan en la maquina
 
 
 	clsBebida (String nombre, float precio, String id, int ml, String carac)
@@ -18,6 +19,7 @@ public class clsBebida extends clsProducto
     	this.id_B=id;
     	miliL = ml;
     	this.caracteristica= carac;
+    	num = COMUN.clsConstantes.NUM_INICIAL_BEBIDAS;
     }
 	
     public int getMiliL() {
