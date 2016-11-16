@@ -55,6 +55,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 			JMenuItem A_Ingresar;
 			JMenuItem A_Registrarse;
 	JButton Salir;
+	JButton usuario;
 	
 	static final String SOY_CLIENTE = "Ingresar como cliente";
     static final String SOY_ADMIN= "Ingresar como administrador";
@@ -126,6 +127,12 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
         Salir.setActionCommand(SALIR);
         Salir.addActionListener(this);
         MenuPrincipal.add(Salir);
+        
+        usuario= new JButton ("Usuario");
+        usuario.setActionCommand(SOY_CLIENTE);
+        usuario.addActionListener(this);
+        
+        
     }
     
  
