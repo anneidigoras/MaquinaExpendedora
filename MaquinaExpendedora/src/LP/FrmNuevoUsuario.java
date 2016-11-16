@@ -14,7 +14,8 @@ import javax.swing.event.DocumentListener;
 import LN.clsGestor;
 
 
-public class FrmNuevoUsuario extends JFrame implements ActionListener{
+public class FrmNuevoUsuario extends JFrame implements ActionListener
+{
 
 	/**
 	 * 
@@ -51,11 +52,10 @@ public class FrmNuevoUsuario extends JFrame implements ActionListener{
 
 	
 	
-	public FrmNuevoUsuario(String title)
+	public FrmNuevoUsuario()
 	{
 		
-		
-		super(title);
+		getContentPane().setLayout(null);
 		
 		
 		lblnombre=new JLabel("Nombre");
@@ -78,13 +78,13 @@ public class FrmNuevoUsuario extends JFrame implements ActionListener{
 		buttonC.addActionListener(this);
 		buttonC.setActionCommand(COMMAND_BUTTONC);
 		
-		jpContent=new JPanel();
-		this.setResizable(true);
-		this.setClosable(true);
-		this.setIconifiable(true);
-	
-		this.setContentPane(jpContent);
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//		jpContent=new JPanel();
+//		this.setResizable(true);
+//		this.setClosable(true);
+//		this.setIconifiable(true);
+//	
+//		this.setContentPane(jpContent);
+//		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 		
 

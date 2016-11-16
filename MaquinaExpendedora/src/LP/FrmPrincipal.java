@@ -23,7 +23,7 @@ public class FrmPrincipal extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
     private JFrame frame;
     JTextArea display;
-    static JDesktopPane desktop;
+    JDesktopPane desktop;
     
     JInternalFrame displayWindow;
     JInternalFrame listenedToWindow;
@@ -118,14 +118,22 @@ public class FrmPrincipal extends JFrame implements ActionListener{
 	 
 	   protected void createFrameUsuario() 
 	    {
-	        InternalUsuario frame = new InternalUsuario();
-	        frame.pack();
-	        frame.setVisible(true); //necessary as of 1.3
-	        desktop.add(frame);
-	        try 
-	        {
-	            frame.setSelected(true);
-	        } catch (java.beans.PropertyVetoException e) {}
+//	        InternalUsuario frame = new InternalUsuario();
+//	      
+//	        frame.setVisible(true); //necessary as of 1.3
+//	        desktop.add(frame);
+//	        try 
+//	        {
+//	            frame.setSelected(true);
+//	        } catch (java.beans.PropertyVetoException e) {}
+		   
+				FrmNuevoUsuario ventana = new FrmNuevoUsuario();
+				ventana.createandshowGUI();
+				
+				ventana.setIconImage(new ImageIcon(getClass().getResource("/img/maquina.jpg")).getImage());
+				
+				//clsGestor.creabebidas(); ----> ponemos aqui este metodo??
+			
 	    }
 	
 	@Override
@@ -153,5 +161,3 @@ public class FrmPrincipal extends JFrame implements ActionListener{
 	
 	}
 	}
-
-

@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 
 import LN.clsGestor;
 import LP.FrmPrincipal;
+import LP.VentanaPrincipal;
 
 
 
@@ -17,8 +18,9 @@ public class clsMain
 			@Override
 			public void run() 
 			{
-				FrmPrincipal ventana = new FrmPrincipal("Maquina Expendedora");
-				ventana.createAndShowGUI();
+				VentanaPrincipal ventana = new VentanaPrincipal("Maquina Expendedora");
+				ventana.setVisible(true);
+			
 				
 				ventana.setIconImage(new ImageIcon(getClass().getResource("/img/maquina.jpg")).getImage());
 				

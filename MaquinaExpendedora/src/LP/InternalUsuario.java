@@ -33,7 +33,9 @@ public class InternalUsuario extends JInternalFrame implements ActionListener
 	clsGestor objGestor= new clsGestor();
 	
 	
-	
+	/**
+	 * Constructor de la clase, en la que creamos el panel en el que el usuario ingresa a la aplicación y lleva a cabo distintas acciones
+	 */
 	
 	public InternalUsuario()
 	{
@@ -71,21 +73,22 @@ public class InternalUsuario extends JInternalFrame implements ActionListener
         
 		panel.setLayout(new BorderLayout());
 		panel.setBackground(Color.CYAN);
+		
 		panel.repaint();
 		
-		addComponentstoPane(panel);
-		this.setContentPane(panel);
+//		addComponentstoPane(panel);
 		
-		this.setVisible(true);	
-		this.setPreferredSize(new Dimension(500,450));
-		this.setResizable(true);
-		this.setIconifiable(true);
-		this.setMaximizable(true);
-		this.setClosable(true);
 		
-//		JPanel textPanel= new JPanel(new GridLayout(0,1,0,3));
-//		textPanel.add(nom);textPanel.add(nombre);textPanel.add(ap1);textPanel.add(ape1);textPanel.add(dni_); textPanel.add(dni);textPanel.add(edad_); textPanel.add(edad);
-//		textPanel.add(dinero_);textPanel.add(dinero);
+//		this.setVisible(true);	
+//		this.setPreferredSize(new Dimension(500,450));
+//		this.setResizable(true);
+//		this.setIconifiable(true);
+//		this.setMaximizable(true);
+//		this.setClosable(true);
+		
+		JPanel textPanel= new JPanel(new GridLayout(0,1,0,3));
+		textPanel.add(nom);textPanel.add(nombre);textPanel.add(ap1);textPanel.add(ape1);textPanel.add(dni_); textPanel.add(dni);textPanel.add(edad_); textPanel.add(edad);
+		textPanel.add(dinero_);textPanel.add(dinero);
 //		
 //		panel.add(textPanel, BorderLayout.PAGE_START);
 //		//panel.add(texto2, BorderLayout.CENTER);
@@ -94,7 +97,7 @@ public class InternalUsuario extends JInternalFrame implements ActionListener
 //	    
 //		panel.add(basePanel,BorderLayout.SOUTH);
 		
-		
+		this.setContentPane(panel);
 	
 		
 	}
@@ -170,7 +173,6 @@ public class InternalUsuario extends JInternalFrame implements ActionListener
 	
 }
 
-	
 	
 	
 	
