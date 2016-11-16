@@ -77,7 +77,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		bienv.setBounds(540,100,300,20);
 		getContentPane().add(bienv);		
 		
-		
+		System.out.println("Syso de prueba para comprobar que todo va bien.");
 		
 		ImageIcon icono = new ImageIcon(getClass().getResource("/img/portada.jpg"));
 		Image imagen = icono.getImage();
