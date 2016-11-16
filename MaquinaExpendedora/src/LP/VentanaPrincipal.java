@@ -73,11 +73,14 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		bienv = new JLabel ("¡BIENVENIDO!");
 		bienv.setFont(new Font("Algerian", Font.BOLD, 30));
 		bienv.setForeground(new Color(51, 102, 153));
-		bienv.setBounds(540,100,300,100);
+		bienv.setBounds(540,100,300,20);
 		getContentPane().add(bienv);		
-		ImageIcon icono = new ImageIcon(getClass().getResource("/img/maquina.jpg"));
-		 Image imagen = icono.getImage();
-		 ImageIcon iconoEscalado = new ImageIcon (imagen.getScaledInstance(200,200,Image.SCALE_SMOOTH));
+		
+		
+		
+		ImageIcon icono = new ImageIcon(getClass().getResource("/img/portada.jpg"));
+		Image imagen = icono.getImage();
+		ImageIcon iconoEscalado = new ImageIcon (imagen.getScaledInstance(400,400,Image.SCALE_SMOOTH));
         imagenlbl = new JLabel (iconoEscalado);
         this.getContentPane().setPreferredSize(this.getSize());
         getContentPane().add(imagenlbl);
@@ -88,21 +91,23 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		this.setJMenuBar(MenuPrincipal);
 		
 		Cliente = new JMenu("CLIENTE");
+		Cliente.setForeground(Color.WHITE);
 		MenuPrincipal.add(Cliente);
 		
 		C_Ingresar = new JMenuItem("Ingresar");
-		C_Ingresar.setForeground(new Color(0, 128, 0));
+		C_Ingresar.setForeground(new Color(0, 255, 0));
 		C_Ingresar.setActionCommand(SOY_CLIENTE);
 		C_Ingresar.addActionListener(this);
 		Cliente.add(C_Ingresar);
 		
 		C_Registrarse = new JMenuItem("Registrarse");
-		C_Registrarse.setForeground(new Color(0, 128, 0));
+		C_Registrarse.setForeground(new Color(200, 255, 0));
 		C_Registrarse.setActionCommand(CREAR_CLIENTE);
 		C_Registrarse.addActionListener(this);
 		Cliente.add(C_Registrarse);
     	
 		Admin = new JMenu("ADMINISTRADOR");
+		Admin.setForeground(Color.WHITE);
 		MenuPrincipal.add(Admin);
 		
 		A_Ingresar = new JMenuItem("Ingresar");
@@ -168,27 +173,27 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 
 	protected void IngresoCliente()
 	{
-//		FrmNuevoUsuario frame = new FrmNuevoUsuario();
-//        frame.setVisible(true); //necessary as of 1.3
-//        getContentPane().add(frame);
-  
-//       try 
-//       {
-//		frame.setSelected(true);
-//	   }
-//       catch (PropertyVetoException e) 
-//       {
-//		
-//		e.printStackTrace();
-//	   }
+		InternalUsuario frame = new InternalUsuario();
+        frame.setVisible(true); //necessary as of 1.3
+        getContentPane().add(frame);
+ 
+       try 
+       {
+		frame.setSelected(true);
+	   }
+       catch (PropertyVetoException e) 
+       {
+		
+		e.printStackTrace();
+	   }
        
 	}
 	
 	protected void CrearCliente()
 	{
-		FrmNuevoUsuario frame = new FrmNuevoUsuario();
-		frame.setVisible(true); //necessary as of 1.3
-        getContentPane().add(frame);
+//		FrmNuevoUsuario frame = new FrmNuevoUsuario();
+//		frame.setVisible(true); //necessary as of 1.3
+//        getContentPane().add(frame);
   
 //       try 
 //       {
