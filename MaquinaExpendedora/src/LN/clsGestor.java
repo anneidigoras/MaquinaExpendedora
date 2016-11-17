@@ -153,23 +153,6 @@ public class clsGestor
 		    return listaUsuario;
 		}
 
-//public static clsUsuario buscarIDA(String dni)
-//{
-//
-//	LinkedList<clsUsuario> lista=leerUsuario();
-//	
-//	if(lista.size()!=0)
-//	{
-//	for(clsUsuario aux: lista)
-//	{
-//		if(aux.getDni().equals(dni))
-//		{
-//			return aux;
-//		}
-//	}
-//	}
-//		return null;
-//}
 
 
 public static void CrearleerUsuario(LinkedList<clsUsuario> lista)
