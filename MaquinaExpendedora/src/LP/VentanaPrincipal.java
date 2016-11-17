@@ -161,7 +161,8 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 			 break;
 		
 		 case SOY_ADMIN:
-//			 IngresoAdmin();
+             RegistroAdmin frame= new RegistroAdmin();
+             frame.setVisible(true);
 			 break;
 			 
 		 case CREAR_CLIENTE:

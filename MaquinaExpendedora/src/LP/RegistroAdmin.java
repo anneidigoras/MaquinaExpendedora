@@ -28,7 +28,7 @@ import COMUN.clsConstantes;
 
 
 
-public class RegistroUsuario extends JFrame implements ActionListener
+public class RegistroAdmin extends JFrame implements ActionListener
 {
 	
 
@@ -39,7 +39,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 	private JPasswordField password;
 	
 	
-	public RegistroUsuario()
+	public RegistroAdmin()
 	{
 		
 		setTitle("Inicio de sesión");
