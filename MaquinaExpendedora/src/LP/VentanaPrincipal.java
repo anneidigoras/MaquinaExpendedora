@@ -17,6 +17,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
@@ -26,6 +27,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -48,14 +50,23 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 	JLabel imagenlbl;
 	
 	JMenuBar MenuPrincipal;
-		JMenu Cliente;
-			JMenuItem C_Ingresar;
-			JMenuItem C_Registrarse;
-		JMenu Admin;
-			JMenuItem A_Ingresar;
-			JMenuItem A_Registrarse;
+	JMenu Cliente;
+	JMenuItem C_Ingresar;
+	JMenuItem C_Registrarse;
+	JMenu Admin;
+	JMenuItem A_Ingresar;
+	JMenuItem A_Registrarse;
 	JButton Salir;
 	JButton usuario;
+	
+	   JFrame miVentana;
+	     JPanel p1;
+	     JPanel p2;
+	     JPanel p3;
+	     JPanel p4;
+	     JPanel p5;
+	     JPanel p6;
+	     JPanel p7;
 	
 	static final String SOY_CLIENTE = "Ingresar como cliente";
     static final String SOY_ADMIN= "Ingresar como administrador";
@@ -67,6 +78,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 
     public VentanaPrincipal(String title)
     {
+   
     	this.setTitle(title);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
@@ -75,10 +87,11 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		bienv.setFont(new Font("Algerian", Font.BOLD, 30));
 		bienv.setForeground(new Color(51, 102, 153));
 		bienv.setBounds(540,100,300,20);
-		getContentPane().add(bienv);		
+		bienv.setLocation(200,100);
+		getContentPane().add(bienv);
 		
 		
-		
+			
 		ImageIcon icono = new ImageIcon(getClass().getResource("/img/portada.jpg"));
 		Image imagen = icono.getImage();
 		ImageIcon iconoEscalado = new ImageIcon (imagen.getScaledInstance(400,400,Image.SCALE_SMOOTH));
@@ -127,10 +140,9 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
         Salir.setActionCommand(SALIR);
         Salir.addActionListener(this);
         MenuPrincipal.add(Salir);
+
+    
         
-        usuario= new JButton ("Usuario");
-        usuario.setActionCommand(SOY_CLIENTE);
-        usuario.addActionListener(this);
         
         
     }
@@ -271,6 +283,47 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 	     * @return void
 	     */
     
-
+	 public  void crearYMostrarGUI() 
+	 {
+	    	// Crear ventana inicial
+	      miVentana = new JFrame();        
+	      miVentana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
+	      
+	        
+        usuario= new JButton ("Usuario");
+        usuario.setActionCommand(SOY_CLIENTE);
+        usuario.addActionListener(this);
+        
+	      
+	      p1 = new JPanel();
+      	  p1.setName( "p1" );
+	      p1.setBorder( BorderFactory.createMatteBorder( 2, 5, 2, 5, Color.green ) );
+		  p1.setBounds( 10, 10, 400, 150 );
+		  p1.add(usuario);
+	      
+		  miVentana.add(p1);
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	 }  
 
 }

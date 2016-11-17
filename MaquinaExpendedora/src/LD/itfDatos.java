@@ -3,6 +3,7 @@ package LD;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import static COMUN.clsConstantes.enFicheros;
@@ -52,7 +53,7 @@ public interface itfDatos
 		 * Serializable.
 		 * @throws FileNotFoundException 
 		 */
-		public LinkedList<Serializable> Read();	
+		public ArrayList<Serializable> Read();	
 		
 		/**
 		 * 

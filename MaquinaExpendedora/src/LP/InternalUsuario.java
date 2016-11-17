@@ -66,25 +66,11 @@ public class InternalUsuario extends JInternalFrame implements ActionListener
 	
 		panel = new JPanel();
 		
-	
-		this.setResizable(true);
-		this.setClosable(true);
-		this.setIconifiable(true);
         
 		panel.setLayout(new BorderLayout());
 		panel.setBackground(Color.CYAN);
 		
 		panel.repaint();
-		
-
-		
-		
-		this.setVisible(true);	
-		this.setPreferredSize(new Dimension(500,450));
-		this.setResizable(true);
-		this.setIconifiable(true);
-		this.setMaximizable(true);
-		this.setClosable(true);
 		
 		JPanel textPanel= new JPanel(new GridLayout(0,1,0,3));
 		textPanel.add(nom);textPanel.add(nombre);textPanel.add(ap1);textPanel.add(ape1);textPanel.add(dni_); textPanel.add(dni);textPanel.add(edad_); textPanel.add(edad);
@@ -98,7 +84,14 @@ public class InternalUsuario extends JInternalFrame implements ActionListener
 		panel.add(basePanel,BorderLayout.SOUTH);
 		
 		this.setContentPane(panel);
-	
+
+		this.setVisible(true);	
+		this.setPreferredSize(new Dimension(500,450));
+		this.setResizable(true);
+		this.setIconifiable(true);
+		this.setMaximizable(true);
+		this.setClosable(true);
+		
 		
 	}
 	
@@ -113,12 +106,7 @@ public class InternalUsuario extends JInternalFrame implements ActionListener
 		case "Aceptar":
 			System.out.println("Ha pulsado aceptar");
 			aceptar.setBackground(Color.blue);
-			try {
-				Aceptar(e);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			Aceptar(e);
 			this.dispose();
 			
 		break;
@@ -135,7 +123,8 @@ public class InternalUsuario extends JInternalFrame implements ActionListener
 	
 	}
 	
-	private void Aceptar(ActionEvent e) throws IOException
+
+	private void Aceptar(ActionEvent e)
 	{
 	try
 	{	
@@ -151,6 +140,7 @@ public class InternalUsuario extends JInternalFrame implements ActionListener
 		
 		
 	}
+	
 	
 }
 
