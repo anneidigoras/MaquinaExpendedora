@@ -20,7 +20,12 @@ import javax.swing.border.LineBorder;
 
 import COMUN.clsUsuarioExistente;
 import LN.clsGestor;
-
+/**
+ * 
+ * 
+ * @author Anne
+ *
+ */
 public class RegistroUsuario extends JFrame implements ActionListener
 {
 		
@@ -130,6 +135,8 @@ public class RegistroUsuario extends JFrame implements ActionListener
 			btAceptar.setBackground(Color.blue);
 			Aceptar(e);
 			this.dispose();
+			InterfazSeleccionProductos frame= new InterfazSeleccionProductos();
+			frame.setVisible(true);
 			
 		break;
 		
@@ -160,6 +167,8 @@ public class RegistroUsuario extends JFrame implements ActionListener
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+	
 		
 	
 	

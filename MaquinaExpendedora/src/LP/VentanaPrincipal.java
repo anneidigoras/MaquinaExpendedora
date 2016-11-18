@@ -1,6 +1,10 @@
 package LP;
 
-
+/**
+ * 
+ * Ventana principal de nuestro proyecto
+ * @author Mayi y Anne
+ */
 
 import java.awt.Color;
 
@@ -39,7 +43,7 @@ import LN.clsGestor;
 
 
 
-public class VentanaPrincipal  extends JFrame implements ActionListener,ItemListener, InternalFrameListener
+public class VentanaPrincipal  extends JFrame implements ActionListener,ItemListener
 {
 
 	private static final long serialVersionUID = 1L;
@@ -59,14 +63,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 	JButton Salir;
 	JButton usuario;
 	
-	   JFrame miVentana;
-	     JPanel p1;
-	     JPanel p2;
-	     JPanel p3;
-	     JPanel p4;
-	     JPanel p5;
-	     JPanel p6;
-	     JPanel p7;
+
 	
 	static final String SOY_CLIENTE = "Ingresar como cliente";
     static final String SOY_ADMIN= "Ingresar como administrador";
@@ -84,9 +81,9 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
 		
 		bienv = new JLabel ("¡BIENVENIDO!");
-		bienv.setFont(new Font("Algerian", Font.BOLD, 30));
+		bienv.setFont(new Font("Algerian", Font.BOLD, 45));
 		bienv.setForeground(new Color(51, 102, 153));
-		bienv.setBounds(540,100,300,20);
+		bienv.setBounds(540,100,589,67);
 		bienv.setLocation(200,100);
 		getContentPane().add(bienv);
 		
@@ -94,7 +91,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 			
 		ImageIcon icono = new ImageIcon(getClass().getResource("/img/portada.jpg"));
 		Image imagen = icono.getImage();
-		ImageIcon iconoEscalado = new ImageIcon (imagen.getScaledInstance(400,400,Image.SCALE_SMOOTH));
+		ImageIcon iconoEscalado = new ImageIcon (imagen.getScaledInstance(700,800,Image.SCALE_SMOOTH));
         imagenlbl = new JLabel (iconoEscalado);
         this.getContentPane().setPreferredSize(this.getSize());
         getContentPane().add(imagenlbl);
@@ -109,13 +106,13 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		MenuPrincipal.add(Cliente);
 		
 		C_Ingresar = new JMenuItem("Ingresar");
-		C_Ingresar.setForeground(new Color(0, 255, 0));
+		//C_Ingresar.setForeground(new Color(0, 255, 0));
 		C_Ingresar.setActionCommand(SOY_CLIENTE);
 		C_Ingresar.addActionListener(this);
 		Cliente.add(C_Ingresar);
 		
 		C_Registrarse = new JMenuItem("Registrarse");
-		C_Registrarse.setForeground(new Color(200, 255, 0));
+		//C_Registrarse.setForeground(new Color(200, 255, 0));
 		C_Registrarse.setActionCommand(CREAR_CLIENTE);
 		C_Registrarse.addActionListener(this);
 		Cliente.add(C_Registrarse);
@@ -125,13 +122,13 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		MenuPrincipal.add(Admin);
 		
 		A_Ingresar = new JMenuItem("Ingresar");
-		A_Ingresar.setForeground(new Color(0, 128, 0));
+		//A_Ingresar.setForeground(new Color(0, 128, 0));
 		A_Ingresar.setActionCommand(SOY_ADMIN);
 		A_Ingresar.addActionListener(this);
 		Admin.add(A_Ingresar);
 		
 		A_Registrarse = new JMenuItem("Registrarse");
-		A_Registrarse.setForeground(new Color(0, 128, 0));
+		//A_Registrarse.setForeground(new Color(0, 128, 0));
 		A_Registrarse.setActionCommand(CREAR_ADMIN);
 		A_Registrarse.addActionListener(this);
 		Admin.add(A_Registrarse);
@@ -192,23 +189,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 			
 	}
 
-	protected void IngresoCliente()
-	{
-		InternalUsuario frame = new InternalUsuario();
-        frame.setVisible(true); //necessary as of 1.3
-        getContentPane().add(frame);
- 
-       try 
-       {
-		frame.setSelected(true);
-	   }
-       catch (PropertyVetoException e) 
-       {
-		
-		e.printStackTrace();
-	   }
-       
-	}
+
 	
 	protected void CrearCliente()
 	{
@@ -227,50 +208,9 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 //	   }
        
 	}
-	
-	
 
-	@Override
-	public void internalFrameActivated(InternalFrameEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void internalFrameClosed(InternalFrameEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void internalFrameClosing(InternalFrameEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void internalFrameDeactivated(InternalFrameEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void internalFrameDeiconified(InternalFrameEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void internalFrameIconified(InternalFrameEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void internalFrameOpened(InternalFrameEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void itemStateChanged(ItemEvent arg0) {
@@ -278,54 +218,10 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		
 	}
 	
+	
+
  
    
-     /**
-	     * Método que creará la JInternalFrame de los alumnos
-	     * @return void
-	     */
-    
-	 public  void crearYMostrarGUI() 
-	 {
-	    	// Crear ventana inicial
-	      miVentana = new JFrame();        
-	      miVentana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
-	      
-	        
-        usuario= new JButton ("Usuario");
-        usuario.setActionCommand(SOY_CLIENTE);
-        usuario.addActionListener(this);
-        
-	      
-	      p1 = new JPanel();
-      	  p1.setName( "p1" );
-	      p1.setBorder( BorderFactory.createMatteBorder( 2, 5, 2, 5, Color.green ) );
-		  p1.setBounds( 10, 10, 400, 150 );
-		  p1.add(usuario);
-	      
-		  miVentana.add(p1);
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	 }  
+ 
 
 }

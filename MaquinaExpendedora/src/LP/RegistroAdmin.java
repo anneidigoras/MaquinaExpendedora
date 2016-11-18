@@ -24,7 +24,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import COMUN.clsConstantes;
-
+/**
+ * 
+ * Clase de registro del administrador, con un clave unicada ya predeterminada
+ * @author Anne
+ *
+ */
 
 
 

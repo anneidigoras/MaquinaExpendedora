@@ -19,14 +19,12 @@ public class clsMain
 			public void run() 
 			{
 				VentanaPrincipal ventana = new VentanaPrincipal("Maquina Expendedora");
-				ventana.crearYMostrarGUI();
+			
 				ventana.setVisible(true);
 			
 				
 				ventana.setIconImage(new ImageIcon(getClass().getResource("/img/maquina.jpg")).getImage());
-			/**
-			 * Preuba para ver que funciona lo de inicio de sesion
-			 */
+			
 //				
 				
 			}

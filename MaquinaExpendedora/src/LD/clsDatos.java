@@ -1,7 +1,7 @@
 package LD;
 /**
  * 
- * @author Anne Idigoras
+ * @author 
  * clase datos de nuestra logica de datos, por la cual podremos leer y escribir del fichero
  * 
  */
@@ -15,25 +15,26 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
-import COMUN.clsConstantes.enFicheros;
-
+import COMUN.clsConstantes;
 
 
-public class clsDatos// implements itfDatos
+
+public class clsDatos
 {
 
 	
-	private final String fic_usuarios= "C:\\Users\\ALUMNO\\Desktop\\Usuarios.dat";
-	private final String fic_admin= "C:\\Users\\ALUMNO\\Desktop\\Admin.dat";
-	
+	private final String fic_usuarios= "src\\Ficheros\\Usuarios.dat";
+	private final String fic_admin= "src\\Ficheros\\Admin.dat";
+	private final String fic_bebidas= "src\\Ficheros\\Bebidas.dat";
+	private final String fic_alimentos= "src\\Ficheros\\Alimentos.dat";
+
 	
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	AppendableObjectOutputStream aos;
 	
-	private String setFichero(enFicheros fichero)
+	private String setFichero(COMUN.clsConstantes.enFicheros fichero)
 	{
 		
 		switch (fichero)
@@ -41,193 +42,202 @@ public class clsDatos// implements itfDatos
 		case USUARIOS:
 	
 		 return fic_usuarios;
-		
-		
+		 
 		case ADMINISTRADOR:
-		
 			return fic_admin;
+		
+		
+		
+	
 	
 		}
 		return "";
 	}
 	
-		
-	public void ComenzarSave(enFicheros fichero)
-	{
-		
-		String ruta=setFichero(fichero);
-		File file = new File (ruta);
-		
-		if(file.exists())
+	 public void ComenzarSave(COMUN.clsConstantes.enFicheros ficheros)
 		{
+		 String ruta= setFichero(ficheros);
+			File file = new File (ruta);
 			
-			try
-			{
-				aos= new AppendableObjectOutputStream (new FileOutputStream (file, true));// true para no sobreescribir
-			}
-			
-			catch(IOException o)
-			{
-				o.printStackTrace();
-			}
-			
-		}
-		
-		else
-		{
-			try
-			{
-				oos= new ObjectOutputStream (new FileOutputStream(file,true));
-			}
-			
-			catch(FileNotFoundException e)
-			{
-				e.printStackTrace();
-			}
-			
-			catch(IOException e)
-			{
-				e.printStackTrace();
-			}
-		}
-		
-		
-	}
-	
-	public void Save(Serializable obj)
-	{
-		
-		if(oos!=null)
-			{
-				try
-				{
-					oos.writeObject(obj);
-				} 
-				catch (IOException e)
-				{
+			if (file.exists())
+			    {
+				FileOutputStream salida;
 				
+				try {
+					salida = new FileOutputStream(file, true);
+					aos=new AppendableObjectOutputStream(salida);
+
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
-			
-			else if(aos!=null)
+				 catch (IOException e) 
 				{
-					try 
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    }
+				else 
+				{
+					FileOutputStream salida;
+					try {
+						salida = new FileOutputStream(file);
+						oos= new ObjectOutputStream (salida);
+					} catch (FileNotFoundException e) 
 					{
-						aos.writeObject(obj);
-						
-					} 
-					catch (IOException e) 
-					{
-					
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					 catch (IOException e) 
+					 {
+						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
+			    }
+	    /**
+	     * Este método guarda en el fichero abierto anteriormente el objeto serializable que se le pasa por parametro.
+	     * @param objeto de tipo serializable
+	     */
+		public void Save (Serializable s)
+		{
+			if (oos== null)	
+			{
+				try 
+				{
+					aos.writeObject(s);
+				} 
+				catch (IOException e) 
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else
+			{
+				try {
+					oos.writeObject(s);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-		
-	
-	public void TerminarSave()
-	
-	{
-		 {
-	        	try
-	        	{
-	        		if(oos!=null)oos.close();
-	        		else if(aos!=null)aos.close();
-	        	}
-	        	catch(IOException e)//aqui no hace falta ni mostrar el error
-	        	{
-	        		e.printStackTrace();
-	        	}
-	        	
-	        }
-		
-		
-	}
-	
-	public void ComenzarRead(enFicheros fichero) throws IOException
-	{
-		
-		String ruta= setFichero(fichero);
-		
-		File file= new File(ruta);
-		
-		if(file.exists()==true)
-		{
-		try 
-		 {
-			ois= new ObjectInputStream(new FileInputStream (file));
-		 } 
-		catch (IOException e) 
-		 {
-			
-			e.printStackTrace();
-		 }
+				
 		}
-		
-	}	
-	
-	public ArrayList <Serializable>Read() 
-	{
-		ArrayList <Serializable> Lista = new ArrayList <Serializable>();
-		Serializable o;
-		try
+		/**
+		 * Este método cierra el archivo que se ha abierto para su escritura
+		 */
+		public void TerminarSave()
 		{
-			while((o=(Serializable)ois.readObject())!=null)
-			{	
-				Lista.add(o);
-			}
-		}
-		catch (NullPointerException e)
-		{
-		
-		}
-		catch (EOFException e)
-		{
-			//Excepción de fin de lectura.
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		return Lista;	
+			if (oos==null)
+			{
+				try {
+					aos.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else
+				try {
+					oos.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 
-	public void TerminarRead()
-	{
-		
-		if(ois!=null)
+		/**
+		 * Este método sirve para saber si existe algun objeto en la direccion de memoria pasada por parametro.
+		 * @param Fichero: La dirección del fichero.
+		 * @return existe: es un boolean. Devuelve falso en caso de que no exista ningun objeto en la ruta. Y viceversa.
+		 */
+		public boolean comprobarexiste(COMUN.clsConstantes.enFicheros ficheros)
 		{
-			try 
+			boolean existe=false;
+			String ruta= setFichero(ficheros);
+			File file = new File (ruta);
+			if (file.exists())
 			{
+				existe=true;		
+			}
+			return existe;
+		}
+		/**
+		 * Abre el archivo a modo de lectura.
+		 * @param Ficheros: Ruta del fichero que se va a leer más adelante.
+		 * @throws IOException
+		 */
+		public void ComenzarRead(COMUN.clsConstantes.enFicheros ficheros) throws IOException
+		{
+			String ruta= setFichero(ficheros);
+			File file = new File (ruta);
+			if (file.exists())
+			{
+			    try
+			    {
+				     FileInputStream entrada = new FileInputStream (file);
+				     ois= new ObjectInputStream (entrada);
+			    } 
+			    catch (IOException e)
+			    {
+			    	e.printStackTrace();
+			    }
+			}
+			
+		}
+		/**
+		 * Para leer los objetos que se encuentran en la ruta de ficheros abierta mediante el método anterior.
+		 * @return listaobj: ArrayList que contiene todos los objetos del fichero que se ha abierto anteriormente.
+		 */
+		public ArrayList<Serializable> Read() 
+		{
+			ArrayList<Serializable> listaobj =new ArrayList<Serializable>();
+			Serializable s;
+			
+			  try {
+				while ((s = (Serializable) ois.readObject())!=null)
+				  {
+					  listaobj.add(s);
+				  }
+			} catch (ClassNotFoundException e) 
+			{
+			} catch (IOException e) 
+			{
+			}catch (NullPointerException e) {}
+		
+			return listaobj;
+			
+		}	
+		/**
+		 * Método para cerrar el fichero que se ha abierto a modo de lectura.
+		 */
+		public void TerminarRead()
+		{
+			if(ois!=null)
+			{
+			try {
 				ois.close();
-			} 
-			catch ( IOException e) 
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NullPointerException e)
 			{
-				
 				e.printStackTrace();
 			}
+			}
+			
+		}	
+		
+		/**
+		 * Método que elimina todos los objetos que se encuentran en una ruta determinada.
+		 * @param fichero: ruta del fichero cuyos datos se van a eliminar
+		 */
+	    public void ResetFile (COMUN.clsConstantes.enFicheros ficheros )
+		{
+			String ruta= setFichero(ficheros);
+			File file = new File (ruta);
+			file.delete();
 		}
-		
-	}
-
-	public void ResetFile(enFicheros fichero)
-	{
-		String ruta= setFichero(fichero);
-		File file= new File(ruta);
-		file.delete();
-		
-	}
-
-
-
 
 	
 
 }
-
-
