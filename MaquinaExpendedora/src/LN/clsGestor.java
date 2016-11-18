@@ -3,12 +3,13 @@ package LN;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-
-
 import COMUN.clsConstantes.enFicheros;
+
 import COMUN.clsUsuarioExistente;
 import LD.*;
 
@@ -89,72 +90,72 @@ public class clsGestor
 	
 	public  void nuevoUsuario(String nombre, String apellido1, String DNI, int edad, float dinero)throws clsUsuarioExistente
 	{
-		clsUsuario objA = new clsUsuario(nombre,apellido1,DNI,edad,dinero);
+		HashSet<clsUsuario>setUsuario= new HashSet<clsUsuario>();
+		ArrayList<clsUsuario>listaUsuario= new ArrayList<clsUsuario>();
 		
-		if(ListaA().size()!=0)
+		listaUsuario=leerUsuario();
+		setUsuario.addAll(listaUsuario);
+		
+		clsUsuario objUsuario= new clsUsuario(nombre, apellido1, DNI, edad, dinero);
+		clsDatos objDatos= new clsDatos();
+		
+		//objUsuario.setNombre(nombre); objUsuario.setApellido(apellido1);objUsuario.setApe2(ape2); objUsuario.setId_Usuario(id);objUsuario.setNum_asig(asignaturas);
+		
+		boolean cont= setUsuario.add(objUsuario);
+		
+		if(cont==false)
 		{
-		HashSet<clsUsuario> miset=new HashSet<clsUsuario>();
-		miset.addAll(ListaA());
-		if(miset.add(objA)==false)
+			try 
 			{
-			throw new clsUsuarioExistente();
+				throw new clsUsuarioExistente();
+			} 
+			catch (clsUsuarioExistente e) 
+			{
+			
+				System.out.println(e.getMessage());
 			}
 		}
+		else
+		{
 		
-		clsDatos objD=new clsDatos();
-		objD.ComenzarSave(enFicheros.USUARIOS);
-		objD.Save((Serializable) objA);
-		objD.TerminarSave();
+		objDatos.ComenzarSave(enFicheros.USUARIOS);
+        objDatos.Save(objUsuario);
+        objDatos.TerminarSave();
+        }
 	}
 
-	
 
-
-
-public static LinkedList<clsUsuario> ListaA() 
-{
-	
-	LinkedList<clsUsuario> lista=new LinkedList<clsUsuario>();
-	clsDatos objD = new clsDatos();
-	
-	try {
-		objD.ComenzarRead(enFicheros.USUARIOS);
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-		for(Serializable aux:objD.Read())
+		public static ArrayList<clsUsuario> leerUsuario()
 		{
-			lista.add((clsUsuario)aux);
+			ArrayList<clsUsuario> listaUsuario= new ArrayList<clsUsuario>();
+			clsDatos objDatos= new clsDatos();
+			ArrayList<Serializable> serializable= new ArrayList<Serializable>();
+			
+		    try 
+		    {
+				objDatos.ComenzarRead(enFicheros.USUARIOS);
+			} 
+		    catch (IOException e)
+		    {
+				
+				e.printStackTrace();
+			}
+		    
+				serializable=objDatos.Read();
+		    for(Serializable aux: serializable)
+		    {
+		    	listaUsuario.add((clsUsuario)aux);
+		    }
+		    Collections.sort(listaUsuario);
+		    
+		    objDatos.TerminarRead();
+			
+		    return listaUsuario;
 		}
-	
-	objD.TerminarRead();
-	
-	return lista;
-}
 
 
-public static clsUsuario buscarIDA(String dni)
-{
 
-	LinkedList<clsUsuario> lista=ListaA();
-	
-	if(lista.size()!=0)
-	{
-	for(clsUsuario aux: lista)
-	{
-		if(aux.getDni().equals(dni))
-		{
-			return aux;
-		}
-	}
-	}
-		return null;
-}
-
-
-public static void CrearlistaA(LinkedList<clsUsuario> lista)
+public static void CrearleerUsuario(LinkedList<clsUsuario> lista)
 {
 	clsDatos objD=new clsDatos();
 	
@@ -185,14 +186,14 @@ public static void Eliminar()
 public static void EliminarA(String  dni)
 {
 	
-	LinkedList<clsUsuario>lista = ListaA();
+	ArrayList<clsUsuario>lista = leerUsuario();
 	LinkedList<clsUsuario>lista1 =new LinkedList<clsUsuario>(); 		
 	for(clsUsuario aux:lista)
 	{
 		if(!aux.getDni().equals(dni))
 			lista1.add(aux);
 	}
-	CrearlistaA(lista1);
+	CrearleerUsuario(lista1);
 }
 
 

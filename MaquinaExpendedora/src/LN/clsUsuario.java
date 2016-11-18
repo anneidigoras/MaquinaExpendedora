@@ -1,6 +1,13 @@
 package LN;
 
-public class clsUsuario
+import java.io.Serializable;
+import java.util.Comparator;
+/**
+ * Clase usuario, con sus atributos. Implemente comparable, serilizable y comparator
+ * Usamos el hashcode y el equals en el dni, para que el dni sea unico y no se pueda repetir
+ *
+ */
+public class clsUsuario implements Comparable<clsUsuario> ,Serializable,Comparator
 {
 
 	private String nombre; 
@@ -81,6 +88,47 @@ public class clsUsuario
 		return cadena;
 		
 		
+	}
+
+	@Override
+	public int compare(Object o1, Object o2) 
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int compareTo(clsUsuario obj) 
+	{
+		
+		return this.getNombre().compareTo(obj.getNombre());
+	}
+
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) 
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		clsUsuario other = (clsUsuario) obj;
+		if (dni == null) {
+			if (other.dni != null)
+				return false;
+		} else if (!dni.equals(other.dni))
+			return false;
+		return true;
 	}
 	
 	

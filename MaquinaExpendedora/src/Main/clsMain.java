@@ -19,12 +19,14 @@ public class clsMain
 			public void run() 
 			{
 				VentanaPrincipal ventana = new VentanaPrincipal("Maquina Expendedora");
+			
 				ventana.setVisible(true);
 			
 				
 				ventana.setIconImage(new ImageIcon(getClass().getResource("/img/maquina.jpg")).getImage());
+			
+//				
 				
-				//clsGestor.creabebidas(); ----> ponemos aqui este metodo??
 			}
 		}
 		);

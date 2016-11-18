@@ -10,7 +10,12 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
+/**
+ * 
+ * 
+ * @author Mayi
+ *
+ */
 public class IdentificaciónCliente extends JInternalFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
