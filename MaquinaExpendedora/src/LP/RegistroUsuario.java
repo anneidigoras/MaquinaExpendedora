@@ -40,7 +40,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 	{
 		
 		setTitle("Registro");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setBounds(100, 200, 600, 390);
 	

@@ -48,7 +48,7 @@ public class RegistroAdmin extends JFrame implements ActionListener
 	{
 		
 		setTitle("Inicio de sesión");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setBounds(100, 100, 600, 390);
 		contentPane = new JPanel();
