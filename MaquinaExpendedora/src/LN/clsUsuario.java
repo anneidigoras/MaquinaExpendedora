@@ -20,15 +20,15 @@ public class clsUsuario implements Comparable<clsUsuario> ,Serializable,Comparat
 	
 	
 
-	public clsUsuario(String nombre2, String apellido1, String dNI2, int edad2, String pass)
+	public clsUsuario(String _nombre, String _apellido, String _dni, int _edad, String _pass)
 	{
-		nombre="";
-		edad=0;
+		nombre=_nombre;
+		apellido=_apellido;
+		edad=_edad;
+		dni=_dni;
 		genero="";
 		dinero=COMUN.clsConstantes.DINERO_INICIAL;
-		apellido="";
-		dni="";
-		password = pass;
+		password = _pass;
 		
 	}
 
