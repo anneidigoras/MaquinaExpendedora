@@ -116,18 +116,21 @@ public class IdentificaciónCliente extends JInternalFrame implements ActionListe
 		nombre= this.textNombre.getText();
 		Arraypass = this.textContra.getPassword();
 		
-		for (int i=0; i<Arraypass.length; i++)
-		{
-			password = password + Arraypass [i];
-		}
+		for (int i=0; i<Arraypass.length; i++)			password = password + Arraypass [i];
+	
 		
-		if (nombre.isEmpty()||password.isEmpty())
+		if (nombre.isEmpty())
 		{
-			JOptionPane.showMessageDialog(null, "Tiene que seleccionar un socio y un juego para poder llevar a cabo esta operación");
+			JOptionPane.showMessageDialog(null, "Introduzca su nombre ");
+		}
+		else if(password.isEmpty())
+		{
+			JOptionPane.showMessageDialog(null, "Introduzca su contraseña ");
 		}
 		else
 		{
 			
+			
 		}
 		
 
@@ -135,12 +138,5 @@ public class IdentificaciónCliente extends JInternalFrame implements ActionListe
 			
 				
 	}
-	private void SoyAdmin()
-	{
-
-//		 JOptionPane.showMessageDialog(null, "Tiene que seleccionar un socio y un juego para poder llevar a cabo esta operación",
-		
-			
-				
-	}
+	
 }

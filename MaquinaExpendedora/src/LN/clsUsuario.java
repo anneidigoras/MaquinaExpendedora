@@ -16,9 +16,11 @@ public class clsUsuario implements Comparable<clsUsuario> ,Serializable,Comparat
 	private String genero;
 	private float dinero;
 	private String dni;
+	private String password;
 	
 	
-	public clsUsuario(String nombre2, String apellido1, String dNI2, int edad2, float dinero2)
+
+	public clsUsuario(String nombre2, String apellido1, String dNI2, int edad2, float dinero2, String pass)
 	{
 		nombre="";
 		edad=0;
@@ -26,6 +28,7 @@ public class clsUsuario implements Comparable<clsUsuario> ,Serializable,Comparat
 		dinero=COMUN.clsConstantes.DINERO_INICIAL;
 		apellido="";
 		dni="";
+		password = pass;
 		
 	}
 
@@ -76,6 +79,14 @@ public class clsUsuario implements Comparable<clsUsuario> ,Serializable,Comparat
 
 	public void setDni(String dni) {
 		this.dni = dni;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public  String toString()

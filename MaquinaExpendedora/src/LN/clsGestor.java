@@ -88,7 +88,7 @@ public class clsGestor
 	
 	
 	
-	public  void nuevoUsuario(String nombre, String apellido1, String DNI, int edad, float dinero)throws clsUsuarioExistente
+	public  void nuevoUsuario(String nombre, String apellido1, String DNI, int edad, float dinero, String pass)throws clsUsuarioExistente
 	{
 		HashSet<clsUsuario>setUsuario= new HashSet<clsUsuario>();
 		ArrayList<clsUsuario>listaUsuario= new ArrayList<clsUsuario>();
@@ -96,7 +96,7 @@ public class clsGestor
 		listaUsuario=leerUsuario();
 		setUsuario.addAll(listaUsuario);
 		
-		clsUsuario objUsuario= new clsUsuario(nombre, apellido1, DNI, edad, dinero);
+		clsUsuario objUsuario= new clsUsuario(nombre, apellido1, DNI, edad, dinero, pass);
 		clsDatos objDatos= new clsDatos();
 		
 		//objUsuario.setNombre(nombre); objUsuario.setApellido(apellido1);objUsuario.setApe2(ape2); objUsuario.setId_Usuario(id);objUsuario.setNum_asig(asignaturas);
@@ -122,8 +122,25 @@ public class clsGestor
         objDatos.Save(objUsuario);
         objDatos.TerminarSave();
         }
-	}
+		}
 
+		public static boolean IngresoCliente(String nombre, String pass)
+		{
+			boolean existe = false;
+			ArrayList<clsUsuario>listaClientes= new ArrayList<clsUsuario>();
+			listaClientes=leerUsuario();
+			for (clsUsuario aux: listaClientes)
+			{
+				if (aux.getPassword().equals(pass)|| aux.getNombre().equals(nombre))
+				{
+					existe=true;
+					break;
+				}
+			}
+			
+			return existe;
+			
+		}
 
 		public static ArrayList<clsUsuario> leerUsuario()
 		{
@@ -155,7 +172,7 @@ public class clsGestor
 
 
 
-public static void CrearleerUsuario(LinkedList<clsUsuario> lista)
+public static void CrearUsuario(LinkedList<clsUsuario> lista)
 {
 	clsDatos objD=new clsDatos();
 	
@@ -193,7 +210,7 @@ public static void EliminarA(String  dni)
 		if(!aux.getDni().equals(dni))
 			lista1.add(aux);
 	}
-	CrearleerUsuario(lista1);
+	CrearUsuario(lista1);
 }
 
 
