@@ -1,5 +1,6 @@
 package LP;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JInternalFrame;
@@ -7,7 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.ImageIcon;
+
+import LN.clsGestor;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 /**
@@ -25,10 +28,11 @@ public class IdentificaciónCliente extends JInternalFrame implements ActionListe
 	JButton BAceptar;
 	JButton BCancelar;
 	
-	JTextField textNombre;
+	JTextField textDni;
 	JPasswordField textContra;
 	
-	JLabel lblNombre;
+	JLabel Info;
+	JLabel lblDni;
 	JLabel lblContra;
 	
 	
@@ -42,28 +46,31 @@ public class IdentificaciónCliente extends JInternalFrame implements ActionListe
 	 */
 	public IdentificaciónCliente()
 	{
-		getContentPane().setBackground(new Color(152, 251, 152));
-		setBounds(300, 200 ,500,500);
+		getContentPane().setBackground(new Color(136, 201, 89));
+//		setBounds(300, 200 ,500,500);
 		getContentPane().setLayout(null);
-		JLabel fondo = new JLabel(new ImageIcon(getClass().getResource("/Fondo/fallout.jpg")));
-	    fondo.setBounds(0,0,800,600);
-	    this.getContentPane().add(fondo);
-		//setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
 		
-	    lblNombre = new JLabel("Nombre Cliente");
-	    lblNombre.setBounds(100, 12, 100, 15);
-		getContentPane().add(lblNombre);
+	    Info= new JLabel ("Introduzca sus datos:");
+	    Info.setFont(new Font("Arial", Font.CENTER_BASELINE, 24));
+	    Info.setForeground(Color.white);
+		Info.setBounds(500,50,400,50);
+		Info.setLocation(150,5);
+		getContentPane().add(Info);
 		
-		textNombre = new JTextField();
-		textNombre.setBounds(169, 47, 91, 20);
-		getContentPane().add(textNombre);
+	    lblDni = new JLabel("DNI:");
+	    lblDni.setBounds(150, 100, 100, 15);
+		getContentPane().add(lblDni);
 		
-		lblContra = new JLabel("Nombre:");
-		lblContra.setBounds(82, 48, 52, 18);
+		textDni = new JTextField();
+		textDni.setBounds(280, 100, 91, 20);
+		getContentPane().add(textDni);
+		
+		lblContra = new JLabel("Contraseña:");
+		lblContra.setBounds(150,180, 90, 18);
 		getContentPane().add(lblContra);
 		
 		textContra = new JPasswordField();
-		textContra.setBounds(169, 47, 91, 20);
+		textContra.setBounds(280, 180, 91, 20);
 		getContentPane().add(textContra);
 		
 		
@@ -97,7 +104,6 @@ public class IdentificaciónCliente extends JInternalFrame implements ActionListe
 		{
 		case ACEPTAR:
 			Ingresar();
-			this.dispose();
 			break;
 		case CANCELAR:
 			this.dispose();
@@ -108,12 +114,12 @@ public class IdentificaciónCliente extends JInternalFrame implements ActionListe
 	}
 	private void Ingresar()
 	{
-		boolean cerrar = true;
+		boolean existe= false;
 		String nombre;
 		char [] Arraypass;
 		String password = null;
 		
-		nombre= this.textNombre.getText();
+		nombre= this.textDni.getText();
 		Arraypass = this.textContra.getPassword();
 		
 		for (int i=0; i<Arraypass.length; i++)			password = password + Arraypass [i];
@@ -128,9 +134,17 @@ public class IdentificaciónCliente extends JInternalFrame implements ActionListe
 			JOptionPane.showMessageDialog(null, "Introduzca su contraseña ");
 		}
 		else
-		{
-			
-			
+		{	
+			existe= clsGestor.IngresoCliente(nombre, password);
+			if (existe== true){
+			this.dispose();
+			InterfazSeleccionProductos frame= new InterfazSeleccionProductos();
+			frame.setVisible(true);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "El cliente introducido no está registrado o los datos introducidos son incorrectos");
+			}
 		}
 		
 

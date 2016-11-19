@@ -20,7 +20,7 @@ public class clsUsuario implements Comparable<clsUsuario> ,Serializable,Comparat
 	
 	
 
-	public clsUsuario(String nombre2, String apellido1, String dNI2, int edad2, float dinero2, String pass)
+	public clsUsuario(String nombre2, String apellido1, String dNI2, int edad2, String pass)
 	{
 		nombre="";
 		edad=0;

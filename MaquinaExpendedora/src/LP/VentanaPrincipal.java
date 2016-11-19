@@ -136,10 +136,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
         Salir.setActionCommand(SALIR);
         Salir.addActionListener(this);
         MenuPrincipal.add(Salir);
-
-    
-        
-        
+ 
         
     }
     
@@ -153,17 +150,20 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		{
 			
 		 case SOY_CLIENTE:
-			 CrearCliente();
+			 getContentPane().removeAll();
+			 IdentificaciónCliente frame1= new IdentificaciónCliente();
+			 frame1.setVisible(true);
+			 getContentPane().add(frame1);
 			 break;
 		
 		 case SOY_ADMIN:
-             RegistroAdmin frame= new RegistroAdmin();
-             frame.setVisible(true);
+             RegistroAdmin frame2= new RegistroAdmin();
+             frame2.setVisible(true);
 			 break;
 			 
 		 case CREAR_CLIENTE:
-			 RegistroUsuario frame1= new RegistroUsuario();
-			 frame1.setVisible(true);
+			 RegistroUsuario frame3= new RegistroUsuario();
+			 frame3.setVisible(true);
 			 break;
 			 
 			 
@@ -191,7 +191,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 
 
 	
-	protected void CrearCliente()
+	protected void IdentificarCliente()
 	{
 //		FrmNuevoUsuario frame = new FrmNuevoUsuario();
 //		frame.setVisible(true); //necessary as of 1.3

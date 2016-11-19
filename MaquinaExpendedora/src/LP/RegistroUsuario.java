@@ -29,11 +29,11 @@ import LN.clsGestor;
 public class RegistroUsuario extends JFrame implements ActionListener
 {
 		
-	private JTextField txtNombre, txtApe, txtEdad, txtDni, txtDinero;
+	private JTextField txtNombre, txtApe, txtEdad, txtDni;
 	private JPasswordField password1, password2;
     private JButton btAceptar, btCancelar;
 	private JPanel contentPane;
-	private JLabel lblNombre, lblApe, lblEdad, lblDni, lblDinero,lblPass1, lblPass2;
+	private JLabel lblNombre, lblApe, lblEdad, lblDni, lblPass1, lblPass2;
 
 	clsGestor objGestor;
 	
@@ -72,11 +72,6 @@ public class RegistroUsuario extends JFrame implements ActionListener
 		txtEdad=new JTextField();	
 		txtEdad.setBounds(112, 110, 86, 20);
 		
-		lblDinero= new JLabel("Dinero");
-		lblDinero.setBounds(10, 140, 92, 14);
-		txtDinero= new JTextField("");
-		txtDinero.setBounds(112, 140, 86, 20);
-		
 		lblPass1= new JLabel("Contraseña");
 		lblPass1.setBounds(10, 190, 120, 14);
 		password1= new JPasswordField("");
@@ -91,8 +86,8 @@ public class RegistroUsuario extends JFrame implements ActionListener
 		JPanel panel = new JPanel(new GridLayout(0,1,0,3));
 		panel.setBounds(150, 20, 300, 280);
 		panel.setLayout(null);
-		panel.add(txtNombre);panel.add(lblNombre);panel.add(txtApe);panel.add(lblApe);panel.add(txtDni); panel.add(lblDni);panel.add(txtEdad); panel.add(lblEdad); 
-		panel.add(txtDinero);panel.add(lblDinero);
+		panel.add(txtNombre);panel.add(lblNombre);panel.add(txtApe);panel.add(lblApe);panel.add(txtDni); panel.add(lblDni);
+		panel.add(txtEdad); panel.add(lblEdad); 
 		panel.add(lblPass1);panel.add(lblPass2); panel.add(password1); panel.add(password2);
 		panel.setBackground(Color.PINK);
 		
@@ -173,14 +168,14 @@ public class RegistroUsuario extends JFrame implements ActionListener
 		for (int i=0; i<Arraypass1.length; i++)			password1 = password1 + Arraypass1 [i];
 		for (int i=0; i<Arraypass2.length; i++)			password2 = password2 + Arraypass2 [i];
 		
-		float dinero= Integer.parseInt(this.txtDinero.getText());
+		
 		
 		objGestor= new clsGestor();
 		if (password1.equals(password2))
 		{
 			try 
 			{
-			objGestor.nuevoUsuario(nombre, ape1, dni, edad, dinero, password1);
+			objGestor.nuevoUsuario(nombre, ape1, dni, edad,password1);
 			this.dispose();
 			InterfazSeleccionProductos frame= new InterfazSeleccionProductos();
 			frame.setVisible(true);

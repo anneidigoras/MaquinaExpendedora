@@ -88,7 +88,7 @@ public class clsGestor
 	
 	
 	
-	public  void nuevoUsuario(String nombre, String apellido1, String DNI, int edad, float dinero, String pass)throws clsUsuarioExistente
+	public  void nuevoUsuario(String nombre, String apellido1, String DNI, int edad,  String pass)throws clsUsuarioExistente
 	{
 		HashSet<clsUsuario>setUsuario= new HashSet<clsUsuario>();
 		ArrayList<clsUsuario>listaUsuario= new ArrayList<clsUsuario>();
@@ -96,7 +96,7 @@ public class clsGestor
 		listaUsuario=leerUsuario();
 		setUsuario.addAll(listaUsuario);
 		
-		clsUsuario objUsuario= new clsUsuario(nombre, apellido1, DNI, edad, dinero, pass);
+		clsUsuario objUsuario= new clsUsuario(nombre, apellido1, DNI, edad, pass);
 		clsDatos objDatos= new clsDatos();
 		
 		//objUsuario.setNombre(nombre); objUsuario.setApellido(apellido1);objUsuario.setApe2(ape2); objUsuario.setId_Usuario(id);objUsuario.setNum_asig(asignaturas);
