@@ -106,15 +106,18 @@ public class RegistroAdmin extends JFrame implements ActionListener
 		
 		
 	
-	 private static boolean isPasswordCorrect(char[] input) 
+	 private static boolean isPasswordCorrect(char[] input, String nombre) 
 	 {
 	        boolean isCorrect = true;
+	       String nombre2= "admin";
 	        char[] correctPassword = { 'h', 'o', 'l', 'a' };
 
-	        if (input.length != correctPassword.length) {
+	        if (input.length != correctPassword.length && nombre.length()!= nombre2.length())
+	        {
 	            isCorrect = false;
-	        } else {
-	            isCorrect = Arrays.equals (input, correctPassword);
+	        } else 
+	        {
+	            isCorrect = Arrays.equals (input, correctPassword) && nombre.equals(nombre2);
 	        }
 
 	        //Zero out the password.
@@ -131,7 +134,8 @@ public class RegistroAdmin extends JFrame implements ActionListener
 			if (btingresar.getText().equals("Ingresar"))
 			{
 				 char[] input = password.getPassword();
-		            if (isPasswordCorrect(input)) 
+				 String nombre= txtUsuario.getText();
+		            if (isPasswordCorrect(input, nombre)) 
 		            {
 		                JOptionPane.showMessageDialog(this, "Bien! Ha introducido bien la contraseña.");
 		            } 
@@ -151,7 +155,8 @@ public class RegistroAdmin extends JFrame implements ActionListener
 					
 		}
 	  
-	  protected void resetFocus() {
+	  protected void resetFocus() 
+	  {
 	        password.requestFocusInWindow();
 	    }
 

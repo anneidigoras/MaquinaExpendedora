@@ -196,7 +196,8 @@ public static void Eliminar()
 	System.out.println("Has seleccionado reiniciar ficheros");
 	clsDatos objD=new clsDatos();
 	
-	objD.ResetFile(enFicheros.USUARIOS);}
+	objD.ResetFile(enFicheros.USUARIOS);
+}
 
 
 
@@ -215,9 +216,28 @@ public static void EliminarA(String  dni)
 
 
 
+
+
+public void crearAdmin(LinkedList<clsAdministrador>listaA)
+
+{
+	
+clsDatos objD=new clsDatos();
+	
+	objD.ResetFile(enFicheros.ADMINISTRADOR);
+	
+	objD.ComenzarSave(enFicheros.ADMINISTRADOR);
+	
+	for(clsAdministrador aux: listaA )
+	{
+		objD.Save((Serializable) aux);
+	}
+	
+	objD.TerminarSave();
+	
 }
 
-
+}
 	
 
 	

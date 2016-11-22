@@ -125,12 +125,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		A_Ingresar.setActionCommand(SOY_ADMIN);
 		A_Ingresar.addActionListener(this);
 		Admin.add(A_Ingresar);
-		
-		A_Registrarse = new JMenuItem("Registrarse");
-		//A_Registrarse.setForeground(new Color(0, 128, 0));
-		A_Registrarse.setActionCommand(CREAR_ADMIN);
-		A_Registrarse.addActionListener(this);
-		Admin.add(A_Registrarse);
+	
 		
 		Salir = new JButton("SALIR");;
         Salir.setActionCommand(SALIR);
