@@ -186,23 +186,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 
 
 	
-	protected void IdentificarCliente()
-	{
-//		FrmNuevoUsuario frame = new FrmNuevoUsuario();
-//		frame.setVisible(true); //necessary as of 1.3
-//        getContentPane().add(frame);
-  
-//       try 
-//       {
-//		frame.setSelected(true);
-//	   }
-//       catch (PropertyVetoException e) 
-//       {
-//		
-//		e.printStackTrace();
-//	   }
-       
-	}
+
 
 
 

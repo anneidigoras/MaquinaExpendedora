@@ -137,8 +137,14 @@ public class RegistroAdmin extends JFrame implements ActionListener
 				 String nombre= txtUsuario.getText();
 		            if (isPasswordCorrect(input, nombre)) 
 		            {
-		                JOptionPane.showMessageDialog(this, "Bien! Ha introducido bien la contraseña.");
+		                JOptionPane.showMessageDialog(this, "Contraseña correcta");
+		                this.dispose();
+		                TablasUsuarios frame= new TablasUsuarios();
+		                frame.setVisible(true);
+		                
 		            } 
+		            
+		            
 		            else 
 		            {
 		             JOptionPane.showMessageDialog(this,"Contraseña erronea. Intentelo de nuevo.");

@@ -23,7 +23,7 @@ import LN.clsGestor;
 /**
  * 
  * 
- * @author Anne
+ * @author Anne y Mayi
  *
  */
 public class RegistroUsuario extends JFrame implements ActionListener

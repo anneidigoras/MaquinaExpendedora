@@ -124,7 +124,7 @@ public class clsGestor
         }
 		}
 
-		public static boolean IngresoCliente(String nombre, String pass)
+    public static boolean IngresoCliente(String nombre, String pass)
 		{
 			boolean existe = false;
 			ArrayList<clsUsuario>listaClientes= new ArrayList<clsUsuario>();
@@ -142,7 +142,7 @@ public class clsGestor
 			
 		}
 
-		public static ArrayList<clsUsuario> leerUsuario()
+    public static ArrayList<clsUsuario> leerUsuario()
 		{
 			ArrayList<clsUsuario> listaUsuario= new ArrayList<clsUsuario>();
 			clsDatos objDatos= new clsDatos();
