@@ -139,7 +139,9 @@ public class RegistroAdmin extends JFrame implements ActionListener
 		            {
 		                JOptionPane.showMessageDialog(this, "Contraseña correcta");
 		                this.dispose();
-		                TablasUsuarios frame= new TablasUsuarios();
+		               // TablasUsuarios frame= new TablasUsuarios();
+		                //frame.setVisible(true);
+		                PantallaAdmin frame= new PantallaAdmin("Pantalla Admin");
 		                frame.setVisible(true);
 		                
 		            } 

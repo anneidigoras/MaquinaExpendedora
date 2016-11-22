@@ -198,7 +198,8 @@ public class TablasUsuarios extends JFrame
          * rather than a check box.
          */
         @SuppressWarnings("unchecked")
-		public Class getColumnClass(int c) {
+		public Class getColumnClass(int c)
+        {
             return getValueAt(0, c).getClass();
         }
 
