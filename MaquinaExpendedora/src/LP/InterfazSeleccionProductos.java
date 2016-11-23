@@ -31,11 +31,10 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	public InterfazSeleccionProductos()
 	{
 		
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
 		
 		setTitle("Registro");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setResizable(false);
 		setBounds(800, 200, 600, 390);
 	
