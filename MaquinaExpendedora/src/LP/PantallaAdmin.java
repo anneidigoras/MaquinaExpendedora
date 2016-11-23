@@ -32,10 +32,12 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 
 	 static final String SALIR = "Cerrar Sesion";
 	
+
 	
 	
 	public PantallaAdmin(String title)
 	{
+		
 		this.setTitle(title);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
