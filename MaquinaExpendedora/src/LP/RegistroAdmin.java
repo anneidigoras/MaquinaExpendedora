@@ -30,14 +30,8 @@ import COMUN.clsConstantes;
  * @author Anne
  *
  */
-
-
-
 public class RegistroAdmin extends JFrame implements ActionListener
 {
-	
-
-	
 	private JTextField txtUsuario;
     private JButton btingresar;
 	private JPanel contentPane;
@@ -106,7 +100,7 @@ public class RegistroAdmin extends JFrame implements ActionListener
 		
 		
 	
-	 private static boolean isPasswordCorrect(char[] input, String nombre) 
+	  public boolean isPasswordCorrect(char[] input, String nombre) 
 	 {
 	        boolean isCorrect = true;
 	       String nombre2= "admin";
@@ -182,6 +176,7 @@ public class RegistroAdmin extends JFrame implements ActionListener
 
 				  this.pulsadoIngreso();
 				break;
+			
 	  }
 }
 	  

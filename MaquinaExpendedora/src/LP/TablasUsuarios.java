@@ -1,87 +1,60 @@
 package LP;
 
+/**
+ * @author Anne Idigoras
+ * 
+ *  Clase que extiende de JInternalFrame e implementa un actionListener
+ *  Su funcion es la de crear una tabla con los Usuarios que se han dado de alta, ordenandolos alfabeticamente por nombre, 
+ *  y en la que poder eliminar al Usuario seleccionado, por su id
+ * 
+ * 
+ */
 import java.awt.BorderLayout;
-
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
+import javax.swing.event.RowSorterEvent;
+import javax.swing.event.RowSorterListener;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
-
 import javax.swing.table.TableRowSorter;
 
 import LN.clsUsuario;
 import LN.clsGestor;
-import LN.clsUsuario;
 
 
-
-
-public class TablasUsuarios extends JFrame
+public class TablasUsuarios extends JInternalFrame implements ActionListener
 {
-	//private static UserTable datos;
+
     static ArrayList<clsUsuario> Usuarios;	
 	static JTable jtUsuarios;		
-	private JScrollPane jspUsuarios;
-    private JLabel 	jlUsuarios;
-	private JPanel 	contentPane;
-	clsGestor objGestor= new clsGestor();	
+	JScrollPane jspUsuarios;
+    JButton aceptar,cancelar;
+	JLabel 	jlUsuarios;
+	JPanel 	panel;
+	clsGestor objGestor= new clsGestor(null);	
 	
 	
-	private static DefaultTableCellRenderer rendererCentrado = new DefaultTableCellRenderer();
-	static {
-		
-		rendererCentrado.setHorizontalAlignment( JLabel.CENTER );
-	}
-	
+
 	public TablasUsuarios()
 	{
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
-		setTitle("Datos Usuarios");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
-		setBounds(800, 200, 600, 390);
 		
-		contentPane= new JPanel();
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
+		super("DATOS DE UsuarioS");
 		listarDatos();
-		crearTablaUsuarios();	
-
-		
-		
-	
-		contentPane= new JPanel();
-	    jspUsuarios=new JScrollPane(jtUsuarios);
-	    jlUsuarios=new JLabel("Listado de Usuarios");
-		
-		
-		contentPane.add(jlUsuarios,BorderLayout.NORTH);
-		contentPane.add(jspUsuarios,BorderLayout.CENTER);
-					
-		
-
-		this.setVisible(true);	
-		this.setPreferredSize(new Dimension(500,450));
-		this.setResizable(true);
-		
-		
+		CreateShowGUI();
 	}
 	
-
-
 	private void listarDatos()
 	{
 		Usuarios=clsGestor.leerUsuario();
@@ -92,13 +65,14 @@ public class TablasUsuarios extends JFrame
 		
 		jtUsuarios=null;		
 		
-        TablaUsuariosModel tum=new TablaUsuariosModel(Usuarios);
-        jtUsuarios = new JTable(tum);
+        TablaUsuariosModel tam=new TablaUsuariosModel(Usuarios);
+	
+		jtUsuarios = new JTable(tam);
 		jtUsuarios.setPreferredScrollableViewportSize(new Dimension(500, 200));
 		jtUsuarios.setFillsViewportHeight(true);
 		jtUsuarios.setEnabled(true);
 		jtUsuarios.setRowSelectionAllowed(true);
-		tum.fireTableDataChanged();
+		tam.fireTableDataChanged();
 		ordenacion();
 				
 	}
@@ -118,8 +92,7 @@ public class TablasUsuarios extends JFrame
 		private static final long serialVersionUID = 1L;
 		
 		
-		private String[] columnNames = {"Nombre","Apellido","DNI","Edad"};
-		
+		private String[] columnNames = {"Nombre","Primer Apellido","DNI","Edad"};
         Object[][] data;
         
         public TablaUsuariosModel(ArrayList<clsUsuario> Usuario)
@@ -162,8 +135,7 @@ public class TablasUsuarios extends JFrame
     		{
     		   
     		Object[]a={
-    					new String(aux.getNombre()), new String(aux.getApellido()), new String(aux.getDni()),
-    					new Integer(aux.getEdad())
+    					new String(aux.getNombre()), new String(aux.getApellido()), new String(aux.getDni()),new Integer(aux.getEdad())
     					
  					
  					   };
@@ -173,7 +145,7 @@ public class TablasUsuarios extends JFrame
     		}
         }
         
-        public int getColumnCount() 
+       public int getColumnCount() 
         {
             return columnNames.length;
         }
@@ -182,7 +154,9 @@ public class TablasUsuarios extends JFrame
             return data.length;
         }
 
-        public String getColumnName(int col) {
+        public String getColumnName(int col) 
+        {
+        	
             return columnNames[col];
         }
 
@@ -198,7 +172,7 @@ public class TablasUsuarios extends JFrame
          * rather than a check box.
          */
         @SuppressWarnings("unchecked")
-		public Class getColumnClass(int c)
+		public Class getColumnClass(int c) 
         {
             return getValueAt(0, c).getClass();
         }
@@ -225,10 +199,85 @@ public class TablasUsuarios extends JFrame
 
         }
 
-    
     }
 	
+	private void CreateShowGUI()
+	{
+		crearTablaUsuarios();	
 		
+	
+		panel= new JPanel();
+		
+		this.setResizable(true);
+		this.setClosable(true);
+		this.setIconifiable(true);
+		this.setMaximizable(true);
+		
+		panel.setLayout(new BorderLayout());
+		
+		jspUsuarios=new JScrollPane(jtUsuarios);
+	
+		
+		jlUsuarios=new JLabel("Listado de Usuarios");
+		
+		
+		panel.add(jlUsuarios,BorderLayout.NORTH);
+		panel.add(jspUsuarios,BorderLayout.CENTER);
+					
+		
+		aceptar= new JButton("Aceptar");
+		aceptar.addActionListener(this);
+		aceptar.setActionCommand("Aceptar");
+		
+		cancelar= new JButton("Cancelar");
+		cancelar.addActionListener(this);
+		cancelar.setActionCommand("Cancelar");
+		
+				
+		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setSize(1000,400);
+		this.setVisible(true);
+		
+		 JPanel basePanel= new JPanel(new GridLayout());
+		    basePanel.add(aceptar); basePanel.add(cancelar); 
+		    
+			panel.add(basePanel,BorderLayout.SOUTH);
+			
+			
+			this.setContentPane(panel);
+		
+		
+	}
+
+	@Override
+	
+	public void actionPerformed(ActionEvent e)
+	{
+		
+		switch(e.getActionCommand())
+		{
+		
+		case "Aceptar":
+			System.out.println("Ha pulsado aceptar");
+			aceptar.setBackground(Color.blue);
+			//Aceptar(e);
+			this.dispose();
+			
+		break;
+		
+		case "Cancelar":
+			
+			System.out.println("Ha pulsado cancelar");
+			aceptar.setBackground(Color.magenta);
+			this.dispose();
+			
+		break;	
+			
+		}
+		
+		
+	}
 
     private void ordenacion()
     {
@@ -246,34 +295,6 @@ public class TablasUsuarios extends JFrame
    }
 
 	
-  
-}
-
 	
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
+	
+}

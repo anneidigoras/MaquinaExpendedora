@@ -136,7 +136,8 @@ public class IdentificaciónCliente extends JInternalFrame implements ActionListe
 		else
 		{	
 			existe= clsGestor.IngresoCliente(nombre, password);
-			if (existe== true){
+			if (existe== true)
+			{
 			this.dispose();
 			InterfazSeleccionProductos frame= new InterfazSeleccionProductos();
 			frame.setVisible(true);

@@ -16,9 +16,9 @@ public class clsAlimento  extends clsProducto
 		
 	}
 	
-	clsAlimento(String nombre, float precio, String id)
+	clsAlimento(String nombre, float precio, String id, clsUsuario usuario)
 	{
-		super(nombre, precio);
+		super(nombre, precio, usuario);
 		
 		this.id_A=id;
 

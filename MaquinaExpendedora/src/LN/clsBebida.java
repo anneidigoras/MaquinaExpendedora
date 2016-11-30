@@ -12,9 +12,9 @@ public class clsBebida extends clsProducto
 	private int num; //numero de bebidas de cada tipo que quedan en la maquina
 
 
-	clsBebida (String nombre, float precio, String id, int ml, String carac)
+	clsBebida (String nombre, float precio, String id, int ml, String carac, clsUsuario usuario)
     {
-    	super(nombre, precio);
+    	super(nombre, precio, usuario);
     	
     	this.id_B=id;
     	miliL = ml;

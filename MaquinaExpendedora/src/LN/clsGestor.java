@@ -1,8 +1,12 @@
 package LN;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,10 +18,18 @@ import COMUN.clsUsuarioExistente;
 import LD.*;
 
 
+
 public class clsGestor 
 {
 	static LinkedList<clsBebida> listaB; // la pongo estática porque va a ser la misma durante todo el programa 
+	public File file;          // Fichero
+	public String nombre;     
+	public String dni;    
 
+
+	public clsGestor(File file2) {
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * Este metodo se ejecuta una sola vez al principio del programa para crear las bebidas disponibles 
 	 * Y guardarlas en la base de datos.
@@ -39,14 +51,14 @@ public class clsGestor
 		listaB = BebidasGuardadas ();
 		if (listaB.isEmpty())
 		{
-		listaB.add(new clsBebida ("CocaCola", (float) 1.2, "CC", 350, "lata" ));
-		listaB.add(new clsBebida ("CocaColaLight", (float) 1.2, "CCL", 350, "lata"));
-		listaB.add(new clsBebida ("Fanta Naranja", (float) 1.2, "FN", 250, "botella"));
-		listaB.add( new clsBebida ("Sprite", (float) 1.2, "S", 250, "botella"));
-		listaB.add(new clsBebida ("RedBull", (float) 1.5, "RB", 335, "lata"));
-		listaB.add(new clsBebida ("Aquarius", (float) 1.2, "AQ", 330, "lata"));
-		listaB.add(new clsBebida ("Bifrutas", (float) 1.0, "BIF", 250, "lata"));
-		listaB.add(new clsBebida ("Agua", (float) 1.5, "H2O", 500, "botella"));
+		listaB.add(new clsBebida ("CocaCola", (float) 1.2, "CC", 350, "lata", null ));
+		listaB.add(new clsBebida ("CocaColaLight", (float) 1.2, "CCL", 350, "lata", null));
+		listaB.add(new clsBebida ("Fanta Naranja", (float) 1.2, "FN", 250, "botella", null));
+		listaB.add( new clsBebida ("Sprite", (float) 1.2, "S", 250, "botella", null));
+		listaB.add(new clsBebida ("RedBull", (float) 1.5, "RB", 335, "lata", null));
+		listaB.add(new clsBebida ("Aquarius", (float) 1.2, "AQ", 330, "lata", null));
+		listaB.add(new clsBebida ("Bifrutas", (float) 1.0, "BIF", 250, "lata", null));
+		listaB.add(new clsBebida ("Agua", (float) 1.5, "H2O", 500, "botella", null));
 		
 		clsDatos objD=new clsDatos();
 		
@@ -236,6 +248,127 @@ clsDatos objD=new clsDatos();
 	objD.TerminarSave();
 	
 }
+
+public boolean anyadirFilaATabla( Statement st ) {
+	// Adicional uno
+	if (chequearYaEnTabla(st)) {  // Si está ya en la tabla
+		return modificarFilaEnTabla(st);
+	}
+	// Inserción normal
+	try {
+		String sentSQL = "insert into fichero_multimedia values(" +
+				"'" + file.getAbsolutePath() + "', " +
+				"'" + dni+ "', " +
+				"'" + nombre + "')";
+		System.out.println( sentSQL );  // (Quitar) para ver lo que se hace-CONSEJO: hacer siempre un syso del string para ver como se ve
+		int val = st.executeUpdate( sentSQL );
+		if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+		return true;
+	} catch (SQLException e) {
+		e.printStackTrace();
+		return false;
+	}
+}
+public boolean chequearYaEnTabla( Statement st ) {
+	try {
+		String sentSQL = "select * from fichero_multimedia " +
+				"where (fichero = '" + file.getAbsolutePath() + "')"; //con getAbs.. no pueden existir dos arhivos con el mismo nombre
+		System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+		ResultSet rs = st.executeQuery( sentSQL ); // con resultset gestionamos los archivos vlc
+		if (rs.next()) {  // Normalmente se recorre con un while, pero aquí solo hay que ver si ya existe
+			rs.close();
+			return true; //si existe un valor return true, si no false
+		}
+		return false;
+	} catch (SQLException e) {
+		e.printStackTrace();
+		return false;
+	}
+}
+
+public boolean modificarFilaEnTabla( Statement st ) {
+	try {
+		String sentSQL = "update fichero_multimedia set " +
+				"nombre = '" + nombre + "', " +
+				"dni = '" + dni + "', " +
+				
+				"where (fichero = '" + file.getAbsolutePath() + "')";
+		System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+		int val = st.executeUpdate( sentSQL ); 
+		if (val!=1) return false;  // Se tiene que modificar 1, error si no
+		return true;
+	} catch (SQLException e) {
+		e.printStackTrace();
+		return false;
+	}
+}
+
+public void cargarDeTabla( Statement st ) {
+	try {
+		String sentSQL = "select * from fichero_multimedia " +
+				"where (fichero = '" + this.file.getAbsolutePath() + "')";
+		System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+		ResultSet rs = st.executeQuery( sentSQL );
+		if (rs.next()) {  // Normalmente se recorre con un while, pero aquí solo hay que ver si ya existe
+		
+			this.nombre = rs.getString( "nombre" );
+			this.dni = rs.getString( "dni" );
+			
+			rs.close();
+		}
+		// else No hay ninguno en la tabla
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+}
+
+public static clsGestor cargarDeTabla( Statement st, String nombreFichero ) {
+	try {
+		String sentSQL = "select * from fichero_multimedia " +
+				"where (fichero = '" + nombreFichero + "')";
+		System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+		ResultSet rs = st.executeQuery( sentSQL );
+		if (rs.next()) {  // Normalmente se recorre con un while, pero aquí solo hay que ver si ya existe
+			clsGestor fm = new clsGestor( new File(nombreFichero) );
+			
+			fm.nombre = rs.getString( "nombre" );
+			fm.dni = rs.getString( "dni" );
+			
+			rs.close();
+			return fm;
+		}
+		// else No hay ninguno en la tabla
+		return null;
+	} catch (SQLException e) {
+		e.printStackTrace();
+		return null;  // Error
+	}
+}
+
+public static ArrayList<clsGestor> cargarVariosDeTabla( Statement st, String exprWhere ) {
+	try {
+		ArrayList<clsGestor> lista = new ArrayList<>();
+		String sentSQL = "select * from fichero_multimedia" +
+				((exprWhere==null||exprWhere.equals(""))?"":(" where " + exprWhere));
+		System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+		ResultSet rs = st.executeQuery( sentSQL );
+		while (rs.next()) { 
+			clsGestor fm = new clsGestor( new File(rs.getString( "fichero_multimedia" )) );
+			
+			fm.nombre = rs.getString( "nombre" );
+			fm.dni = rs.getString( "dni" );
+			
+			rs.close();
+			lista.add( fm );
+		}
+		return lista;
+	} catch (SQLException e) {
+		e.printStackTrace();
+		return null;  // Error
+	}
+}
+
+
 
 }
 	

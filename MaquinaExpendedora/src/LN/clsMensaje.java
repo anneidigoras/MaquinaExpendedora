@@ -1,5 +1,6 @@
 package LN;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 import javax.mail.Authenticator;
@@ -12,7 +13,13 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 public class clsMensaje{
-  public static void main(String[] args) {
+ 
+	
+	protected static ArrayList<clsUsuario>usuario;
+	
+	public static void correo( )
+	
+	{
   final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
   // Get a Properties object
      
@@ -30,22 +37,37 @@ public class clsMensaje{
      final String password = "tontoelquelolea2";
      try{
      Session session = Session.getDefaultInstance(props, 
-                          new Authenticator(){
-                             protected PasswordAuthentication getPasswordAuthentication() {
+                          new Authenticator()
+     {
+                             protected PasswordAuthentication getPasswordAuthentication() 
+                             {
                                 return new PasswordAuthentication(username, password);
                              }});
 
-   // -- Create a new message --
+   // Crear mensaje
      Message msg = new MimeMessage(session);
 
-  // -- Set the FROM and TO fields --
+  // Seleccionamos emisor y receptor
      msg.setFrom(new InternetAddress("anne.idigoraspagola@gmail.com"));
      msg.setRecipients(Message.RecipientType.TO, 
                       InternetAddress.parse("anne.idigoraspagola@gmail.com",false));
-     msg.setSubject("Claves");
-     msg.setText("Usuario: admin; Contraseña: hola");
+     msg.setSubject("Estadísticas");
+     msg.setText("Adjuntamos los datos de los siguientes usuarios:");
+     usuario=clsGestor.leerUsuario();
+     for(clsUsuario aux:usuario)
+     {
+    	 msg.setText( " Nombre: "+ aux.getNombre()+  " Apellido: "+ aux.getApellido()+ " Dni: "+ aux.getDni());
+   
+    	
+    	 
+    	 
+     }
+     
      msg.setSentDate(new Date());
      Transport.send(msg);
      System.out.println("Message sent.");
-  }catch (MessagingException e){ System.out.println("Erreur d'envoi, cause: " + e);}
-  }}
+  }
+     catch (MessagingException e)
+     { System.out.println("Error de envío por: " + e);}
+  }
+	}

@@ -1,5 +1,6 @@
 package LP;
 
+import java.sql.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,18 +8,19 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 import COMUN.clsUsuarioExistente;
+
+import javax.swing.JButton;
+
+import LD.ConexionSql;
 import LN.clsGestor;
 /**
  * 
@@ -140,6 +142,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 			System.out.println("Ha pulsado aceptar");
 			btAceptar.setBackground(Color.blue);
 			Aceptar(e);
+			anyadir();
 		
 			
 		break;
@@ -170,7 +173,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 		
 		
 		
-		objGestor= new clsGestor();
+		objGestor= new clsGestor(null);
 		if (password1.equals(password2))
 		{
 			try 
@@ -192,6 +195,36 @@ public class RegistroUsuario extends JFrame implements ActionListener
 	
 	
 	}
+	public void anyadir()
+	{
+
+		Connection conn=ConexionSql.dbConnector();
+		Statement stmt;
+		try {
+			stmt = (Statement) conn.createStatement();
+						
+			stmt.executeUpdate("insert into usuario values('"+txtNombre.getText()+"', '"+txtApe.getText()+"', '"+txtDni.getText()+"')");
+			
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		finally {
+			  if (conn != null) {
+			    try {
+			      conn.close(); // <-- This is important
+			    } catch (SQLException e) {
+			      /* handle exception */
+			    }
+			  }
+			}
+	}	
+	
 	
 
 }

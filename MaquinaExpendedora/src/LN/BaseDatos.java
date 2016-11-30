@@ -1,81 +1,44 @@
 package LN;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
-public class BaseDatos 
-
-
-{
-
-	private static Connection connection = null;
-	private static Statement statement = null;
-	
-	public static Connection initBD( String nombreBD ) 
-	{
-		try {
-		    Class.forName("org.sqlite.JDBC");
-		    connection = DriverManager.getConnection("jdbc:sqlite:" + nombreBD );
-			statement = connection.createStatement();
-			statement.setQueryTimeout(30);  // poner timeout 30 msg
-		    return connection;
-		} 
-		catch (ClassNotFoundException | SQLException e) 
-		{
-			return null;
-		}
-	}
-	
-	/** Cierra la conexión con la Base de Datos
-	 */
-	public static void close() {
-		try {
-			statement.close();
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/** Devuelve la conexión si ha sido establecida previamente (#initBD()).
-	 * @return	Conexión con la BD, null si no se ha establecido correctamente.
-	 */
-	public static Connection getConnection() {
-		return connection;
-	}
-	
-	/** Devuelve una sentencia para trabajar con la BD,
-	 * si la conexión si ha sido establecida previamente (#initBD()).
-	 * @return	Sentencia de trabajo con la BD, null si no se ha establecido correctamente.
-	 */
-	public static Statement getStatement() {
-		return statement;
-	}
-
-	// ------------------------------------
-	// PARTICULAR DEL CATALOGO MULTIMEDIA
-	// ------------------------------------
-	
-	/** Crea una tabla de catálogo multimedia en una base de datos, si no existía ya.
-	 * Debe haberse inicializado la conexión correctamente.
-	 */
-	public static void crearTablaBD()
-	{
-		if (statement==null) return;
-		try {
-			statement.executeUpdate("create table fichero_usuario " +
-				"(fichero string, error boolean, titulo string" +
-				", cantante string, comentarios string)");
-		} 
-		catch (SQLException e)
-		{
-			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
-			// e.printStackTrace();  
-		}
-	}
-
-
+public class BaseDatos {
+    public static void main(String[] args) throws SQLException {
+        System.out.println("INICIO DE EJECUCIÓN.");
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost");
+      
+            Statement st = conexion.createStatement();
+            st.executeUpdate("DROP TABLE IF EXISTS personal;");
+            st.executeUpdate("CREATE TABLE personal (`Identificador` int(11) NOT NULL AUTO_INCREMENT, `Nombre` varchar(50) NOT NULL, `Apellidos` varchar(50) NOT NULL, `Telefono` varchar(9) DEFAULT NULL, `Email` varchar(60) DEFAULT NULL, PRIMARY KEY (`Identificador`));");
+            st.executeUpdate("INSERT INTO personal (`Identificador`, `Nombre`, `Apellidos`, `Telefono`, `Email`) VALUES (1, 'José', 'Martínez López', '968112233', 'jose@martinezlopez.com'), (2, 'María', 'Gómez Muñoz', '911876876', 'maria@gomezoliver.com'), (3, 'Juan', 'Sánchez Fernández', '922111333', 'juan@sanchezfernandez.com'), (4, 'Ana', 'Murcia Rodríguez', '950999888', 'ana@murciarodriguez.com');");
+            ResultSet rs = st.executeQuery("SELECT * FROM personal;");
+ 
+            if (rs != null) {
+                System.out.println("El listado de persona es el siguiente:");
+ 
+                while (rs.next()) {
+                    System.out.println("  ID: " + rs.getObject("Identificador"));
+                    System.out.println("  Nombre completo: " + rs.getObject("Nombre") + " " + rs.getObject("Apellidos"));
+                    System.out.println("  Contacto: " + rs.getObject("Telefono") + " " + rs.getObject("Email"));
+                    System.out.println("- ");
+                }
+                rs.close();
+            }
+            st.close();
+ 
+        }
+        catch(SQLException s)
+        {
+            System.out.println("Error: SQL.");
+            System.out.println("SQLException: " + s.getMessage());
+        }
+        catch(Exception s)
+        {
+            System.out.println("Error: Varios.");
+            System.out.println("SQLException: " + s.getMessage());
+        }
+        System.out.println("FIN DE EJECUCIÓN.");
+    }
 }

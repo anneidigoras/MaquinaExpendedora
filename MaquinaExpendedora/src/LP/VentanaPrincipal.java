@@ -48,7 +48,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 
 	private static final long serialVersionUID = 1L;
 	
-	clsGestor objGestor= new clsGestor();
+	clsGestor objGestor= new clsGestor(null);
 	
 	JLabel bienv ;
 	JLabel imagenlbl;
@@ -162,10 +162,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 			 frame3.setVisible(true);
 			 break;
 			 
-			 
-		 case CREAR_ADMIN:
-//			 CrearAdmin();
-			 break;
+	
 			 
 		// Utilizo ImageIcon, Image para hacer la foto más pequeña-- sino era más grande que la pantalla
 		case SALIR:

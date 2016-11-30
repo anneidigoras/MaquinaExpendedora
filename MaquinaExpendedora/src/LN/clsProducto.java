@@ -12,16 +12,18 @@ public class clsProducto implements Serializable
 
 	private String nombreP;
 	private float precioP;
+	protected clsUsuario usuario;
 	
 	
 	public clsProducto()
 	{
 		
 	}
-	public clsProducto(String nombre, float precio)
+	public clsProducto(String nombre, float precio, clsUsuario usuario)
 	{
 		nombreP=nombre;
 		precioP=precio;
+		this.usuario=usuario;
 		
 	}
 
@@ -43,7 +45,15 @@ public class clsProducto implements Serializable
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public clsUsuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(clsUsuario usuario) {
+		this.usuario = usuario;
 	}	
+	
+	
 	
 	
 }

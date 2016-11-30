@@ -1,6 +1,7 @@
 package LN;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Comparator;
 /**
  * Clase usuario, con sus atributos. Implemente comparable, serilizable y comparator
@@ -13,7 +14,7 @@ public class clsUsuario implements Comparable<clsUsuario> ,Serializable,Comparat
 	private String nombre; 
 	private String apellido;
 	private int edad;
-	private String genero;
+
 	private float dinero;
 	private String dni;
 	private String password;
@@ -26,9 +27,10 @@ public class clsUsuario implements Comparable<clsUsuario> ,Serializable,Comparat
 		apellido=_apellido;
 		edad=_edad;
 		dni=_dni;
-		genero="";
+		
 		dinero=COMUN.clsConstantes.DINERO_INICIAL;
 		password = _pass;
+      
 		
 	}
 
@@ -48,13 +50,6 @@ public class clsUsuario implements Comparable<clsUsuario> ,Serializable,Comparat
 		this.edad = edad;
 	}
 
-	public String getGenero() {
-		return genero;
-	}
-
-	public void setGenero(String genero) {
-		this.genero = genero;
-	}
 
 	public float getDinero() {
 		return dinero;
@@ -141,6 +136,5 @@ public class clsUsuario implements Comparable<clsUsuario> ,Serializable,Comparat
 			return false;
 		return true;
 	}
-	
-	
+
 }
