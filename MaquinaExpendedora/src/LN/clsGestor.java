@@ -249,6 +249,14 @@ clsDatos objD=new clsDatos();
 	
 }
 
+public void asignarBebida()
+
+{
+	
+
+
+}
+
 public boolean anyadirFilaATabla( Statement st ) {
 	// Adicional uno
 	if (chequearYaEnTabla(st)) {  // Si está ya en la tabla

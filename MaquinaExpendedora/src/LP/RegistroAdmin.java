@@ -3,16 +3,21 @@ package LP;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.Arrays;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -24,6 +29,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import COMUN.clsConstantes;
+import LN.clsAdministrador;
+import LN.clsMensaje;
 /**
  * 
  * Clase de registro del administrador, con un clave unicada ya predeterminada
@@ -34,26 +41,64 @@ public class RegistroAdmin extends JFrame implements ActionListener
 {
 	private JTextField txtUsuario;
     private JButton btingresar;
+    private JLabel lblUsuario ;
 	private JPanel contentPane;
 	private JPasswordField password;
+	
+	private JLabel lblcorreo;
+	private JButton correo;
+	static final String CORREO= "Correo";
+	 
 	
 	
 	public RegistroAdmin()
 	{
+		if (clsAdministrador.existe==false)
+			JOptionPane.showMessageDialog(this, "Welcome Administrador, Tu nombre de usuario es: admin y tu contraseña: hola");
+			
+
 		
 		setTitle("Inicio de sesión");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setBounds(100, 100, 600, 390);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		
-	
 		
-		JPanel panel = new JPanel();
+		// En caso de que sea la primera vez que ingresa el administrador, le damos la opcion de recibir por correo 
+		// los datos de usuario y contraseña
+		if(clsAdministrador.existe==false)
+		{
+				JPanel panel0 = new JPanel();
+				panel0.setBounds(10, 10, 500, 128);
+				contentPane.add(panel0);
+				panel0.setLayout(null);
+				
+				correo = new JButton ();
+		  		correo.setBounds(10, 25, 100, 60);
+		  		Image img3= null;
+		  		try {
+		  			img3 = ImageIO.read(getClass().getResource("/img/correo.jpg"));
+		  		} catch (IOException e) {
+		  			// TODO Auto-generated catch block
+		  			e.printStackTrace();
+		  		}
+		  	    correo.setIcon(new ImageIcon(img3));
+		  	    correo.setActionCommand(CORREO);
+		  	    correo.addActionListener((ActionListener)this);
+		  	    panel0.add(correo);
+		  	    
+		  	    lblcorreo = new JLabel("Clique aqui para recibir un correo con los datos para ingresar");
+		  	    lblcorreo.setBounds(120,45,400,15);
+		  	    panel0.add(lblcorreo);
+		}
+  	    
+  	    JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.setBounds(10, 145, 300, 128);
 		contentPane.add(panel);
@@ -65,7 +110,7 @@ public class RegistroAdmin extends JFrame implements ActionListener
 		txtUsuario.setColumns(10);
 		
 
-		JLabel lblUsuario = new JLabel("Nombre");
+		lblUsuario = new JLabel("Nombre");
 		lblUsuario.setBounds(10, 14, 46, 14);
 		panel.add(lblUsuario);
 //		
@@ -133,6 +178,7 @@ public class RegistroAdmin extends JFrame implements ActionListener
 		            {
 		                JOptionPane.showMessageDialog(this, "Contraseña correcta");
 		                this.dispose();
+		                clsAdministrador.existe = true;
 		               // TablasUsuarios frame= new TablasUsuarios();
 		                //frame.setVisible(true);
 		                PantallaAdmin frame= new PantallaAdmin("Pantalla Admin");
@@ -173,8 +219,13 @@ public class RegistroAdmin extends JFrame implements ActionListener
 		switch(comando)
 		{
 			case ("Ingresar"):
-
 				  this.pulsadoIngreso();
+				break;
+			case CORREO:
+				clsAdministrador.Correo = JOptionPane.showInputDialog("Introduzca su correo electrónico (con la forma ...@example.com)");
+				clsMensaje.correo_identificacion();
+				
+				
 				break;
 			
 	  }

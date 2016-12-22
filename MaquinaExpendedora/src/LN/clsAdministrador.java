@@ -2,16 +2,25 @@ package LN;
 
 public class clsAdministrador 
 {
-	
+	public static boolean existe= false;
 	private String contraseña;
 	private String nombre;
+	public static String Correo;
 	
+
 	clsAdministrador()
 	{
 		contraseña="";
 		nombre="";
 	}
 
+	public String getCorreo() {
+		return Correo;
+	}
+	
+	public void setCorreo(String correo) {
+		Correo = correo;
+	}
 	public String getContraseña() {
 		return contraseña;
 	}

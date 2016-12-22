@@ -22,7 +22,15 @@ public class clsBebida extends clsProducto
     	num = COMUN.clsConstantes.NUM_INICIAL_BEBIDAS;
     }
 	
-    public int getMiliL() {
+    public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public int getMiliL() {
     	return miliL;
     }
     public void setMiliL(int miliL) {
@@ -38,7 +46,7 @@ public class clsBebida extends clsProducto
     }
 	private String id_B;
 	
-	clsBebida()
+	public clsBebida()
 	{
 		super();
 		

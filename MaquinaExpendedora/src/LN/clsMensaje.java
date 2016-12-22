@@ -18,7 +18,6 @@ public class clsMensaje{
 	protected static ArrayList<clsUsuario>usuario;
 	
 	public static void correo( )
-	
 	{
   final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
   // Get a Properties object
@@ -50,17 +49,13 @@ public class clsMensaje{
   // Seleccionamos emisor y receptor
      msg.setFrom(new InternetAddress("anne.idigoraspagola@gmail.com"));
      msg.setRecipients(Message.RecipientType.TO, 
-                      InternetAddress.parse("anne.idigoraspagola@gmail.com",false));
+                      InternetAddress.parse(clsAdministrador.Correo,false));
      msg.setSubject("Estadísticas");
      msg.setText("Adjuntamos los datos de los siguientes usuarios:");
      usuario=clsGestor.leerUsuario();
      for(clsUsuario aux:usuario)
      {
     	 msg.setText( " Nombre: "+ aux.getNombre()+  " Apellido: "+ aux.getApellido()+ " Dni: "+ aux.getDni());
-   
-    	
-    	 
-    	 
      }
      
      msg.setSentDate(new Date());
@@ -70,4 +65,46 @@ public class clsMensaje{
      catch (MessagingException e)
      { System.out.println("Error de envío por: " + e);}
   }
-	}
+	public static void correo_identificacion( )
+	{
+  final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+  // Get a Properties object
+     
+  Properties props = System.getProperties();
+     props.setProperty("mail.smtp.host", "smtp.gmail.com");
+     props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+     props.setProperty("mail.smtp.socketFactory.fallback", "false");
+     props.setProperty("mail.smtp.port", "465");
+     props.setProperty("mail.smtp.socketFactory.port", "465");
+     props.put("mail.smtp.auth", "true");
+     props.put("mail.debug", "true");
+     props.put("mail.store.protocol", "pop3");
+     props.put("mail.transport.protocol", "smtp");
+     final String username = "anne.idigoraspagola@gmail.com";//
+     final String password = "tontoelquelolea2";
+     try{
+     Session session = Session.getDefaultInstance(props, 
+                          new Authenticator()
+     {
+                             protected PasswordAuthentication getPasswordAuthentication() 
+                             {
+                                return new PasswordAuthentication(username, password);
+                             }});
+
+   // Crear mensaje
+     Message msg = new MimeMessage(session);
+
+  // Seleccionamos emisor y receptor
+     msg.setFrom(new InternetAddress("anne.idigoraspagola@gmail.com"));
+     msg.setRecipients(Message.RecipientType.TO, 
+                      InternetAddress.parse(clsAdministrador.Correo,false));
+     msg.setSubject("Identificación administrador");
+     msg.setText("Adjuntamos el nombre de usuario y la contraseña para ingresar a la plataforma de la maquina expendedora: \n" +" Usuario: admin \n"+" Contraseña: hola");
+     msg.setSentDate(new Date());
+     Transport.send(msg);
+     System.out.println("Message sent.");
+  }
+     catch (MessagingException e)
+     { System.out.println("Error de envío por: " + e);}
+  }
+}

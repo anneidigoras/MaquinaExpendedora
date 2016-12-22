@@ -24,8 +24,8 @@ import javax.swing.border.EmptyBorder;
 public class InterfazSeleccionProductos extends JFrame implements ActionListener
 {
 	
-	private JButton btCoca, btNestea, btBifrutas;
-	private JLabel lblCoca, lblNestea, lblBifrutas;
+	private JButton btCoca, btNestea, btBifrutas, btKitKat, btOreo;
+	private JLabel lblCoca, lblNestea, lblBifrutas, lblKitKat, lblOreo;
 	private JPanel contentPane;
 	
 	public InterfazSeleccionProductos()
@@ -36,7 +36,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		setTitle("Registro");
 		
 		setResizable(false);
-		setBounds(800, 200, 600, 390);
+		setBounds(800, 800, 600, 390);
 	
 		contentPane = new JPanel();
 		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -51,6 +51,12 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		
 		lblBifrutas= new JLabel ("Bifrutas");
 		lblBifrutas.setBounds(245,75,67,40);
+		
+		lblKitKat= new JLabel ("KitKat");
+		lblKitKat.setBounds(15,150,67,40);
+		lblOreo= new JLabel ("Oreo");
+		lblOreo.setBounds(130,150,67,40);
+		
 		
 		btNestea = new JButton ();
 		btNestea.setBounds(130, 14, 100, 60);
@@ -84,15 +90,27 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 			e.printStackTrace();
 		}
 	    btCoca.setIcon(new ImageIcon(img));
+	    
+	    btOreo = new JButton ();
+		btOreo.setBounds(10, 100, 100, 60);
+		Image img4 = null;
+		try {
+			img4 = ImageIO.read(getClass().getResource("/img/oreo.jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    btCoca.setIcon(new ImageIcon(img4));
 		
 		
 		
 	
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 50, 300, 128);
+		panel.setBounds(30, 50, 300, 128);
 		panel.setLayout(null);
-		panel.add(lblCoca); panel.add(btCoca); panel.add(lblNestea);panel.add(btNestea);panel.add(lblBifrutas);panel.add(btBifrutas);
+		panel.add(lblCoca); panel.add(btCoca); panel.add(lblNestea);panel.add(btNestea);panel.add(lblBifrutas);panel.add(btBifrutas); 
+		panel.add(lblKitKat);panel.add(lblOreo); panel.add(btOreo); 
 		contentPane.add(panel);
 		
 

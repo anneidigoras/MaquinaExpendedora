@@ -20,6 +20,11 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -39,7 +44,9 @@ import javax.swing.KeyStroke;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 
+import LD.ConexionSql;
 import LN.clsGestor;
+import LN.clsUsuario;
 
 
 
@@ -195,10 +202,46 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		
 	}
 	
+
+	@SuppressWarnings("unchecked")
+	public void cargarLista()
+	{
+				
+		Connection conn=ConexionSql.dbConnector();
+		Statement stmt;
+		try {
+			stmt = (Statement) conn.createStatement();
+			
+						
+			ResultSet rs = ((java.sql.Statement) stmt).executeQuery("select nombre_e from usuario");
+					     
+		      while(rs.next())
+		      { 
+		    	  // Leer el resultset
+		    	  ArrayList<clsUsuario>usuario;
+		    	  usuario= clsGestor.leerUsuario();
+		    	 clsModeloLista objM= new clsModeloLista(usuario);
+		    	//  objM.añadirElemento((clsUsuario) rs.getString());
+		    	  		    
+
+		      }
+		   
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+
+
+
+
+}
+	
 	
 
  
    
  
 
-}
+

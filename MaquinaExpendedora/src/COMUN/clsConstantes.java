@@ -16,7 +16,9 @@ public class clsConstantes
 		RELACIOADMINISTRADOR_PRODUCTO,
 	}
 	
-	
+	public final static String ID_COCACOLA = "CC";
+	public final static String ID_NESTEA = "NT";
+	public final static String ID_BIFRUTAS = "BF";
 	public final static String CMD_BTN_INGRESAR = "CMD_BTN_INGRESAR";
 
 }

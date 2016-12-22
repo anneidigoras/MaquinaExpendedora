@@ -14,9 +14,9 @@ public class ConexionSql
 		{
 			Class.forName("org.sqlite.JDBC");
 
-//			Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\ALUMNO\\Documents\\Git\\BasketCoach\\BasketCoach\\BasketCoach(Database).s3db");
+//			
 
-			File fichero = new File("BasketCoach(Database).s3db");
+			File fichero = new File("MaquinaExpendedora(DataBase).s3db");
 			Connection conn = DriverManager.getConnection("jdbc:sqlite:" + fichero.getAbsolutePath());
 
 			JOptionPane.showMessageDialog(null, "Connection Successful");
