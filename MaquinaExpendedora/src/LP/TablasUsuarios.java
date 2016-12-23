@@ -15,6 +15,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -28,8 +29,11 @@ import javax.swing.SortOrder;
 import javax.swing.event.RowSorterEvent;
 import javax.swing.event.RowSorterListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
+
+import LD.ConexionSql;
 import LN.clsUsuario;
 import LN.clsGestor;
 
@@ -38,12 +42,14 @@ public class TablasUsuarios extends JInternalFrame implements ActionListener
 {
 
     static ArrayList<clsUsuario> Usuarios;	
-	static JTable jtUsuarios;		
-	JScrollPane jspUsuarios;
-    JButton aceptar,cancelar;
-	JLabel 	jlUsuarios;
-	JPanel 	panel;
+	private static JTable jtUsuarios;		
+	private JScrollPane jspUsuarios;
+    private JButton aceptar,cancelar;
+	private JLabel 	jlUsuarios;
+	private JPanel 	panel;
 	clsGestor objGestor= new clsGestor(null);	
+	private DefaultTableModel modelo;
+	ConexionSql con = null;
 	
 	
 
@@ -53,7 +59,12 @@ public class TablasUsuarios extends JInternalFrame implements ActionListener
 		super("DATOS DE UsuarioS");
 		listarDatos();
 		CreateShowGUI();
+		
+	
 	}
+	
+
+
 	
 	private void listarDatos()
 	{
@@ -279,6 +290,8 @@ public class TablasUsuarios extends JInternalFrame implements ActionListener
 		
 	}
 
+	
+	
     private void ordenacion()
     {
     	TableRowSorter<TablaUsuariosModel>sorter= new TableRowSorter(jtUsuarios.getModel());
@@ -294,7 +307,8 @@ public class TablasUsuarios extends JInternalFrame implements ActionListener
     	sorter.sort();
    }
 
-	
+   
+    
 	
 	
 }

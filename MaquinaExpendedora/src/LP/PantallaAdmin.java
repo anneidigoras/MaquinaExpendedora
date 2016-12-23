@@ -154,7 +154,11 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 areaCoca.setBounds(105, 0, 200, 100);
 			 areaCoca.setEditable(false);
 			 clsBebida beb = new clsBebida();
-			 for ( clsBebida aux: lista){if(aux.getId_B().equals(clsConstantes.ID_COCACOLA))beb=aux;}
+			 for ( clsBebida aux: lista)
+			 {
+				 if(aux.getId_B().equals(clsConstantes.ID_COCACOLA))
+					 beb=aux;
+			 }
 			 areaCoca.append("Coca Cola"+ SALTO +"Nº de bebidas disponibles: "+ beb.getNum());
 			 
 			 slidCoca = new JSlider (0,50);

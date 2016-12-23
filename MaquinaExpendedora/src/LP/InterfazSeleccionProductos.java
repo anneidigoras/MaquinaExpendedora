@@ -100,7 +100,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    btCoca.setIcon(new ImageIcon(img4));
+	    btOreo.setIcon(new ImageIcon(img4));
 		
 		
 		
@@ -123,19 +123,13 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	}
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent arg0) 
+	{
+		
 		
 	}
+	
+	
 
 }

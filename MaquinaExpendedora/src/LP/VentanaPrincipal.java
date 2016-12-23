@@ -57,18 +57,19 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 	
 	clsGestor objGestor= new clsGestor(null);
 	
-	JLabel bienv ;
-	JLabel imagenlbl;
+	private JLabel bienv ;
+    private	JLabel imagenlbl;
 	
-	JMenuBar MenuPrincipal;
-	JMenu Cliente;
-	JMenuItem C_Ingresar;
-	JMenuItem C_Registrarse;
-	JMenu Admin;
-	JMenuItem A_Ingresar;
-	JMenuItem A_Registrarse;
-	JButton Salir;
-	JButton usuario;
+	private JMenuBar MenuPrincipal;
+	private JMenu Cliente;
+	private JMenuItem C_Ingresar;
+	private JMenuItem C_Registrarse;
+	private JMenu Admin;
+	private JMenuItem A_Ingresar;
+	private JMenuItem A_Registrarse;
+	private JButton Salir;
+	private JButton usuario;
+	Connection connection = null;
 	
 
 	
@@ -86,6 +87,9 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
     	this.setTitle(title);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
+		
+		
+		
 		
 		bienv = new JLabel ("¡BIENVENIDO!");
 		bienv.setFont(new Font("Algerian", Font.BOLD, 45));
@@ -207,7 +211,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 	public void cargarLista()
 	{
 				
-		Connection conn=ConexionSql.dbConnector();
+		Connection conn=ConexionSql.dbConnector("Base datos Usuarios");
 		Statement stmt;
 		try {
 			stmt = (Statement) conn.createStatement();

@@ -198,7 +198,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 	public void anyadir()
 	{
 
-		Connection conn=ConexionSql.dbConnector();
+		Connection conn=ConexionSql.dbConnector("Base datos Usuarios");
 		Statement stmt;
 		try {
 			stmt = (Statement) conn.createStatement();
