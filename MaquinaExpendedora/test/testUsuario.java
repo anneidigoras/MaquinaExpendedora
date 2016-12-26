@@ -1,25 +1,21 @@
-import static org.junit.Assert.*;
 
-import org.junit.Test;
 
-import LP.RegistroAdmin;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-public class testUsuario {
+import LD.ConexionSql;
+import junit.framework.TestCase;
 
-	RegistroAdmin clsAd= new RegistroAdmin();
-	@Test
-	public void testisPasswordCorrect() 
-	{
-		char[] pass= { 'h', 'o', 'l' };
-		String nombre="pepe";
-		boolean real=clsAd.isPasswordCorrect(pass , nombre);
-		boolean esperado=false;
-		
-		if(real=esperado)
-		{
-			fail();
-		}
-		
-	}
+public class testUsuario extends TestCase {
 
-}
+    public void testDBRegistryConnection() {
+       // Connection con =  ConexionSql.getLastError();
+       // assertNotNull(con);
+    }
+
+    public void testTableQuery() throws SQLException {
+        //Connection con =  DBRegistry.getUniqueInstance().getDBConnection();
+      //  PreparedStatement dbStatement = con.prepareStatement("SELECT COUNT(*) FROM `singleTask`");
+     //   assertEquals("should be 1 for successful query", 1, dbStatement.executeQuery());
+    }}

@@ -31,6 +31,7 @@ public class ConexionSql
 		{ 
 			Class.forName("org.sqlite.JDBC");
             File fichero = new File("MaquinaExpendedora(DataBase).s3db");
+          //  Connection conn = DriverManager.getConnection("jdbc:sqlite:D:\\testdb.db");
 			Connection conn = DriverManager.getConnection("jdbc:sqlite:" + fichero.getAbsolutePath());
 			Statement st = conn.createStatement();      // (1) Solo para foreign keys
 		    st.execute( "PRAGMA foreign_keys = ON" );  // (1)
@@ -77,7 +78,7 @@ public class ConexionSql
 			Statement statement = con.createStatement();
 			statement.setQueryTimeout(30);  // poner timeout 30 msg
 			try {
-				statement.executeUpdate("create table usuario " +
+				statement.executeUpdate("CREATE TABLE usuario " +
 					// "(nick string "  // (2) Esto sería sin borrado en cascada ni relación de claves ajenas
 					"(dni string PRIMARY KEY" // (1) Solo para foreign keys
 					+ ", apellido string, apellido string" +
