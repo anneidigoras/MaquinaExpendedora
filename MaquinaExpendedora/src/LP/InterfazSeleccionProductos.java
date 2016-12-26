@@ -38,6 +38,8 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	static final String NESTEA= "Nestea";
 	static final String BIF= "Bifrutas";
 	static final String AN= "Anular";
+	static final String OREO= "Oreo";
+	static final String KIT= "KitKat";
 	
 	
 	public InterfazSeleccionProductos()
@@ -67,7 +69,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		lblBifrutas.setBounds(245,75,67,40);
 		
 		lblKitKat= new JLabel ("KitKat");
-		lblKitKat.setBounds(15,150,67,40);
+		lblKitKat.setBounds(130,200,67,40);
 		lblOreo= new JLabel ("Oreo");
 		lblOreo.setBounds(15,200,67,40);
 		
@@ -122,6 +124,21 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 			e.printStackTrace();
 		}
 	    btOreo.setIcon(new ImageIcon(img4));
+	    btOreo.setActionCommand(OREO);
+	    btOreo.addActionListener((ActionListener)this);
+	    
+	    btKitKat = new JButton ();
+			btKitKat.setBounds(130, 150, 100, 60);
+			Image img5 = null;
+			try {
+				img5 = ImageIO.read(getClass().getResource("/img/kitkat.png"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    btKitKat.setIcon(new ImageIcon(img5));
+		    btKitKat.setActionCommand(KIT);
+		    btKitKat.addActionListener((ActionListener)this);
 	    
 	    btAnular = new JButton();
 	    btAnular.setBounds(10,250,90,50);
@@ -142,7 +159,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		panel.setBounds(30, 50, 300, 500);
 		panel.setLayout(null);
 		panel.add(lblCoca); panel.add(btCoca); panel.add(lblNestea);panel.add(btNestea);panel.add(lblBifrutas);panel.add(btBifrutas); 
-		panel.add(lblKitKat);panel.add(lblOreo); panel.add(btOreo); panel.add(btAnular);
+		panel.add(lblKitKat);panel.add(lblOreo); panel.add(btOreo); panel.add(btAnular); panel.add(btCoca);panel.add(btKitKat);
 		contentPane.add(panel);
 		
 
@@ -170,6 +187,14 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 				
 				this.txtPantalla.setText("");
 			break;
+			
+			case (OREO):
+				this.txtPantalla.append("Oreos"+" 1,20 €");
+				break;
+			
+			case (KIT):
+				this.txtPantalla.append("KitKat"+" 1,20 €");
+				break;
 				
 				
 			
