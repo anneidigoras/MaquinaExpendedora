@@ -324,7 +324,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			break;
 
 		case "Listado Usuarios":
-			
+			getContentPane().removeAll();
 			tablasUsers();
 			
 			break;
@@ -340,6 +340,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     	
     	TablasUsuarios tabla= new TablasUsuarios();
     	tabla.setVisible(true);
+    	toFront();
     	contentPane.add(tabla);
     	
     	try 

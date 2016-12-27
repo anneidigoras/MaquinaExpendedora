@@ -283,6 +283,7 @@ public class TablasUsuarios extends JInternalFrame implements ActionListener
 			aceptar.setBackground(Color.magenta);
 			this.dispose();
 			
+			
 		break;	
 			
 		}
