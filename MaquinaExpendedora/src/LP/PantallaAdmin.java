@@ -116,8 +116,9 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
              ajustes = new JButton();
              ImageIcon icono0 = new ImageIcon(getClass().getResource("/img/ajustes.jpg"));
 			 Image imagen0 = icono0.getImage();
-			 ImageIcon iconoEsc0 = new ImageIcon (imagen0.getScaledInstance(20,20,Image.SCALE_SMOOTH));
+			 ImageIcon iconoEsc0 = new ImageIcon (imagen0.getScaledInstance(22,22,Image.SCALE_SMOOTH));
 			 ajustes.setIcon(iconoEsc0);
+			 ajustes.setBorder(null);
         	    
         	 ajustes.setActionCommand(AJUSTES);
         	 ajustes.addActionListener((ActionListener) this);
@@ -366,6 +367,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		 {
 			 System.out.println("lo que sea");
 		 }
+		 else System.out.println("no pasa na");
 	}
 	protected void tablasUsers()
     {
