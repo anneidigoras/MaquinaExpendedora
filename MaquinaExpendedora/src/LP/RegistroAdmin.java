@@ -61,7 +61,7 @@ public class RegistroAdmin extends JFrame implements ActionListener
 		setTitle("Inicio de sesión");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setBounds(100, 100, 600, 390);
+		setBounds(300, 100, 600, 390);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -178,7 +178,7 @@ public class RegistroAdmin extends JFrame implements ActionListener
 		            {
 		                JOptionPane.showMessageDialog(this, "Contraseña correcta");
 		                this.dispose();
-		                clsAdministrador.existe = true;
+		                
 		               // TablasUsuarios frame= new TablasUsuarios();
 		                //frame.setVisible(true);
 		                PantallaAdmin frame= new PantallaAdmin("Pantalla Admin");
@@ -224,6 +224,7 @@ public class RegistroAdmin extends JFrame implements ActionListener
 			case CORREO:
 				clsAdministrador.Correo = JOptionPane.showInputDialog("Introduzca su correo electrónico (con la forma ...@example.com)");
 				clsMensaje.correo_identificacion();
+				clsAdministrador.existe = true;
 				
 				
 				break;

@@ -93,16 +93,17 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		
 		bienv = new JLabel ("¡BIENVENIDO!");
 		bienv.setFont(new Font("Algerian", Font.BOLD, 45));
-		bienv.setForeground(new Color(51, 102, 153));
-		bienv.setBounds(540,100,589,67);
-		bienv.setLocation(200,100);
+		bienv.setForeground(Color.WHITE);
+		bienv.setBounds(540,50,500,150);
 		getContentPane().add(bienv);
+		
 		
 		
 		ImageIcon icono = new ImageIcon(getClass().getResource("/img/portada.jpg"));
 		Image imagen = icono.getImage();
-		ImageIcon iconoEscalado = new ImageIcon (imagen.getScaledInstance(700,800,Image.SCALE_SMOOTH));
+		ImageIcon iconoEscalado = new ImageIcon (imagen.getScaledInstance(200,300,Image.SCALE_SMOOTH));
         imagenlbl = new JLabel (iconoEscalado);
+        
         this.getContentPane().setPreferredSize(this.getSize());
         getContentPane().add(imagenlbl);
 		getContentPane().setBackground(new Color(204, 204, 255));

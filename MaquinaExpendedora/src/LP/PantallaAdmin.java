@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
@@ -33,7 +34,9 @@ import javax.swing.event.ChangeListener;
 
 import COMUN.clsConstantes;
 import LN.clsAdministrador;
+
 import LN.clsBebida;
+
 import LN.clsGestor;
 
 import LN.clsMensaje;
@@ -45,7 +48,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	private JMenuBar MenuPrincipal;
 	private JMenu DatosUsuarios, Admin;
 	private JMenuItem ListadoUsuarios, EditarListaUsuarios, Ingresar, Correo;
-	private JButton vueltaInicio, correo, guardar;
+	private JButton vueltaInicio, correo, guardar,ajustes;
     private JPanel contentPane;
     private JDesktopPane desktop;
     
@@ -56,6 +59,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	
    
 	 static final String SALIR = "Cerrar Sesion";
+	 static final String AJUSTES = "Ajustes";
 	 static final String CORREO= "Correo";
 	 static final String GUARDAR= "Guardar";
 	 static final String LISTA= "Listado Usuarios";
@@ -93,20 +97,34 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	
 	      	DatosUsuarios.add(EditarListaUsuarios);
     	
-		     Admin = new JMenu("ADMINISTRADOR");
-		     Admin.setForeground(Color.WHITE);
-		     MenuPrincipal.add(Admin);
-		
-	         Ingresar = new JMenuItem("Ingresar");
-		     Admin.add(Ingresar);
-		  
-		     Correo = new JMenuItem("Correo");
-		
-		     Admin.add(Correo);
+//		     Admin = new JMenu("ADMINISTRADOR");
+//		     Admin.setForeground(Color.WHITE);
+//		     MenuPrincipal.add(Admin);
+//		
+//	         Ingresar = new JMenuItem("Ingresar");
+//		     Admin.add(Ingresar);
+//		  
+//		     Correo = new JMenuItem("Correo");
+//		
+//		     Admin.add(Correo);
 	
 		     vueltaInicio = new JButton("Cerrar Sesion");;
              vueltaInicio.setActionCommand(SALIR);
              vueltaInicio.addActionListener((ActionListener) this);
+             
+             
+             ajustes = new JButton();
+             ImageIcon icono0 = new ImageIcon(getClass().getResource("/img/ajustes.jpg"));
+			 Image imagen0 = icono0.getImage();
+			 ImageIcon iconoEsc0 = new ImageIcon (imagen0.getScaledInstance(20,20,Image.SCALE_SMOOTH));
+			 ajustes.setIcon(iconoEsc0);
+        	    
+        	 ajustes.setActionCommand(AJUSTES);
+        	 ajustes.addActionListener((ActionListener) this);
+             
+             
+             MenuPrincipal.add(Box.createHorizontalGlue());
+             MenuPrincipal.add(ajustes);
              MenuPrincipal.add(vueltaInicio);
         
            
@@ -123,7 +141,6 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
        		try {
        			img3 = ImageIO.read(getClass().getResource("/img/correo.jpg"));
        		} catch (IOException e) {
-       			// TODO Auto-generated catch block
        			e.printStackTrace();
        		}
        	    correo.setIcon(new ImageIcon(img3));
@@ -310,9 +327,9 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 
 			 salir= JOptionPane.showConfirmDialog(null, "¿Seguro que quiere cerrar la sesion?","Confirmar ", JOptionPane.OK_CANCEL_OPTION);
 			 if(salir==0)
-				 this.dispose();
+				 {this.dispose();
 			   VentanaPrincipal frame = new VentanaPrincipal("");
-			   frame.setVisible(true);
+			   frame.setVisible(true);}
 		
 		     break;
 		case CORREO:
@@ -323,18 +340,33 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			
 			break;
 
-		case "Listado Usuarios":
+		case LISTA:
 			getContentPane().removeAll();
 			tablasUsers();
 			
 			break;
+		
+		case AJUSTES:
+			ajustes();
 			
 		
 		}
 		
 		
 	}
-	
+	protected void ajustes()
+	{
+
+		 String[] opciones = {
+		            "Cambiar nombre y contraseña",
+		            "Algo más pondremos",
+		        };
+		 String opcion = (String)JOptionPane.showInputDialog(null, "Ajustes: ", "AJUSTES", JOptionPane.DEFAULT_OPTION, new ImageIcon(getClass().getResource("/img/ajustes.jpg")),opciones, opciones[0]);
+		 if(opcion.equals("Cambiar nombre y contraseña"))
+		 {
+			 System.out.println("lo que sea");
+		 }
+	}
 	protected void tablasUsers()
     {
     	
