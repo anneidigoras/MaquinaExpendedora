@@ -8,7 +8,7 @@ public class clsAlimento  extends clsProducto
 	 */
 	private static final long serialVersionUID = 3360300107312162781L;
 	
-	private String id_A;
+	private int gramos;
 	
 	clsAlimento()
 	{
@@ -16,21 +16,22 @@ public class clsAlimento  extends clsProducto
 		
 	}
 	
-	clsAlimento(String nombre, float precio, String id, clsUsuario usuario)
+	clsAlimento(String nombre, float precio, String id, int gramos, int num)
 	{
-		super(nombre, precio, usuario);
+		super(id,nombre, precio,num);
 		
-		this.id_A=id;
+		this.gramos = gramos;
 
 		
 	}
 
-	public String getId_A() {
-		return id_A;
+	
+	public int getGramos() {
+		return gramos;
 	}
 
-	public void setId_A(String id_A) {
-		this.id_A = id_A;
+	public void setGramos(int gramos) {
+		this.gramos = gramos;
 	}
 
 	public static long getSerialversionuid() {

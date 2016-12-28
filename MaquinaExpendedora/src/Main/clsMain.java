@@ -11,8 +11,10 @@ import LP.VentanaPrincipal;
 
 public class clsMain 
 {
+	
 	public static void main(String[]args)
 	{
+		clsGestor.creabebidas();
 		javax.swing.SwingUtilities.invokeLater(new Runnable()
 		{
 			@Override

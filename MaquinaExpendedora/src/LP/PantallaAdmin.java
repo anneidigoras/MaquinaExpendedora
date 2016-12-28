@@ -174,7 +174,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 clsBebida beb = new clsBebida();
 			 for ( clsBebida aux: lista)
 			 {
-				 if(aux.getId_B().equals(clsConstantes.ID_COCACOLA))
+				 if(aux.getId().equals(clsConstantes.ID_COCACOLA))
 					 beb=aux;
 			 }
 			 areaCoca.append("Coca Cola"+ SALTO +"Nº de bebidas disponibles: "+ beb.getNum());
@@ -203,7 +203,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     		 areaNestea.setBounds(105, 110, 200, 100);
     		 areaNestea.setEditable(false);
 			 clsBebida beb2 = new clsBebida();
-			 for ( clsBebida aux: lista){if(aux.getId_B().equals(clsConstantes.ID_NESTEA))beb2=aux;}
+			 for ( clsBebida aux: lista){if(aux.getId().equals(clsConstantes.ID_NESTEA))beb2=aux;}
 			 areaNestea.append("Nestea"+ SALTO +"Nº de bebidas disponibles: "+ beb2.getNum());	
 			 
 			 slidNestea = new JSlider (0,50);
@@ -230,7 +230,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     		 areaBifrutas.setBounds(105, 230, 200, 100);
     		 areaBifrutas.setEditable(false);
 			 clsBebida beb3 = new clsBebida();
-			 for ( clsBebida aux: lista){if(aux.getId_B().equals(clsConstantes.ID_BIFRUTAS))beb3=aux;}
+			 for ( clsBebida aux: lista){if(aux.getId().equals(clsConstantes.ID_BIFRUTAS))beb3=aux;}
 			 areaBifrutas.append("Bifrutas"+ SALTO +"Nº de bebidas disponibles: "+ beb3.getNum());	
 			 
 			 slidBifrutas = new JSlider (0,50);

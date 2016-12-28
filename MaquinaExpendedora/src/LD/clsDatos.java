@@ -45,7 +45,9 @@ public class clsDatos
 		 
 		case ADMINISTRADOR:
 			return fic_admin;
-		
+			
+		case BEBIDAS: 
+			return fic_bebidas;
 		
 		
 	

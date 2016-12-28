@@ -9,27 +9,20 @@ public class clsBebida extends clsProducto
 	private static final long serialVersionUID = 127134869965129608L;
 	private int miliL;
 	private String caracteristica;
-	private int num; //numero de bebidas de cada tipo que quedan en la maquina
+	
 
 
-	clsBebida (String nombre, float precio, String id, int ml, String carac, clsUsuario usuario)
+	clsBebida (String nombre, float precio, String id, int ml,String carac ,int num)
     {
-    	super(nombre, precio, usuario);
+    	super(id, nombre, precio, num);
     	
-    	this.id_B=id;
+    	
     	miliL = ml;
     	this.caracteristica= carac;
-    	num = COMUN.clsConstantes.NUM_INICIAL_BEBIDAS;
+    	
     }
 	
-    public int getNum() {
-		return num;
-	}
-
-	public void setNum(int num) {
-		this.num = num;
-	}
-
+    
 	public int getMiliL() {
     	return miliL;
     }
@@ -44,7 +37,7 @@ public class clsBebida extends clsProducto
     public void setCaracteristica(String caracteristica) {
     	this.caracteristica = caracteristica;
     }
-	private String id_B;
+	
 	
 	public clsBebida()
 	{
@@ -53,13 +46,6 @@ public class clsBebida extends clsProducto
 	}
 	
 
-	public String getId_B() {
-		return id_B;
-	}
-
-	public void setId_B(String id_B) {
-		this.id_B = id_B;
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

@@ -10,23 +10,39 @@ public class clsProducto implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private String id;
 	private String nombreP;
 	private float precioP;
-	protected clsUsuario usuario;
+	private int num; //numero de producto de cada tipo que quedan en la maquina
+	//protected clsUsuario usuario;
 	
 	
 	public clsProducto()
 	{
 		
 	}
-	public clsProducto(String nombre, float precio, clsUsuario usuario)
+	public clsProducto(String id,String nombre, float precio, int num)
 	{
+		this.id = id;
 		nombreP=nombre;
 		precioP=precio;
-		this.usuario=usuario;
+		this.num= num;
+		
 		
 	}
 
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getNombreP() {
 		return nombreP;
 	}
@@ -46,12 +62,7 @@ public class clsProducto implements Serializable
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public clsUsuario getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(clsUsuario usuario) {
-		this.usuario = usuario;
-	}	
+	
 	
 	
 	

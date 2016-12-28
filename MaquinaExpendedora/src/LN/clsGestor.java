@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+import COMUN.clsConstantes;
 import COMUN.clsConstantes.enFicheros;
 
 import COMUN.clsUsuarioExistente;
@@ -38,27 +39,20 @@ public class clsGestor
 	 */
 	public static void creabebidas ()
 	{
-//		clsBebida CC= new clsBebida ("CocaCola", (float) 1.2, "b1", 350, "lata" );
-//		clsBebida CCL= new clsBebida ("CocaColaLight", (float) 1.2, "b2", 350, "lata");
-//		clsBebida Fanta= new clsBebida ("Fanta Naranja", (float) 1.2, "b3", 250, "botella");
-//		clsBebida Sprite= new clsBebida ("Sprite", (float) 1.2, "b4", 250, "botella");
-//		clsBebida RB= new clsBebida ("RedBull", (float) 1.5, "b5", 335, "lata");
-//		clsBebida Aquarius= new clsBebida ("Aquarius", (float) 1.2, "b6", 330, "lata");
-//		clsBebida Bifrutas= new clsBebida ("Bifrutas", (float) 1.0, "b7", 250, "lata");
-//		clsBebida Agua= new clsBebida ("Agua", (float) 1.5, "b8", 500, "botella");
+//		
 		
 		listaB=new LinkedList<clsBebida>();
 		listaB = BebidasGuardadas ();
 		if (listaB.isEmpty())
 		{
-		listaB.add(new clsBebida ("CocaCola", (float) 1.2, "CC", 350, "lata", null ));
-		listaB.add(new clsBebida ("CocaColaLight", (float) 1.2, "CCL", 350, "lata", null));
-		listaB.add(new clsBebida ("Fanta Naranja", (float) 1.2, "FN", 250, "botella", null));
-		listaB.add( new clsBebida ("Sprite", (float) 1.2, "S", 250, "botella", null));
-		listaB.add(new clsBebida ("RedBull", (float) 1.5, "RB", 335, "lata", null));
-		listaB.add(new clsBebida ("Aquarius", (float) 1.2, "AQ", 330, "lata", null));
-		listaB.add(new clsBebida ("Bifrutas", (float) 1.0, "BIF", 250, "lata", null));
-		listaB.add(new clsBebida ("Agua", (float) 1.5, "H2O", 500, "botella", null));
+		listaB.add(new clsBebida ("CocaCola", (float) 1.2, clsConstantes.ID_COCACOLA, 350, "lata",clsConstantes.NUM_INICIAL_BEBIDAS));
+		listaB.add(new clsBebida ("Nestea", (float) 1.2, clsConstantes.ID_NESTEA, 350, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
+		listaB.add(new clsBebida ("Fanta Naranja", (float) 1.2, "FN", 250, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
+		listaB.add( new clsBebida ("Sprite", (float) 1.2, "S", 250, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
+		listaB.add(new clsBebida ("RedBull", (float) 1.5, "RB", 335, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
+		listaB.add(new clsBebida ("Aquarius", (float) 1.2, "AQ", 330, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
+		listaB.add(new clsBebida ("Bifrutas", (float) 1.0, clsConstantes.ID_BIFRUTAS, 250, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
+		listaB.add(new clsBebida ("Agua", (float) 1.5, "H2O", 500, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
 		
 		clsDatos objD=new clsDatos();
 		
