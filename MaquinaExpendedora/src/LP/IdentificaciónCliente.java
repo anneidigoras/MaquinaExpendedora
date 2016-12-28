@@ -116,7 +116,7 @@ public class IdentificaciónCliente extends JInternalFrame implements ActionListe
 	{
 		boolean existe= false;
 		String nombre;
-		char [] Arraypass;
+		char [] Arraypass=null;
 		String password = null;
 		
 		nombre= this.textDni.getText();
@@ -128,10 +128,6 @@ public class IdentificaciónCliente extends JInternalFrame implements ActionListe
 		if (nombre.isEmpty())
 		{
 			JOptionPane.showMessageDialog(null, "Introduzca su nombre ");
-		}
-		else if(password.isEmpty())
-		{
-			JOptionPane.showMessageDialog(null, "Introduzca su contraseña ");
 		}
 		else
 		{	

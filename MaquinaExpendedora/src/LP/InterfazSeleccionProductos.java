@@ -30,16 +30,17 @@ import LN.clsMensaje;
 public class InterfazSeleccionProductos extends JFrame implements ActionListener
 {
 	
-	private JButton btCoca, btNestea, btBifrutas, btKitKat, btOreo, btAnular;
+	private JButton btCoca, btNestea, btBifrutas, btKitKat, btOreo, btAnular, btComprar;
 	private JLabel lblCoca, lblNestea, lblBifrutas, lblKitKat, lblOreo;
 	private JPanel contentPane;
 	private JTextArea txtPantalla;
 	static final String COCA= "CocaCola";
 	static final String NESTEA= "Nestea";
 	static final String BIF= "Bifrutas";
-	static final String AN= "Anular";
 	static final String OREO= "Oreo";
 	static final String KIT= "KitKat";
+	static final String AN= "Anular";
+	static final String COMPRAR= "Comprar";
 	
 	
 	public InterfazSeleccionProductos()
@@ -49,24 +50,23 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		
 		setTitle("Registro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
 		
-		//setResizable(false);
-		setBounds(800, 800, 600, 390);
+		//setBounds(800, 800, 600, 390);
 	
 		contentPane = new JPanel();
 
-		setContentPane(contentPane);
+		
 		contentPane.setLayout(null);
 		
 		
 		lblCoca= new JLabel ("CocaCola");
-		lblCoca.setBounds(15, 75, 67, 40);
+		lblCoca.setBounds(15, 105, 67, 40);
+		
 		lblNestea= new JLabel ("Nestea");
-		lblNestea.setBounds(130,75,67,40);
+		lblNestea.setBounds(155,105,67,40);
 		
 		lblBifrutas= new JLabel ("Bifrutas");
-		lblBifrutas.setBounds(245,75,67,40);
+		lblBifrutas.setBounds(305,105,67,40);
 		
 		lblKitKat= new JLabel ("KitKat");
 		lblKitKat.setBounds(130,200,67,40);
@@ -75,42 +75,30 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		
 		
 		btNestea = new JButton ();
-		btNestea.setBounds(130, 14, 100, 60);
-		Image img2= null;
-		try {
-			img2 = ImageIO.read(getClass().getResource("/img/nest.jpg"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    btNestea.setIcon(new ImageIcon(img2));
+		btNestea.setBounds(150, 10, 90, 90);
+		ImageIcon icono0 = new ImageIcon(getClass().getResource("/img/nest.jpg"));
+		 Image imagen0 = icono0.getImage();
+		 ImageIcon iconoEsc0 = new ImageIcon (imagen0.getScaledInstance(90,90,Image.SCALE_SMOOTH));
+	    btNestea.setIcon(iconoEsc0);
 	    btNestea.setActionCommand(NESTEA);
 	    btNestea.addActionListener((ActionListener)this);
 	    
 	    
 	    btBifrutas = new JButton ();
-		btBifrutas.setBounds(245, 14, 100, 60);
-		Image img3= null;
-		try {
-			img3 = ImageIO.read(getClass().getResource("/img/bif.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    btBifrutas.setIcon(new ImageIcon(img3));
+		btBifrutas.setBounds(300, 10, 90, 90);
+		ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/bif.png"));
+		 Image imagen2 = icono2.getImage();
+		 ImageIcon iconoEsc2 = new ImageIcon (imagen2.getScaledInstance(90,90,Image.SCALE_SMOOTH));
+		btBifrutas.setIcon(iconoEsc2);
 	    btBifrutas.setActionCommand(BIF);
 	    btBifrutas.addActionListener((ActionListener)this);
 		
 		btCoca = new JButton ();
-		btCoca.setBounds(10, 14, 100, 60);
-		Image img = null;
-		try {
-			img = ImageIO.read(getClass().getResource("/img/cocacola.jpg"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    btCoca.setIcon(new ImageIcon(img));
+		btCoca.setBounds(10, 10, 90, 90);
+		ImageIcon icono1 = new ImageIcon(getClass().getResource("/img/cocacola.jpg"));
+		 Image imagen1 = icono1.getImage();
+		 ImageIcon iconoEsc1 = new ImageIcon (imagen1.getScaledInstance(90,90,Image.SCALE_SMOOTH));
+	    btCoca.setIcon(iconoEsc1);
 	    btCoca.setActionCommand(COCA);
 	    btCoca.addActionListener((ActionListener)this);
 	    
@@ -145,9 +133,15 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	    btAnular.setActionCommand(AN);
 	    btAnular.addActionListener((ActionListener)this);
 	    btAnular.setText("Anular");
+	    
+	    btComprar = new JButton();
+	    btComprar.setBounds(350,290,90,50);
+	    btComprar.setActionCommand(COMPRAR);
+	    btComprar.addActionListener((ActionListener)this);
+	    btComprar.setText(COMPRAR);
 		
 	    JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(470, 35, 100, 50);
+		scrollPane_1.setBounds(600, 35, 100, 50);
 		contentPane.add(scrollPane_1);
 		
 		txtPantalla = new JTextArea();
@@ -156,13 +150,16 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(30, 50, 300, 500);
+		panel.setBounds(30, 50, 500, 350);
 		panel.setLayout(null);
 		panel.add(lblCoca); panel.add(btCoca); panel.add(lblNestea);panel.add(btNestea);panel.add(lblBifrutas);panel.add(btBifrutas); 
-		panel.add(lblKitKat);panel.add(lblOreo); panel.add(btOreo); panel.add(btAnular); panel.add(btCoca);panel.add(btKitKat);
+		panel.add(lblKitKat);panel.add(lblOreo); panel.add(btOreo); panel.add(btCoca);panel.add(btKitKat);
+		panel.add(btComprar);//panel.add(btAnular);
+		panel.setBackground(Color.red);
 		contentPane.add(panel);
 		
-
+		
+		setContentPane(contentPane);
 	
 	}
 
@@ -170,30 +167,36 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
+		this.txtPantalla.setText(""); //Para que se vacie el textArea cada vez
           String comando = e.getActionCommand();
 		
 		switch(comando)
 		{
-			case (COCA):
+			case COCA:
+				
 				this.txtPantalla.append("CocaCola"+" 1,30 €");
 				break;
-			case (NESTEA):
+			case NESTEA:
 				this.txtPantalla.append("Nestea"+" 1,20 €");
 				break;
-			case (BIF):
+			case BIF:
 				this.txtPantalla.append("Bifrutas"+" 1,20 €");
 				break;
-			case (AN):
-				
-				this.txtPantalla.setText("");
-			break;
+//			case (AN):
+//				
+//				this.txtPantalla.setText("");
+//			break;
 			
-			case (OREO):
+			case OREO:
 				this.txtPantalla.append("Oreos"+" 1,20 €");
 				break;
 			
-			case (KIT):
+			case KIT:
 				this.txtPantalla.append("KitKat"+" 1,20 €");
+				break;
+				
+			case COMPRAR :
+				//Como plus se podria hacer un hilo con una miniventana que diga: "Gracias pos su compra"
 				break;
 				
 				
