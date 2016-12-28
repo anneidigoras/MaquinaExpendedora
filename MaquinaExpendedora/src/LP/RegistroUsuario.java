@@ -22,6 +22,7 @@ import javax.swing.JButton;
 
 import LD.ConexionSql;
 import LN.clsGestor;
+import LN.clsUsuario;
 /**
  * 
  * 
@@ -36,6 +37,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
     private JButton btAceptar, btCancelar;
 	private JPanel contentPane;
 	private JLabel lblNombre, lblApe, lblEdad, lblDni, lblPass1, lblPass2;
+	
 
 	clsGestor objGestor;
 	
@@ -223,8 +225,8 @@ public class RegistroUsuario extends JFrame implements ActionListener
 			    }
 			  }
 			}
-	}	
-	
+	}
+		
 	
 
 }
