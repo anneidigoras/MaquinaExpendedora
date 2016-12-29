@@ -1,8 +1,7 @@
 package LP;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
+
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,17 +9,17 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDesktopPane;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -40,18 +39,17 @@ import LN.clsBebida;
 import LN.clsGestor;
 
 import LN.clsMensaje;
-import LN.clsUsuario;
+
 
 public class PantallaAdmin extends JFrame   implements ActionListener,ItemListener
 {
 
 	private JMenuBar MenuPrincipal;
-	private JMenu DatosUsuarios, Admin;
-	private JMenuItem ListadoUsuarios, EditarListaUsuarios, Ingresar, Correo;
+	private JMenu DatosUsuarios, DatosProductos;
+	private JMenuItem ListadoUsuarios,ListadoProductos;
 	private JButton vueltaInicio, correo, guardar,ajustes;
     private JPanel contentPane;
-    private JDesktopPane desktop;
-    
+        
     private JLabel lblCoca, lblNestea, lblBifrutas;
     private JTextArea areaCoca, areaNestea, areaBifrutas;
     private static JSlider slidCoca, slidNestea, slidBifrutas;
@@ -63,6 +61,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	 static final String CORREO= "Correo";
 	 static final String GUARDAR= "Guardar";
 	 static final String LISTA= "Listado Usuarios";
+	 static final String TABPROD= "Listado Productos";
 	 private final static String SALTO = "\n";
 	 private boolean ver=false;
 	
@@ -87,26 +86,21 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		DatosUsuarios = new JMenu("Datos Usuarios");
 		DatosUsuarios.setForeground(Color.WHITE);
 		MenuPrincipal.add(DatosUsuarios);
+		DatosProductos = new JMenu("Datos Productos");
+		DatosProductos.setForeground(Color.WHITE);
+		MenuPrincipal.add(DatosProductos);
 		
-		    ListadoUsuarios = new JMenuItem("Listado Usuarios");
-		    ListadoUsuarios.setActionCommand(LISTA);
-		    ListadoUsuarios.addActionListener((ActionListener)this);
-		    DatosUsuarios.add(ListadoUsuarios);
+	    ListadoUsuarios = new JMenuItem("Listado Usuarios");
+		ListadoUsuarios.setActionCommand(LISTA);
+		ListadoUsuarios.addActionListener((ActionListener)this);
+		DatosUsuarios.add(ListadoUsuarios);
 		
-		    EditarListaUsuarios = new JMenuItem("Editable");
+		ListadoProductos = new JMenuItem("Listado Productos");
+		ListadoUsuarios.setActionCommand(TABPROD);
+		ListadoUsuarios.addActionListener((ActionListener)this);
 	
-	      	DatosUsuarios.add(EditarListaUsuarios);
-    	
-//		     Admin = new JMenu("ADMINISTRADOR");
-//		     Admin.setForeground(Color.WHITE);
-//		     MenuPrincipal.add(Admin);
-//		
-//	         Ingresar = new JMenuItem("Ingresar");
-//		     Admin.add(Ingresar);
-//		  
-//		     Correo = new JMenuItem("Correo");
-//		
-//		     Admin.add(Correo);
+	    DatosProductos.add(ListadoProductos);
+
 	
 		     vueltaInicio = new JButton("Cerrar Sesion");;
              vueltaInicio.setActionCommand(SALIR);
@@ -346,6 +340,11 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			tablasUsers();
 			
 			break;
+		case TABPROD:
+			getContentPane().removeAll();
+			tablasProductos();
+			
+			break;
 		
 		case AJUSTES:
 			ajustes();
@@ -360,12 +359,19 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 
 		 String[] opciones = {
 		            "Cambiar nombre y contraseña",
-		            "Algo más pondremos",
+		            "Registro Productos",
 		        };
 		 String opcion = (String)JOptionPane.showInputDialog(null, "Ajustes: ", "AJUSTES", JOptionPane.DEFAULT_OPTION, new ImageIcon(getClass().getResource("/img/ajustes.jpg")),opciones, opciones[0]);
 		 if(opcion.equals("Cambiar nombre y contraseña"))
 		 {
 			 System.out.println("lo que sea");
+		 }
+		 
+		 else if (opcion.equals("Registro Productos"))
+		 {
+			RegistroProductos registro= new RegistroProductos();
+			registro.setVisible(true);
+			 
 		 }
 		 else System.out.println("no pasa na");
 	}
@@ -388,5 +394,24 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		}
     	
     }
+	protected void tablasProductos()
+	{
+		
+		TablasProductos tabla2= new TablasProductos();
+		tabla2.setVisible(true);
+		toFront();
+    	contentPane.add(tabla2);
+    	
+    	try 
+    	{
+			tabla2.setSelected(true);
+		}
+    	catch (PropertyVetoException e) 
+    	{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+	}
 
 }

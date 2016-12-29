@@ -4,8 +4,8 @@ package LP;
  * @author Anne Idigoras & Mayi Echeveste
  * 
  *  Clase que extiende de JInternalFrame e implementa un actionListener
- *  Su funcion es la de crear una tabla con los Usuarios que se han dado de alta, ordenandolos alfabeticamente por nombre, 
- *  y en la que poder eliminar al Usuario seleccionado, por su id
+ *  Su funcion es la de crear una tabla con los Productos que se han dado de alta, ordenandolos alfabeticamente por nombre, 
+ *  y en la que poder eliminar al Producto seleccionado, por su id
  * 
  * 
  */
@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
@@ -34,18 +35,19 @@ import javax.swing.table.TableRowSorter;
 
 
 import LD.ConexionSql;
-import LN.clsUsuario;
+import LN.clsProducto;
+import LN.clsBebida;
 import LN.clsGestor;
 
 
-public class TablasUsuarios extends JInternalFrame implements ActionListener
+public class TablasProductos extends JInternalFrame implements ActionListener
 {
 
-    static ArrayList<clsUsuario> Usuarios;	
-	private static JTable jtUsuarios;		
-	private JScrollPane jspUsuarios;
+    static LinkedList<clsBebida> Productos;	
+	private static JTable jtProductos;		
+	private JScrollPane jspProductos;
     private JButton aceptar,cancelar;
-	private JLabel 	jlUsuarios;
+	private JLabel 	jlProductos;
 	private JPanel 	panel;
 	clsGestor objGestor= new clsGestor(null);	
 	private DefaultTableModel modelo;
@@ -53,12 +55,13 @@ public class TablasUsuarios extends JInternalFrame implements ActionListener
 	
 	
 
-	public TablasUsuarios()
+	public TablasProductos()
 	{
 		
-		super("DATOS DE USUARIOS");
+		super("DATOS DE PRODUCTOS");
 		listarDatos();
-		CreateShowGUI();
+		CreateShowGUI();		
+	
 	}
 	
 
@@ -66,21 +69,21 @@ public class TablasUsuarios extends JInternalFrame implements ActionListener
 	
 	private void listarDatos()
 	{
-		Usuarios=clsGestor.leerUsuario();
+		Productos=clsGestor.BebidasGuardadas();
 	}
 	
-	private void crearTablaUsuarios()
+	private void crearTablaProductos()
 	{
 		
-		jtUsuarios=null;		
+		jtProductos=null;		
 		
-        TablaUsuariosModel tam=new TablaUsuariosModel(Usuarios);
+        TablaProductosModel tam=new TablaProductosModel(Productos);
 	
-		jtUsuarios = new JTable(tam);
-		jtUsuarios.setPreferredScrollableViewportSize(new Dimension(500, 200));
-		jtUsuarios.setFillsViewportHeight(true);
-		jtUsuarios.setEnabled(true);
-		jtUsuarios.setRowSelectionAllowed(true);
+		jtProductos = new JTable(tam);
+		jtProductos.setPreferredScrollableViewportSize(new Dimension(500, 200));
+		jtProductos.setFillsViewportHeight(true);
+		jtProductos.setEnabled(true);
+		jtProductos.setRowSelectionAllowed(true);
 		tam.fireTableDataChanged();
 		ordenacion();
 				
@@ -89,38 +92,38 @@ public class TablasUsuarios extends JInternalFrame implements ActionListener
 	
 	public void actualizartabla()
 	{
-		Usuarios= clsGestor.leerUsuario();
+		Productos= clsGestor.BebidasGuardadas();
 		
-		TablaUsuariosModel tam=(TablaUsuariosModel)jtUsuarios.getModel();
-		tam.setData(Usuarios);
+		TablaProductosModel tam=(TablaProductosModel)jtProductos.getModel();
+		tam.setData(Productos);
 		tam.fireTableDataChanged();
 	}
 	
-	class TablaUsuariosModel extends AbstractTableModel
+	class TablaProductosModel extends AbstractTableModel
     {
 		private static final long serialVersionUID = 1L;
 		
 		
-		private String[] columnNames = {"Nombre","Primer Apellido","DNI","Edad"};
+		private String[] columnNames = {"Nombre","Id","Cantidad","Precio"};
         Object[][] data;
         
-        public TablaUsuariosModel(ArrayList<clsUsuario> Usuario)
+        public TablaProductosModel(LinkedList<clsBebida> productos)
         {
         	
         	super();
         	
-    		int filas = Usuario.size();
+    		int filas = productos.size();
     		int cont;
     		data=new Object[filas][];
     		cont=0;
     		
     		
     		//Nos recorremos el map para cargar la variable data[][]
-    		for (clsUsuario aux : Usuario)
+    		for (clsProducto aux : productos)
     		{
     		   
     			Object[]a={
-    					new String(aux.getNombre()), new String(aux.getApellido()), new String(aux.getDni()),new Integer(aux.getEdad())
+    					new String(aux.getNombreP()), new String(aux.getId()), new Integer(aux.getNum()),new Integer((int) aux.getPrecioP())
     					
     				
     					   };
@@ -131,20 +134,20 @@ public class TablasUsuarios extends JInternalFrame implements ActionListener
         	
         }
         
-        public void setData(ArrayList<clsUsuario> Usuario) 
+        public void setData(LinkedList<clsBebida> productos) 
         {
-        	int filas = Usuario.size();
+        	int filas = productos.size();
     		int cont;
     		data=new Object[filas][];
     		cont=0;
     		
     		
     		
-    		for (clsUsuario aux : Usuario)
+    		for (clsProducto aux : productos)
     		{
     		   
     		Object[]a={
-    					new String(aux.getNombre()), new String(aux.getApellido()), new String(aux.getDni()),new Integer(aux.getEdad())
+    				new String(aux.getNombreP()), new String(aux.getId()), new Integer(aux.getNum()),new Integer((int) aux.getPrecioP())
     					
  					
  					   };
@@ -212,7 +215,7 @@ public class TablasUsuarios extends JInternalFrame implements ActionListener
 	
 	private void CreateShowGUI()
 	{
-		crearTablaUsuarios();	
+		crearTablaProductos();	
 		
 	
 		panel= new JPanel();
@@ -224,14 +227,14 @@ public class TablasUsuarios extends JInternalFrame implements ActionListener
 		
 		panel.setLayout(new BorderLayout());
 		
-		jspUsuarios=new JScrollPane(jtUsuarios);
+		jspProductos=new JScrollPane(jtProductos);
 	
 		
-		jlUsuarios=new JLabel("Listado de Usuarios");
+		jlProductos=new JLabel("Listado de Productos");
 		
 		
-		panel.add(jlUsuarios,BorderLayout.NORTH);
-		panel.add(jspUsuarios,BorderLayout.CENTER);
+		panel.add(jlProductos,BorderLayout.NORTH);
+		panel.add(jspProductos,BorderLayout.CENTER);
 					
 		
 		aceptar= new JButton("Aceptar");
@@ -293,8 +296,8 @@ public class TablasUsuarios extends JInternalFrame implements ActionListener
 	
     private void ordenacion()
     {
-    	TableRowSorter<TablaUsuariosModel>sorter= new TableRowSorter(jtUsuarios.getModel());
-    	jtUsuarios.setRowSorter(sorter);
+    	TableRowSorter<TablaProductosModel>sorter= new TableRowSorter(jtProductos.getModel());
+    	jtProductos.setRowSorter(sorter);
     	ArrayList<RowSorter.SortKey> sortKey=new ArrayList<>();
     	
     	int colSort=0;

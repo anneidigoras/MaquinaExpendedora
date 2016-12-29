@@ -11,12 +11,12 @@ import LN.clsUsuario;
 
 
 
-public class clsModeloLista extends DefaultListModel<clsUsuario>
+public class clsModeloListaUsuario extends DefaultListModel<clsUsuario>
 {
 	protected ArrayList<clsUsuario>Usuario;
 	
 
-	  public clsModeloLista (ArrayList<clsUsuario> Usuario)
+	  public clsModeloListaUsuario (ArrayList<clsUsuario> Usuario)
 	  {
 	    this.Usuario=Usuario;
 	  }

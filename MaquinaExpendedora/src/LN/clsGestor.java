@@ -28,7 +28,8 @@ public class clsGestor
 	public String dni;    
 
 
-	public clsGestor(File file2) {
+	public clsGestor(File file2) 
+	{
 		// TODO Auto-generated constructor stub
 	}
 	/**

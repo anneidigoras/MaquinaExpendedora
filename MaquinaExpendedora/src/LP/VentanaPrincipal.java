@@ -66,7 +66,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 	private JMenuItem C_Registrarse;
 	private JMenu Admin;
 	private JMenuItem A_Ingresar;
-	private JMenuItem A_Registrarse;
+
 	private JButton Salir;
 	private JButton usuario;
 	Connection connection = null;
@@ -225,7 +225,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		    	  // Leer el resultset
 		    	  ArrayList<clsUsuario>usuario;
 		    	  usuario= clsGestor.leerUsuario();
-		    	 clsModeloLista objM= new clsModeloLista(usuario);
+		    	 clsModeloListaUsuario objM= new clsModeloListaUsuario(usuario);
 		    	//  objM.añadirElemento((clsUsuario) rs.getString());
 		    	  		    
 

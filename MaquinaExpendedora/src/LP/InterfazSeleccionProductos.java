@@ -18,10 +18,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import COMUN.clsConstantes;
 import LN.clsAdministrador;
+import LN.clsBebida;
 import LN.clsGestor;
 import LN.clsMensaje;
 import LN.clsUsuario;
@@ -36,10 +38,11 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	String comando= null;
 	static String dni_usuario;
 	static clsUsuario usuario = new clsUsuario (); 
-	private JButton btCoca, btNestea, btBifrutas, btKitKat, btOreo, btAnular, btComprar, btAgua, btSnickers;
-	private JLabel lblCoca, lblNestea, lblBifrutas, lblKitKat, lblOreo, lblAgua, lblSnickers;
+	private JButton btCoca, btNestea, btBifrutas, btKitKat, btOreo, btAnular, btComprar, btAgua, btSnickers, btCerrar;
+	private JLabel lblCoca, lblNestea, lblBifrutas, lblKitKat, lblOreo, lblAgua, lblSnickers,lblCerrar;
 	private JPanel contentPane;
 	private JTextArea txtPantalla;
+	private Integer dinero;
 	static final String COCA= clsConstantes.ID_COCACOLA;
 	static final String NESTEA= clsConstantes.ID_NESTEA;
 	static final String BIF= clsConstantes.ID_BIFRUTAS;
@@ -49,6 +52,8 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	static final String AGUA= "Agua";
 	static final String AN= "Anular";
 	static final String COMPRAR= "Comprar";
+    static final String SALIR = "Cerrar Sesion";
+    clsBebida objBebida= new clsBebida();
 	
 	public static void usuarioacual ()
 	{
@@ -154,15 +159,11 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	    btOreo.addActionListener((ActionListener)this);
 	    
 	    btKitKat = new JButton ();
-		btKitKat.setBounds(130, 150, 100, 60);
-		Image img5 = null;
-			try {
-				img5 = ImageIO.read(getClass().getResource("/img/kitkat.png"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    btKitKat.setIcon(new ImageIcon(img5));
+		btKitKat.setBounds(130, 150, 90, 70);
+		ImageIcon icono7 = new ImageIcon(getClass().getResource("/img/kitkat.png"));
+		Image imagen7 = icono7.getImage();
+		ImageIcon iconoEsc7 = new ImageIcon (imagen7.getScaledInstance(90,70,Image.SCALE_SMOOTH));
+	    btKitKat.setIcon(iconoEsc7);
 		btKitKat.setActionCommand(KIT);
 		btKitKat.addActionListener((ActionListener)this);
 	    
@@ -175,7 +176,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	    btComprar.setText(COMPRAR);
 		
 	    JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(600, 35, 100, 50);
+		scrollPane_1.setBounds(600, 70, 100, 50);
 		contentPane.add(scrollPane_1);
 		
 		txtPantalla = new JTextArea();
@@ -189,29 +190,40 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		panel1.add(lblCoca); panel1.add(btCoca); panel1.add(lblNestea);panel1.add(btNestea);panel1.add(lblBifrutas);panel1.add(btBifrutas); 
 		panel1.add(lblKitKat);panel1.add(lblOreo); panel1.add(btOreo); panel1.add(btCoca);panel1.add(btKitKat); panel1.add(btSnickers);panel1.add(lblAgua);
 		panel1.add(lblSnickers); panel1.add(btAgua);
-		panel1.add(btComprar);//panel1.add(btAnular);
+		panel1.add(btComprar);
 		panel1.setBackground(Color.red);
 		contentPane.add(panel1);
 		
 		
-		JLabel nombre = new JLabel (usuario.getNombre());
-		nombre.setBounds(0, 0, 100, 30);
+		JLabel nombre = new JLabel ("Usuario: "+ usuario.getNombre());
+		nombre.setBounds(10, 50, 100, 30);
 		
-		JLabel dinero = new JLabel (Float.toString(usuario.getDinero()));
-		dinero.setBounds(0,50,100,30);
+		JLabel dinero = new JLabel ("Saldo: "+ Float.toString(usuario.getDinero())+ " €");
+		dinero.setBounds(10,100,100,30);
+		
+		
+		 btCerrar = new JButton("Cerrar Sesion");;
+         btCerrar.setActionCommand(SALIR);
+         ImageIcon icono6 = new ImageIcon(getClass().getResource("/img/logout.jpg"));
+ 		 Image imagen6 = icono6.getImage();
+ 		 ImageIcon iconoEsc6 = new ImageIcon (imagen6.getScaledInstance(70,70,Image.SCALE_SMOOTH));
+ 	     btCerrar.setIcon(iconoEsc6);
+         btCerrar.addActionListener((ActionListener) this);
+         btCerrar.setBounds(10,200,70,70);
+         
+     	
+ 		lblCerrar= new JLabel ("Log Out");
+ 		lblCerrar.setBounds(10,300,67,40);
 		
 		
 		
 		JPanel panel2 = new JPanel();
-		panel2.setBounds(750, 50, 200, 400);
+		panel2.setBounds(600, 100, 200, 400);
 		panel2.setLayout(null);
-		panel2.add(nombre);panel2.add(dinero);
+		panel2.add(nombre);panel2.add(dinero);panel2.add(btCerrar);panel2.add(lblCerrar);
 		contentPane.add(panel2);
 		
-		
-		
-		
-		
+	    
 		setContentPane(contentPane);
 	
 	}
@@ -257,6 +269,17 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 				compra(comando_anterior);
 				break;
 				
+			case SALIR:
+				 int salir;
+
+				 salir= JOptionPane.showConfirmDialog(null, "¿Seguro que quiere cerrar la sesion?","Confirmar ", JOptionPane.OK_CANCEL_OPTION);
+				 if(salir==0)
+					 {this.dispose();
+				   VentanaPrincipal frame = new VentanaPrincipal("");
+				   frame.setVisible(true);}
+			
+			     break;
+				
 				
 			
 		
@@ -269,7 +292,12 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	}
 	public void compra (String bebida)
 	{
+		if(txtPantalla.equals("CocaCola"+" 1,30 €"))
+		{
+		usuario.setDinero((float) (usuario.getDinero()- 1.3));			
 		
+			
+		}
 		
 	}
 
