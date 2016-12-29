@@ -135,7 +135,7 @@ public class IdentificaciónCliente extends JInternalFrame implements ActionListe
 			if (existe== true)
 			{
 			this.dispose();
-			InterfazSeleccionProductos frame= new InterfazSeleccionProductos();
+			InterfazSeleccionProductos frame= new InterfazSeleccionProductos(nombre);
 			frame.setVisible(true);
 			}
 			else

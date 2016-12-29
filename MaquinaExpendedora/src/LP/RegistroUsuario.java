@@ -182,7 +182,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 			{
 			objGestor.nuevoUsuario(nombre, ape1, dni, edad,password1);
 			this.dispose();
-			InterfazSeleccionProductos frame= new InterfazSeleccionProductos();
+			InterfazSeleccionProductos frame= new InterfazSeleccionProductos(dni);
 			frame.setVisible(true);
 			
 			} catch (clsUsuarioExistente e1) {	e1.printStackTrace(); }
