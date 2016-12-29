@@ -27,11 +27,14 @@ public class clsUsuario implements Comparable<clsUsuario> ,Serializable,Comparat
 		apellido=_apellido;
 		edad=_edad;
 		dni=_dni;
-		
 		dinero=COMUN.clsConstantes.DINERO_INICIAL;
 		password = _pass;
       
 		
+	}
+
+	public clsUsuario() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getNombre() {

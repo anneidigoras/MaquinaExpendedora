@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -19,8 +20,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import COMUN.clsConstantes;
 import LN.clsAdministrador;
+import LN.clsGestor;
 import LN.clsMensaje;
+import LN.clsUsuario;
 /**
  * 
  * Clase en la que pondremos la interfaz con la que interactuara el usuario para escoger el producto que quiera
@@ -29,14 +33,16 @@ import LN.clsMensaje;
  */
 public class InterfazSeleccionProductos extends JFrame implements ActionListener
 {
-	
+	String comando= null;
+	static String dni_usuario;
+	static clsUsuario usuario = new clsUsuario (); 
 	private JButton btCoca, btNestea, btBifrutas, btKitKat, btOreo, btAnular, btComprar, btAgua, btSnickers;
 	private JLabel lblCoca, lblNestea, lblBifrutas, lblKitKat, lblOreo, lblAgua, lblSnickers;
 	private JPanel contentPane;
 	private JTextArea txtPantalla;
-	static final String COCA= "CocaCola";
-	static final String NESTEA= "Nestea";
-	static final String BIF= "Bifrutas";
+	static final String COCA= clsConstantes.ID_COCACOLA;
+	static final String NESTEA= clsConstantes.ID_NESTEA;
+	static final String BIF= clsConstantes.ID_BIFRUTAS;
 	static final String OREO= "Oreo";
 	static final String KIT= "KitKat";
 	static final String SNI= "Snickers";
@@ -44,9 +50,22 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	static final String AN= "Anular";
 	static final String COMPRAR= "Comprar";
 	
-	
-	public InterfazSeleccionProductos()
+	public static void usuarioacual ()
 	{
+		ArrayList<clsUsuario> listausuarios =clsGestor.leerUsuario();
+		for (clsUsuario aux : listausuarios)
+		{
+			if (aux.getDni().equals(dni_usuario))
+			{
+				usuario= aux;
+			}
+		}
+		
+	}
+	public InterfazSeleccionProductos(String dni)
+	{
+		this.dni_usuario= dni;
+		usuarioacual();
 		
 		this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
 		
@@ -164,15 +183,33 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		
 	
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(30, 50, 550, 400);
-		panel.setLayout(null);
-		panel.add(lblCoca); panel.add(btCoca); panel.add(lblNestea);panel.add(btNestea);panel.add(lblBifrutas);panel.add(btBifrutas); 
-		panel.add(lblKitKat);panel.add(lblOreo); panel.add(btOreo); panel.add(btCoca);panel.add(btKitKat); panel.add(btSnickers);panel.add(lblAgua);
-		panel.add(lblSnickers); panel.add(btAgua);
-		panel.add(btComprar);//panel.add(btAnular);
-		panel.setBackground(Color.red);
-		contentPane.add(panel);
+		JPanel panel1 = new JPanel();
+		panel1.setBounds(30, 50, 550, 400);
+		panel1.setLayout(null);
+		panel1.add(lblCoca); panel1.add(btCoca); panel1.add(lblNestea);panel1.add(btNestea);panel1.add(lblBifrutas);panel1.add(btBifrutas); 
+		panel1.add(lblKitKat);panel1.add(lblOreo); panel1.add(btOreo); panel1.add(btCoca);panel1.add(btKitKat); panel1.add(btSnickers);panel1.add(lblAgua);
+		panel1.add(lblSnickers); panel1.add(btAgua);
+		panel1.add(btComprar);//panel1.add(btAnular);
+		panel1.setBackground(Color.red);
+		contentPane.add(panel1);
+		
+		
+		JLabel nombre = new JLabel (usuario.getNombre());
+		nombre.setBounds(0, 0, 100, 30);
+		
+		JLabel dinero = new JLabel (Float.toString(usuario.getDinero()));
+		dinero.setBounds(0,50,100,30);
+		
+		
+		
+		JPanel panel2 = new JPanel();
+		panel2.setBounds(750, 50, 200, 400);
+		panel2.setLayout(null);
+		panel2.add(nombre);panel2.add(dinero);
+		contentPane.add(panel2);
+		
+		
+		
 		
 		
 		setContentPane(contentPane);
@@ -184,7 +221,9 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent e) 
 	{
 		this.txtPantalla.setText(""); //Para que se vacie el textArea cada vez
-          String comando = e.getActionCommand();
+		
+		String comando_anterior = comando;
+        comando = e.getActionCommand();
 		
 		switch(comando)
 		{
@@ -215,7 +254,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 				break;
 				
 			case COMPRAR :
-				
+				compra(comando_anterior);
 				break;
 				
 				
@@ -223,9 +262,15 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		
 	}
 	
-
 	
 	
 	
 
-}}
+	}
+	public void compra (String bebida)
+	{
+		
+		
+	}
+
+	}

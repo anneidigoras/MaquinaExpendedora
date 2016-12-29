@@ -178,7 +178,7 @@ public class clsGestor
 
 
 
-public static void CrearUsuario(LinkedList<clsUsuario> lista)
+public static void CrearListaUsuario(LinkedList<clsUsuario> lista)
 {
 	clsDatos objD=new clsDatos();
 	
@@ -217,7 +217,7 @@ public static void EliminarA(String  dni)
 		if(!aux.getDni().equals(dni))
 			lista1.add(aux);
 	}
-	CrearUsuario(lista1);
+	CrearListaUsuario(lista1);
 }
 
 
@@ -370,6 +370,41 @@ public static ArrayList<clsGestor> cargarVariosDeTabla( Statement st, String exp
 	}
 }
 
+
+public static void gastadinero(String dni, String id)
+{
+	float precio =0;
+	clsUsuario cliente = new clsUsuario () ;
+	ArrayList<clsUsuario>listaClientes= new ArrayList<clsUsuario>();
+	LinkedList<clsUsuario>LinkedUsuario= new LinkedList<clsUsuario>();
+	listaClientes=leerUsuario();
+	
+	LinkedList<clsBebida>listaBebidas= new LinkedList<clsBebida>();
+	listaBebidas=BebidasGuardadas();
+	for (clsBebida aux: listaBebidas)
+	{
+		if(aux.getId().equals(id)) precio = aux.getPrecioP();
+	}
+	for (clsUsuario aux: listaClientes)
+	{
+		if (aux.getDni().equals(dni))
+		{
+			cliente= aux;
+			listaClientes.remove(aux);
+			break;
+		}
+	}
+	cliente.setDinero(cliente.getDinero()-precio);
+	listaClientes.add(cliente);
+	
+	LinkedUsuario.addAll(listaClientes);
+	CrearListaUsuario(LinkedUsuario);
+	
+	
+	
+	
+
+}
 
 
 }
