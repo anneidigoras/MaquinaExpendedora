@@ -128,32 +128,23 @@ public class RegistroProductos extends JFrame implements ActionListener
 	}
 	public void anyadir()
 	{
-
-		Connection conn=ConexionSql.dbConnector("Base datos Productos");
-		Statement stmt;
-		try {
-			stmt = (Statement) conn.createStatement();
-						
-			//stmt.executeUpdate("insert into usuario values('"+txtNombre.getText()+"', '"+txtId.getText()+"', '"+txtDni.getText()+"')");
-			
-			
-			
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		finally {
-			  if (conn != null) {
-			    try {
-			      conn.close(); // <-- This is important
-			    } catch (SQLException e) {
-			      /* handle exception */
-			    }
-			  }
-			}
+//
+//		Connection conn=ConexionSql.dbConnector("Base datos Productos");
+//		ConexionSql base=new ConexionSql();
+//		
+//		String nombre=txtNombre.getText();	
+//	    int edad=Integer.parseInt(this.txtEdad.getText());
+//		String ape=txtApe.getText();
+//		String dni=txtDni.getText();
+//		
+//		
+//		base.anyadirUsuario(nombre,ape,dni,edad);
+//		
+//		txtNombre.setText("");
+//		txtApe.setText("");
+//		txtDni.setText("");
+//		txtEdad.setText("");
+//		
 	}
 		
 	

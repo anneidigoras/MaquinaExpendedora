@@ -81,12 +81,16 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
     static final String SALIR = "Salir";
     
 
+    
+
     public VentanaPrincipal(String title)
     {
    
     	this.setTitle(title);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
+		
+		connection = ConexionSql.dbConnector("");
 		
 		
 		

@@ -22,7 +22,7 @@ import javax.swing.JButton;
 
 import LD.ConexionSql;
 import LN.clsGestor;
-import LN.clsUsuario;
+
 /**
  * 
  * 
@@ -201,32 +201,21 @@ public class RegistroUsuario extends JFrame implements ActionListener
 	{
 
 		Connection conn=ConexionSql.dbConnector("Base datos Usuarios");
-		Statement stmt;
-		try {
-			stmt = (Statement) conn.createStatement();
-						
-			stmt.executeUpdate("insert into usuario values('"+txtNombre.getText()+"', '"+txtApe.getText()+"', '"+txtDni.getText()+"')");
-			
-			
-			
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ConexionSql base=new ConexionSql();
 		
-		finally {
-			  if (conn != null) {
-			    try {
-			      conn.close(); // <-- This is important
-			    } catch (SQLException e) {
-			      /* handle exception */
-			    }
-			  }
-			}
-	}
+		String nombre=txtNombre.getText();	
+	    int edad=Integer.parseInt(this.txtEdad.getText());
+		String ape=txtApe.getText();
+		String dni=txtDni.getText();
+		
+		
+		base.anyadirUsuario(nombre,ape,dni,edad);
+		
+		txtNombre.setText("");
+		txtApe.setText("");
+		txtDni.setText("");
+		txtEdad.setText("");
 		
 	
 
-}
+	}}
