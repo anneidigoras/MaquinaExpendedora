@@ -22,7 +22,7 @@ import LD.*;
 
 public class clsGestor 
 {
-	static LinkedList<clsBebida> listaB; // la pongo estática porque va a ser la misma durante todo el programa 
+
 	public File file;          // Fichero
 	public String nombre;     
 	public String dni;    
@@ -40,7 +40,7 @@ public class clsGestor
 	 */
 	public static void creabebidas ()
 	{
-//		
+		LinkedList<clsBebida> listaB; 
 		
 		listaB=new LinkedList<clsBebida>();
 		listaB = BebidasGuardadas ();
@@ -55,21 +55,28 @@ public class clsGestor
 		listaB.add(new clsBebida ("Bifrutas", (float) 1.0, clsConstantes.ID_BIFRUTAS, 250, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
 		listaB.add(new clsBebida ("Agua", (float) 1.5, "H2O", 500, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
 		
+		guardarBebidas (listaB);
+		
+		}
+	}
+	
+	public static void guardarBebidas (LinkedList <clsBebida> listabebidas)
+	{
 		clsDatos objD=new clsDatos();
 		
 		objD.ResetFile(enFicheros.BEBIDAS);
 		
 		objD.ComenzarSave(enFicheros.BEBIDAS);
 		
-		for(clsBebida aux: listaB )
+		for(clsBebida aux: listabebidas )
 		{
 			objD.Save((Serializable) aux);
 		}
 		
 		objD.TerminarSave();
 		
-		}
 	}
+	
 	public static LinkedList <clsBebida> BebidasGuardadas() 
 	{
 		
@@ -93,7 +100,19 @@ public class clsGestor
 		return lista;
 	}
 	
-	
+	public static void consumobebida (String id)
+	{
+		
+		LinkedList <clsBebida> listaB=new LinkedList<clsBebida>();
+		listaB = BebidasGuardadas ();
+		for (clsBebida  aux: listaB)
+		{
+			if(aux.getId().equals(id)){	aux.setNum(aux.getNum()-1);	break;}
+		}
+		guardarBebidas (listaB);
+		
+		
+	}
 	
 	public  void nuevoUsuario(String nombre, String apellido1, String DNI, int edad,  String pass)throws clsUsuarioExistente
 	{

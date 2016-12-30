@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -42,14 +43,16 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	private JLabel lblCoca, lblNestea, lblBifrutas, lblKitKat, lblOreo, lblAgua, lblSnickers,lblCerrar;
 	private JPanel contentPane;
 	private JTextArea txtPantalla;
-	private Integer dinero;
+	
+	JLabel dinero;JLabel nombre;
+	
 	static final String COCA= clsConstantes.ID_COCACOLA;
 	static final String NESTEA= clsConstantes.ID_NESTEA;
 	static final String BIF= clsConstantes.ID_BIFRUTAS;
-	static final String OREO= "Oreo";
-	static final String KIT= "KitKat";
-	static final String SNI= "Snickers";
-	static final String AGUA= "Agua";
+	static final String OREO= clsConstantes.ID_OREO;
+	static final String KIT= clsConstantes.ID_KITKAT;
+	static final String SNI= clsConstantes.ID_SNICKERS;
+	static final String AGUA= clsConstantes.ID_AGUA;
 	static final String AN= "Anular";
 	static final String COMPRAR= "Comprar";
     static final String SALIR = "Cerrar Sesion";
@@ -65,6 +68,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 				usuario= aux;
 			}
 		}
+		
 		
 	}
 	public InterfazSeleccionProductos(String dni)
@@ -195,10 +199,10 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		contentPane.add(panel1);
 		
 		
-		JLabel nombre = new JLabel ("Usuario: "+ usuario.getNombre());
+		nombre = new JLabel ("Usuario: "+ usuario.getNombre());
 		nombre.setBounds(10, 50, 100, 30);
 		
-		JLabel dinero = new JLabel ("Saldo: "+ Float.toString(usuario.getDinero())+ " €");
+		dinero = new JLabel ("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
 		dinero.setBounds(10,100,100,30);
 		
 		
@@ -290,14 +294,49 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	
 
 	}
+	
+	//metodo para que el usuario pueda cambiar sus datos
+	
+	//metodo para que el usuario recargue dinero
+	
+	//metodo para que cuando no queden mas existencias de un producto el usuario no pueda consumir más : que el boton no funcione o poner una etiqueta de agotado.
+	
 	public void compra (String bebida)
 	{
-		if(txtPantalla.equals("CocaCola"+" 1,30 €"))
+		float precio =0;
+		clsBebida bebidaconsumida = new clsBebida();
+		LinkedList<clsBebida>listaBebidas= new LinkedList<clsBebida>();
+		listaBebidas=clsGestor.BebidasGuardadas();
+		for (clsBebida aux: listaBebidas)
 		{
-		usuario.setDinero((float) (usuario.getDinero()- 1.3));			
-		
-			
+			if(aux.getId().equals(bebida)) bebidaconsumida = aux;
 		}
+		precio = bebidaconsumida.getPrecioP();
+		if (usuario.getDinero()<precio)
+		{
+			JOptionPane.showMessageDialog(null, "No tiene suficiente saldo",
+				    "SALDO INSUFICIENTE",
+				    JOptionPane.ERROR_MESSAGE);
+		}
+		else
+		{
+			if (bebidaconsumida.getNum()>0) 
+			{
+				usuario.setDinero((float) (usuario.getDinero()- 1.3));
+				clsGestor.gastadinero(usuario.getDni(), bebida);
+				
+				dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
+				clsGestor.consumobebida(bebida);
+			}
+			else {
+					JOptionPane.showMessageDialog(null, "No quedan más " +bebidaconsumida.getNombreP(),
+				    "ESTE PRODUCTO SE HA AGOTADO",
+				    JOptionPane.ERROR_MESSAGE);
+			}
+		
+		//Falta crear metodo en clsGestor para que las bebidas se vayan gastando
+		}
+			
 		
 	}
 
