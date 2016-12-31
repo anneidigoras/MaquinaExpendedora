@@ -50,20 +50,28 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	private JButton vueltaInicio, correo, guardar,ajustes;
     private JPanel contentPane;
         
-    private JLabel lblCoca, lblNestea, lblBifrutas;
-    private JTextArea areaCoca, areaNestea, areaBifrutas;
-    private static JSlider slidCoca, slidNestea, slidBifrutas;
-    private static JLabel lblSlidCoca, lblSlidNestea,lblSlidBifrutas;
+    
+    static int num_cocacola =0;
+    static int num_bifrutas=0;
+    static int num_nestea=0;
+    static int num_agua=0;
+    
+    private JLabel lblCoca, lblNestea, lblBifrutas, lblAgua;
+    private JTextArea areaCoca, areaNestea, areaBifrutas, areaAgua;
+    private static JSlider slidCoca, slidNestea, slidBifrutas, slidAgua;
+    private static JLabel lblSlidCoca, lblSlidNestea,lblSlidBifrutas, lblSlidAgua;
 	
-   
-	 static final String SALIR = "Cerrar Sesion";
-	 static final String AJUSTES = "Ajustes";
-	 static final String CORREO= "Correo";
-	 static final String GUARDAR= "Guardar";
-	 static final String LISTA= "Listado Usuarios";
-	 static final String TABPROD= "Listado Productos";
-	 private final static String SALTO = "\n";
-	 private boolean ver=false;
+    //static LinkedList<clsBebida> listaestatica;
+    
+     
+	static final String SALIR = "Cerrar Sesion";
+	static final String AJUSTES = "Ajustes";
+	static final String CORREO= "Correo";
+	static final String GUARDAR= "Guardar";
+	static final String LISTA= "Listado Usuarios";
+	static final String TABPROD= "Listado Productos";
+	private final static String SALTO = "\n";
+	private boolean ver=false;
 	
 	
 	
@@ -152,9 +160,10 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     		
     		
     		
-		LinkedList<clsBebida> lista;
-    	lista= clsGestor.BebidasGuardadas();
+    		LinkedList<clsBebida>lista;
+    		lista= clsGestor.BebidasGuardadas();
     		
+    	//COCACOLA
     		lblCoca= new JLabel ("CocaCola");
     		lblCoca.setBounds(0, 0, 100, 100);
     		 ImageIcon icono1 = new ImageIcon(getClass().getResource("/img/cocacola.jpg"));
@@ -173,19 +182,18 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 }
 			 areaCoca.append("Coca Cola"+ SALTO +"Nº de bebidas disponibles: "+ beb.getNum());
 			 
+			 
 			 slidCoca = new JSlider (0,50);
 			 slidCoca.setBounds(400, 15, 150, 50);
-			 slidCoca.setPaintTicks(true);
-			 slidCoca.setMajorTickSpacing(25);
-			 slidCoca.setMinorTickSpacing(5);
-			 slidCoca.setPaintLabels(true);
+			 slidCoca.setMinorTickSpacing(0);
 			 slidCoca.addChangeListener(new MiAccion(clsConstantes.ID_COCACOLA));
+			 
 			 
 			 lblSlidCoca= new JLabel();
 			 lblSlidCoca.setBounds(580, 0, 15, 50);
 			 
 			 
-    		
+    	//NESTEA
     		lblNestea= new JLabel ("Nestea");
     		lblNestea.setBounds(0,110,100,100);
     		 ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/nest.jpg"));
@@ -202,17 +210,15 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 
 			 slidNestea = new JSlider (0,50);
 			 slidNestea.setBounds(400, 125, 150, 50);
-			 slidNestea.setPaintTicks(true);
-			 slidNestea.setMajorTickSpacing(25);
-			 slidNestea.setMinorTickSpacing(5);
-			 slidNestea.setPaintLabels(true);
+			 slidNestea.setMinorTickSpacing(0);
 			 slidNestea.addChangeListener(new MiAccion(clsConstantes.ID_NESTEA));
+
 			 
 			 lblSlidNestea= new JLabel();
 			 lblSlidNestea.setBounds(580, 120, 15, 50);
 			 
 			 
-    		 
+    	//BIFRUTAS 
     		lblBifrutas= new JLabel ("Bifrutas");
     		lblBifrutas.setBounds(0,230,100,100);
     		 ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/bif.png"));
@@ -234,18 +240,49 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 slidBifrutas.setMinorTickSpacing(5);
 			 slidBifrutas.setPaintLabels(true);
 			 slidBifrutas.addChangeListener(new MiAccion(clsConstantes.ID_BIFRUTAS));
+			 //slidBifrutas.setValue(0);
 			 
 			 lblSlidBifrutas= new JLabel();
 			 lblSlidBifrutas.setBounds(580, 240, 15, 50);
 			
     		
+		//AGUA
+			 lblAgua= new JLabel ("Agua");
+			 lblAgua.setBounds(0,330,100,100);
+	    		 ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/agua.jpg"));
+				 Image imagen4 = icono4.getImage();
+				 ImageIcon iconoEsc4 = new ImageIcon (imagen4.getScaledInstance(100,100,Image.SCALE_SMOOTH));
+				 lblAgua.setIcon(iconoEsc4);
+	    		 
+				 areaAgua = new JTextArea();
+				 areaAgua.setBounds(105, 330, 200, 100);
+	    		 areaAgua.setEditable(false);
+				 clsBebida beb4 = new clsBebida();
+				 for ( clsBebida aux: lista){if(aux.getId().equals(clsConstantes.ID_AGUA))beb4=aux;}
+				 areaAgua.append("Agua"+ SALTO +"Nº de bebidas disponibles: "+ beb4.getNum());	
+				 
+				 slidAgua = new JSlider (0);
+				 slidAgua.setBounds(400, 365, 150, 50);
+				 slidAgua.setPaintTicks(true);
+				 slidAgua.setMajorTickSpacing(25);
+				 slidAgua.setMinorTickSpacing(5);
+				 slidAgua.setPaintLabels(true);
+				 slidAgua.addChangeListener(new MiAccion(clsConstantes.ID_AGUA));
+				 //slidAgua.setValue(0);
+				 
+				 lblSlidAgua= new JLabel();
+				 lblSlidAgua.setBounds(580, 360, 15, 50);
+			
+			
+				 
+			 
     		JPanel panel2 = new JPanel();
     		panel2.setBounds(350,50, 600, 500);
     		panel2.setLayout(null);
-    		panel2.add(lblCoca);panel2.add(lblBifrutas);panel2.add(lblNestea);    		
-    		panel2.add(areaNestea);panel2.add(areaBifrutas);panel2.add(areaCoca);		
-    		panel2.add(slidCoca); panel2.add(slidNestea); panel2.add(slidBifrutas); 
-    		panel2.add(lblSlidCoca);panel2.add(lblSlidNestea);panel2.add(lblSlidBifrutas);
+    		panel2.add(lblCoca);panel2.add(lblBifrutas);panel2.add(lblNestea);  panel2.add(lblAgua); 		
+    		panel2.add(areaNestea);panel2.add(areaBifrutas);panel2.add(areaCoca); panel2.add(areaAgua);
+    		panel2.add(slidCoca); panel2.add(slidNestea); panel2.add(slidBifrutas); panel2.add(slidAgua);
+    		panel2.add(lblSlidCoca);panel2.add(lblSlidNestea);panel2.add(lblSlidBifrutas);panel2.add(lblSlidAgua);
     		
     		
     		contentPane.add(panel2);
@@ -256,20 +293,41 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 guardar.addActionListener((ActionListener)this);
     		contentPane.add(guardar);
     		
-    		
-    		
-    		
-    		
-      	   
-    		
-    		
- 
-	
+    		actualizarSliders();
+		
+	}
+	protected static  void actualizarSliders()
+	{
+		LinkedList <clsBebida> lista = clsGestor.BebidasGuardadas();
+		
+		for (clsBebida aux: lista)
+		{
+			switch(aux.getId())
+			{
+			case clsConstantes.ID_COCACOLA:
+				slidCoca.setMaximum(50-aux.getNum());
+				slidCoca.setMajorTickSpacing(50-aux.getNum());
+				slidCoca.setPaintTicks(true);
+				slidCoca.setPaintLabels(true);
+				slidCoca.setValue(0);
+				break;
+			case clsConstantes.ID_NESTEA:
+				slidNestea.setMaximum(50-aux.getNum());
+				slidNestea.setMajorTickSpacing(50-aux.getNum());
+				slidNestea.setPaintTicks(true);
+				slidNestea.setPaintLabels(true);
+				slidNestea.setValue(0);
+				break;
+			}
+		}
 		
 		
 	}
-	public static class MiAccion implements ChangeListener{ /*aquí se empieza a crear el método. */
+	public static class MiAccion implements ChangeListener
+	{
 		String id;
+	
+		String nose;
 
 		public MiAccion(String id) 
 		{
@@ -279,30 +337,72 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		@Override
 		public void stateChanged(ChangeEvent arg0) 
 		{
-			if(id.equals(clsConstantes.ID_COCACOLA))
+			switch (id)
 			{
-			int evaluo = slidCoca.getValue(); /*toma el valor que tiene el slider y lo guarda como entero */
-			String nose = Integer.toString(evaluo); /*En nose guarda nuestro entero evaluo como un string */
-			lblSlidCoca.setText(nose); /*actualiza nuestro label al valor en el que se encuentra nuestro JSlider */
-			}
-			else if(id.equals(clsConstantes.ID_NESTEA))
-			{
-			int evaluo = slidNestea.getValue(); /*toma el valor que tiene el slider y lo guarda como entero */
-			String nose = Integer.toString(evaluo); /*En nose guarda nuestro entero evaluo como un string */
-			lblSlidNestea.setText(nose); /*actualiza nuestro label al valor en el que se encuentra nuestro JSlider */
-			}
-			else
-			{
-				int evaluo = slidBifrutas.getValue(); /*toma el valor que tiene el slider y lo guarda como entero */
-				String nose = Integer.toString(evaluo); /*En nose guarda nuestro entero evaluo como un string */
+			
+			case clsConstantes.ID_COCACOLA:
+				num_cocacola = slidCoca.getValue(); /*toma el valor que tiene el slider y lo guarda como entero */
+				nose = Integer.toString(num_cocacola); /*En nose guarda nuestro entero evaluo como un string */
+				lblSlidCoca.setText(nose); /*actualiza nuestro label al valor en el que se encuentra nuestro JSlider */
+				
+				//actualizarlistabebidas(id, nose);
+				break;
+				
+			case clsConstantes.ID_NESTEA: 
+				num_nestea = slidNestea.getValue(); /*toma el valor que tiene el slider y lo guarda como entero */
+				nose = Integer.toString(num_nestea); /*En nose guarda nuestro entero evaluo como un string */
+				lblSlidNestea.setText(nose); /*actualiza nuestro label al valor en el que se encuentra nuestro JSlider */
+				
+				//actualizarlistabebidas(id, nose);
+				break;
+				
+			case clsConstantes.ID_BIFRUTAS:
+				num_bifrutas = slidBifrutas.getValue(); /*toma el valor que tiene el slider y lo guarda como entero */
+				nose = Integer.toString(num_bifrutas); /*En nose guarda nuestro entero evaluo como un string */
 				lblSlidBifrutas.setText(nose); /*actualiza nuestro label al valor en el que se encuentra nuestro JSlider */
 				
-			}
-			}
+				//actualizarlistabebidas(id, nose);
+				break;
+				
+			case clsConstantes.ID_AGUA:
+				num_agua = slidAgua.getValue(); /*toma el valor que tiene el slider y lo guarda como entero */
+				nose = Integer.toString(num_agua); /*En nose guarda nuestro entero evaluo como un string */
+				lblSlidAgua.setText(nose); /*actualiza nuestro label al valor en el que se encuentra nuestro JSlider */
+				//actualizarlistabebidas(id, nose);
+				break;
+		
+			}	
+			
 		}
+		
+	}
 	
 
-
+	protected static LinkedList<clsBebida> actualizarlistabebidas()
+	{
+		LinkedList <clsBebida> lista = clsGestor.BebidasGuardadas();
+		for(clsBebida aux: lista)
+		{
+			switch (aux.getId())
+			{
+			case clsConstantes.ID_COCACOLA:
+				aux.setNum(aux.getNum()+ num_cocacola);
+				
+			case clsConstantes.ID_NESTEA:
+				aux.setNum(aux.getNum()+ num_nestea);
+				
+			case clsConstantes.ID_BIFRUTAS:
+				aux.setNum(aux.getNum()+ num_bifrutas);
+				
+			case clsConstantes.ID_AGUA:
+				aux.setNum(aux.getNum()+ num_agua);
+			
+			
+			}
+			
+		}
+		return lista;
+	}
 
 	@Override
 	public void itemStateChanged(ItemEvent arg0) {
@@ -331,8 +431,6 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			if(clsAdministrador.Correo.isEmpty())
 			clsAdministrador.Correo = JOptionPane.showInputDialog("Introduzca su correo electrónico (con la forma ...@example.com)");
 			clsMensaje.correo();
-			
-			
 			break;
 
 		case LISTA:
@@ -345,6 +443,10 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			tablasProductos();
 			
 			break;
+			
+		case GUARDAR:
+			guardar();
+			break;
 		
 		case AJUSTES:
 			ajustes();
@@ -352,6 +454,13 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		
 		}
 		
+		
+	}
+	protected void guardar ()
+	{
+		LinkedList <clsBebida> lista = actualizarlistabebidas();
+		clsGestor.guardarBebidas(lista);
+		actualizarSliders();
 		
 	}
 	protected void ajustes()

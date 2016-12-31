@@ -39,7 +39,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	String comando= null;
 	static String dni_usuario;
 	static clsUsuario usuario = new clsUsuario (); 
-	private JButton btCoca, btNestea, btBifrutas, btKitKat, btOreo, btAnular, btComprar, btAgua, btSnickers, btCerrar;
+	private JButton btCoca, btNestea, btBifrutas, btKitKat, btOreo, btComprar, btAgua, btSnickers, btCerrar;
 	private JLabel lblCoca, lblNestea, lblBifrutas, lblKitKat, lblOreo, lblAgua, lblSnickers,lblCerrar;
 	private JPanel contentPane;
 	private JTextArea txtPantalla;
@@ -49,10 +49,12 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	static final String COCA= clsConstantes.ID_COCACOLA;
 	static final String NESTEA= clsConstantes.ID_NESTEA;
 	static final String BIF= clsConstantes.ID_BIFRUTAS;
+	static final String AGUA= clsConstantes.ID_AGUA;
+	
 	static final String OREO= clsConstantes.ID_OREO;
 	static final String KIT= clsConstantes.ID_KITKAT;
 	static final String SNI= clsConstantes.ID_SNICKERS;
-	static final String AGUA= clsConstantes.ID_AGUA;
+
 	static final String AN= "Anular";
 	static final String COMPRAR= "Comprar";
     static final String SALIR = "Cerrar Sesion";

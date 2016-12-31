@@ -48,12 +48,12 @@ public class clsGestor
 		{
 		listaB.add(new clsBebida ("CocaCola", (float) 1.2, clsConstantes.ID_COCACOLA, 350, "lata",clsConstantes.NUM_INICIAL_BEBIDAS));
 		listaB.add(new clsBebida ("Nestea", (float) 1.2, clsConstantes.ID_NESTEA, 350, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
-		listaB.add(new clsBebida ("Fanta Naranja", (float) 1.2, "FN", 250, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
-		listaB.add( new clsBebida ("Sprite", (float) 1.2, "S", 250, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
-		listaB.add(new clsBebida ("RedBull", (float) 1.5, "RB", 335, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
-		listaB.add(new clsBebida ("Aquarius", (float) 1.2, "AQ", 330, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
+//		listaB.add(new clsBebida ("Fanta Naranja", (float) 1.2, "FN", 250, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
+//		listaB.add( new clsBebida ("Sprite", (float) 1.2, "S", 250, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
+//		listaB.add(new clsBebida ("RedBull", (float) 1.5, "RB", 335, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
+//		listaB.add(new clsBebida ("Aquarius", (float) 1.2, "AQ", 330, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
 		listaB.add(new clsBebida ("Bifrutas", (float) 1.0, clsConstantes.ID_BIFRUTAS, 250, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
-		listaB.add(new clsBebida ("Agua", (float) 1.5, "H2O", 500, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
+		listaB.add(new clsBebida ("Agua", (float) 1.5, clsConstantes.ID_AGUA, 500, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
 		
 		guardarBebidas (listaB);
 		
@@ -113,6 +113,7 @@ public class clsGestor
 		
 		
 	}
+	
 	
 	public  void nuevoUsuario(String nombre, String apellido1, String DNI, int edad,  String pass)throws clsUsuarioExistente
 	{
@@ -197,8 +198,7 @@ public class clsGestor
 		}
 
 
-
-public static void CrearListaUsuario(LinkedList<clsUsuario> lista)
+    public static void CrearListaUsuario(LinkedList<clsUsuario> lista)
 {
 	clsDatos objD=new clsDatos();
 	

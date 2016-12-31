@@ -2,7 +2,7 @@ package COMUN;
 
 public class clsConstantes
 {
-	public static final int NUM_INICIAL_BEBIDAS = 2;
+	public static final int NUM_INICIAL_BEBIDAS = 5;
 	public static final float DINERO_INICIAL = 10;
 	
 	
