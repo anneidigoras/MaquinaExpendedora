@@ -12,7 +12,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+import COMUN.clsAdquisicionRepetido;
 import COMUN.clsConstantes;
+
 import COMUN.clsConstantes.enFicheros;
 
 import COMUN.clsUsuarioExistente;
@@ -215,8 +217,67 @@ public class clsGestor
 	
 }
 
+public static void crearAdquisicion(String id_producto, String dni_user)
+{
+	ArrayList<clsAdquisicion> adquisicion= new ArrayList<clsAdquisicion>();
+	HashSet<clsAdquisicion> setadquisicion= new HashSet<clsAdquisicion>();
+	clsDatos objDatos= new clsDatos();
+	clsAdquisicion objadquisicion= new clsAdquisicion();
+	
+	adquisicion=leeradquisicion();
+	setadquisicion.addAll(adquisicion);
+	
+	objadquisicion.setId_producto(id_producto);objadquisicion.setDni_usuario(dni_user);
+	
+	boolean cont= setadquisicion.add(objadquisicion);
+	
+	if(cont==false)
+	{
+		
+		try {
+			throw new clsAdquisicionRepetido();
+		} catch (clsAdquisicionRepetido e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	else
+	{
+		objDatos.ComenzarSave(enFicheros.RELACIONUSUARIO_PRODUCTO);
+		objDatos.Save((Serializable) objadquisicion);
+		objDatos.TerminarSave();
+		
+		
+	}
 
-
+}
+public static ArrayList<clsAdquisicion> leeradquisicion()
+{
+	ArrayList<Serializable>serializable= new ArrayList<Serializable>();
+	ArrayList<clsAdquisicion> adquisicion= new ArrayList<clsAdquisicion>();
+	clsDatos objDatos= new clsDatos();
+	
+	try
+    {
+		objDatos.ComenzarRead(enFicheros.RELACIONUSUARIO_PRODUCTO);
+	}
+	catch (IOException e)
+	{
+		
+		e.printStackTrace();
+	}
+	serializable= objDatos.Read();
+	
+	for(Serializable aux: serializable)
+	{
+		adquisicion.add((clsAdquisicion)aux);
+		
+	}
+	
+	objDatos.TerminarRead();
+	return adquisicion;
+	
+}
 public static void Eliminar()
 {
 	System.out.println("Has seleccionado reiniciar ficheros");
@@ -428,9 +489,3 @@ public static void gastadinero(String dni, String id)
 
 
 }
-	
-
-	
-	
-
-		

@@ -247,10 +247,3 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 
 }
 	
-	
-
- 
-   
- 
-
-

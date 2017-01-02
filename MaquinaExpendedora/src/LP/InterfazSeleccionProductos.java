@@ -24,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 
 import COMUN.clsConstantes;
 import LN.clsAdministrador;
+import LN.clsAdquisicion;
 import LN.clsBebida;
 import LN.clsGestor;
 import LN.clsMensaje;
@@ -39,7 +40,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	String comando= null;
 	static String dni_usuario;
 	static clsUsuario usuario = new clsUsuario (); 
-	private JButton btCoca, btNestea, btBifrutas, btKitKat, btOreo, btComprar, btAgua, btSnickers, btCerrar;
+	private JButton btCoca, btNestea, btBifrutas, btKitKat, btOreo, btComprar, btAgua, btSnickers, btCerrar, btReponer;
 	private JLabel lblCoca, lblNestea, lblBifrutas, lblKitKat, lblOreo, lblAgua, lblSnickers,lblCerrar;
 	private JPanel contentPane;
 	private JTextArea txtPantalla;
@@ -57,6 +58,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 
 	static final String AN= "Anular";
 	static final String COMPRAR= "Comprar";
+	static final String REPONER= "Reponer";
     static final String SALIR = "Cerrar Sesion";
     clsBebida objBebida= new clsBebida();
 	
@@ -180,6 +182,10 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	    btComprar.setActionCommand(COMPRAR);
 	    btComprar.addActionListener((ActionListener)this);
 	    btComprar.setText(COMPRAR);
+	    
+	  
+	    
+	    
 		
 	    JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(600, 70, 100, 50);
@@ -215,18 +221,24 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
  		 ImageIcon iconoEsc6 = new ImageIcon (imagen6.getScaledInstance(70,70,Image.SCALE_SMOOTH));
  	     btCerrar.setIcon(iconoEsc6);
          btCerrar.addActionListener((ActionListener) this);
-         btCerrar.setBounds(10,200,70,70);
+         btCerrar.setBounds(10,225,70,70);
          
      	
  		lblCerrar= new JLabel ("Log Out");
  		lblCerrar.setBounds(10,300,67,40);
+ 		
+ 		  btReponer = new JButton();
+ 		  btReponer.setBounds(10,140,90,50);
+ 		  btReponer.setActionCommand(REPONER);
+          btReponer.addActionListener((ActionListener)this);
+ 	      btReponer.setText(REPONER);
 		
 		
 		
 		JPanel panel2 = new JPanel();
 		panel2.setBounds(600, 100, 200, 400);
 		panel2.setLayout(null);
-		panel2.add(nombre);panel2.add(dinero);panel2.add(btCerrar);panel2.add(lblCerrar);
+		panel2.add(nombre);panel2.add(dinero);panel2.add(btCerrar);panel2.add(lblCerrar); panel2.add(btReponer);
 		contentPane.add(panel2);
 		
 	    
@@ -285,6 +297,10 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 				   frame.setVisible(true);}
 			
 			     break;
+			 
+			case REPONER:
+				ReponerSaldo frame= new ReponerSaldo();
+				frame.setVisible(true);
 				
 				
 			
@@ -324,7 +340,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		{
 			if (bebidaconsumida.getNum()>0) 
 			{
-				usuario.setDinero((float) (usuario.getDinero()- 1.3));
+				usuario.setDinero((float) (usuario.getDinero()- bebidaconsumida.getPrecioP()));
 				clsGestor.gastadinero(usuario.getDni(), bebida);
 				
 				dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
@@ -336,10 +352,12 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 				    JOptionPane.ERROR_MESSAGE);
 			}
 		
-		//Falta crear metodo en clsGestor para que las bebidas se vayan gastando
-		}
-			
 		
-	}
+		}
+	ArrayList<clsAdquisicion> listaAdq= new ArrayList<clsAdquisicion>();
+	for(clsAdquisicion aux:listaAdq){
+			
+	clsGestor.crearAdquisicion(aux.getId_producto(),aux.getDni_usuario() );	
+	}}
 
 	}

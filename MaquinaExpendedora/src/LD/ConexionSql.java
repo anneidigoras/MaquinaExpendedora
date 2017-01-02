@@ -69,24 +69,24 @@ public class ConexionSql
 				
 				JOptionPane.showMessageDialog(null, "¡Usuario añadido correctamente!");	
 			
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
 		
 	
 	}
-	public void añadirProductos(String nombre,float precio, String id, int ml,String car,int num)
+	public void añadirProductos(String nombre,float precio, String id,int num)
 	{
 		try {
 			
 			
-			String sentencia="insert into equipo values('"+nombre+"', '"+precio+"', '"+id+"', '"+ml+"', '"+car+"', '"+num+"')";
-			st.executeUpdate(sentencia);
+			String sentencia="insert into producto values('"+nombre+"', '"+precio+"', '"+id+"', '"+num+"')";
+			//st.executeUpdate(sentencia);
 			
 			JOptionPane.showMessageDialog(null, "¡Producto añadido correctamente!");	
 		
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
