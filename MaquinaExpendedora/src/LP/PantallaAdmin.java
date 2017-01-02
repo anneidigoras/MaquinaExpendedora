@@ -47,23 +47,26 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	private JMenuBar MenuPrincipal;
 	private JMenu DatosUsuarios, DatosProductos;
 	private JMenuItem ListadoUsuarios,ListadoProductos;
-	private JButton vueltaInicio, correo, guardar,ajustes;
+	private JButton vueltaInicio, correo,ajustes;
     private JPanel contentPane;
         
-    
     static int num_cocacola =0;
     static int num_bifrutas=0;
     static int num_nestea=0;
     static int num_agua=0;
     
+    JPanel panel1;
+    JPanel panel2;
+    //elementos del panel2
     private JLabel lblCoca, lblNestea, lblBifrutas, lblAgua;
     private JTextArea areaCoca, areaNestea, areaBifrutas, areaAgua;
     private static JSlider slidCoca, slidNestea, slidBifrutas, slidAgua;
     private static JLabel lblSlidCoca, lblSlidNestea,lblSlidBifrutas, lblSlidAgua;
+    private JButton guardar;
 	
     //static LinkedList<clsBebida> listaestatica;
     
-     
+    
 	static final String SALIR = "Cerrar Sesion";
 	static final String AJUSTES = "Ajustes";
 	static final String CORREO= "Correo";
@@ -150,7 +153,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
        	    correo.setActionCommand(CORREO);
        	    correo.addActionListener((ActionListener)this);
       	   
-      		JPanel panel1 = new JPanel();
+      		panel1 = new JPanel();
       		panel1.setBounds(10, 50, 300, 128);
       		panel1.setLayout(null);
       		panel1.add(correo);
@@ -159,13 +162,14 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     		    		
     		
     		
+    		panel2 = new JPanel();
     		
     		LinkedList<clsBebida>lista;
     		lista= clsGestor.BebidasGuardadas();
     		
     	//COCACOLA
-    		lblCoca= new JLabel ("CocaCola");
-    		lblCoca.setBounds(0, 0, 100, 100);
+    		 lblCoca= new JLabel ("CocaCola");
+    		 lblCoca.setBounds(0, 0, 100, 100);
     		 ImageIcon icono1 = new ImageIcon(getClass().getResource("/img/cocacola.jpg"));
 			 Image imagen1 = icono1.getImage();
 			 ImageIcon iconoEsc1 = new ImageIcon (imagen1.getScaledInstance(100,100,Image.SCALE_SMOOTH));
@@ -182,16 +186,29 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 }
 			 areaCoca.append("Coca Cola"+ SALTO +"Nº de bebidas disponibles: "+ beb.getNum());
 			 
-			 
-			 slidCoca = new JSlider (0,50);
-			 slidCoca.setBounds(400, 15, 150, 50);
-			 slidCoca.setMinorTickSpacing(0);
-			 slidCoca.addChangeListener(new MiAccion(clsConstantes.ID_COCACOLA));
-			 
-			 
-			 lblSlidCoca= new JLabel();
-			 lblSlidCoca.setBounds(580, 0, 15, 50);
-			 
+			 if (50-beb.getNum() <1)
+			 { 
+				 JLabel maximo = new JLabel("No hay más espacio para " +beb.getNombreP());
+				 maximo.setBounds(400, 15, 300, 50);
+				 panel2.add(maximo);
+			 }
+			 else
+			 {
+				 slidCoca = new JSlider (0,50-beb.getNum());
+				 slidCoca.setBounds(400, 15, 150, 50);
+				 //slidCoca.setMaximum(50-beb.getNum());
+				 slidCoca.setMajorTickSpacing((50-beb.getNum())/2);
+				 slidCoca.setPaintTicks(true);
+				 slidCoca.setPaintLabels(true);
+				 slidCoca.setValue(0);
+				 slidCoca.setMinorTickSpacing(2);
+				 slidCoca.addChangeListener(new MiAccion(clsConstantes.ID_COCACOLA));
+				 panel2.add(slidCoca);
+				 
+				 lblSlidCoca= new JLabel();
+				 lblSlidCoca.setBounds(580, 0, 15, 50);
+				 panel2.add(lblSlidCoca);
+			 }
 			 
     	//NESTEA
     		lblNestea= new JLabel ("Nestea");
@@ -208,15 +225,28 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 for ( clsBebida aux: lista){if(aux.getId().equals(clsConstantes.ID_NESTEA))beb2=aux;}
 			 areaNestea.append("Nestea"+ SALTO +"Nº de bebidas disponibles: "+ beb2.getNum());	
 			 
-			 slidNestea = new JSlider (0,50);
-			 slidNestea.setBounds(400, 125, 150, 50);
-			 slidNestea.setMinorTickSpacing(0);
-			 slidNestea.addChangeListener(new MiAccion(clsConstantes.ID_NESTEA));
-
-			 
-			 lblSlidNestea= new JLabel();
-			 lblSlidNestea.setBounds(580, 120, 15, 50);
-			 
+			 if (50-beb2.getNum() <1)
+			 { 
+				 JLabel maximo = new JLabel("No hay más espacio para " +beb2.getNombreP());
+				 maximo.setBounds(400, 125, 300, 50);
+				 panel2.add(maximo);
+			 }
+			 else
+			 {
+				 slidNestea = new JSlider (0,50-beb2.getNum());
+				 slidNestea.setBounds(400, 125, 150, 50);
+				 slidNestea.setMajorTickSpacing((50-beb2.getNum())/2);
+				 slidNestea.setPaintTicks(true);
+				 slidNestea.setPaintLabels(true);
+				 slidNestea.setValue(0);
+				 slidNestea.setMinorTickSpacing(2);
+				 slidNestea.addChangeListener(new MiAccion(clsConstantes.ID_NESTEA));
+				 panel2.add(slidNestea);
+				 
+				 lblSlidNestea= new JLabel();
+				 lblSlidNestea.setBounds(580, 120, 15, 50);
+				 panel2.add(lblSlidNestea);
+			 }
 			 
     	//BIFRUTAS 
     		lblBifrutas= new JLabel ("Bifrutas");
@@ -233,18 +263,29 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 for ( clsBebida aux: lista){if(aux.getId().equals(clsConstantes.ID_BIFRUTAS))beb3=aux;}
 			 areaBifrutas.append("Bifrutas"+ SALTO +"Nº de bebidas disponibles: "+ beb3.getNum());	
 			 
-			 slidBifrutas = new JSlider (0,50);
+			 
+			 if (50-beb3.getNum() <1)
+			 { 
+				 JLabel maximo = new JLabel("No hay más espacio para " +beb3.getNombreP());
+				 maximo.setBounds(400, 245, 300, 50);
+				 panel2.add(maximo);
+			 }
+			 else
+			 {
+			 slidBifrutas = new JSlider (0,50-beb3.getNum());
 			 slidBifrutas.setBounds(400, 245, 150, 50);
+			 slidBifrutas.setMajorTickSpacing((50-beb3.getNum())/2);
 			 slidBifrutas.setPaintTicks(true);
-			 slidBifrutas.setMajorTickSpacing(25);
-			 slidBifrutas.setMinorTickSpacing(5);
 			 slidBifrutas.setPaintLabels(true);
+			 slidBifrutas.setValue(0);
+			 slidBifrutas.setMinorTickSpacing(2);
 			 slidBifrutas.addChangeListener(new MiAccion(clsConstantes.ID_BIFRUTAS));
-			 //slidBifrutas.setValue(0);
+			 panel2.add(slidBifrutas);
 			 
 			 lblSlidBifrutas= new JLabel();
 			 lblSlidBifrutas.setBounds(580, 240, 15, 50);
-			
+			 panel2.add(lblSlidBifrutas);
+			 }
     		
 		//AGUA
 			 lblAgua= new JLabel ("Agua");
@@ -261,29 +302,37 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 				 for ( clsBebida aux: lista){if(aux.getId().equals(clsConstantes.ID_AGUA))beb4=aux;}
 				 areaAgua.append("Agua"+ SALTO +"Nº de bebidas disponibles: "+ beb4.getNum());	
 				 
-				 slidAgua = new JSlider (0);
+				 if (50-beb4.getNum() <1)
+				 { 
+					 JLabel maximo = new JLabel("No hay más espacio para " +beb4.getNombreP());
+					 maximo.setBounds(400, 365, 300, 50);
+					 panel2.add(maximo);
+				 }
+				 else
+				 {
+				 slidAgua = new JSlider (0, 50-beb4.getNum());
 				 slidAgua.setBounds(400, 365, 150, 50);
+				 slidAgua.setMajorTickSpacing((50-beb4.getNum())/2);
 				 slidAgua.setPaintTicks(true);
-				 slidAgua.setMajorTickSpacing(25);
-				 slidAgua.setMinorTickSpacing(5);
 				 slidAgua.setPaintLabels(true);
+				 slidAgua.setValue(0);
+				 slidAgua.setMinorTickSpacing(2);
 				 slidAgua.addChangeListener(new MiAccion(clsConstantes.ID_AGUA));
-				 //slidAgua.setValue(0);
+				 panel2.add(slidAgua);
 				 
 				 lblSlidAgua= new JLabel();
 				 lblSlidAgua.setBounds(580, 360, 15, 50);
-			
+				 panel2.add(lblSlidAgua);
+				 }
 			
 				 
 			 
-    		JPanel panel2 = new JPanel();
+    		
     		panel2.setBounds(350,50, 600, 500);
     		panel2.setLayout(null);
     		panel2.add(lblCoca);panel2.add(lblBifrutas);panel2.add(lblNestea);  panel2.add(lblAgua); 		
     		panel2.add(areaNestea);panel2.add(areaBifrutas);panel2.add(areaCoca); panel2.add(areaAgua);
-    		panel2.add(slidCoca); panel2.add(slidNestea); panel2.add(slidBifrutas); panel2.add(slidAgua);
-    		panel2.add(lblSlidCoca);panel2.add(lblSlidNestea);panel2.add(lblSlidBifrutas);panel2.add(lblSlidAgua);
-    		
+    		   		
     		
     		contentPane.add(panel2);
     		
@@ -291,38 +340,38 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 guardar.setBounds(900, 550, 150, 40);
 			 guardar.setActionCommand(GUARDAR);
 			 guardar.addActionListener((ActionListener)this);
-    		contentPane.add(guardar);
+			 contentPane.add(guardar);
     		
-    		actualizarSliders();
+    		//actualizarSliders();
 		
 	}
-	protected static  void actualizarSliders()
-	{
-		LinkedList <clsBebida> lista = clsGestor.BebidasGuardadas();
-		
-		for (clsBebida aux: lista)
-		{
-			switch(aux.getId())
-			{
-			case clsConstantes.ID_COCACOLA:
-				slidCoca.setMaximum(50-aux.getNum());
-				slidCoca.setMajorTickSpacing(50-aux.getNum());
-				slidCoca.setPaintTicks(true);
-				slidCoca.setPaintLabels(true);
-				slidCoca.setValue(0);
-				break;
-			case clsConstantes.ID_NESTEA:
-				slidNestea.setMaximum(50-aux.getNum());
-				slidNestea.setMajorTickSpacing(50-aux.getNum());
-				slidNestea.setPaintTicks(true);
-				slidNestea.setPaintLabels(true);
-				slidNestea.setValue(0);
-				break;
-			}
-		}
-		
-		
-	}
+//	protected static  void actualizarSliders()
+//	{
+//		LinkedList <clsBebida> lista = clsGestor.BebidasGuardadas();
+//		
+//		for (clsBebida aux: lista)
+//		{
+//			switch(aux.getId())
+//			{
+////			case clsConstantes.ID_COCACOLA:
+////				slidCoca.setMaximum(50-aux.getNum());
+////				slidCoca.setMajorTickSpacing(50-aux.getNum());
+////				slidCoca.setPaintTicks(true);
+////				slidCoca.setPaintLabels(true);
+////				slidCoca.setValue(0);
+////				break;
+//			case clsConstantes.ID_NESTEA:
+//				slidNestea.setMaximum(50-aux.getNum());
+//				slidNestea.setMajorTickSpacing(50-aux.getNum());
+//				slidNestea.setPaintTicks(true);
+//				slidNestea.setPaintLabels(true);
+//				slidNestea.setValue(0);
+//				break;
+//			}
+//		}
+//		
+//		
+//	}
 	public static class MiAccion implements ChangeListener
 	{
 		String id;
@@ -380,6 +429,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 
 	protected static LinkedList<clsBebida> actualizarlistabebidas()
 	{
+		
 		LinkedList <clsBebida> lista = clsGestor.BebidasGuardadas();
 		for(clsBebida aux: lista)
 		{
@@ -387,15 +437,19 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			{
 			case clsConstantes.ID_COCACOLA:
 				aux.setNum(aux.getNum()+ num_cocacola);
+				break;
 				
 			case clsConstantes.ID_NESTEA:
 				aux.setNum(aux.getNum()+ num_nestea);
+				break;
 				
 			case clsConstantes.ID_BIFRUTAS:
 				aux.setNum(aux.getNum()+ num_bifrutas);
+				break;
 				
 			case clsConstantes.ID_AGUA:
 				aux.setNum(aux.getNum()+ num_agua);
+				break;
 			
 			
 			}
@@ -460,7 +514,11 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	{
 		LinkedList <clsBebida> lista = actualizarlistabebidas();
 		clsGestor.guardarBebidas(lista);
-		actualizarSliders();
+		this.dispose();
+		PantallaAdmin frame= new PantallaAdmin("Pantalla Admin");
+        frame.setVisible(true);
+
+		//actualizarSliders();
 		
 	}
 	protected void ajustes()
@@ -484,6 +542,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		 }
 		 else System.out.println("no pasa na");
 	}
+	
 	protected void tablasUsers()
     {
     	
@@ -503,6 +562,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		}
     	
     }
+	
 	protected void tablasProductos()
 	{
 		
