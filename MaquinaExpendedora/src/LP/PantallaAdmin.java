@@ -342,7 +342,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		    		 areaSni.setEditable(false);
 					 clsAlimento beb5 = new clsAlimento();
 					 for ( clsAlimento aux: lista2){if(aux.getId().equals(clsConstantes.ID_SNICKERS))beb5=aux;}
-					 areaAgua.append("Agua"+ SALTO +"Nº de bebidas disponibles: "+ beb5.getNum());	
+					 areaAgua.append("Snickers"+ SALTO +"Nº de bebidas disponibles: "+ beb5.getNum());	
 					 
 					 if (50-beb4.getNum() <1)
 					 { 
@@ -352,14 +352,14 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 					 }
 					 else
 					 {
-					 slidAgua = new JSlider (0, 50-beb4.getNum());
-					 slidAgua.setBounds(400, 365, 150, 50);
-					 slidAgua.setMajorTickSpacing((50-beb4.getNum())/2);
-					 slidAgua.setPaintTicks(true);
-					 slidAgua.setPaintLabels(true);
-					 slidAgua.setValue(0);
-					 slidAgua.setMinorTickSpacing(2);
-					 slidAgua.addChangeListener(new MiAccion(clsConstantes.ID_AGUA));
+					 slidSni = new JSlider (0, 50-beb4.getNum());
+					 slidSni.setBounds(400, 365, 150, 50);
+					 slidSni.setMajorTickSpacing((50-beb4.getNum())/2);
+					 slidSni.setPaintTicks(true);
+					 slidSni.setPaintLabels(true);
+					 slidSni.setValue(0);
+					 slidSni.setMinorTickSpacing(2);
+					 slidSni.addChangeListener(new MiAccion(clsConstantes.ID_SNICKERS));
 					 panel2.add(slidAgua);
 					 
 					 lblSlidAgua= new JLabel();

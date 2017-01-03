@@ -7,11 +7,13 @@ package LP;
  */
 
 import java.awt.Color;
+import java.awt.Component;
 
 import static COMUN.clsConstantes.*;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -37,12 +39,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.KeyStroke;
-import javax.swing.event.InternalFrameEvent;
-import javax.swing.event.InternalFrameListener;
+
 
 import LD.ConexionSql;
 import LN.clsGestor;
@@ -59,16 +56,15 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 	
 	private JLabel bienv ;
     private	JLabel imagenlbl;
-	
+	private JPanel contentPane;
 	private JMenuBar MenuPrincipal;
-	private JMenu Cliente;
-	private JMenuItem C_Ingresar;
-	private JMenuItem C_Registrarse;
-	private JMenu Admin;
-	private JMenuItem A_Ingresar;
+//	private JMenu Cliente;
+//	private JMenuItem C_Ingresar;
+//	private JMenuItem C_Registrarse;
+//	private JMenu Admin;
+//	private JMenuItem A_Ingresar;
 
-	private JButton Salir;
-	private JButton usuario;
+	private JButton Salir, btIngresar, btRegistro, btAdmin, btUsuario;
 	Connection connection = null;
 	
 
@@ -79,6 +75,9 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
     static final String CREAR_ADMIN= "Entrar admin";
     static final String CREARBEBIDA = "Nueva bebida";
     static final String SALIR = "Salir";
+    static final String INGRESO = "Ingresar";
+    static final String REGISTRO = "Registrarse";
+    static final String ADMIN = "Administrador";
     
 
     
@@ -89,66 +88,109 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
     	this.setTitle(title);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
-		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		connection = ConexionSql.dbConnector("");
 		
-		
-		
+		contentPane = new JPanel();
+        contentPane.setLayout(null);
+		contentPane.setBackground(new Color(204, 204, 255));		
+		contentPane.setBounds(100,100,700,700);
 		
 		bienv = new JLabel ("¡BIENVENIDO!");
 		bienv.setFont(new Font("Algerian", Font.BOLD, 45));
 		bienv.setForeground(Color.WHITE);
-		bienv.setBounds(540,50,500,150);
-		getContentPane().add(bienv);
+		bienv.setBounds(750,50,500,150);
+		
+		
 		
 		
 		
 		ImageIcon icono = new ImageIcon(getClass().getResource("/img/portada.jpg"));
 		Image imagen = icono.getImage();
-		ImageIcon iconoEscalado = new ImageIcon (imagen.getScaledInstance(200,300,Image.SCALE_SMOOTH));
+		ImageIcon iconoEscalado = new ImageIcon (imagen.getScaledInstance(350,600,Image.SCALE_SMOOTH));
         imagenlbl = new JLabel (iconoEscalado);
+        imagenlbl.setBounds(700,200,500,600);
         
-        this.getContentPane().setPreferredSize(this.getSize());
-        getContentPane().add(imagenlbl);
-		getContentPane().setBackground(new Color(204, 204, 255));
-		
+        
+        btUsuario = new JButton ();
+		btUsuario.setBounds(200, 350, 200, 200);
+		ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/usuario.png"));
+		 Image imagen2 = icono2.getImage();
+		 ImageIcon iconoEsc2 = new ImageIcon (imagen2.getScaledInstance(200,200,Image.SCALE_SMOOTH));
+	    btUsuario.setIcon(iconoEsc2);
+	   
+	  
+	
 		MenuPrincipal = new JMenuBar();
 		MenuPrincipal.setBackground(new Color(51, 102, 153));
 		this.setJMenuBar(MenuPrincipal);
-		
-		Cliente = new JMenu("CLIENTE");
-		Cliente.setForeground(Color.WHITE);
-		MenuPrincipal.add(Cliente);
-		
-		C_Ingresar = new JMenuItem("Ingresar");
-		//C_Ingresar.setForeground(new Color(0, 255, 0));
-		C_Ingresar.setActionCommand(SOY_CLIENTE);
-		C_Ingresar.addActionListener(this);
-		Cliente.add(C_Ingresar);
-		
-		C_Registrarse = new JMenuItem("Registrarse");
-		//C_Registrarse.setForeground(new Color(200, 255, 0));
-		C_Registrarse.setActionCommand(CREAR_CLIENTE);
-		C_Registrarse.addActionListener(this);
-		Cliente.add(C_Registrarse);
+//		
+//		Cliente = new JMenu("CLIENTE");
+//		Cliente.setForeground(Color.WHITE);
+//		MenuPrincipal.add(Cliente);
+//		
+//		C_Ingresar = new JMenuItem("Ingresar");
+//		//C_Ingresar.setForeground(new Color(0, 255, 0));
+//		C_Ingresar.setActionCommand(SOY_CLIENTE);
+//		C_Ingresar.addActionListener(this);
+//		Cliente.add(C_Ingresar);
+//		
+//		C_Registrarse = new JMenuItem("Registrarse");
+//		//C_Registrarse.setForeground(new Color(200, 255, 0));
+//		C_Registrarse.setActionCommand(CREAR_CLIENTE);
+//		C_Registrarse.addActionListener(this);
+//		Cliente.add(C_Registrarse);
     	
-		Admin = new JMenu("ADMINISTRADOR");
-		Admin.setForeground(Color.WHITE);
-		MenuPrincipal.add(Admin);
+//		Admin = new JMenu("ADMINISTRADOR");
+//		Admin.setForeground(Color.WHITE);
+//		MenuPrincipal.add(Admin);
 		
-		A_Ingresar = new JMenuItem("Ingresar");
-		//A_Ingresar.setForeground(new Color(0, 128, 0));
-		A_Ingresar.setActionCommand(SOY_ADMIN);
-		A_Ingresar.addActionListener(this);
-		Admin.add(A_Ingresar);
+//		A_Ingresar = new JMenuItem("Ingresar");
+//		//A_Ingresar.setForeground(new Color(0, 128, 0));
+//		A_Ingresar.setActionCommand(SOY_ADMIN);
+//		A_Ingresar.addActionListener(this);
+//		Admin.add(A_Ingresar);
+		
+		btIngresar = new JButton ();
+		btIngresar.setBounds(200, 650, 90, 90);
+		ImageIcon icono0 = new ImageIcon(getClass().getResource("/img/login.png"));
+		 Image imagen0 = icono0.getImage();
+		 ImageIcon iconoEsc0 = new ImageIcon (imagen0.getScaledInstance(90,90,Image.SCALE_SMOOTH));
+	    btIngresar.setIcon(iconoEsc0);
+	    btIngresar.setActionCommand(SOY_CLIENTE);
+	    btIngresar.addActionListener((ActionListener)this);
+	    
+		btAdmin = new JButton ();
+		btAdmin.setBounds(1300, 400, 200,200);
+		ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/admin.png"));
+		 Image imagen3 = icono3.getImage();
+		 ImageIcon iconoEsc3 = new ImageIcon (imagen3.getScaledInstance(200,200,Image.SCALE_SMOOTH));
+	    btAdmin.setIcon(iconoEsc3);
+	    btAdmin.setActionCommand(SOY_ADMIN);
+	    btAdmin.addActionListener((ActionListener)this);
+	    
+	    btRegistro = new JButton ();
+		btRegistro.setBounds(350, 650, 90, 90);
+		ImageIcon icono1 = new ImageIcon(getClass().getResource("/img/registro.jpg"));
+		 Image imagen1 = icono1.getImage();
+		 ImageIcon iconoEsc1 = new ImageIcon (imagen1.getScaledInstance(90,90,Image.SCALE_SMOOTH));
+	    btRegistro.setIcon(iconoEsc1);
+	    btRegistro.setActionCommand(REGISTRO);
+	    btRegistro.addActionListener((ActionListener)this);
 	
 		
 		Salir = new JButton("SALIR");;
         Salir.setActionCommand(SALIR);
         Salir.addActionListener(this);
         MenuPrincipal.add(Salir);
- 
         
+        
+ 
+        contentPane.add(btIngresar); contentPane.add(btRegistro);contentPane.add(btUsuario); contentPane.add(imagenlbl);contentPane.add(bienv);
+        contentPane.add(btAdmin);
+        
+      
+        setContentPane(contentPane);
     }
     
  
@@ -161,10 +203,10 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		{
 			
 		 case SOY_CLIENTE:
-			 getContentPane().removeAll();
+//			 getContentPane().removeAll();
 			 IdentificaciónCliente frame1= new IdentificaciónCliente();
 			 frame1.setVisible(true);
-			 getContentPane().add(frame1);
+//			 getContentPane().add(frame1);
 			 break;
 		
 		 case SOY_ADMIN:
@@ -173,7 +215,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
              this.setVisible(false);
 			 break;
 			 
-		 case CREAR_CLIENTE:
+		 case REGISTRO:
 			 RegistroUsuario frame3= new RegistroUsuario();
 			 frame3.setVisible(true);
 			 break;
