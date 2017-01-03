@@ -188,7 +188,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	    
 		
 	    JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(600, 70, 100, 50);
+		scrollPane_1.setBounds(600, 70, 150, 50);
 		contentPane.add(scrollPane_1);
 		
 		txtPantalla = new JTextArea();
@@ -259,28 +259,28 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		{
 			case COCA:
 				
-				this.txtPantalla.append("CocaCola"+" 1,30 €");
+				this.txtPantalla.append("CocaCola:	"+String.format(java.util.Locale.US,"%.2f",clsConstantes.PRECIO_COCACOLA)+" €");
 				break;
 			case NESTEA:
-				this.txtPantalla.append("Nestea"+" 1,20 €");
+				this.txtPantalla.append("Nestea:	"+String.format(java.util.Locale.US,"%.2f",clsConstantes.PRECIO_NESTEA)+" €");
 				break;
 			case BIF:
-				this.txtPantalla.append("Bifrutas"+" 1,20 €");
+				this.txtPantalla.append("Bifrutas:	"+String.format(java.util.Locale.US,"%.2f",clsConstantes.PRECIO_BIFRUTAS)+" €");
 				break;
 				
 			case AGUA:
-				this.txtPantalla.append("Agua "+" 0,80 €");
+				this.txtPantalla.append("Agua:	"+String.format(java.util.Locale.US,"%.2f",clsConstantes.PRECIO_AGUA)+" €");
 				break;
 
 			case SNI:
-				this.txtPantalla.append("Snickers "+" 1,10 €");
+				this.txtPantalla.append("Snickers:	 "+String.format(java.util.Locale.US,"%.2f",clsConstantes.PRECIO_SNICKERS)+" €");
 				break;
 			case OREO:
-				this.txtPantalla.append("Oreos"+" 1,20 €");
+				this.txtPantalla.append("Oreos:	 "+String.format(java.util.Locale.US,"%.2f",clsConstantes.PRECIO_OREO)+" €");
 				break;
 			
 			case KIT:
-				this.txtPantalla.append("KitKat"+" 1,20 €");
+				this.txtPantalla.append("KitKat:	 "+String.format(java.util.Locale.US,"%.2f",clsConstantes.PRECIO_KITKAT)+" €");
 				break;
 				
 			case COMPRAR :

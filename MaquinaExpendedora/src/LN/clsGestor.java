@@ -48,11 +48,11 @@ public class clsGestor
 		listaB = BebidasGuardadas ();
 		if (listaB.isEmpty())
 		{
-		listaB.add(new clsBebida ("CocaCola", (float) 1.2, clsConstantes.ID_COCACOLA, 350, "lata",clsConstantes.NUM_INICIAL_BEBIDAS));
-		listaB.add(new clsBebida ("Nestea", (float) 1.2, clsConstantes.ID_NESTEA, 350, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
+		listaB.add(new clsBebida ("CocaCola", clsConstantes.PRECIO_COCACOLA, clsConstantes.ID_COCACOLA, 350, "lata",clsConstantes.NUM_INICIAL_PRODUCTOS));
+		listaB.add(new clsBebida ("Nestea", clsConstantes.PRECIO_NESTEA, clsConstantes.ID_NESTEA, 350, "lata", clsConstantes.NUM_INICIAL_PRODUCTOS));
 
-		listaB.add(new clsBebida ("Bifrutas", (float) 1.0, clsConstantes.ID_BIFRUTAS, 250, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
-		listaB.add(new clsBebida ("Agua", (float) 0.8, clsConstantes.ID_AGUA, 500, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
+		listaB.add(new clsBebida ("Bifrutas", clsConstantes.PRECIO_BIFRUTAS, clsConstantes.ID_BIFRUTAS, 250, "lata", clsConstantes.NUM_INICIAL_PRODUCTOS));
+		listaB.add(new clsBebida ("Agua", clsConstantes.PRECIO_AGUA, clsConstantes.ID_AGUA, 500, "botella", clsConstantes.NUM_INICIAL_PRODUCTOS));
 		
 		
 		guardarBebidas (listaB);
@@ -70,7 +70,10 @@ public class clsGestor
 	if (listaA.isEmpty())
 	{
 		
-		listaA.add(new clsAlimento ("Snickers", (float) 0.8, clsConstantes.ID_SNICKERS, 125, clsConstantes.NUM_INICIAL_BEBIDAS));
+		listaA.add(new clsAlimento ("Snickers", (float) 0.8, clsConstantes.ID_SNICKERS, 125, clsConstantes.NUM_INICIAL_PRODUCTOS));
+		listaA.add(new clsAlimento("KitKat",clsConstantes.PRECIO_KITKAT,clsConstantes.ID_KITKAT,125,clsConstantes.NUM_INICIAL_PRODUCTOS));
+		listaA.add(new clsAlimento("Oreo",clsConstantes.PRECIO_OREO,clsConstantes.ID_OREO,150,clsConstantes.NUM_INICIAL_PRODUCTOS));
+
 		guardarAlimentos(listaA);
 	}}
 	public static void guardarAlimentos (LinkedList <clsAlimento> listaAlim)
