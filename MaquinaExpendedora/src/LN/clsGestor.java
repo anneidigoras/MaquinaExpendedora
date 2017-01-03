@@ -50,18 +50,68 @@ public class clsGestor
 		{
 		listaB.add(new clsBebida ("CocaCola", (float) 1.2, clsConstantes.ID_COCACOLA, 350, "lata",clsConstantes.NUM_INICIAL_BEBIDAS));
 		listaB.add(new clsBebida ("Nestea", (float) 1.2, clsConstantes.ID_NESTEA, 350, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
-//		listaB.add(new clsBebida ("Fanta Naranja", (float) 1.2, "FN", 250, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
-//		listaB.add( new clsBebida ("Sprite", (float) 1.2, "S", 250, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
-//		listaB.add(new clsBebida ("RedBull", (float) 1.5, "RB", 335, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
-//		listaB.add(new clsBebida ("Aquarius", (float) 1.2, "AQ", 330, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
+
 		listaB.add(new clsBebida ("Bifrutas", (float) 1.0, clsConstantes.ID_BIFRUTAS, 250, "lata", clsConstantes.NUM_INICIAL_BEBIDAS));
-		listaB.add(new clsBebida ("Agua", (float) 1.5, clsConstantes.ID_AGUA, 500, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
+		listaB.add(new clsBebida ("Agua", (float) 0.8, clsConstantes.ID_AGUA, 500, "botella", clsConstantes.NUM_INICIAL_BEBIDAS));
+		
 		
 		guardarBebidas (listaB);
 		
 		}
 	}
 	
+	public static void crearAlimentos()
+	{
+		LinkedList<clsAlimento> listaA; 
+	
+	
+	listaA=new LinkedList<clsAlimento>();
+	listaA = AlimentosGuardados ();
+	if (listaA.isEmpty())
+	{
+		
+		listaA.add(new clsAlimento ("Snickers", (float) 0.8, clsConstantes.ID_SNICKERS, 125, clsConstantes.NUM_INICIAL_BEBIDAS));
+		guardarAlimentos(listaA);
+	}}
+	public static void guardarAlimentos (LinkedList <clsAlimento> listaAlim)
+	{
+		clsDatos objD=new clsDatos();
+		
+		objD.ResetFile(enFicheros.ALIMENTOS);
+		
+		objD.ComenzarSave(enFicheros.ALIMENTOS);
+		
+		for(clsAlimento aux: listaAlim )
+		{
+			objD.Save((Serializable) aux);
+		}
+		
+		objD.TerminarSave();
+		
+	}
+	
+	public static LinkedList <clsAlimento> AlimentosGuardados() 
+	{
+		
+		LinkedList<clsAlimento> lista=new LinkedList<clsAlimento>();
+		clsDatos objD = new clsDatos();
+		
+		try {
+			objD.ComenzarRead(enFicheros.ALIMENTOS);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+			for(Serializable aux:objD.Read())
+			{
+				lista.add((clsAlimento)aux);
+			}
+		
+		objD.TerminarRead();
+		
+		return lista;
+	}
 	public static void guardarBebidas (LinkedList <clsBebida> listabebidas)
 	{
 		clsDatos objD=new clsDatos();

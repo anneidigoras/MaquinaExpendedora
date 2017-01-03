@@ -10,7 +10,7 @@ public class clsAlimento  extends clsProducto
 	
 	private int gramos;
 	
-	clsAlimento()
+	public clsAlimento()
 	{
 		super();
 		

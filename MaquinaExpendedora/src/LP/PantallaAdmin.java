@@ -34,7 +34,7 @@ import javax.swing.event.ChangeListener;
 
 import COMUN.clsConstantes;
 import LN.clsAdministrador;
-
+import LN.clsAlimento;
 import LN.clsBebida;
 
 import LN.clsGestor;
@@ -60,9 +60,9 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     JPanel panel2;
     //elementos del panel2
     private JLabel lblCoca, lblNestea, lblBifrutas, lblAgua;
-    private JTextArea areaCoca, areaNestea, areaBifrutas, areaAgua;
-    private static JSlider slidCoca, slidNestea, slidBifrutas, slidAgua;
-    private static JLabel lblSlidCoca, lblSlidNestea,lblSlidBifrutas, lblSlidAgua;
+    private JTextArea areaCoca, areaNestea, areaBifrutas, areaAgua, areaSni;
+    private static JSlider slidCoca, slidNestea, slidBifrutas, slidAgua, slidSni;
+    private static JLabel lblSlidCoca, lblSlidNestea,lblSlidBifrutas, lblSlidAgua, lblSni;
     private JButton guardar;
 	
     //static LinkedList<clsBebida> listaestatica;
@@ -167,6 +167,9 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     		
     		LinkedList<clsBebida>lista;
     		lista= clsGestor.BebidasGuardadas();
+    		
+    		LinkedList<clsAlimento>lista2;
+    		lista2= clsGestor.AlimentosGuardados();
     		
     	//COCACOLA
     		 lblCoca= new JLabel ("CocaCola");
@@ -325,6 +328,44 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 				 lblSlidAgua.setBounds(580, 360, 15, 50);
 				 panel2.add(lblSlidAgua);
 				 }
+		
+				//SNICKERS
+				 lblSni= new JLabel ("Snickers");
+				 lblSni.setBounds(0,330,100,100);
+		    		 ImageIcon icono5 = new ImageIcon(getClass().getResource("/img/snickers.jpg"));
+					 Image imagen5 = icono5.getImage();
+					 ImageIcon iconoEsc5 = new ImageIcon (imagen4.getScaledInstance(100,100,Image.SCALE_SMOOTH));
+					 lblSni.setIcon(iconoEsc5);
+		    		 
+					 areaSni = new JTextArea();
+					 areaSni.setBounds(105, 330, 200, 100);
+		    		 areaSni.setEditable(false);
+					 clsAlimento beb5 = new clsAlimento();
+					 for ( clsAlimento aux: lista2){if(aux.getId().equals(clsConstantes.ID_SNICKERS))beb5=aux;}
+					 areaAgua.append("Agua"+ SALTO +"Nº de bebidas disponibles: "+ beb5.getNum());	
+					 
+					 if (50-beb4.getNum() <1)
+					 { 
+						 JLabel maximo = new JLabel("No hay más espacio para " +beb4.getNombreP());
+						 maximo.setBounds(400, 365, 300, 50);
+						 panel2.add(maximo);
+					 }
+					 else
+					 {
+					 slidAgua = new JSlider (0, 50-beb4.getNum());
+					 slidAgua.setBounds(400, 365, 150, 50);
+					 slidAgua.setMajorTickSpacing((50-beb4.getNum())/2);
+					 slidAgua.setPaintTicks(true);
+					 slidAgua.setPaintLabels(true);
+					 slidAgua.setValue(0);
+					 slidAgua.setMinorTickSpacing(2);
+					 slidAgua.addChangeListener(new MiAccion(clsConstantes.ID_AGUA));
+					 panel2.add(slidAgua);
+					 
+					 lblSlidAgua= new JLabel();
+					 lblSlidAgua.setBounds(580, 360, 15, 50);
+					 panel2.add(lblSlidAgua);
+					 }
 			
 				 
 			 
