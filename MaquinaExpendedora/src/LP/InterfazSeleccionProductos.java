@@ -99,7 +99,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		lblBifrutas.setBounds(305,105,67,40);
 		
 		lblKitKat= new JLabel ("KitKat");
-		lblKitKat.setBounds(150,220,67,40);
+		lblKitKat.setBounds(170,220,67,40);
 		
 		lblOreo= new JLabel ("Oreo");
 		lblOreo.setBounds(30,220,67,40);
@@ -131,7 +131,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	    btBifrutas.addActionListener((ActionListener)this);
 	    
 	    btSnickers = new JButton ();
-	  	btSnickers.setBounds(280, 150, 90, 70);
+	  	btSnickers.setBounds(290, 150, 90, 70);
 	  	ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/snickers.jpg"));
 	  	Image imagen3 = icono3.getImage();
 	  	ImageIcon iconoEsc3 = new ImageIcon (imagen3.getScaledInstance(90,70,Image.SCALE_SMOOTH));
@@ -140,10 +140,10 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	  	btSnickers.addActionListener((ActionListener)this);
 	  	    
 	  	btAgua = new JButton ();
-	    btAgua.setBounds(450, 10, 90, 90);
+	    btAgua.setBounds(450, 10, 80,90);
 	  	ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/agua.jpg"));
 	  	Image imagen4 = icono4.getImage();
-	    ImageIcon iconoEsc4 = new ImageIcon (imagen4.getScaledInstance(90,90,Image.SCALE_SMOOTH));
+	    ImageIcon iconoEsc4 = new ImageIcon (imagen4.getScaledInstance(80,90,Image.SCALE_SMOOTH));
 	  	btAgua.setIcon(iconoEsc4);
 	  	btAgua.setActionCommand(AGUA);
 	  	btAgua.addActionListener((ActionListener)this);
@@ -158,7 +158,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	    btCoca.addActionListener((ActionListener)this);
 	    
 	    btOreo = new JButton ();
-		btOreo.setBounds(10, 150, 90, 70);
+		btOreo.setBounds(10, 150, 90,70);
 		ImageIcon icono5 = new ImageIcon(getClass().getResource("/img/oreo.jpg"));
 		Image imagen5 = icono5.getImage();
 		ImageIcon iconoEsc5 = new ImageIcon (imagen5.getScaledInstance(90,70,Image.SCALE_SMOOTH));
@@ -167,7 +167,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	    btOreo.addActionListener((ActionListener)this);
 	    
 	    btKitKat = new JButton ();
-		btKitKat.setBounds(130, 150, 90, 70);
+		btKitKat.setBounds(140, 150, 90, 70);
 		ImageIcon icono7 = new ImageIcon(getClass().getResource("/img/kitkat.png"));
 		Image imagen7 = icono7.getImage();
 		ImageIcon iconoEsc7 = new ImageIcon (imagen7.getScaledInstance(90,70,Image.SCALE_SMOOTH));

@@ -7,36 +7,30 @@ package LP;
  */
 
 import java.awt.Color;
-import java.awt.Component;
-
-import static COMUN.clsConstantes.*;
-
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
+
 import java.awt.Image;
-import java.awt.Toolkit;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.KeyEvent;
-import java.beans.PropertyVetoException;
+
 import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDesktopPane;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
+
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -75,7 +69,6 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
     static final String CREAR_ADMIN= "Entrar admin";
     static final String CREARBEBIDA = "Nueva bebida";
     static final String SALIR = "Salir";
-    static final String INGRESO = "Ingresar";
     static final String REGISTRO = "Registrarse";
     static final String ADMIN = "Administrador";
     
@@ -99,7 +92,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		bienv = new JLabel ("¡BIENVENIDO!");
 		bienv.setFont(new Font("Algerian", Font.BOLD, 45));
 		bienv.setForeground(Color.WHITE);
-		bienv.setBounds(750,50,500,150);
+		bienv.setBounds(800,50,500,150);
 		
 		
 		
@@ -113,7 +106,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
         
         
         btUsuario = new JButton ();
-		btUsuario.setBounds(200, 350, 200, 200);
+		btUsuario.setBounds(300, 350, 200, 200);
 		ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/usuario.png"));
 		 Image imagen2 = icono2.getImage();
 		 ImageIcon iconoEsc2 = new ImageIcon (imagen2.getScaledInstance(200,200,Image.SCALE_SMOOTH));
@@ -152,7 +145,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 //		Admin.add(A_Ingresar);
 		
 		btIngresar = new JButton ();
-		btIngresar.setBounds(200, 650, 90, 90);
+		btIngresar.setBounds(300, 550, 90, 90);
 		ImageIcon icono0 = new ImageIcon(getClass().getResource("/img/login.png"));
 		 Image imagen0 = icono0.getImage();
 		 ImageIcon iconoEsc0 = new ImageIcon (imagen0.getScaledInstance(90,90,Image.SCALE_SMOOTH));
@@ -161,7 +154,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 	    btIngresar.addActionListener((ActionListener)this);
 	    
 		btAdmin = new JButton ();
-		btAdmin.setBounds(1300, 400, 200,200);
+		btAdmin.setBounds(1450,350, 200,200);
 		ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/admin.png"));
 		 Image imagen3 = icono3.getImage();
 		 ImageIcon iconoEsc3 = new ImageIcon (imagen3.getScaledInstance(200,200,Image.SCALE_SMOOTH));
@@ -170,7 +163,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 	    btAdmin.addActionListener((ActionListener)this);
 	    
 	    btRegistro = new JButton ();
-		btRegistro.setBounds(350, 650, 90, 90);
+		btRegistro.setBounds(410, 550, 90, 90);
 		ImageIcon icono1 = new ImageIcon(getClass().getResource("/img/registro.jpg"));
 		 Image imagen1 = icono1.getImage();
 		 ImageIcon iconoEsc1 = new ImageIcon (imagen1.getScaledInstance(90,90,Image.SCALE_SMOOTH));

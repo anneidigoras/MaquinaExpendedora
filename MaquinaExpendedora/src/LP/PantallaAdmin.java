@@ -15,6 +15,7 @@ import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -26,6 +27,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
@@ -50,6 +52,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	private JMenuItem ListadoUsuarios,ListadoProductos;
 	private JButton vueltaInicio, correo,ajustes;
     private JPanel contentPane;
+    private static boolean panel;
         
     static int num_cocacola =0;
     static int num_bifrutas=0;
@@ -57,13 +60,16 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     static int num_agua=0;
     
     JPanel panel1;
-    JPanel panel2;
-    //elementos del panel2
-    private JLabel lblCoca, lblNestea, lblBifrutas, lblAgua;
+    JPanel panelBebidas,panelAlimentos;
+    
+    //elementos del panelBebidas
+    private JLabel lblCoca, lblNestea, lblBifrutas, lblAgua, lblSni;
     private JTextArea areaCoca, areaNestea, areaBifrutas, areaAgua, areaSni;
     private static JSlider slidCoca, slidNestea, slidBifrutas, slidAgua, slidSni;
-    private static JLabel lblSlidCoca, lblSlidNestea,lblSlidBifrutas, lblSlidAgua, lblSni;
+    private static JLabel lblSlidCoca, lblSlidNestea,lblSlidBifrutas, lblSlidAgua, lblSlidSni;
     private JButton guardar;
+    private JRadioButton rdbBebidas, rdbAlimentos;
+	
 	
     //static LinkedList<clsBebida> listaestatica;
     
@@ -74,6 +80,8 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	static final String GUARDAR= "Guardar";
 	static final String LISTA= "Listado Usuarios";
 	static final String TABPROD= "Listado Productos";
+	static final String RBEBIDAS ="Bebidas";
+	static final String ALIMENTOS = "Alimentos";
 	private final static String SALTO = "\n";
 	private boolean ver=false;
 	
@@ -85,6 +93,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		this.setTitle(title);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
+		panel=false;
 		
 	
     	
@@ -163,7 +172,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     		    		
     		
     		
-    		panel2 = new JPanel();
+    		panelBebidas = new JPanel();
     		
     		LinkedList<clsBebida>lista;
     		lista= clsGestor.BebidasGuardadas();
@@ -194,7 +203,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 { 
 				 JLabel maximo = new JLabel("No hay más espacio para " +beb.getNombreP());
 				 maximo.setBounds(400, 15, 300, 50);
-				 panel2.add(maximo);
+				 panelBebidas.add(maximo);
 			 }
 			 else
 			 {
@@ -207,11 +216,11 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 				 slidCoca.setValue(0);
 				 slidCoca.setMinorTickSpacing(2);
 				 slidCoca.addChangeListener(new MiAccion(clsConstantes.ID_COCACOLA));
-				 panel2.add(slidCoca);
+				 panelBebidas.add(slidCoca);
 				 
 				 lblSlidCoca= new JLabel();
 				 lblSlidCoca.setBounds(580, 0, 15, 50);
-				 panel2.add(lblSlidCoca);
+				 panelBebidas.add(lblSlidCoca);
 			 }
 			 
     	//NESTEA
@@ -233,7 +242,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 { 
 				 JLabel maximo = new JLabel("No hay más espacio para " +beb2.getNombreP());
 				 maximo.setBounds(400, 125, 300, 50);
-				 panel2.add(maximo);
+				 panelBebidas.add(maximo);
 			 }
 			 else
 			 {
@@ -245,11 +254,11 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 				 slidNestea.setValue(0);
 				 slidNestea.setMinorTickSpacing(2);
 				 slidNestea.addChangeListener(new MiAccion(clsConstantes.ID_NESTEA));
-				 panel2.add(slidNestea);
+				 panelBebidas.add(slidNestea);
 				 
 				 lblSlidNestea= new JLabel();
 				 lblSlidNestea.setBounds(580, 120, 15, 50);
-				 panel2.add(lblSlidNestea);
+				 panelBebidas.add(lblSlidNestea);
 			 }
 			 
     	//BIFRUTAS 
@@ -272,7 +281,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 { 
 				 JLabel maximo = new JLabel("No hay más espacio para " +beb3.getNombreP());
 				 maximo.setBounds(400, 245, 300, 50);
-				 panel2.add(maximo);
+				 panelBebidas.add(maximo);
 			 }
 			 else
 			 {
@@ -284,11 +293,11 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 slidBifrutas.setValue(0);
 			 slidBifrutas.setMinorTickSpacing(2);
 			 slidBifrutas.addChangeListener(new MiAccion(clsConstantes.ID_BIFRUTAS));
-			 panel2.add(slidBifrutas);
+			 panelBebidas.add(slidBifrutas);
 			 
 			 lblSlidBifrutas= new JLabel();
 			 lblSlidBifrutas.setBounds(580, 240, 15, 50);
-			 panel2.add(lblSlidBifrutas);
+			 panelBebidas.add(lblSlidBifrutas);
 			 }
     		
 		//AGUA
@@ -296,7 +305,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 lblAgua.setBounds(0,330,100,100);
 	    		 ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/agua.jpg"));
 				 Image imagen4 = icono4.getImage();
-				 ImageIcon iconoEsc4 = new ImageIcon (imagen4.getScaledInstance(100,100,Image.SCALE_SMOOTH));
+				 ImageIcon iconoEsc4 = new ImageIcon (imagen4.getScaledInstance(80,100,Image.SCALE_SMOOTH));
 				 lblAgua.setIcon(iconoEsc4);
 	    		 
 				 areaAgua = new JTextArea();
@@ -310,7 +319,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 				 { 
 					 JLabel maximo = new JLabel("No hay más espacio para " +beb4.getNombreP());
 					 maximo.setBounds(400, 365, 300, 50);
-					 panel2.add(maximo);
+					 panelBebidas.add(maximo);
 				 }
 				 else
 				 {
@@ -322,98 +331,110 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 				 slidAgua.setValue(0);
 				 slidAgua.setMinorTickSpacing(2);
 				 slidAgua.addChangeListener(new MiAccion(clsConstantes.ID_AGUA));
-				 panel2.add(slidAgua);
+				 panelBebidas.add(slidAgua);
 				 
 				 lblSlidAgua= new JLabel();
 				 lblSlidAgua.setBounds(580, 360, 15, 50);
-				 panel2.add(lblSlidAgua);
+				 panelBebidas.add(lblSlidAgua);
 				 }
+				 panelAlimentos= new JPanel();
+				 panelAlimentos.setBounds(450,50, 600, 500);
+		    	 panelAlimentos.setLayout(null);
+				 
 		
 				//SNICKERS
 				 lblSni= new JLabel ("Snickers");
-				 lblSni.setBounds(0,330,100,100);
-		    		 ImageIcon icono5 = new ImageIcon(getClass().getResource("/img/snickers.jpg"));
-					 Image imagen5 = icono5.getImage();
-					 ImageIcon iconoEsc5 = new ImageIcon (imagen4.getScaledInstance(100,100,Image.SCALE_SMOOTH));
-					 lblSni.setIcon(iconoEsc5);
+				 lblSni.setBounds(0,0,100,100);
+		    	 ImageIcon icono5 = new ImageIcon(getClass().getResource("/img/snickers.jpg"));
+				 Image imagen5 = icono5.getImage();
+				 ImageIcon iconoEsc5 = new ImageIcon (imagen5.getScaledInstance(100,100,Image.SCALE_SMOOTH));
+				 lblSni.setIcon(iconoEsc5);
 		    		 
 					 areaSni = new JTextArea();
-					 areaSni.setBounds(105, 330, 200, 100);
+					 areaSni.setBounds(105, 0, 250, 100);
 		    		 areaSni.setEditable(false);
 					 clsAlimento beb5 = new clsAlimento();
 					 for ( clsAlimento aux: lista2){if(aux.getId().equals(clsConstantes.ID_SNICKERS))beb5=aux;}
-					 areaAgua.append("Snickers"+ SALTO +"Nº de bebidas disponibles: "+ beb5.getNum());	
+					 areaSni.append("Snickers"+ SALTO +"Nº de snickers disponibles: "+ beb5.getNum());	
 					 
 					 if (50-beb4.getNum() <1)
 					 { 
 						 JLabel maximo = new JLabel("No hay más espacio para " +beb4.getNombreP());
 						 maximo.setBounds(400, 365, 300, 50);
-						 panel2.add(maximo);
+						 panelAlimentos.add(maximo);
 					 }
 					 else
 					 {
 					 slidSni = new JSlider (0, 50-beb4.getNum());
-					 slidSni.setBounds(400, 365, 150, 50);
-					 slidSni.setMajorTickSpacing((50-beb4.getNum())/2);
+					 slidSni.setBounds(400, 15, 150, 50);
+					 slidSni.setMajorTickSpacing((50-beb4.getNum())/3);
 					 slidSni.setPaintTicks(true);
 					 slidSni.setPaintLabels(true);
 					 slidSni.setValue(0);
 					 slidSni.setMinorTickSpacing(2);
 					 slidSni.addChangeListener(new MiAccion(clsConstantes.ID_SNICKERS));
-					 panel2.add(slidAgua);
+					 panelAlimentos.add(slidSni);
 					 
-					 lblSlidAgua= new JLabel();
-					 lblSlidAgua.setBounds(580, 360, 15, 50);
-					 panel2.add(lblSlidAgua);
+					 lblSlidSni= new JLabel();
+					 lblSlidSni.setBounds(580, 0, 15, 50);
+					 panelAlimentos.add(lblSlidSni);
+					 
 					 }
 			
 				 
 			 
     		
-    		panel2.setBounds(350,50, 600, 500);
-    		panel2.setLayout(null);
-    		panel2.add(lblCoca);panel2.add(lblBifrutas);panel2.add(lblNestea);  panel2.add(lblAgua); 		
-    		panel2.add(areaNestea);panel2.add(areaBifrutas);panel2.add(areaCoca); panel2.add(areaAgua);
+    		panelBebidas.setBounds(350,50, 600, 500);
+    		panelBebidas.setLayout(null);
+    		panelBebidas.add(lblCoca);panelBebidas.add(lblBifrutas);panelBebidas.add(lblNestea);  panelBebidas.add(lblAgua); 	panelAlimentos.add(lblSni);
+    		panelBebidas.add(areaNestea);panelBebidas.add(areaBifrutas);panelBebidas.add(areaCoca); panelBebidas.add(areaAgua); panelAlimentos.add(areaSni);
     		   		
     		
-    		contentPane.add(panel2);
+    		contentPane.add(panelBebidas); contentPane.add(panelAlimentos);
     		
     		 guardar = new JButton("Guardar Cambios");
 			 guardar.setBounds(900, 550, 150, 40);
 			 guardar.setActionCommand(GUARDAR);
 			 guardar.addActionListener((ActionListener)this);
 			 contentPane.add(guardar);
+			 
+			    rdbBebidas = new JRadioButton("Bebidas");
+				rdbBebidas.setBounds(138, 7, 61, 30);
+				contentPane.add(rdbBebidas);
+				
+				rdbAlimentos = new JRadioButton("Alimentos");
+				rdbAlimentos.setBounds(210, 7, 109, 30);
+				contentPane.add(rdbAlimentos);
+				
+				rdbBebidas.setActionCommand(RBEBIDAS);
+				rdbAlimentos.setActionCommand(ALIMENTOS);
+				
+				//Group the radio buttons.
+			    ButtonGroup group = new ButtonGroup();
+			    group.add(rdbBebidas);
+			    group.add(rdbAlimentos);
+			    
+			    rdbBebidas.addActionListener((ActionListener)this);
+			    rdbBebidas.setText("BEBIDAS");
+				rdbAlimentos.addActionListener((ActionListener)this);
+				rdbAlimentos.setText("ALIMENTOS");
+				
+				
+//				if (panel==false)
+//				{
+//					panelBebidas.setVisible(true);
+//					panelAlimentos.setVisible(false);
+//				}
+//				if (panel==true)
+//				{
+//					panelBebidas.setVisible(false);
+//					panelAlimentos.setVisible(true);
+//				}
     		
     		//actualizarSliders();
 		
 	}
-//	protected static  void actualizarSliders()
-//	{
-//		LinkedList <clsBebida> lista = clsGestor.BebidasGuardadas();
-//		
-//		for (clsBebida aux: lista)
-//		{
-//			switch(aux.getId())
-//			{
-////			case clsConstantes.ID_COCACOLA:
-////				slidCoca.setMaximum(50-aux.getNum());
-////				slidCoca.setMajorTickSpacing(50-aux.getNum());
-////				slidCoca.setPaintTicks(true);
-////				slidCoca.setPaintLabels(true);
-////				slidCoca.setValue(0);
-////				break;
-//			case clsConstantes.ID_NESTEA:
-//				slidNestea.setMaximum(50-aux.getNum());
-//				slidNestea.setMajorTickSpacing(50-aux.getNum());
-//				slidNestea.setPaintTicks(true);
-//				slidNestea.setPaintLabels(true);
-//				slidNestea.setValue(0);
-//				break;
-//			}
-//		}
-//		
-//		
-//	}
+
 	public static class MiAccion implements ChangeListener
 	{
 		String id;
@@ -492,6 +513,8 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			case clsConstantes.ID_AGUA:
 				aux.setNum(aux.getNum()+ num_agua);
 				break;
+				
+			
 			
 			
 			}
@@ -546,6 +569,19 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		
 		case AJUSTES:
 			ajustes();
+			
+		case RBEBIDAS:
+        panel=false;
+        mostrarPanel();
+				break;
+		
+			
+		case ALIMENTOS:
+			
+		panel=true;
+		mostrarPanel();
+			break;
+			
 			
 		
 		}
@@ -634,6 +670,22 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			e.printStackTrace();
 		}
     	
+	}
+	protected void mostrarPanel()
+	{
+		if (panel==false)
+		{
+			panelBebidas.setVisible(true);
+			panelAlimentos.setVisible(false);
+			System.out.println("Estoy en bebidas");
+		}
+		if (panel==true)
+		{
+			panelBebidas.setVisible(false);
+			panelAlimentos.setVisible(true);
+			System.out.println("Estoy en alimentos");
+			
+		}
 	}
 
 }
