@@ -39,6 +39,7 @@ import LN.clsMensaje;
  */
 public class RegistroAdmin extends JFrame implements ActionListener
 {
+	private static boolean ingreso = false;
 	private JTextField txtUsuario;
     private JButton btingresar;
     private JLabel lblUsuario ;
@@ -53,8 +54,8 @@ public class RegistroAdmin extends JFrame implements ActionListener
 	
 	public RegistroAdmin()
 	{
-		if (clsAdministrador.existe==false)
-			JOptionPane.showMessageDialog(this, "Welcome Administrador, Tu nombre de usuario es: admin y tu contraseña: hola");
+		if (ingreso==false)
+			{JOptionPane.showMessageDialog(this, "Welcome Administrador, Tu nombre de usuario es: admin y tu contraseña: hola");}
 			
 
 		
@@ -178,6 +179,7 @@ public class RegistroAdmin extends JFrame implements ActionListener
 		            {
 		                JOptionPane.showMessageDialog(this, "Contraseña correcta");
 		                this.dispose();
+		                ingreso= true;
 		                
 		               // TablasUsuarios frame= new TablasUsuarios();
 		                //frame.setVisible(true);

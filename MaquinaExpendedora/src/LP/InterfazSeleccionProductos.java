@@ -214,7 +214,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		dinero.setBounds(10,100,100,30);
 		
 		
-		 btCerrar = new JButton("Cerrar Sesion");;
+		 btCerrar = new JButton();
          btCerrar.setActionCommand(SALIR);
          ImageIcon icono6 = new ImageIcon(getClass().getResource("/img/logout.jpg"));
  		 Image imagen6 = icono6.getImage();
