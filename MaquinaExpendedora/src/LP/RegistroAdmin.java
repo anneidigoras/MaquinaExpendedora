@@ -30,6 +30,7 @@ import javax.swing.border.LineBorder;
 
 import COMUN.clsConstantes;
 import LN.clsAdministrador;
+import LN.clsGestor;
 import LN.clsMensaje;
 /**
  * 
@@ -55,7 +56,7 @@ public class RegistroAdmin extends JFrame implements ActionListener
 	public RegistroAdmin()
 	{
 		if (ingreso==false)
-			{JOptionPane.showMessageDialog(this, "Welcome Administrador, Tu nombre de usuario es: admin y tu contraseña: hola");}
+			{JOptionPane.showMessageDialog(this, "Welcome Administrador, Tu nombre de usuario es: "+clsGestor.admin.getNombre()+" y tu contraseña: "+clsGestor.admin.getContraseña());}
 			
 
 		
@@ -149,8 +150,8 @@ public class RegistroAdmin extends JFrame implements ActionListener
 	  public boolean isPasswordCorrect(char[] input, String nombre) 
 	 {
 	        boolean isCorrect = true;
-	       String nombre2= "admin";
-	        char[] correctPassword = { 'h', 'o', 'l', 'a' };
+	       String nombre2= clsGestor.admin.getNombre();
+	        char[] correctPassword = clsGestor.admin.getContraseña().toCharArray();
 
 	        if (input.length != correctPassword.length && nombre.length()!= nombre2.length())
 	        {

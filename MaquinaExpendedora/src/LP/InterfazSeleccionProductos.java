@@ -242,6 +242,23 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		contentPane.add(panel2);
 		
 	    
+		JPanel panel3 = new JPanel ();
+		panel3.setBounds(900,100, 250,400);
+		panel3.setLayout(null);
+	
+		JLabel lblnombre = new JLabel (usuario.getNombre());
+		lblnombre.setBounds(0,0,150,30);
+		
+		JLabel lblape = new JLabel(usuario.getPassword());
+		lblape.setBounds(0,50,150,30);
+
+		
+		panel3.add(lblnombre);panel3.add(lblape);
+		contentPane.add(panel3);
+		
+		
+		
+		
 		setContentPane(contentPane);
 	
 	}

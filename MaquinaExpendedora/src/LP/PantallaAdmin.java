@@ -569,31 +569,33 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		 String[] opciones = {
 		            "Cambiar nombre",
 		            "Cambiar contraseña",
-		            "Registro Productos",
-		        };
+		           };
 		 String opcion = (String)JOptionPane.showInputDialog(null, "Ajustes: ", "AJUSTES", JOptionPane.DEFAULT_OPTION, new ImageIcon(getClass().getResource("/img/ajustes.jpg")),opciones, opciones[0]);
-		 if(opcion.equals("Cambiar nombre"))
+		 
+		 switch (opcion)
 		 {
-			 JOptionPane.showInputDialog(
-	                    null,
+		 case "Cambiar nombre":
+			 String nombre =(String)JOptionPane.showInputDialog(null,
 	                    "Introduzca su nuevo nombre de administrador: \n"
 	                    + "Su nombre actual es: "+ clsGestor.admin.getNombre(),
-	                    "Customized Dialog",
-	                    JOptionPane.PLAIN_MESSAGE,
-	                    new ImageIcon(getClass().getResource("/img/ajustes.jpg")),
-	                    null,
-	                    "");
-
-			 //getValidatedText
-		 }
+	                    "Customized Dialog",JOptionPane.PLAIN_MESSAGE,new ImageIcon(getClass().getResource("/img/ajustes.jpg")), null,"");
+			 clsGestor.admin.setNombre(nombre);
+			 //clsGestor.crearAdmin();
+			 break;
+		 case "Cambiar contraseña":
+			 String contraseña =(String)JOptionPane.showInputDialog(null,
+	                    "Introduzca su nueva contraseña: \n"
+	                    + "Su contraseña actual es: "+ clsGestor.admin.getContraseña(),
+	                    "Customized Dialog",JOptionPane.PLAIN_MESSAGE,new ImageIcon(getClass().getResource("/img/ajustes.jpg")), null,"");
+			 clsGestor.admin.setContraseña(contraseña);
+			 //clsGestor.crearAdmin();
+			 break;
+		 case "Registro Productos":
+			 RegistroProductos registro= new RegistroProductos();
+			 registro.setVisible(true);
+			 break;
 		 
-		 else if (opcion.equals("Registro Productos"))
-		 {
-			RegistroProductos registro= new RegistroProductos();
-			registro.setVisible(true);
-			 
 		 }
-		 else System.out.println("no pasa na");
 	}
 	
 	protected void tablasUsers()

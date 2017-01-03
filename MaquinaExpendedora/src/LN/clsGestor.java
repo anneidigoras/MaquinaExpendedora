@@ -24,7 +24,7 @@ import LD.*;
 
 public class clsGestor 
 {
-	public static clsAdministrador admin ;
+	public static clsAdministrador admin = new clsAdministrador();
 	public File file;          // Fichero
 	public String nombre;     
 	public String dni;    
@@ -44,25 +44,31 @@ public class clsGestor
 	{
 		
 		
-		clsDatos objD = new clsDatos();
-		if (objD.comprobarexiste(enFicheros.ADMINISTRADOR)==true)
-		{
-		try {
-			objD.ComenzarRead(enFicheros.ADMINISTRADOR);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-			for(Serializable aux:objD.Read())
-			{
-				admin= (clsAdministrador)aux;
-				break;
-			}
-		objD.TerminarRead();
-		}
-		else
-			{admin= new clsAdministrador();}
+//		clsDatos objD = new clsDatos();
+//		if (objD.comprobarexiste(enFicheros.ADMINISTRADOR)==true)
+//		{
+//			LinkedList<clsAdministrador> lista=new LinkedList<clsAdministrador>();
+//			
+//			try {
+//				objD.ComenzarRead(enFicheros.ADMINISTRADOR);
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//				for(Serializable aux:objD.Read())
+//				{
+//					lista.add((clsAdministrador)aux);
+//				}
+//			
+//			objD.TerminarRead();
+//			admin= lista.getFirst();
+//		}
+//		else
+//			{
+			admin= new clsAdministrador();
+//			crearAdmin(); 
+//			}
 	
 	}
 	public static void creabebidas ()
@@ -364,8 +370,6 @@ public static void Eliminar()
 	objD.ResetFile(enFicheros.USUARIOS);
 }
 
-
-
 public static void EliminarA(String  dni)
 {
 	
@@ -379,28 +383,27 @@ public static void EliminarA(String  dni)
 	CrearListaUsuario(lista1);
 }
 
-
-
-
-
-public void crearAdmin(LinkedList<clsAdministrador>listaA)
-
-{
-	
-clsDatos objD=new clsDatos();
-	
-	objD.ResetFile(enFicheros.ADMINISTRADOR);
-	
-	objD.ComenzarSave(enFicheros.ADMINISTRADOR);
-	
-	for(clsAdministrador aux: listaA )
-	{
-		objD.Save((Serializable) aux);
-	}
-	
-	objD.TerminarSave();
-	
-}
+//public static void crearAdmin()
+//
+//{
+//	LinkedList<clsAdministrador> administradores = new LinkedList<clsAdministrador>();
+//	administradores.add(admin);
+//	
+//	clsDatos objD=new clsDatos();
+//	
+//	objD.ResetFile(enFicheros.ADMINISTRADOR);
+//	
+//	objD.ComenzarSave(enFicheros.ADMINISTRADOR);
+//	
+//	
+//	for(clsAdministrador aux: administradores )
+//	{
+//		objD.Save((Serializable) aux);
+//	}
+//	
+//	objD.TerminarSave();
+//	
+//}
 
 public void asignarBebida()
 
@@ -558,10 +561,6 @@ public static void gastadinero(String dni, String id)
 	
 	LinkedUsuario.addAll(listaClientes);
 	CrearListaUsuario(LinkedUsuario);
-	
-	
-	
-	
 
 }
 
