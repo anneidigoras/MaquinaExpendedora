@@ -19,7 +19,7 @@ import javax.swing.JFrame;
  * @author Mayi
  *
  */
-public class IdentificaciónCliente extends JInternalFrame implements ActionListener
+public class IdentificaciónCliente extends JFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -49,6 +49,10 @@ public class IdentificaciónCliente extends JInternalFrame implements ActionListe
 		getContentPane().setBackground(new Color(136, 201, 89));
 //		setBounds(300, 200 ,500,500);
 		getContentPane().setLayout(null);
+		this.setTitle("Identificacion Cliente");
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	    Info= new JLabel ("Introduzca sus datos:");
 	    Info.setFont(new Font("Arial", Font.CENTER_BASELINE, 24));
