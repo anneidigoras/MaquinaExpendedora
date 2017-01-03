@@ -24,7 +24,7 @@ import LD.*;
 
 public class clsGestor 
 {
-
+	public static clsAdministrador admin ;
 	public File file;          // Fichero
 	public String nombre;     
 	public String dni;    
@@ -40,6 +40,31 @@ public class clsGestor
 	 * Llama al metodo BebidasGuardadas(), si las bebidas ya estan en la base de datos solo las recoje en una LinkedList (Persistencia de datos)
 	 * Si la base de datos de bebidas esta vacía, inserta las bebidas disponobles. (1º ejecucion del programa)
 	 */
+	public static void cargaradmin()
+	{
+		
+		
+		clsDatos objD = new clsDatos();
+		if (objD.comprobarexiste(enFicheros.ADMINISTRADOR)==true)
+		{
+		try {
+			objD.ComenzarRead(enFicheros.ADMINISTRADOR);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+			for(Serializable aux:objD.Read())
+			{
+				admin= (clsAdministrador)aux;
+				break;
+			}
+		objD.TerminarRead();
+		}
+		else
+			{admin= new clsAdministrador();}
+	
+	}
 	public static void creabebidas ()
 	{
 		LinkedList<clsBebida> listaB; 

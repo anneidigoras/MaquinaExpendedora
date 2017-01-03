@@ -567,13 +567,24 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	{
 
 		 String[] opciones = {
-		            "Cambiar nombre y contraseña",
+		            "Cambiar nombre",
+		            "Cambiar contraseña",
 		            "Registro Productos",
 		        };
 		 String opcion = (String)JOptionPane.showInputDialog(null, "Ajustes: ", "AJUSTES", JOptionPane.DEFAULT_OPTION, new ImageIcon(getClass().getResource("/img/ajustes.jpg")),opciones, opciones[0]);
-		 if(opcion.equals("Cambiar nombre y contraseña"))
+		 if(opcion.equals("Cambiar nombre"))
 		 {
-			 System.out.println("lo que sea");
+			 JOptionPane.showInputDialog(
+	                    null,
+	                    "Introduzca su nuevo nombre de administrador: \n"
+	                    + "Su nombre actual es: "+ clsGestor.admin.getNombre(),
+	                    "Customized Dialog",
+	                    JOptionPane.PLAIN_MESSAGE,
+	                    new ImageIcon(getClass().getResource("/img/ajustes.jpg")),
+	                    null,
+	                    "");
+
+			 //getValidatedText
 		 }
 		 
 		 else if (opcion.equals("Registro Productos"))

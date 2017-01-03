@@ -10,8 +10,9 @@ public class clsAdministrador
 
 	clsAdministrador()
 	{
-		contraseña="";
-		nombre="";
+		contraseña="hola";
+		nombre="admin";
+		existe= false;
 	}
 
 	public String getCorreo() {
