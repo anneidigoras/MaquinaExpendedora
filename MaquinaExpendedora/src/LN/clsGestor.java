@@ -395,7 +395,7 @@ public static void EliminarA(String  dni)
 //	
 //	objD.ComenzarSave(enFicheros.ADMINISTRADOR);
 //	
-//	
+//	//clsAdministrador objAdmin = new clsAdministrador();
 //	for(clsAdministrador aux: administradores )
 //	{
 //		objD.Save((Serializable) aux);

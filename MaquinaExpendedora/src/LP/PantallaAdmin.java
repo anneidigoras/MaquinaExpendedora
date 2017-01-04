@@ -30,6 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -263,7 +264,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 
     	//BIFRUTAS 
     		lblBifrutas= new JLabel ("Bifrutas");
-    		lblBifrutas.setBounds(0,230,100,100);
+    		lblBifrutas.setBounds(0,220,100,100);
     		 ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/bif.png"));
 			 Image imagen3 = icono3.getImage();
 			 ImageIcon iconoEsc3 = new ImageIcon (imagen3.getScaledInstance(100,100,Image.SCALE_SMOOTH));
@@ -302,14 +303,14 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     		
 		//AGUA
 			 lblAgua= new JLabel ("Agua");
-			 lblAgua.setBounds(0,330,100,100);
+			 lblAgua.setBounds(0,350,80,100);
 	    		 ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/agua.jpg"));
 				 Image imagen4 = icono4.getImage();
 				 ImageIcon iconoEsc4 = new ImageIcon (imagen4.getScaledInstance(80,100,Image.SCALE_SMOOTH));
 				 lblAgua.setIcon(iconoEsc4);
 	    		 
 				 areaAgua = new JTextArea();
-				 areaAgua.setBounds(105, 330, 200, 100);
+				 areaAgua.setBounds(105, 350, 200, 100);
 	    		 areaAgua.setEditable(false);
 				 clsBebida beb4 = new clsBebida();
 				 for ( clsBebida aux: lista){if(aux.getId().equals(clsConstantes.ID_AGUA))beb4=aux;}
@@ -338,7 +339,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 				 panelBebidas.add(lblSlidAgua);
 				 }
 				 panelAlimentos= new JPanel();
-				 panelAlimentos.setBounds(450,50, 600, 500);
+				 panelAlimentos.setBounds(350,50, 600, 500);
 		    	 panelAlimentos.setLayout(null);
 				 
 		
@@ -605,6 +606,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		 String[] opciones = {
 		            "Cambiar nombre",
 		            "Cambiar contraseña",
+		            "Proyecto",
 		           };
 		 String opcion = (String)JOptionPane.showInputDialog(null, "Ajustes: ", "AJUSTES", JOptionPane.DEFAULT_OPTION, new ImageIcon(getClass().getResource("/img/ajustes.jpg")),opciones, opciones[0]);
 		 
@@ -630,6 +632,11 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 RegistroProductos registro= new RegistroProductos();
 			 registro.setVisible(true);
 			 break;
+			 
+		 case "Proyecto":
+			 UIManager.put("swing.boldMetal", Boolean.FALSE);
+		     new TextoProyecto().setVisible(true);
+		     break;
 		 
 		 }
 	}

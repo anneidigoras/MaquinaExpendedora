@@ -154,7 +154,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 	    btIngresar.addActionListener((ActionListener)this);
 	    
 		btAdmin = new JButton ();
-		btAdmin.setBounds(1450,350, 200,200);
+		btAdmin.setBounds(1200,350, 200,200);
 		ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/admin.png"));
 		 Image imagen3 = icono3.getImage();
 		 ImageIcon iconoEsc3 = new ImageIcon (imagen3.getScaledInstance(200,200,Image.SCALE_SMOOTH));

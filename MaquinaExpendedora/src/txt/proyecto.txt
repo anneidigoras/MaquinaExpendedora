@@ -1,0 +1,70 @@
+Máquina Expendedora
+
+Contexto:
+
+Nuestro programa se basa en la idea de una máquina expendedora de bebidas y alimentos. Existen dos formas de interactuar con el programa: Como cliente o como administrador. 
+
+Si el usuario se da de alta como cliente, recibirá una cantidad fija de euros con la que podrá comprar los refrescos o alimentos, para ello podrá ver una ventana con el catálogo y sus respectivos precios. Clicando en uno de ellos realizará la compra, sin embargo el programa no le dejará realizar compras en caso de que no tenga dinero suficiente. El usuario tendrá habilitado un espacio para poder ver sus datos, estadísticas de sus compras y para recargar su cuenta con más dinero.
+
+Si el usuario se da de alta como administrador, podrá ver las estadísticas del consumo de los refrescos mediante tablas. También podrá recibirlos por email si lo desea. Además, la máquina expendedora, la primera vez que se pone en marcha cuenta con un número concreto de cada tipo de refresco además de un límite de almacenaje en el mísmo, y a medida que los clientes van comprando, este se reduce. El administrador puede recargar la máquina con más bebidas (teniendo en cuenta el límite mencionado).
+
+Diseño de la interfaz:
+ 
+La idea sería la de hacer una ventana principal, asemejándose a una máquina expendedora, en la que pondríamos botones con los productos “dentro” de la imagen de la máquina. Pero antes de poder hacer nada, nos aparecerá una ventana inicial en la que nos preguntaran si somos usuario o administrador, ya que dependiendo de ello, podremos usar de una manera o de otra el programa, y por tanto la ventana principal también será distinta.
+Las ventanas principales que vamos a diseñar son:
+Identificación de Usuario
+Máquina expendedora
+Estadísticas
+Recargo de cuenta en el caso del cliente
+Recargo de productos en la máquina en caso de que el usuario sea el administrador
+
+
+Para diseñar la interfaz vamos a utilizar Swing.
+
+Clases:
+Las clases generales que vamos a implementar son las siguientes:
+Tendremos una clase Producto con las características principales de cada producto. Esta será la clase padre de las dos siguientes clases:
+Refresco
+Alimento
+
+Clase usuario:
+Nombre usuario
+Edad usuario
+Género usuario
+Dinero usuario
+
+Clase administrador:
+Id administrador
+Contraseña
+
+Clases principales destinadas al diseño de interfaz:
+Ventana principal
+Ventana de identificación de usuario
+Ventana de estadísticas
+Ventana de recargo de cuenta usuario (cliente)
+Ventana de recargo de productos (Administrador)
+Botones para los productos a escoger
+
+
+Clase de gestión de errores: para que cuando salte algun error, por ejemplo cuando ya no queden más productos, lo podamos gestionar
+
+
+
+Otros datos a tener en cuenta:
+
+Queremos que los datos derivados de la utilización del programa sean persistentes para posteriormente enseñar las correspondientes estadísticas. Como los datos sobre los que vamos a trabajar son variables homogéneos, y queremos manipularlos sin tener que guardar o leer toda la estructura, vamos a utilizar como herramienta una base de datos.
+Para desarrollar las pruebas unitarias vamos a utilizar JUnit.
+
+En cuanto a las librerías externas vamos a utilizar una para poder mandar al usuario, en concreto al administrador, las estadísticas de las ventas de los productos de la máquina expendedora. Hemos encontrado la siguiente: JavaMail.
+
+Ejemplo de datos fijos que vamos a utilizar:
+-Precios
+-Número de productos
+
+
+Ejemplo de datos variables que vamos a utilizar:
+- Stock
+- Número de productos consumidos
+- Número de usuarios
+
+Nos interesa que algunos de estos datos sean persistentes para que las estadísticas contengan información más relevante, y que los datos generados en un día no se pierdan al día siguiente. Para hacer que estos datos sean persistentes, vamos a utilizar una base de datos con la herramienta sqlite, para eso, crearemos un objeto JDBC Statement. Y para poder realizar las estadísticas nos apoyaremos en el método executeQuery para realizar las consultas y implementaremos la interfaz ResultSet para manipular dichas consultas y enseñarselas al administrador. También capturaremos las excepciones que se puedan dar a la hora de acceder a la base de datos.

@@ -42,7 +42,7 @@ public class RegistroAdmin extends JFrame implements ActionListener
 {
 	private static boolean ingreso = false;
 	private JTextField txtUsuario;
-    private JButton btingresar;
+    private JButton btingresar,btcancelar;
     private JLabel lblUsuario ;
 	private JPanel contentPane;
 	private JPasswordField password;
@@ -143,6 +143,13 @@ public class RegistroAdmin extends JFrame implements ActionListener
 		btingresar.addActionListener(this);
 		btingresar.setActionCommand("Ingresar");
 		
+		btcancelar = new JButton("Cancelar");
+		btcancelar.setBounds(150, 11, 110, 23);
+		panel2.add(btcancelar);
+		
+		btcancelar.addActionListener(this);
+		btcancelar.setActionCommand("Cancelar");
+		
 	 }
 		
 		
@@ -221,8 +228,14 @@ public class RegistroAdmin extends JFrame implements ActionListener
 		
 		switch(comando)
 		{
-			case ("Ingresar"):
+			case "Ingresar":
 				  this.pulsadoIngreso();
+				break;
+			
+			case "Cancelar":
+				this.dispose();
+				VentanaPrincipal frame = new VentanaPrincipal("");
+				frame.setVisible(true);
 				break;
 			case CORREO:
 				clsAdministrador.Correo = JOptionPane.showInputDialog("Introduzca su correo electrónico (con la forma ...@example.com)");

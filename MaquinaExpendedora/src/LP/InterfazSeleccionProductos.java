@@ -246,11 +246,13 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		panel3.setBounds(900,100, 250,400);
 		panel3.setLayout(null);
 	
-		JLabel lblnombre = new JLabel (usuario.getNombre());
+		JLabel lblnombre = new JLabel ("Nombre: "+usuario.getNombre());
 		lblnombre.setBounds(0,0,150,30);
 		
-		JLabel lblape = new JLabel(usuario.getPassword());
+		JLabel lblape = new JLabel("Contraseña: " +usuario.getPassword());
 		lblape.setBounds(0,50,150,30);
+		
+		
 
 		
 		panel3.add(lblnombre);panel3.add(lblape);

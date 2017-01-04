@@ -144,7 +144,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 			System.out.println("Ha pulsado aceptar");
 			btAceptar.setBackground(Color.blue);
 			Aceptar(e);
-			anyadir();
+			//anyadir();
 		
 			
 		break;
@@ -165,7 +165,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 	private void Aceptar(ActionEvent e)
 	{
 		char [] Arraypass1;char [] Arraypass2;
-		String password1 =null; String password2 = null;
+		String password1 =""; String password2 ="";
 		
 		String nombre=this.txtNombre.getText(); String ape1= this.txtApe.getText(); String dni= this.txtDni.getText(); int edad= Integer.parseInt(this.txtEdad.getText());
 		Arraypass1 = this.password1.getPassword();Arraypass2 = this.password2.getPassword();
