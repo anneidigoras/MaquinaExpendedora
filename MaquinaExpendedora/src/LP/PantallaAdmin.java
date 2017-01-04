@@ -49,8 +49,8 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 {
 
 	private JMenuBar MenuPrincipal;
-	private JMenu DatosUsuarios, DatosProductos;
-	private JMenuItem ListadoUsuarios,ListadoProductos;
+	private JMenu DatosUsuarios;
+	private JMenuItem ListadoUsuarios;
 	private JButton vueltaInicio, correo,ajustes;
     private JPanel contentPane;
     private static boolean panel;
@@ -64,10 +64,10 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     JPanel panelBebidas,panelAlimentos;
     
     //elementos del panelBebidas
-    private JLabel lblCoca, lblNestea, lblBifrutas, lblAgua, lblSni;
-    private JTextArea areaCoca, areaNestea, areaBifrutas, areaAgua, areaSni;
-    private static JSlider slidCoca, slidNestea, slidBifrutas, slidAgua, slidSni;
-    private static JLabel lblSlidCoca, lblSlidNestea,lblSlidBifrutas, lblSlidAgua, lblSlidSni;
+    private JLabel lblCoca, lblNestea, lblBifrutas, lblAgua, lblSni, lblKit, lblOreo;
+    private JTextArea areaCoca, areaNestea, areaBifrutas, areaAgua, areaSni,areaKit,areaOreo;
+    private static JSlider slidCoca, slidNestea, slidBifrutas, slidAgua, slidSni,slidKit,slidOreo;
+    private static JLabel lblSlidCoca, lblSlidNestea,lblSlidBifrutas, lblSlidAgua, lblSlidSni,lblSlidKit,lblSlidOreo;
     private JButton guardar;
     private JRadioButton rdbBebidas, rdbAlimentos;
 	
@@ -108,74 +108,66 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		DatosUsuarios = new JMenu("Datos Usuarios");
 		DatosUsuarios.setForeground(Color.WHITE);
 		MenuPrincipal.add(DatosUsuarios);
-		DatosProductos = new JMenu("Datos Productos");
-		DatosProductos.setForeground(Color.WHITE);
-		MenuPrincipal.add(DatosProductos);
+		
 		
 	    ListadoUsuarios = new JMenuItem("Listado Usuarios");
 		ListadoUsuarios.setActionCommand(LISTA);
 		ListadoUsuarios.addActionListener((ActionListener)this);
 		DatosUsuarios.add(ListadoUsuarios);
 		
-		ListadoProductos = new JMenuItem("Listado Productos");
-		ListadoUsuarios.setActionCommand(TABPROD);
-		ListadoUsuarios.addActionListener((ActionListener)this);
-	
-	    DatosProductos.add(ListadoProductos);
 
 	
-		     vueltaInicio = new JButton("Cerrar Sesion");;
-             vueltaInicio.setActionCommand(SALIR);
-             vueltaInicio.addActionListener((ActionListener) this);
+		vueltaInicio = new JButton("Cerrar Sesion");;
+        vueltaInicio.setActionCommand(SALIR);
+        vueltaInicio.addActionListener((ActionListener) this);
              
-             
-             ajustes = new JButton();
-             ImageIcon icono0 = new ImageIcon(getClass().getResource("/img/ajustes.jpg"));
-			 Image imagen0 = icono0.getImage();
-			 ImageIcon iconoEsc0 = new ImageIcon (imagen0.getScaledInstance(22,22,Image.SCALE_SMOOTH));
-			 ajustes.setIcon(iconoEsc0);
-			 ajustes.setBorder(null);
+        ajustes = new JButton();
+        ImageIcon icono0 = new ImageIcon(getClass().getResource("/img/ajustes.jpg"));
+	    Image imagen0 = icono0.getImage();
+		ImageIcon iconoEsc0 = new ImageIcon (imagen0.getScaledInstance(22,22,Image.SCALE_SMOOTH));
+		ajustes.setIcon(iconoEsc0);
+	    ajustes.setBorder(null);
         	    
-        	 ajustes.setActionCommand(AJUSTES);
-        	 ajustes.addActionListener((ActionListener) this);
+        ajustes.setActionCommand(AJUSTES);
+        ajustes.addActionListener((ActionListener) this);
              
              
-             MenuPrincipal.add(Box.createHorizontalGlue());
-             MenuPrincipal.add(ajustes);
-             MenuPrincipal.add(vueltaInicio);
+        MenuPrincipal.add(Box.createHorizontalGlue());
+        MenuPrincipal.add(ajustes);
+        MenuPrincipal.add(vueltaInicio);
         
            
-      	    contentPane = new JPanel();
-    		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-    		setContentPane(contentPane);
-    		contentPane.setLayout(null);
+      	contentPane = new JPanel();
+      	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+      	setContentPane(contentPane);
+    	contentPane.setLayout(null);
         	    
       	   
-    		correo = new JButton ();
-       		correo.setBounds(0, 14, 100, 60);
-       		Image img3= null;
+    	correo = new JButton ();
+       	correo.setBounds(0, 14, 100, 60);
+       	Image img3= null;
        		
        		try {
        			img3 = ImageIO.read(getClass().getResource("/img/correo.jpg"));
        		} catch (IOException e) {
        			e.printStackTrace();
        		}
-       	    correo.setIcon(new ImageIcon(img3));
-       	    correo.setActionCommand(CORREO);
-       	    correo.addActionListener((ActionListener)this);
+       	correo.setIcon(new ImageIcon(img3));
+        correo.setActionCommand(CORREO);
+       	correo.addActionListener((ActionListener)this);
       	   
-      		panel1 = new JPanel();
-      		panel1.setBounds(10, 50, 300, 128);
-      		panel1.setLayout(null);
-      		panel1.add(correo);
+      	panel1 = new JPanel();
+      	panel1.setBounds(10, 50, 300, 128);
+      	panel1.setLayout(null);
+      	panel1.add(correo);
  
-    		contentPane.add(panel1);
+    	contentPane.add(panel1);
     		    		
     		
     		
-    		panelBebidas = new JPanel();
+    	panelBebidas = new JPanel();
     		
-    		LinkedList<clsBebida>lista;
+    	LinkedList<clsBebida>lista;
     		lista= clsGestor.BebidasGuardadas();
     		
     		LinkedList<clsAlimento>lista2;
@@ -382,13 +374,95 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 					 
 					 }
 			
+		
+					//KITKAT
+					 lblKit= new JLabel ("KitKat");
+					 lblKit.setBounds(0,110,100,100);
+			    	 ImageIcon icono6 = new ImageIcon(getClass().getResource("/img/kitkat.png"));
+					 Image imagen6 = icono6.getImage();
+					 ImageIcon iconoEsc6 = new ImageIcon (imagen6.getScaledInstance(100,100,Image.SCALE_SMOOTH));
+					 lblKit.setIcon(iconoEsc6);
+			    		 
+				     areaKit = new JTextArea();
+				     areaKit.setBounds(105, 110, 250, 100);
+			    	 areaKit.setEditable(false);
+						 clsAlimento beb6 = new clsAlimento();
+						 for ( clsAlimento aux: lista2){if(aux.getId().equals(clsConstantes.ID_KITKAT))beb6=aux;}
+						 areaKit.append("KitKat"+ SALTO +"Nº de KitKats disponibles: "+ beb6.getNum());	
+						 
+						 if (50-beb4.getNum() <1)
+						 { 
+							 JLabel maximo = new JLabel("No hay más espacio para " +beb4.getNombreP());
+							 maximo.setBounds(400, 365, 300, 50);
+							 panelAlimentos.add(maximo);
+						 }
+						 else
+						 {
+						 slidKit = new JSlider (0, 50-beb4.getNum());
+						 slidKit.setBounds(400, 125, 150, 50);
+						 slidKit.setMajorTickSpacing((50-beb4.getNum())/3);
+						 slidKit.setPaintTicks(true);
+						 slidKit.setPaintLabels(true);
+						 slidKit.setValue(0);
+						 slidKit.setMinorTickSpacing(2);
+						 slidKit.addChangeListener(new MiAccion(clsConstantes.ID_KITKAT));
+						 panelAlimentos.add(slidKit);
+						 
+						 lblSlidKit= new JLabel();
+						 lblSlidKit.setBounds(580, 0, 15, 50);
+						 panelAlimentos.add(lblSlidKit);
+						 
+						 }
+						 
+						//OREO
+						 lblOreo= new JLabel ("OreoKat");
+						 lblOreo.setBounds(0,220,100,100);
+				    	 ImageIcon icono7 = new ImageIcon(getClass().getResource("/img/oreo.jpg"));
+						 Image imagen7 = icono7.getImage();
+						 ImageIcon iconoEsc7 = new ImageIcon (imagen7.getScaledInstance(100,100,Image.SCALE_SMOOTH));
+						 lblOreo.setIcon(iconoEsc7);
+				    		 
+					     areaOreo = new JTextArea();
+					     areaOreo.setBounds(105, 220, 250, 100);
+				    	 areaOreo.setEditable(false);
+							 clsAlimento beb7 = new clsAlimento();
+							 for ( clsAlimento aux: lista2){if(aux.getId().equals(clsConstantes.ID_OREO))beb7=aux;}
+							 areaOreo.append("Oreos"+ SALTO +"Nº de oreos disponibles: "+ beb7.getNum());	
+							 
+							 if (50-beb4.getNum() <1)
+							 { 
+								 JLabel maximo = new JLabel("No hay más espacio para " +beb4.getNombreP());
+								 maximo.setBounds(400, 365, 300, 50);
+								 panelAlimentos.add(maximo);
+							 }
+							 else
+							 {
+							 slidOreo = new JSlider (0, 50-beb4.getNum());
+							 slidOreo.setBounds(400, 235, 150, 50);
+							 slidOreo.setMajorTickSpacing((50-beb4.getNum())/3);
+							 slidOreo.setPaintTicks(true);
+							 slidOreo.setPaintLabels(true);
+							 slidOreo.setValue(0);
+							 slidOreo.setMinorTickSpacing(2);
+							 slidOreo.addChangeListener(new MiAccion(clsConstantes.ID_OREO));
+							 panelAlimentos.add(slidOreo);
+							 
+							 lblSlidOreo= new JLabel();
+							 lblSlidOreo.setBounds(580, 0, 15, 50);
+							 panelAlimentos.add(lblSlidOreo);
+							 
+							 }
+				
+					 
 				 
 			 
     		
     		panelBebidas.setBounds(350,50, 600, 500);
     		panelBebidas.setLayout(null);
-    		panelBebidas.add(lblCoca);panelBebidas.add(lblBifrutas);panelBebidas.add(lblNestea);  panelBebidas.add(lblAgua); 	panelAlimentos.add(lblSni);
-    		panelBebidas.add(areaNestea);panelBebidas.add(areaBifrutas);panelBebidas.add(areaCoca); panelBebidas.add(areaAgua); panelAlimentos.add(areaSni);
+    		panelBebidas.add(lblCoca);panelBebidas.add(lblBifrutas);panelBebidas.add(lblNestea);  panelBebidas.add(lblAgua); 	
+    		panelAlimentos.add(lblSni);panelAlimentos.add(lblKit); panelAlimentos.add(lblOreo);
+    		panelBebidas.add(areaNestea);panelBebidas.add(areaBifrutas);panelBebidas.add(areaCoca); panelBebidas.add(areaAgua); 
+    		panelAlimentos.add(areaSni);panelAlimentos.add(areaKit);panelAlimentos.add(areaOreo);
     		   		
     		
     		contentPane.add(panelBebidas); contentPane.add(panelAlimentos);
@@ -400,11 +474,11 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 contentPane.add(guardar);
 			 
 			    rdbBebidas = new JRadioButton("Bebidas");
-				rdbBebidas.setBounds(138, 7, 61, 30);
+				rdbBebidas.setBounds(138, 7, 80, 30);
 				contentPane.add(rdbBebidas);
 				
 				rdbAlimentos = new JRadioButton("Alimentos");
-				rdbAlimentos.setBounds(210, 7, 109, 30);
+				rdbAlimentos.setBounds(240, 7, 109, 30);
 				contentPane.add(rdbAlimentos);
 				
 				rdbBebidas.setActionCommand(RBEBIDAS);
@@ -554,13 +628,14 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			break;
 
 		case LISTA:
-			getContentPane().removeAll();
-			tablasUsers();
+			Tablas frame= new Tablas();
+			frame.setVisible(true);
 			
 			break;
 		case TABPROD:
-			getContentPane().removeAll();
-			tablasProductos();
+			
+			Tablas frame1= new Tablas();
+			frame1.setVisible(true);
 			
 			break;
 			
