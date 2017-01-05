@@ -245,7 +245,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	    //PANEL 3
 		
 		JLabel lbldatos = new JLabel ("MIS DATOS");
-		lbldatos.setBounds(20,0,200,50);
+		lbldatos.setBounds(20,0,150,50);
 		lbldatos.setFont(new Font("Serif", Font.PLAIN, 22));
 		
 		JLabel lbldni = new JLabel("DNI: " +usuario.getDni());
@@ -272,12 +272,74 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		
 		
 		JPanel panel3 = new JPanel ();
-		panel3.setBounds(900,50, 250,400);
+		panel3.setBounds(900,50, 175,400);
 		panel3.setLayout(null);
 		panel3.add(lbldatos);panel3.add(lblnombre);panel3.add(lblape);panel3.add(lbldni);panel3.add(lbledad);panel3.add(lblpass);panel3.add(bteditar);
 		contentPane.add(panel3);
 		
 		
+		//PANEL 4
+		
+		JTextField txtdni = new JTextField ("nuevo DNI");
+		txtdni.setBounds(0,0,150,30);
+		
+		JTextField txtnombre = new JTextField ("nuevo nombre");
+		txtnombre.setBounds(0,50,150,30);
+		
+		JTextField txtape = new JTextField ("nuevo apellido");
+		txtape.setBounds(0,100,150,30);
+		
+		JTextField txtedad = new JTextField ("nueva edad");
+		txtedad.setBounds(0,150,150,30);
+		
+		JTextField txtpass = new JTextField ("nueva contraseña");
+		txtpass.setBounds(0,200,150,30);
+		
+		
+		ImageIcon check = new ImageIcon(getClass().getResource("/img/checkmark.png"));
+		Image imagencheck = check.getImage();
+		ImageIcon checkEsc = new ImageIcon (imagencheck.getScaledInstance(30,30,Image.SCALE_SMOOTH));
+		
+		JButton bdni,bnombre,bape,bedad,bpass;
+		
+		bdni = new JButton();
+		bdni.setBounds(170,0,30,30);
+		bdni.setIcon(checkEsc);
+		bdni.setActionCommand("edito dni");
+		bdni.addActionListener((ActionListener) this);
+		
+		
+		bnombre = new JButton();
+		bnombre.setBounds(170,50,30,30);
+		bnombre.setIcon(checkEsc);
+		bnombre.setActionCommand("edito nombre");
+		bnombre.addActionListener((ActionListener) this);
+		
+		bape = new JButton();
+		bape.setBounds(170,100,30,30);
+		bape.setIcon(checkEsc);
+		bape.setActionCommand("edito apellido");
+		bape.addActionListener((ActionListener) this);
+		
+		bedad = new JButton();
+		bedad.setBounds(170,150,30,30);
+		bedad.setIcon(checkEsc);
+		bedad.setActionCommand("edito edad");
+		bedad.addActionListener((ActionListener) this);
+		
+		bpass = new JButton();
+		bpass.setBounds(170,200,30,30);
+		bpass.setIcon(checkEsc);
+		bpass.setActionCommand("edito contraseña");
+		bpass.addActionListener((ActionListener) this);
+		
+		JPanel panel4 = new JPanel();
+		panel4.setBounds(1075, 120, 250, 400);
+		panel4.setLayout(null);
+		panel4.add(txtnombre);panel4.add(txtdni);panel4.add(txtape);panel4.add(txtedad);panel4.add(txtpass);
+		panel4.add(bdni);panel4.add(bnombre);panel4.add(bedad);panel4.add(bape);panel4.add(bpass);
+		
+		contentPane.add(panel4);
 		
 		
 		setContentPane(contentPane);
