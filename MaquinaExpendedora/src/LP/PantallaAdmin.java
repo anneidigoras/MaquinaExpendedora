@@ -59,6 +59,9 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     static int num_bifrutas=0;
     static int num_nestea=0;
     static int num_agua=0;
+    static int num_oreo=0;
+    static int num_snickers=0;
+    static int num_kitkat=0;
     
     JPanel panel1;
     JPanel panelBebidas,panelAlimentos;
@@ -167,7 +170,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     		
     	panelBebidas = new JPanel();
     		
-    	LinkedList<clsBebida>lista;
+    	    LinkedList<clsBebida>lista;
     		lista= clsGestor.BebidasGuardadas();
     		
     		LinkedList<clsAlimento>lista2;
@@ -350,9 +353,9 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 					 for ( clsAlimento aux: lista2){if(aux.getId().equals(clsConstantes.ID_SNICKERS))beb5=aux;}
 					 areaSni.append("Snickers"+ SALTO +"Nº de snickers disponibles: "+ beb5.getNum());	
 					 
-					 if (50-beb4.getNum() <1)
+					 if (50-beb5.getNum() <1)
 					 { 
-						 JLabel maximo = new JLabel("No hay más espacio para " +beb4.getNombreP());
+						 JLabel maximo = new JLabel("No hay más espacio para " +beb5.getNombreP());
 						 maximo.setBounds(400, 365, 300, 50);
 						 panelAlimentos.add(maximo);
 					 }
@@ -558,8 +561,33 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 				lblSlidAgua.setText(nose); /*actualiza nuestro label al valor en el que se encuentra nuestro JSlider */
 				//actualizarlistabebidas(id, nose);
 				break;
+              case clsConstantes.ID_SNICKERS:
+				
+				num_snickers = slidSni.getValue(); /*toma el valor que tiene el slider y lo guarda como entero */
+				nose = Integer.toString(num_snickers); /*En nose guarda nuestro entero evaluo como un string */
+				lblSlidSni.setText(nose); /*actualiza nuestro label al valor en el que se encuentra nuestro JSlider */
+				//actualizarlistabebidas(id, nose);
+				break;
+				
+              case clsConstantes.ID_OREO:
+  				
+  				num_oreo = slidOreo.getValue(); /*toma el valor que tiene el slider y lo guarda como entero */
+  				nose = Integer.toString(num_oreo); /*En nose guarda nuestro entero evaluo como un string */
+  				lblSlidOreo.setText(nose); /*actualiza nuestro label al valor en el que se encuentra nuestro JSlider */
+  				//actualizarlistabebidas(id, nose);
+  				break;
+  				
+              case clsConstantes.ID_KITKAT:
+  				
+  				num_kitkat = slidKit.getValue(); /*toma el valor que tiene el slider y lo guarda como entero */
+  				nose = Integer.toString(num_kitkat); /*En nose guarda nuestro entero evaluo como un string */
+  				lblSlidKit.setText(nose); /*actualiza nuestro label al valor en el que se encuentra nuestro JSlider */
+  				//actualizarlistabebidas(id, nose);
+  				break;
 		
 			}	
+			
+		
 			
 		}
 		
@@ -588,10 +616,34 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 				
 			case clsConstantes.ID_AGUA:
 				aux.setNum(aux.getNum()+ num_agua);
+				break;		
+			
+			}
+			
+		}
+		return lista;
+	}
+	
+	protected static LinkedList<clsAlimento> actualizarlistaAlimentos()
+	{
+		
+		LinkedList <clsAlimento> lista = clsGestor.AlimentosGuardados();
+		for(clsAlimento aux: lista)
+		{
+			switch (aux.getId())
+			{
+			case clsConstantes.ID_SNICKERS:
+				aux.setNum(aux.getNum()+ num_snickers);
 				break;
 				
-			
-			
+			case clsConstantes.ID_OREO:
+				aux.setNum(aux.getNum()+ num_oreo);
+				break;
+				
+			case clsConstantes.ID_KITKAT:
+				aux.setNum(aux.getNum()+ num_kitkat);
+				break;
+				
 			
 			}
 			
@@ -669,9 +721,13 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	{
 		LinkedList <clsBebida> lista = actualizarlistabebidas();
 		clsGestor.guardarBebidas(lista);
+		LinkedList <clsAlimento> lista2 = actualizarlistaAlimentos();
+		clsGestor.guardarAlimentos(lista2);
 		this.dispose();
 		PantallaAdmin frame= new PantallaAdmin("Pantalla Admin");
         frame.setVisible(true);
+        
+        
 
 		//actualizarSliders();
 		

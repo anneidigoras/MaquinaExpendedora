@@ -89,24 +89,39 @@ public class clsGestor
 		guardarBebidas (listaB);
 		
 		}
+		
+		LinkedList<clsAlimento> listaA; 
+		
+		
+		listaA=new LinkedList<clsAlimento>();
+		listaA = AlimentosGuardados ();
+		if (listaA.isEmpty())
+		{
+			
+			listaA.add(new clsAlimento ("Snickers", (float) 0.8, clsConstantes.ID_SNICKERS, 125, clsConstantes.NUM_INICIAL_PRODUCTOS));
+			listaA.add(new clsAlimento("KitKat",clsConstantes.PRECIO_KITKAT,clsConstantes.ID_KITKAT,125,clsConstantes.NUM_INICIAL_PRODUCTOS));
+			listaA.add(new clsAlimento("Oreo",clsConstantes.PRECIO_OREO,clsConstantes.ID_OREO,150,clsConstantes.NUM_INICIAL_PRODUCTOS));
+
+			guardarAlimentos(listaA);
+		}
 	}
 	
-	public static void crearAlimentos()
-	{
-		LinkedList<clsAlimento> listaA; 
-	
-	
-	listaA=new LinkedList<clsAlimento>();
-	listaA = AlimentosGuardados ();
-	if (listaA.isEmpty())
-	{
-		
-		listaA.add(new clsAlimento ("Snickers", (float) 0.8, clsConstantes.ID_SNICKERS, 125, clsConstantes.NUM_INICIAL_PRODUCTOS));
-		listaA.add(new clsAlimento("KitKat",clsConstantes.PRECIO_KITKAT,clsConstantes.ID_KITKAT,125,clsConstantes.NUM_INICIAL_PRODUCTOS));
-		listaA.add(new clsAlimento("Oreo",clsConstantes.PRECIO_OREO,clsConstantes.ID_OREO,150,clsConstantes.NUM_INICIAL_PRODUCTOS));
-
-		guardarAlimentos(listaA);
-	}}
+//	public static void crearAlimentos()
+//	{
+//		LinkedList<clsAlimento> listaA; 
+//	
+//	
+//	listaA=new LinkedList<clsAlimento>();
+//	listaA = AlimentosGuardados ();
+//	if (listaA.isEmpty())
+//	{
+//		
+//		listaA.add(new clsAlimento ("Snickers", (float) 0.8, clsConstantes.ID_SNICKERS, 125, clsConstantes.NUM_INICIAL_PRODUCTOS));
+//		listaA.add(new clsAlimento("KitKat",clsConstantes.PRECIO_KITKAT,clsConstantes.ID_KITKAT,125,clsConstantes.NUM_INICIAL_PRODUCTOS));
+//		listaA.add(new clsAlimento("Oreo",clsConstantes.PRECIO_OREO,clsConstantes.ID_OREO,150,clsConstantes.NUM_INICIAL_PRODUCTOS));
+//
+//		guardarAlimentos(listaA);
+//	}}
 	public static void guardarAlimentos (LinkedList <clsAlimento> listaAlim)
 	{
 		clsDatos objD=new clsDatos();
@@ -200,6 +215,19 @@ public class clsGestor
 		
 	}
 	
+	public static void consumoAlimento (String id)
+	{
+		
+		LinkedList <clsAlimento> listaA=new LinkedList<clsAlimento>();
+		listaA = AlimentosGuardados ();
+		for (clsAlimento  aux: listaA)
+		{
+			if(aux.getId().equals(id)){	aux.setNum(aux.getNum()-1);	break;}
+		}
+		guardarAlimentos (listaA);
+		
+		
+	}
 	
 	public  void nuevoUsuario(String nombre, String apellido1, String DNI, int edad,  String pass)throws clsUsuarioExistente
 	{
