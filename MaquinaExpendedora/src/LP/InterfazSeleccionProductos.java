@@ -236,7 +236,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		
 		
 		lblCerrar= new JLabel ("Log Out");
-		lblCerrar.setBounds(1300,75,67,40);
+		lblCerrar.setBounds(1305,75,67,40);
 		
 		contentPane.add(btCerrar);contentPane.add(lblCerrar);
 		
