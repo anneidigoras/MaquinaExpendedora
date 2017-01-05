@@ -21,12 +21,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import COMUN.clsConstantes;
 import LN.clsAdministrador;
 import LN.clsAdquisicion;
-import LN.clsAlimento;
 import LN.clsBebida;
 import LN.clsGestor;
 import LN.clsMensaje;
@@ -39,6 +39,13 @@ import LN.clsUsuario;
  */
 public class InterfazSeleccionProductos extends JFrame implements ActionListener
 {
+	JLabel lbldni, lblnombre,lbledad, lblpass,lblape;
+	
+	
+	
+	
+	
+	
 	String comando= null;
 	static String dni_usuario;
 	static clsUsuario usuario = new clsUsuario (); 
@@ -46,6 +53,8 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	private JLabel lblCoca, lblNestea, lblBifrutas, lblKitKat, lblOreo, lblAgua, lblSnickers,lblCerrar;
 	private JPanel contentPane;
 	private JTextArea txtPantalla;
+	
+	JPanel panel4;
 	
 	JLabel dinero;JLabel nombre;
 	
@@ -63,6 +72,16 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	static final String REPONER= "Reponer";
     static final String SALIR = "Cerrar Sesion";
     static final String EDITAR = "Editar";
+    
+    static final String ED_DNI= "Edito DNI";
+	static final String ED_NOMBRE= "Edito nombre";
+	static final String ED_APE= "Edito apellido";
+    static final String ED_EDAD = "Edito edad";
+    static final String ED_PASS = "Edito contraseña";
+    
+    JTextField txtdni,txtnombre,txtape,txtpass,txtedad;
+    
+    
 
     clsBebida objBebida= new clsBebida();
 	
@@ -83,6 +102,8 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	{
 		this.dni_usuario= dni;
 		usuarioacual();
+		
+		
 		
 		this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
 		
@@ -249,19 +270,19 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		lbldatos.setBounds(20,0,150,50);
 		lbldatos.setFont(new Font("Serif", Font.PLAIN, 22));
 		
-		JLabel lbldni = new JLabel("DNI: " +usuario.getDni());
+		lbldni = new JLabel("DNI: " +usuario.getDni());
 		lbldni.setBounds(0,70,150,30);
 		
-		JLabel lblnombre = new JLabel ("Nombre: "+usuario.getNombre());
+		lblnombre = new JLabel ("Nombre: "+usuario.getNombre());
 		lblnombre.setBounds(0,120,150,30);
 		
-		JLabel lblape= new JLabel ("Apellido: "+ usuario.getApellido());
+		lblape= new JLabel ("Apellido: "+ usuario.getApellido());
 		lblape.setBounds(0,170,150,30);
 		
-		JLabel lbledad= new JLabel ("Edad: "+ usuario.getEdad());
+		lbledad= new JLabel ("Edad: "+ usuario.getEdad());
 		lbledad.setBounds(0,220,150,30);
 		
-		JLabel lblpass = new JLabel("Contraseña: "+usuario.getPassword());
+		lblpass = new JLabel("Contraseña: "+usuario.getPassword());
 		lblpass.setBounds(0,270,150,30);
 		
 		
@@ -281,19 +302,19 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		
 		//PANEL 4
 		
-		JTextField txtdni = new JTextField ("nuevo DNI");
+		txtdni = new JTextField ("nuevo DNI");
 		txtdni.setBounds(0,0,150,30);
 		
-		JTextField txtnombre = new JTextField ("nuevo nombre");
+		txtnombre = new JTextField ("nuevo nombre");
 		txtnombre.setBounds(0,50,150,30);
 		
-		JTextField txtape = new JTextField ("nuevo apellido");
+		txtape = new JTextField ("nuevo apellido");
 		txtape.setBounds(0,100,150,30);
 		
-		JTextField txtedad = new JTextField ("nueva edad");
+		txtedad = new JTextField ("nueva edad");
 		txtedad.setBounds(0,150,150,30);
 		
-		JTextField txtpass = new JTextField ("nueva contraseña");
+		txtpass = new JTextField ("nueva contraseña");
 		txtpass.setBounds(0,200,150,30);
 		
 		
@@ -306,42 +327,41 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		bdni = new JButton();
 		bdni.setBounds(170,0,30,30);
 		bdni.setIcon(checkEsc);
-		bdni.setActionCommand("edito dni");
+		bdni.setActionCommand(ED_DNI);
 		bdni.addActionListener((ActionListener) this);
 		
 		
 		bnombre = new JButton();
 		bnombre.setBounds(170,50,30,30);
 		bnombre.setIcon(checkEsc);
-		bnombre.setActionCommand("edito nombre");
+		bnombre.setActionCommand(ED_NOMBRE);
 		bnombre.addActionListener((ActionListener) this);
 		
 		bape = new JButton();
 		bape.setBounds(170,100,30,30);
 		bape.setIcon(checkEsc);
-		bape.setActionCommand("edito apellido");
+		bape.setActionCommand(ED_APE);
 		bape.addActionListener((ActionListener) this);
 		
 		bedad = new JButton();
 		bedad.setBounds(170,150,30,30);
 		bedad.setIcon(checkEsc);
-		bedad.setActionCommand("edito edad");
+		bedad.setActionCommand(ED_EDAD);
 		bedad.addActionListener((ActionListener) this);
 		
 		bpass = new JButton();
 		bpass.setBounds(170,200,30,30);
 		bpass.setIcon(checkEsc);
-		bpass.setActionCommand("edito contraseña");
+		bpass.setActionCommand(ED_PASS);
 		bpass.addActionListener((ActionListener) this);
 		
-		JPanel panel4 = new JPanel();
+		panel4 = new JPanel();
 		panel4.setBounds(1075, 120, 250, 400);
 		panel4.setLayout(null);
 		panel4.add(txtnombre);panel4.add(txtdni);panel4.add(txtape);panel4.add(txtedad);panel4.add(txtpass);
 		panel4.add(bdni);panel4.add(bnombre);panel4.add(bedad);panel4.add(bape);panel4.add(bpass);
-		
+		panel4.setVisible(false);
 		contentPane.add(panel4);
-		
 		
 		setContentPane(contentPane);
 	
@@ -385,23 +405,67 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 				break;
 				
 			case COMPRAR :
-				compra(comando_anterior,"");
+				compra(comando_anterior);
+				break;
+			
+			case EDITAR: 
+				panel4.setVisible(true);
 				break;
 				
 			case SALIR:
 				 int salir;
-
 				 salir= JOptionPane.showConfirmDialog(null, "¿Seguro que quiere cerrar la sesion?","Confirmar ", JOptionPane.OK_CANCEL_OPTION);
 				 if(salir==0)
-					 {this.dispose();
+				 {
+				   this.dispose();
 				   VentanaPrincipal frame = new VentanaPrincipal("");
-				   frame.setVisible(true);}
-			
+				   frame.setVisible(true);				   
+				 }
 			     break;
 			 
 			case REPONER:
 				ReponerSaldo frame= new ReponerSaldo();
 				frame.setVisible(true);
+				break;
+				
+			case ED_DNI:
+				usuario.setDni(txtdni.getText());
+				clsGestor.ModificarUsuario(usuario, dni_usuario);
+				dni_usuario= txtdni.getText();
+				lbldni.setText("DNI: "+ dni_usuario );
+				txtdni.setText("nuevo DNI");
+				break;
+			
+			case ED_NOMBRE:
+				usuario.setNombre(txtnombre.getText());
+				clsGestor.ModificarUsuario(usuario, dni_usuario);
+				lblnombre.setText("Nombre: "+usuario.getNombre() );
+				txtnombre.setText("nuevo nombre");
+				break; 
+				
+			case ED_APE:
+				usuario.setApellido(txtape.getText());
+				clsGestor.ModificarUsuario(usuario, dni_usuario);
+				lblape.setText("Apellido: "+ usuario.getApellido() );
+				txtape.setText("nuevo apellido");
+				break;
+				
+			case ED_EDAD:
+				//comprobar que sea un int y sacar error si no es el caso
+				usuario.setEdad(Integer.parseInt(txtedad.getText()));
+				clsGestor.ModificarUsuario(usuario, dni_usuario);
+				lbledad.setText("Edad: "+ usuario.getEdad() );
+				txtedad.setText("nueva edad");
+				break;
+				
+			case ED_PASS:
+				usuario.setPassword(txtpass.getText());
+				clsGestor.ModificarUsuario(usuario, dni_usuario);
+				lblpass.setText("Contraseña: "+usuario.getPassword());
+				txtpass.setText("nueva contraseña");
+				break;
+			
+				
 				
 				
 			
@@ -420,15 +484,12 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	
 	//metodo para que cuando no queden mas existencias de un producto el usuario no pueda consumir más : que el boton no funcione o poner una etiqueta de agotado.
 	
-	public void compra (String bebida,String alimento)
+	public void compra (String bebida)
 	{
 		float precio =0;
 		clsBebida bebidaconsumida = new clsBebida();
-		clsAlimento alimentoConsumido= new clsAlimento();
 		LinkedList<clsBebida>listaBebidas= new LinkedList<clsBebida>();
-		LinkedList<clsAlimento>listaAlimentos= new LinkedList<clsAlimento>();
 		listaBebidas=clsGestor.BebidasGuardadas();
-		listaAlimentos= clsGestor.AlimentosGuardados();
 		for (clsBebida aux: listaBebidas)
 		{
 			if(aux.getId().equals(bebida)) bebidaconsumida = aux;
@@ -452,36 +513,6 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 			}
 			else {
 					JOptionPane.showMessageDialog(null, "No quedan más " +bebidaconsumida.getNombreP(),
-				    "ESTE PRODUCTO SE HA AGOTADO",
-				    JOptionPane.ERROR_MESSAGE);
-			}
-		
-		
-		}
-		
-		for (clsAlimento aux: listaAlimentos)
-		{
-			if(aux.getId().equals(alimento)) alimentoConsumido = aux;
-		}
-		precio = alimentoConsumido.getPrecioP();
-		if (usuario.getDinero()<precio)
-		{
-			JOptionPane.showMessageDialog(null, "No tiene suficiente saldo",
-				    "SALDO INSUFICIENTE",
-				    JOptionPane.ERROR_MESSAGE);
-		}
-		else
-		{
-			if (alimentoConsumido.getNum()>0) 
-			{
-				usuario.setDinero((float) (usuario.getDinero()- alimentoConsumido.getPrecioP()));
-				clsGestor.gastadinero(usuario.getDni(), bebida);
-				
-				dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
-				clsGestor.consumoAlimento(alimento);
-			}
-			else {
-					JOptionPane.showMessageDialog(null, "No quedan más " +alimentoConsumido.getNombreP(),
 				    "ESTE PRODUCTO SE HA AGOTADO",
 				    JOptionPane.ERROR_MESSAGE);
 			}

@@ -19,6 +19,7 @@ import COMUN.clsConstantes.enFicheros;
 
 import COMUN.clsUsuarioExistente;
 import LD.*;
+import LP.InterfazSeleccionProductos;
 
 
 
@@ -328,7 +329,28 @@ public class clsGestor
 	objD.TerminarSave();
 	
 }
-
+    
+    public static void ModificarUsuario(clsUsuario usuario, String dni_anterior)
+    {
+    	ArrayList<clsUsuario> lista_anterior = leerUsuario();
+    	for (clsUsuario aux: lista_anterior)
+    	{
+    		
+    		if(aux.getDni().equals(dni_anterior))
+    		{
+    			lista_anterior.remove(aux);
+    			break;
+    		}
+    	}
+    	lista_anterior.add(usuario);
+    	LinkedList <clsUsuario> lista_actual = new LinkedList <clsUsuario>();
+    	for (clsUsuario aux: lista_anterior)
+    	{
+    		lista_actual.add(aux);
+    	}
+    	CrearListaUsuario(lista_actual);
+    	
+    }
 public static void crearAdquisicion(String id_producto, String dni_user)
 {
 	ArrayList<clsAdquisicion> adquisicion= new ArrayList<clsAdquisicion>();
