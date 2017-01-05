@@ -48,6 +48,9 @@ public class clsDatos
 			
 		case BEBIDAS: 
 			return fic_bebidas;
+			
+		case ALIMENTOS:
+			return fic_alimentos;
 		
 		
 	

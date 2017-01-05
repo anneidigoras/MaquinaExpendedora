@@ -26,6 +26,7 @@ import javax.swing.border.EmptyBorder;
 import COMUN.clsConstantes;
 import LN.clsAdministrador;
 import LN.clsAdquisicion;
+import LN.clsAlimento;
 import LN.clsBebida;
 import LN.clsGestor;
 import LN.clsMensaje;
@@ -322,7 +323,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 				break;
 				
 			case COMPRAR :
-				compra(comando_anterior);
+				compra(comando_anterior,"");
 				break;
 				
 			case SALIR:
@@ -357,12 +358,15 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	
 	//metodo para que cuando no queden mas existencias de un producto el usuario no pueda consumir más : que el boton no funcione o poner una etiqueta de agotado.
 	
-	public void compra (String bebida)
+	public void compra (String bebida,String alimento)
 	{
 		float precio =0;
 		clsBebida bebidaconsumida = new clsBebida();
+		clsAlimento alimentoConsumido= new clsAlimento();
 		LinkedList<clsBebida>listaBebidas= new LinkedList<clsBebida>();
+		LinkedList<clsAlimento>listaAlimentos= new LinkedList<clsAlimento>();
 		listaBebidas=clsGestor.BebidasGuardadas();
+		listaAlimentos= clsGestor.AlimentosGuardados();
 		for (clsBebida aux: listaBebidas)
 		{
 			if(aux.getId().equals(bebida)) bebidaconsumida = aux;
@@ -386,6 +390,36 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 			}
 			else {
 					JOptionPane.showMessageDialog(null, "No quedan más " +bebidaconsumida.getNombreP(),
+				    "ESTE PRODUCTO SE HA AGOTADO",
+				    JOptionPane.ERROR_MESSAGE);
+			}
+		
+		
+		}
+		
+		for (clsAlimento aux: listaAlimentos)
+		{
+			if(aux.getId().equals(alimento)) alimentoConsumido = aux;
+		}
+		precio = alimentoConsumido.getPrecioP();
+		if (usuario.getDinero()<precio)
+		{
+			JOptionPane.showMessageDialog(null, "No tiene suficiente saldo",
+				    "SALDO INSUFICIENTE",
+				    JOptionPane.ERROR_MESSAGE);
+		}
+		else
+		{
+			if (alimentoConsumido.getNum()>0) 
+			{
+				usuario.setDinero((float) (usuario.getDinero()- alimentoConsumido.getPrecioP()));
+				clsGestor.gastadinero(usuario.getDni(), bebida);
+				
+				dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
+				clsGestor.consumoAlimento(alimento);
+			}
+			else {
+					JOptionPane.showMessageDialog(null, "No quedan más " +alimentoConsumido.getNombreP(),
 				    "ESTE PRODUCTO SE HA AGOTADO",
 				    JOptionPane.ERROR_MESSAGE);
 			}
