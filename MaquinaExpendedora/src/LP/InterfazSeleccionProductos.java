@@ -459,6 +459,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 				break;
 				
 			case ED_PASS:
+				//si cambia luego no me deja ingresar con la nueva contraseña
 				usuario.setPassword(txtpass.getText());
 				clsGestor.ModificarUsuario(usuario, dni_usuario);
 				lblpass.setText("Contraseña: "+usuario.getPassword());
