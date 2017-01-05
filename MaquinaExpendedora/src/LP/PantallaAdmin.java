@@ -295,10 +295,10 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     		
 		//AGUA
 			 lblAgua= new JLabel ("Agua");
-			 lblAgua.setBounds(0,350,80,100);
+			 lblAgua.setBounds(10,350,70,100);
 	    		 ImageIcon icono4 = new ImageIcon(getClass().getResource("/img/agua.jpg"));
 				 Image imagen4 = icono4.getImage();
-				 ImageIcon iconoEsc4 = new ImageIcon (imagen4.getScaledInstance(80,100,Image.SCALE_SMOOTH));
+				 ImageIcon iconoEsc4 = new ImageIcon (imagen4.getScaledInstance(70,100,Image.SCALE_SMOOTH));
 				 lblAgua.setIcon(iconoEsc4);
 	    		 
 				 areaAgua = new JTextArea();
@@ -475,6 +475,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 
 			    rdbBebidas = new JRadioButton("Bebidas");
 				rdbBebidas.setBounds(138, 7, 80, 30);
+				rdbBebidas.setSelected(true);
 				contentPane.add(rdbBebidas);
 				
 				rdbAlimentos = new JRadioButton("Alimentos");
