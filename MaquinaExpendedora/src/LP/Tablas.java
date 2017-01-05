@@ -486,6 +486,7 @@ public class Tablas extends JFrame implements ActionListener
 			
 			rdbUser = new JRadioButton("Tabla Usuarios");
 			rdbUser.setBounds(138, 300, 100, 30);
+			rdbUser.setSelected(true);
 			contentPane.add(rdbUser);
 				
 			rdbBebidas = new JRadioButton("Tabla Bebidas");
