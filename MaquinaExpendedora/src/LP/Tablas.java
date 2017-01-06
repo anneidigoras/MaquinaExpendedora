@@ -13,13 +13,17 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -45,13 +49,14 @@ import LP.TablasUsuarios.TablaUsuariosModel;
 import LN.clsAlimento;
 import LN.clsBebida;
 import LN.clsGestor;
+import LN.clsMensaje;
 
 
 
-public class Tablas extends JFrame 
+public class Tablas extends JFrame implements ActionListener
 {
-   private JRadioButton rdbUser, rdbBebidas;
-   private static boolean visibilidad;
+
+   private JButton salir, correoUsuarios, correoBebidas, correoAlimentos, correoCompras;
    static LinkedList<clsBebida> Bebidas;	
    private static JTable jtBebidas,jtAlimentos,jtUsuarios;		
    private JScrollPane jspBebidas,jspAlimentos,jspUsuarios;
@@ -65,8 +70,11 @@ public class Tablas extends JFrame
    private DefaultTableModel modelo;
 	ConexionSql con = null;
 	
-	static final String USUARIO= "Tabla Usuarios";
-	static final String BEBIDAS ="Tabla Bebidas";
+	static final String SALIR= "Salir";
+	static final String CORREOU= "Correo Usuarios";
+	static final String CORREOB= "Correo Bebidas";
+	static final String CORREOA= "Correo Alimentos";
+
 	
 	
 
@@ -568,32 +576,75 @@ public class Tablas extends JFrame
 			//visibilidad=false;
 		
 			contentPane= new JPanel();
-			labelPanel= new JPanel(new GridLayout());
-			tablaPanel= new JPanel(new GridLayout());
-			
+			contentPane.setBounds(0,0,1000,1000);
+			labelPanel= new JPanel();//new GridLayout());
+			tablaPanel= new JPanel();//new GridLayout());
+			JPanel panelU= new JPanel();
+			panelU.setBounds(0, 0,200,200);
+			JPanel panelB= new JPanel();
+			panelB.setBounds(220, 0,200,200);
+			JPanel panelA= new JPanel();
+			panelB.setBounds(440, 0,200,200);
 			this.setResizable(true);
+		    
 			
 			
-			contentPane.setLayout(new BorderLayout());
+			contentPane.setLayout(null);//new BorderLayout());
 		
-		
-			labelPanel.setLayout(new BorderLayout());
-			tablaPanel.setLayout(new BorderLayout());			
+		    labelPanel.setBounds(0,0,300,50);
+			//labelPanel.setLayout(new BorderLayout());
+		    tablaPanel.setBounds(0,100,1000,1000);
+			//tablaPanel.setLayout(new BorderLayout());			
 			
 	        jspBebidas=new JScrollPane(jtBebidas); jspAlimentos= new JScrollPane(jtAlimentos);
 		    jlBebidas=new JLabel("Listado de Bebidas");
 			labelPanel.add(jlBebidas); //labelPanel.add(jlAlimentos);
-			tablaPanel.add(jspBebidas,BorderLayout.CENTER); tablaPanel.add(jspAlimentos,BorderLayout.PAGE_END);
+			panelB.add(jspBebidas);//,BorderLayout.CENTER); 
+			panelA.add(jspAlimentos);//,BorderLayout.PAGE_END);
 			
 			jspUsuarios=new JScrollPane(jtUsuarios);
 		    jlUsuarios=new JLabel("Listado de Usuarios");
-			labelPanel.add(jlUsuarios,BorderLayout.NORTH);
-			tablaPanel.add(jspUsuarios,BorderLayout.NORTH);
+			labelPanel.add(jlUsuarios);//),BorderLayout.NORTH);
+			panelU.add(jspUsuarios);//BorderLayout.NORTH);
+			tablaPanel.add(panelU); tablaPanel.add(panelB);tablaPanel.add(panelA);
 			
-			contentPane.add(labelPanel,BorderLayout.NORTH);
-			contentPane.add(tablaPanel,BorderLayout.CENTER);
+			contentPane.add(labelPanel);//,BorderLayout.NORTH);
+			contentPane.add(tablaPanel);//,BorderLayout.CENTER);
 			
+			salir= new JButton();
+			salir.setBounds(300,10,20,10);
+			salir.setText("Volver");
+			labelPanel.add(salir);
+			salir.setActionCommand(SALIR);
+			salir.addActionListener((ActionListener) this);
 			
+			correoUsuarios = new JButton ();
+	       	correoUsuarios.setBounds(800, 20, 40, 30);
+	       	Image img3= null;
+	       		
+	       		try {
+	       			img3 = ImageIO.read(getClass().getResource("/img/correo.jpg"));
+	       		} catch (IOException e) {
+	       			e.printStackTrace();
+	       		}
+	       	correoUsuarios.setIcon(new ImageIcon(img3));
+	        correoUsuarios.setActionCommand(CORREOU);
+	       	correoUsuarios.addActionListener((ActionListener)this);
+	       	
+	       	correoBebidas = new JButton ();
+	       	correoBebidas.setBounds(800, 70, 40, 30);
+	        correoBebidas.setIcon(new ImageIcon(img3));
+	        correoBebidas.setActionCommand(CORREOB);
+	       	correoBebidas.addActionListener((ActionListener)this);
+	       	
+	       	correoAlimentos = new JButton ();
+	       	correoAlimentos.setBounds(800, 130, 40, 30);
+	        correoAlimentos.setIcon(new ImageIcon(img3));
+	        correoAlimentos.setActionCommand(CORREOA);
+	       	correoAlimentos.addActionListener((ActionListener)this);
+	       	
+	       	tablaPanel.add(correoAlimentos);tablaPanel.add(correoBebidas);tablaPanel.add(correoUsuarios);
+	  
 //			rdbUser = new JRadioButton("Tabla Usuarios");
 //			rdbUser.setBounds(138, 300, 100, 30);
 //			rdbUser.setSelected(true);
@@ -614,9 +665,7 @@ public class Tablas extends JFrame
 //		   rdbBebidas.addActionListener((ActionListener)this);
 //	       rdbUser.addActionListener((ActionListener)this);
 //	       
-//	     //  if(visibilidad==false){contentPane.add(panelUsuario);}
-//	       if(visibilidad==false){contentPane.add(panelBebida);}
-//	       
+	       
 		 					
 			
 			
@@ -629,6 +678,34 @@ public class Tablas extends JFrame
 			
 			
 		}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) 
+	{
+		String comando=e.getActionCommand();
+	
+		switch(comando)
+		{
+		
+		case CORREOU:
+			clsMensaje.correoU();
+			break;
+			
+		case CORREOA:
+			clsMensaje.correoA();
+			break;
+			
+		case CORREOB:
+			clsMensaje.correoB();
+			break;
+		case SALIR:
+			this.dispose();
+			
+			break;}
+		
+		
+	}
     
 	
 	
