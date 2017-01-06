@@ -20,6 +20,9 @@ import LN.clsUsuario;
 
 public class ReponerSaldo extends JFrame implements ActionListener
 {
+	String comando_actual;
+	String comando_anterior;
+	static clsUsuario usuario = new clsUsuario (); 
 	private JTextArea txtIntro;
 	private JLabel lblSaldo;
 	private JPanel contentPane;
@@ -31,8 +34,9 @@ public class ReponerSaldo extends JFrame implements ActionListener
 	static final String QUINCE= "15";
 	static final String VEINTE= "20";
 	
-	public ReponerSaldo()
+	public ReponerSaldo(clsUsuario usuario_actual)
 	{
+		this.usuario= usuario_actual;
 		
 		setTitle("Reponer Saldo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -98,9 +102,13 @@ public class ReponerSaldo extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		this.txtIntro.setText(""); 
+		comando_anterior = comando_actual;
+        comando_actual = e.getActionCommand();
 		
-		switch(e.getActionCommand())
+		
+		switch(comando_actual)
 		{
+		
 		
 		case ACEPTAR:
 			System.out.println("Ha pulsado aceptar");
@@ -155,29 +163,34 @@ public class ReponerSaldo extends JFrame implements ActionListener
 	
 	public void Aceptar()
 	{
-		JOptionPane.showConfirmDialog(null, "¿Seguro que quiere reponer el saldo?","Confirmar ", JOptionPane.OK_CANCEL_OPTION);
-	    clsUsuario usuario = new clsUsuario (); 
-		if (txtIntro.equals(5))
+		JOptionPane.showConfirmDialog(null, "¿Seguro que quiere reponer el saldo?","Carga de  "+comando_anterior, JOptionPane.OK_CANCEL_OPTION);
+		if (comando_anterior.equals(CINCO))
 		{
 			
 			usuario.setDinero(usuario.getDinero()+5);
-		
+			clsGestor.ModificarUsuario(usuario, usuario.getDni());
 			
 		}
-		if (txtIntro.equals(10))
+		if (txtIntro.equals("10 €"))
 		{
 			
 			usuario.setDinero(usuario.getDinero()+10);
+			clsGestor.ModificarUsuario(usuario, usuario.getDni());
+
 		}
-		if (txtIntro.equals(15))
+		if (txtIntro.equals("15 €"))
 		{
 			
 			usuario.setDinero(usuario.getDinero()+15);
+			clsGestor.ModificarUsuario(usuario, usuario.getDni());
+
 		}
-		if (txtIntro.equals(20))
+		if (txtIntro.equals("20 €"))
 		{
 			
 			usuario.setDinero(usuario.getDinero()+20);
+			clsGestor.ModificarUsuario(usuario, usuario.getDni());
+
 		}
 		
 		

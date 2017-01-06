@@ -73,7 +73,7 @@ public class Tablas extends JFrame
 	public Tablas()
 	{
 	
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		listarDatos();
 		
@@ -620,7 +620,7 @@ public class Tablas extends JFrame
 		 					
 			
 			
-			setDefaultCloseOperation(EXIT_ON_CLOSE);
+			
 			this.setSize(1000,400);
 			this.setVisible(true);
 			this.setContentPane(contentPane);

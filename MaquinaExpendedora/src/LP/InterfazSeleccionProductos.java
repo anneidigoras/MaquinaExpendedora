@@ -424,8 +424,10 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 			     break;
 			 
 			case REPONER:
-				ReponerSaldo frame= new ReponerSaldo();
+				ReponerSaldo frame= new ReponerSaldo(usuario);
 				frame.setVisible(true);
+//				this.setVisible(false); 
+//				new InterfazSeleccionProductos(dni_usuario).setVisible(true);
 				break;
 				
 			case ED_DNI:
