@@ -108,12 +108,12 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		MenuPrincipal.setBackground(new Color(51, 102, 153));
 		this.setJMenuBar(MenuPrincipal);
 		
-		DatosUsuarios = new JMenu("Datos Usuarios");
+		DatosUsuarios = new JMenu("Datos");
 		DatosUsuarios.setForeground(Color.WHITE);
 		MenuPrincipal.add(DatosUsuarios);
 		
 		
-	    ListadoUsuarios = new JMenuItem("Listado Usuarios");
+	    ListadoUsuarios = new JMenuItem("Listados");
 		ListadoUsuarios.setActionCommand(LISTA);
 		ListadoUsuarios.addActionListener((ActionListener)this);
 		DatosUsuarios.add(ListadoUsuarios);
@@ -677,7 +677,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		case CORREO:
 			if(clsAdministrador.Correo.isEmpty())
 			clsAdministrador.Correo = JOptionPane.showInputDialog("Introduzca su correo electrónico (con la forma ...@example.com)");
-			clsMensaje.correo();
+			clsMensaje.correoU();
 			break;
 
 		case LISTA:
