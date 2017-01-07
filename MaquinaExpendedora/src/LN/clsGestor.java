@@ -105,24 +105,11 @@ public class clsGestor
 
 			guardarAlimentos(listaA);
 		}
+		ConexionSql con= new ConexionSql();
+		con.anyadirProductos("CocaCola", (float) 1.2, "CC", 5);
 	}
 	
-//	public static void crearAlimentos()
-//	{
-//		LinkedList<clsAlimento> listaA; 
-//	
-//	
-//	listaA=new LinkedList<clsAlimento>();
-//	listaA = AlimentosGuardados ();
-//	if (listaA.isEmpty())
-//	{
-//		
-//		listaA.add(new clsAlimento ("Snickers", (float) 0.8, clsConstantes.ID_SNICKERS, 125, clsConstantes.NUM_INICIAL_PRODUCTOS));
-//		listaA.add(new clsAlimento("KitKat",clsConstantes.PRECIO_KITKAT,clsConstantes.ID_KITKAT,125,clsConstantes.NUM_INICIAL_PRODUCTOS));
-//		listaA.add(new clsAlimento("Oreo",clsConstantes.PRECIO_OREO,clsConstantes.ID_OREO,150,clsConstantes.NUM_INICIAL_PRODUCTOS));
-//
-//		guardarAlimentos(listaA);
-//	}}
+
 	public static void guardarAlimentos (LinkedList <clsAlimento> listaAlim)
 	{
 		clsDatos objD=new clsDatos();
@@ -351,14 +338,14 @@ public class clsGestor
     	CrearListaUsuario(lista_actual);
     	
     }
-public static void crearAdquisicionBebida(String id_producto, String dni_user)
+    public static void crearAdquisicion(String id_producto, String dni_user)
 {
 	ArrayList<clsAdquisicion> adquisicion= new ArrayList<clsAdquisicion>();
 	HashSet<clsAdquisicion> setadquisicion= new HashSet<clsAdquisicion>();
 	clsDatos objDatos= new clsDatos();
 	clsAdquisicion objadquisicion= new clsAdquisicion();
 	
-	adquisicion=leeradquisicionBebida();
+	adquisicion=leerAdquisicion();
 	setadquisicion.addAll(adquisicion);
 	
 	objadquisicion.setId_producto(id_producto);objadquisicion.setDni_usuario(dni_user);
@@ -377,7 +364,7 @@ public static void crearAdquisicionBebida(String id_producto, String dni_user)
 	}
 	else
 	{
-		objDatos.ComenzarSave(enFicheros.RELACIONUSUARIO_PRODUCTO);
+		objDatos.ComenzarSave(enFicheros.RELACIONUSUARIO_BEBIDA);
 		objDatos.Save((Serializable) objadquisicion);
 		objDatos.TerminarSave();
 		
@@ -385,7 +372,7 @@ public static void crearAdquisicionBebida(String id_producto, String dni_user)
 	}
 
 }
-public static ArrayList<clsAdquisicion> leeradquisicionBebida()
+public static ArrayList<clsAdquisicion> leerAdquisicion()
 {
 	ArrayList<Serializable>serializable= new ArrayList<Serializable>();
 	ArrayList<clsAdquisicion> adquisicion= new ArrayList<clsAdquisicion>();
@@ -393,7 +380,8 @@ public static ArrayList<clsAdquisicion> leeradquisicionBebida()
 	
 	try
     {
-		objDatos.ComenzarRead(enFicheros.RELACIONUSUARIO_PRODUCTO);
+		objDatos.ComenzarRead(enFicheros.RELACIONUSUARIO_BEBIDA);
+		objDatos.ComenzarRead(enFicheros.RELACIONUSUARIO_ALIMENTO);
 	}
 	catch (IOException e)
 	{

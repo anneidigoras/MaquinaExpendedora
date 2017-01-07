@@ -414,14 +414,13 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 				break;
 				
 			case SALIR:
-				 int salir;
+				int salir;
+
 				 salir= JOptionPane.showConfirmDialog(null, "¿Seguro que quiere cerrar la sesion?","Confirmar ", JOptionPane.OK_CANCEL_OPTION);
 				 if(salir==0)
-				 {
-				   this.dispose();
+					 {this.dispose();
 				   VentanaPrincipal frame = new VentanaPrincipal("");
-				   frame.setVisible(true);				   
-				 }
+				   frame.setVisible(true);}
 			     break;
 			 
 			case REPONER:
@@ -498,6 +497,13 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		LinkedList<clsAlimento>listaAlimentos= new LinkedList<clsAlimento>();
 		listaAlimentos=clsGestor.AlimentosGuardados();
 		
+		ArrayList<clsAdquisicion> listaAdq= new ArrayList<clsAdquisicion>();
+		for(clsAdquisicion aux:listaAdq)
+		{
+				
+		clsGestor.crearAdquisicion(aux.getId_producto(),aux.getDni_usuario() );	
+		}
+		
 		for (clsBebida aux: listaBebidas)
 		{
 			if(aux.getId().equals(consumicion)) bebidaconsumida = aux;
@@ -560,11 +566,6 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		
 		}
 		
-	ArrayList<clsAdquisicion> listaAdq= new ArrayList<clsAdquisicion>();
-	for(clsAdquisicion aux:listaAdq)
-	{
-			
-	clsGestor.crearAdquisicionBebida(aux.getId_producto(),aux.getDni_usuario() );	
-	}}
+	
 
-	}
+	}	}

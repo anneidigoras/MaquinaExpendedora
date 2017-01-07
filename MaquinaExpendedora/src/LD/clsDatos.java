@@ -28,6 +28,7 @@ public class clsDatos
 	private final String fic_admin= "src\\Ficheros\\Admin.dat";
 	private final String fic_bebidas= "src\\Ficheros\\Bebidas.dat";
 	private final String fic_alimentos= "src\\Ficheros\\Alimentos.dat";
+	private final String fic_adquisicion= "src\\Ficheros\\Adiquisicion.dat";
 
 	
 	ObjectOutputStream oos;
@@ -51,6 +52,12 @@ public class clsDatos
 			
 		case ALIMENTOS:
 			return fic_alimentos;
+			
+		case RELACIONUSUARIO_BEBIDA:
+			return fic_adquisicion;
+			
+		case RELACIONUSUARIO_ALIMENTO:
+			return fic_adquisicion;
 		
 		
 	

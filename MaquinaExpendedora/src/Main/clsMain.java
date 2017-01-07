@@ -3,7 +3,7 @@ package Main;
 import javax.swing.ImageIcon;
 
 import LN.clsGestor;
-import LP.TablasUsuarios;
+
 import LP.VentanaPrincipal;
 
 

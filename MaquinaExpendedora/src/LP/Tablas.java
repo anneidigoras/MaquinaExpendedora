@@ -45,7 +45,7 @@ import javax.swing.table.TableRowSorter;
 import LD.ConexionSql;
 import LN.clsProducto;
 import LN.clsUsuario;
-import LP.TablasUsuarios.TablaUsuariosModel;
+import LN.clsAdquisicion;
 import LN.clsAlimento;
 import LN.clsBebida;
 import LN.clsGestor;
@@ -57,14 +57,15 @@ public class Tablas extends JFrame implements ActionListener
 {
 
    private JButton salir, correoUsuarios, correoBebidas, correoAlimentos, correoCompras;
-   static LinkedList<clsBebida> Bebidas;	
-   private static JTable jtBebidas,jtAlimentos,jtUsuarios;		
-   private JScrollPane jspBebidas,jspAlimentos,jspUsuarios;
-   private JLabel 	jlBebidas,jlAlimentos,jlUsuarios;
+   private static JTable jtBebidas,jtAlimentos,jtUsuarios, jtCompras;		
+   private JScrollPane jspBebidas,jspAlimentos,jspUsuarios,jspCompras;
+   private JLabel 	jlBebidas,jlAlimentos,jlUsuarios,jlCompras;
 	
    static ArrayList<clsUsuario> Usuarios;	
    static LinkedList<clsAlimento>Alimentos;
-  	
+   static ArrayList<clsAdquisicion> Compras;
+   static LinkedList<clsBebida> Bebidas;	
+   
    private JPanel	contentPane, labelPanel, tablaPanel;
    clsGestor objGestor= new clsGestor(null);	
    private DefaultTableModel modelo;
@@ -96,8 +97,131 @@ public class Tablas extends JFrame implements ActionListener
 		Bebidas=clsGestor.BebidasGuardadas();
 		Usuarios=clsGestor.leerUsuario();
 		Alimentos= clsGestor.AlimentosGuardados();
+		Compras= clsGestor.leerAdquisicion();
 	}		
 	
+//	public void actualizarTablaCompras()
+//	{
+//		Compras= clsGestor.leerAdquisicion();
+//		
+//		TablaComprasModel tam=(TablaComprasModel)jtCompras.getModel();
+//		tam.setData(Compras);
+//		tam.fireTableDataChanged();
+//	}
+	
+//	class TablaComprasModel extends AbstractTableModel
+//    {
+//		private static final long serialVersionUID = 1L;
+//		
+//		
+//		private String[] columnNames = {"Id producto","Dni"};
+//        Object[][] data;
+//        
+//        public TablaComprasModel(ArrayList<clsAdquisicion> compras)
+//        {
+//        	
+//        	super();
+//        	
+//    		int filas = compras.size();
+//    		int cont;
+//    		data=new Object[filas][];
+//    		cont=0;
+//    		
+//    		
+//    		//Nos recorremos el map para cargar la variable data[][]
+//    		for (clsAdquisicion aux : compras)
+//    		{
+//    		   
+//    			Object[]a={
+//    					new String(aux.getDni_usuario()), new String (aux.getId_producto())
+//    					
+//    				
+//    					   };
+//    			data[cont]=a;
+//    			cont++;
+//    		}
+//    		
+//        	
+//        }
+//        
+//        public void setData(ArrayList<clsAdquisicion> compras) 
+//        {
+//        	int filas = compras.size();
+//    		int cont;
+//    		data=new Object[filas][];
+//    		cont=0;
+//    		
+//    		
+//    		
+//    		for (clsAdquisicion aux : compras)
+//    		{
+//    		   
+//    		Object[]a={
+//    				
+//    				new String(aux.getDni_usuario()), new String (aux.getId_producto())
+// 					
+// 					   };
+//    				
+//    			data[cont]=a;
+//    			cont++;
+//    		}
+//        }
+//        
+//       public int getColumnCount() 
+//        {
+//            return columnNames.length;
+//        }
+//
+//        public int getRowCount() {
+//            return data.length;
+//        }
+//
+//        public String getColumnName(int col) 
+//        {
+//        	
+//            return columnNames[col];
+//        }
+//
+//        public Object getValueAt(int row, int col) 
+//        {
+//            return data[row][col];
+//        }
+//
+//        /*
+//         * JTable uses this method to determine the default renderer/
+//         * editor for each cell.  If we didn't implement this method,
+//         * then the last column would contain text ("true"/"false"),
+//         * rather than a check box.
+//         */
+//        @SuppressWarnings("unchecked")
+//		public Class getColumnClass(int c) 
+//        {
+//            return getValueAt(0, c).getClass();
+//        }
+//
+//        /*
+//         * Don't need to implement this method unless your table's
+//         * editable.
+//         */
+//        public boolean isCellEditable(int row, int col) {
+//           
+//                return false;
+//           
+//        }
+//
+//        /*
+//         * Don't need to implement this method unless your table's
+//         * data can change.
+//         */
+//        public void setValueAt(Object value, int row, int col) 
+//        {
+//            
+//            data[row][col] = value;
+//            fireTableCellUpdated(row, col);
+//
+//        }
+//
+//    }
 	public void actualizarTablaBebidas()
 	{
 		Bebidas= clsGestor.BebidasGuardadas();
@@ -220,7 +344,6 @@ public class Tablas extends JFrame implements ActionListener
         }
 
     }
-	
 	class TablaAlimentosModel extends AbstractTableModel
     {
 		private static final long serialVersionUID = 1L;
@@ -337,24 +460,7 @@ public class Tablas extends JFrame implements ActionListener
 	
 
 
-	protected void mostrarPanel()
-	{
-//		if (visibilidad==false)
-//		{
-//			
-//			panelUsuario.setVisible(true);
-//			panelBebida.setVisible(false);
-//			System.out.println("Estoy en usuarios");
-//		}
-//		if (visibilidad==true)
-//		{
-//			
-//			panelUsuario.setVisible(false);
-//			panelBebida.setVisible(true);
-//			System.out.println("Estoy en alimentos");
-//			
-//		}
-	}
+
 	
 	
 
@@ -393,6 +499,17 @@ public class Tablas extends JFrame implements ActionListener
 		jtAlimentos.setEnabled(true);
 		jtAlimentos.setRowSelectionAllowed(true);
 		tam3.fireTableDataChanged();
+		
+        jtCompras=null;		
+		
+//        TablaComprasModel tam4=new TablaComprasModel(Compras);
+//	
+//		jtCompras = new JTable(tam4);
+//		jtCompras.setPreferredScrollableViewportSize(new Dimension(500, 200));
+//		jtCompras.setFillsViewportHeight(true);
+//		jtCompras.setEnabled(true);
+//		jtCompras.setRowSelectionAllowed(true);
+//		tam4.fireTableDataChanged();
 		ordenacion();
 				
 	}
@@ -564,10 +681,24 @@ public class Tablas extends JFrame implements ActionListener
 	    	sortKey3.add(new RowSorter.SortKey(colSort5, SortOrder.ASCENDING));
 	    	sortKey3.add(new RowSorter.SortKey(colSort6, SortOrder.ASCENDING));
 	    	
-	    	sorter3.setSortKeys(sortKey2);
+	    	sorter3.setSortKeys(sortKey3);
 	    	sorter3.sort();
+	    	
+//	    	TableRowSorter<TablaComprasModel>sorter4= new TableRowSorter(jtCompras.getModel());
+//	    	jtCompras.setRowSorter(sorter4);
+//	    	ArrayList<RowSorter.SortKey> sortKey4=new ArrayList<>();
+//	    	
+//	    	int colSort7=0;
+//	    	int colSort8=1;
+//	    	sortKey4.add(new RowSorter.SortKey(colSort7, SortOrder.ASCENDING));
+//	    	sortKey4.add(new RowSorter.SortKey(colSort8, SortOrder.ASCENDING));
+//	    	
+//	    	sorter4.setSortKeys(sortKey4);
+//	    	sorter4.sort();
 	   }
 	
+	 
+	 
 
 	 private void CreateShowGUI()
 		{
@@ -585,6 +716,8 @@ public class Tablas extends JFrame implements ActionListener
 			panelB.setBounds(220, 0,200,200);
 			JPanel panelA= new JPanel();
 			panelB.setBounds(440, 0,200,200);
+			JPanel panelC= new JPanel();
+			panelC.setBounds(660, 0,200,200);
 			this.setResizable(true);
 		    
 			

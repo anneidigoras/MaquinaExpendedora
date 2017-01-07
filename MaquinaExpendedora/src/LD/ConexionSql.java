@@ -65,24 +65,31 @@ public class ConexionSql
 				String sentencia2="insert into registro values('"+nombre+" , '"+ape+"')";
 				st.executeUpdate(sentencia2);
 				
+				String sentencia3="insert into compras values('"+dni+" )";
+				st.executeUpdate(sentencia3);
 				
 				
 				JOptionPane.showMessageDialog(null, "¡Usuario añadido correctamente!");	
 			
-			} catch (Exception e) {
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
 		
 	
 	}
-	public void añadirProductos(String nombre,float precio, String id,int num)
+	public void anyadirProductos(String nombre,float precio, String id,int num)
 	{
 		try {
 			
 			
 			String sentencia="insert into producto values('"+nombre+"', '"+precio+"', '"+id+"', '"+num+"')";
-			//st.executeUpdate(sentencia);
+			st.executeUpdate(sentencia);
+			
+			String sentencia2="insert into compras values('"+id+"')";
+			st.executeUpdate(sentencia2);
+			
+			
 			
 			JOptionPane.showMessageDialog(null, "¡Producto añadido correctamente!");	
 		
@@ -90,6 +97,64 @@ public class ConexionSql
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
+	}
+	
+	public void eliminarUsuario(JTable table, int fila, int columna,int columna2)
+	{
+		String usuario=table.getValueAt(fila, columna).toString();
+		columna=0;
+		columna2=6;
+		try {
+			
+			String eliminado=usuario;
+			
+			String sentencia="delete from usuario where num_u='"+table.getValueAt(fila,columna)+"'";
+			st.executeUpdate(sentencia);			
+			
+			String sentencia2="delete from compras where num_j= '"+eliminado+"'";
+			st.executeUpdate(sentencia2);
+			
+			
+			
+
+			
+			
+	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void mostrarUsuario(JTextField txtNombre,JTextField txtApe, JTextField txtDni, JTextField txtSaldo,JTextField txtPassword, JTextField txtCompras, JTable table, int fila, int columna)
+	{
+		
+		columna=0;
+		try {
+			
+			ResultSet rs = st.executeQuery("select * from jugador where num_="+table.getValueAt(fila, 0));
+       	 while(rs.next() == true) {
+       		 
+       		 
+       		 txtNombre.setText(rs.getString("nombre_u"));
+       		 txtApe.setText( rs.getString("ape_j"));
+       		 txtDni.setText(rs.getString("dni_u"));
+       		 txtSaldo.setText(rs.getString("saldo_u"));
+
+       		 txtCompras.setText (rs.getString("compras_u"));
+       		 txtPassword.setText(rs.getString("password_u"));
+       		 
+       		
+       		 
+       		 
+       	 } 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 	}
 	
 

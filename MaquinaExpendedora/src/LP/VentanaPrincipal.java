@@ -82,7 +82,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		connection = ConexionSql.dbConnector("");
+	//	connection = ConexionSql.dbConnector("");
 		
 		contentPane = new JPanel();
         contentPane.setLayout(null);
@@ -117,32 +117,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		MenuPrincipal = new JMenuBar();
 		MenuPrincipal.setBackground(new Color(51, 102, 153));
 		this.setJMenuBar(MenuPrincipal);
-//		
-//		Cliente = new JMenu("CLIENTE");
-//		Cliente.setForeground(Color.WHITE);
-//		MenuPrincipal.add(Cliente);
-//		
-//		C_Ingresar = new JMenuItem("Ingresar");
-//		//C_Ingresar.setForeground(new Color(0, 255, 0));
-//		C_Ingresar.setActionCommand(SOY_CLIENTE);
-//		C_Ingresar.addActionListener(this);
-//		Cliente.add(C_Ingresar);
-//		
-//		C_Registrarse = new JMenuItem("Registrarse");
-//		//C_Registrarse.setForeground(new Color(200, 255, 0));
-//		C_Registrarse.setActionCommand(CREAR_CLIENTE);
-//		C_Registrarse.addActionListener(this);
-//		Cliente.add(C_Registrarse);
-    	
-//		Admin = new JMenu("ADMINISTRADOR");
-//		Admin.setForeground(Color.WHITE);
-//		MenuPrincipal.add(Admin);
-		
-//		A_Ingresar = new JMenuItem("Ingresar");
-//		//A_Ingresar.setForeground(new Color(0, 128, 0));
-//		A_Ingresar.setActionCommand(SOY_ADMIN);
-//		A_Ingresar.addActionListener(this);
-//		Admin.add(A_Ingresar);
+
 		
 		btIngresar = new JButton ();
 		btIngresar.setBounds(300, 550, 90, 90);

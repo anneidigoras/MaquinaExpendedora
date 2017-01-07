@@ -144,7 +144,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 			System.out.println("Ha pulsado aceptar");
 			btAceptar.setBackground(Color.blue);
 			Aceptar(e);
-			//anyadir();
+			anyadir();
 		
 			
 		break;

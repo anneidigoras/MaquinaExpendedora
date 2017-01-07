@@ -773,45 +773,8 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		 }
 	}
 	
-	protected void tablasUsers()
-    {
-    	
-    	TablasUsuarios tabla= new TablasUsuarios();
-    	tabla.setVisible(true);
-    	toFront();
-    	contentPane.add(tabla);
-    	
-    	try 
-    	{
-			tabla.setSelected(true);
-		}
-    	catch (PropertyVetoException e) 
-    	{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    }
-	
-	protected void tablasProductos()
-	{
-		
-		TablasProductos tabla2= new TablasProductos();
-		tabla2.setVisible(true);
-		toFront();
-    	contentPane.add(tabla2);
-    	
-    	try 
-    	{
-			tabla2.setSelected(true);
-		}
-    	catch (PropertyVetoException e) 
-    	{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-	}
+
+
 	protected void mostrarPanel()
 	{
 		if (panel==false)
