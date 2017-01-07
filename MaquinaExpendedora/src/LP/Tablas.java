@@ -41,7 +41,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-
+import COMUN.clsConstantes;
 import LD.ConexionSql;
 import LN.clsProducto;
 import LN.clsUsuario;
@@ -66,7 +66,7 @@ public class Tablas extends JFrame implements ActionListener
    static ArrayList<clsAdquisicion> Compras;
    static LinkedList<clsBebida> Bebidas;	
    
-   private JPanel	contentPane, labelPanel, tablaPanel;
+   private JPanel	contentPane, tablaPanel;
    clsGestor objGestor= new clsGestor(null);	
    private DefaultTableModel modelo;
 	ConexionSql con = null;
@@ -472,7 +472,7 @@ public class Tablas extends JFrame implements ActionListener
         TablaUsuariosModel tam=new TablaUsuariosModel(Usuarios);
 	
 		jtUsuarios = new JTable(tam);
-		jtUsuarios.setPreferredScrollableViewportSize(new Dimension(500, 200));
+		jtUsuarios.setPreferredScrollableViewportSize(new Dimension(500, 120));
 		jtUsuarios.setFillsViewportHeight(true);
 		jtUsuarios.setEnabled(true);
 		jtUsuarios.setRowSelectionAllowed(true);
@@ -483,7 +483,7 @@ public class Tablas extends JFrame implements ActionListener
         TablaBebidasModel tam2=new TablaBebidasModel(Bebidas);
 	
 		jtBebidas = new JTable(tam2);
-		jtBebidas.setPreferredScrollableViewportSize(new Dimension(500, 200));
+		jtBebidas.setPreferredScrollableViewportSize(new Dimension(500, 120));
 		jtBebidas.setFillsViewportHeight(true);
 		jtBebidas.setEnabled(true);
 		jtBebidas.setRowSelectionAllowed(true);
@@ -494,7 +494,7 @@ public class Tablas extends JFrame implements ActionListener
         TablaAlimentosModel tam3=new TablaAlimentosModel(Alimentos);
 	
 		jtAlimentos = new JTable(tam3);
-		jtAlimentos.setPreferredScrollableViewportSize(new Dimension(500, 200));
+		jtAlimentos.setPreferredScrollableViewportSize(new Dimension(500, 120));
 		jtAlimentos.setFillsViewportHeight(true);
 		jtAlimentos.setEnabled(true);
 		jtAlimentos.setRowSelectionAllowed(true);
@@ -704,107 +704,91 @@ public class Tablas extends JFrame implements ActionListener
 		{
 			crearTablas();	
 		
-			//visibilidad=false;
+			this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
 		
+			//new BorderLayout());
 			contentPane= new JPanel();
-			contentPane.setBounds(0,0,1000,1000);
-			labelPanel= new JPanel();//new GridLayout());
-			tablaPanel= new JPanel();//new GridLayout());
-			JPanel panelU= new JPanel();
-			panelU.setBounds(0, 0,200,200);
-			JPanel panelB= new JPanel();
-			panelB.setBounds(220, 0,200,200);
-			JPanel panelA= new JPanel();
-			panelB.setBounds(440, 0,200,200);
-			JPanel panelC= new JPanel();
-			panelC.setBounds(660, 0,200,200);
-			this.setResizable(true);
-		    
+			contentPane.setBounds(0,0,clsConstantes.ancho_pantalla,clsConstantes.alto_pantalla);
+			contentPane.setLayout(null);
+			//this.setResizable(true);
 			
-			
-			contentPane.setLayout(null);//new BorderLayout());
-		
-		    labelPanel.setBounds(0,0,300,50);
-			//labelPanel.setLayout(new BorderLayout());
-		    tablaPanel.setBounds(0,100,1000,1000);
-			//tablaPanel.setLayout(new BorderLayout());			
-			
-	        jspBebidas=new JScrollPane(jtBebidas); jspAlimentos= new JScrollPane(jtAlimentos);
-		    jlBebidas=new JLabel("Listado de Bebidas");
-			labelPanel.add(jlBebidas); //labelPanel.add(jlAlimentos);
-			panelB.add(jspBebidas);//,BorderLayout.CENTER); 
-			panelA.add(jspAlimentos);//,BorderLayout.PAGE_END);
-			
-			jspUsuarios=new JScrollPane(jtUsuarios);
-		    jlUsuarios=new JLabel("Listado de Usuarios");
-			labelPanel.add(jlUsuarios);//),BorderLayout.NORTH);
-			panelU.add(jspUsuarios);//BorderLayout.NORTH);
-			tablaPanel.add(panelU); tablaPanel.add(panelB);tablaPanel.add(panelA);
-			
-			contentPane.add(labelPanel);//,BorderLayout.NORTH);
-			contentPane.add(tablaPanel);//,BorderLayout.CENTER);
-			
+		  
 			salir= new JButton();
-			salir.setBounds(300,10,20,10);
+			salir.setBounds(contentPane.getWidth()-120,10,100,30);
 			salir.setText("Volver");
-			labelPanel.add(salir);
 			salir.setActionCommand(SALIR);
 			salir.addActionListener((ActionListener) this);
+			contentPane.add(salir);
 			
+
+		
+			
+			tablaPanel= new JPanel();//new GridLayout());
+		    tablaPanel.setBounds(0,0,contentPane.getWidth(),contentPane.getHeight());
+		    tablaPanel.setLayout(null);
+			//tablaPanel.setLayout(new BorderLayout());			
+		    
+		    jlUsuarios=new JLabel("Listado de Usuarios");
+		    jlUsuarios.setBounds(tablaPanel.getWidth()/3, 0,200,20);
+		    tablaPanel.add(jlUsuarios);//),BorderLayout.NORTH);
+		    
+			JPanel panelU= new JPanel();
+			panelU.setBounds(50,30,600,170);
+			jspUsuarios=new JScrollPane(jtUsuarios);
+			panelU.add(jspUsuarios);//BorderLayout.NORTH);
+			
+			jlBebidas=new JLabel("Listado de Bebidas");
+			jlBebidas.setBounds(tablaPanel.getWidth()/3,220,200,20);
+			tablaPanel.add(jlBebidas); //labelPanel.add(jlAlimentos);
+			
+			JPanel panelB= new JPanel();
+			jspBebidas=new JScrollPane(jtBebidas);
+			panelB.setBounds(50,250,600,170);
+			panelB.add(jspBebidas);//,BorderLayout.CENTER); 
+			
+			jlUsuarios=new JLabel("Listado de Usuarios");
+			jlUsuarios.setBounds(tablaPanel.getWidth()/3, 430, 200, 20);
+			tablaPanel.add(jlUsuarios);//),BorderLayout.NORTH);
+			
+			JPanel panelA= new JPanel();
+			panelA.setBounds(50, 480,600,170);
+	        jspAlimentos= new JScrollPane(jtAlimentos);
+			panelA.add(jspAlimentos);//,BorderLayout.PAGE_END);
+			
+			
+			tablaPanel.add(panelU);
+			tablaPanel.add(panelB);
+			tablaPanel.add(panelA);
+			
+			contentPane.add(tablaPanel);//,BorderLayout.CENTER);
+			
+       		
+       		ImageIcon correo = new ImageIcon(getClass().getResource("/img/correo.jpg"));
+    		Image imagencorreo = correo.getImage();
+    		ImageIcon correoEsc = new ImageIcon (imagencorreo.getScaledInstance(120,100,Image.SCALE_SMOOTH));
+       		
 			correoUsuarios = new JButton ();
-	       	correoUsuarios.setBounds(800, 20, 40, 30);
-	       	Image img3= null;
-	       		
-	       		try {
-	       			img3 = ImageIO.read(getClass().getResource("/img/correo.jpg"));
-	       		} catch (IOException e) {
-	       			e.printStackTrace();
-	       		}
-	       	correoUsuarios.setIcon(new ImageIcon(img3));
+	       	correoUsuarios.setBounds(800, 50, 120, 100);
+	       	correoUsuarios.setIcon(correoEsc);
 	        correoUsuarios.setActionCommand(CORREOU);
 	       	correoUsuarios.addActionListener((ActionListener)this);
 	       	
 	       	correoBebidas = new JButton ();
-	       	correoBebidas.setBounds(800, 70, 40, 30);
-	        correoBebidas.setIcon(new ImageIcon(img3));
+	       	correoBebidas.setBounds(800, 270, 120, 100);
+	        correoBebidas.setIcon(correoEsc);
 	        correoBebidas.setActionCommand(CORREOB);
 	       	correoBebidas.addActionListener((ActionListener)this);
 	       	
 	       	correoAlimentos = new JButton ();
-	       	correoAlimentos.setBounds(800, 130, 40, 30);
-	        correoAlimentos.setIcon(new ImageIcon(img3));
+	       	correoAlimentos.setBounds(800, 500, 120, 100);
+	        correoAlimentos.setIcon(correoEsc);
 	        correoAlimentos.setActionCommand(CORREOA);
 	       	correoAlimentos.addActionListener((ActionListener)this);
 	       	
 	       	tablaPanel.add(correoAlimentos);tablaPanel.add(correoBebidas);tablaPanel.add(correoUsuarios);
 	  
-//			rdbUser = new JRadioButton("Tabla Usuarios");
-//			rdbUser.setBounds(138, 300, 100, 30);
-//			rdbUser.setSelected(true);
-//			contentPane.add(rdbUser);
-//				
-//			rdbBebidas = new JRadioButton("Tabla Bebidas");
-//			rdbBebidas.setBounds(240, 300, 109, 30);
-//			contentPane.add(rdbBebidas);
-//			
-//			rdbBebidas.setActionCommand(BEBIDAS);
-//			rdbUser.setActionCommand(USUARIO);
-//				
-//				//Group the radio buttons.
-//			ButtonGroup group = new ButtonGroup();
-//			group.add(rdbBebidas);
-//			    group.add(rdbUser);
-//			    
-//		   rdbBebidas.addActionListener((ActionListener)this);
-//	       rdbUser.addActionListener((ActionListener)this);
-//	       
-	       
-		 					
-			
-			
-			
-			this.setSize(1000,400);
-			this.setVisible(true);
+			//this.setSize(1000,400);
+			//this.setVisible(true);
 			this.setContentPane(contentPane);
 			
 		
