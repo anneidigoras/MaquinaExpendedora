@@ -6,6 +6,8 @@ public class clsConstantes
 	
 	public static final float DINERO_INICIAL = 10;
 	
+	public final static int ancho_pantalla =java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
+	public final static int alto_pantalla =java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
 	
 	public enum enFicheros 
 	{		

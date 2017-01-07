@@ -34,7 +34,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-
+import COMUN.clsConstantes;
 import LD.ConexionSql;
 import LN.clsGestor;
 import LN.clsUsuario;
@@ -79,17 +79,15 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
     {
    
     	this.setTitle(title);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	//	connection = ConexionSql.dbConnector("");
 		
-		int ancho_pantalla =java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
-		int alto_pantalla =java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
+		
 		contentPane = new JPanel();
         contentPane.setLayout(null);
 		contentPane.setBackground(new Color(204, 204, 255));		
-		contentPane.setBounds(0,0,ancho_pantalla,alto_pantalla);
+		contentPane.setBounds(0,0,clsConstantes.ancho_pantalla,clsConstantes.alto_pantalla);
 		
 		bienv = new JLabel ("¡BIENVENIDO!");
 		bienv.setFont(new Font("Algerian", Font.BOLD, 45));
@@ -104,7 +102,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		Image imagen = icono.getImage();
 		ImageIcon iconoEscalado = new ImageIcon (imagen.getScaledInstance(350,600,Image.SCALE_SMOOTH));
         imagenlbl = new JLabel (iconoEscalado);
-        imagenlbl.setBounds(contentPane.getWidth()/3  ,alto_pantalla /7,500,600);
+        imagenlbl.setBounds(contentPane.getWidth()/3  ,contentPane.getHeight() /7,500,600);
         
         
         btUsuario = new JButton ();
