@@ -154,25 +154,25 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     	contentPane.setLayout(null);
         	    
       	   
-    	correo = new JButton ();
-       	correo.setBounds(0, 14, 100, 60);
-       	Image img3= null;
-       		
-       		try {
-       			img3 = ImageIO.read(getClass().getResource("/img/correo.jpg"));
-       		} catch (IOException e) {
-       			e.printStackTrace();
-       		}
-       	correo.setIcon(new ImageIcon(img3));
-        correo.setActionCommand(CORREO);
-       	correo.addActionListener((ActionListener)this);
-      	   
-      	panel1 = new JPanel();
-      	panel1.setBounds(10, 50, 300, 128);
-      	panel1.setLayout(null);
-      	panel1.add(correo);
- 
-    	contentPane.add(panel1);
+//    	correo = new JButton ();
+//       	correo.setBounds(0, 14, 100, 60);
+//       	Image img3= null;
+//       		
+//       		try {
+//       			img3 = ImageIO.read(getClass().getResource("/img/correo.jpg"));
+//       		} catch (IOException e) {
+//       			e.printStackTrace();
+//       		}
+//       	correo.setIcon(new ImageIcon(img3));
+//        correo.setActionCommand(CORREO);
+//       	correo.addActionListener((ActionListener)this);
+//      	   
+//      	panel1 = new JPanel();
+//      	panel1.setBounds(10, 50, 300, 128);
+//      	panel1.setLayout(null);
+//      	panel1.add(correo);
+// 
+//    	contentPane.add(panel1);
     		    		
     		
     		

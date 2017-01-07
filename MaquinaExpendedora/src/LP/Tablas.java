@@ -75,6 +75,8 @@ public class Tablas extends JFrame implements ActionListener
 	static final String CORREOU= "Correo Usuarios";
 	static final String CORREOB= "Correo Bebidas";
 	static final String CORREOA= "Correo Alimentos";
+	static final String CORREOC= "Correo Compras";
+	
 
 	
 	
@@ -114,7 +116,7 @@ public class Tablas extends JFrame implements ActionListener
 		private static final long serialVersionUID = 1L;
 		
 		
-		private String[] columnNames = {"Id producto","Dni"};
+		private String[] columnNames = {"Dni","Id Producto"};
         Object[][] data;
         
         public TablaComprasModel(ArrayList<clsAdquisicion> compras)
@@ -684,17 +686,17 @@ public class Tablas extends JFrame implements ActionListener
 	    	sorter3.setSortKeys(sortKey3);
 	    	sorter3.sort();
 	    	
-//	    	TableRowSorter<TablaComprasModel>sorter4= new TableRowSorter(jtCompras.getModel());
-//	    	jtCompras.setRowSorter(sorter4);
-//	    	ArrayList<RowSorter.SortKey> sortKey4=new ArrayList<>();
-//	    	
-//	    	int colSort7=0;
-//	    	int colSort8=1;
-//	    	sortKey4.add(new RowSorter.SortKey(colSort7, SortOrder.ASCENDING));
-//	    	sortKey4.add(new RowSorter.SortKey(colSort8, SortOrder.ASCENDING));
-//	    	
-//	    	sorter4.setSortKeys(sortKey4);
-//	    	sorter4.sort();
+	    	TableRowSorter<TablaComprasModel>sorter4= new TableRowSorter(jtCompras.getModel());
+	    	jtCompras.setRowSorter(sorter4);
+	    	ArrayList<RowSorter.SortKey> sortKey4=new ArrayList<>();
+	    	
+	    	int colSort7=0;
+	    	int colSort8=1;
+	    	sortKey4.add(new RowSorter.SortKey(colSort7, SortOrder.ASCENDING));
+	    	sortKey4.add(new RowSorter.SortKey(colSort8, SortOrder.ASCENDING));
+	    	
+	    	sorter4.setSortKeys(sortKey4);
+	    	sorter4.sort();
 	   }
 	
 	 
@@ -756,17 +758,19 @@ public class Tablas extends JFrame implements ActionListener
 			panelA.add(jspAlimentos);//,BorderLayout.PAGE_END);
 			
 			jlCompras=new JLabel("Listado de Compras");
-			jlCompras.setBounds(tablaPanel.getWidth()/3, 430, 200, 20);
+			jlCompras.setBounds(tablaPanel.getWidth()/3, 640, 200, 20);
 			tablaPanel.add(jlCompras);//),BorderLayout.NORTH);
 			
 			JPanel panelC= new JPanel();
 			panelC.setBounds(50,710,600,170);
 			jspCompras= new JScrollPane(jtCompras);
+			panelC.add(jspCompras);
 			
 			
 			tablaPanel.add(panelU);
 			tablaPanel.add(panelB);
 			tablaPanel.add(panelA);
+			tablaPanel.add(panelC);
 			
 			contentPane.add(tablaPanel);//,BorderLayout.CENTER);
 			
@@ -793,7 +797,15 @@ public class Tablas extends JFrame implements ActionListener
 	        correoAlimentos.setActionCommand(CORREOA);
 	       	correoAlimentos.addActionListener((ActionListener)this);
 	       	
-	       	tablaPanel.add(correoAlimentos);tablaPanel.add(correoBebidas);tablaPanel.add(correoUsuarios);
+	       	
+	       	correoCompras = new JButton ();
+	       	correoCompras.setBounds(800, 730, 120, 100);
+	        correoCompras.setIcon(correoEsc);
+	        correoCompras.setActionCommand(CORREOC);
+	       	correoCompras.addActionListener((ActionListener)this);
+	       	
+	       	
+	       	tablaPanel.add(correoAlimentos);tablaPanel.add(correoBebidas);tablaPanel.add(correoUsuarios); tablaPanel.add(correoCompras);
 	  
 			//this.setSize(1000,400);
 			//this.setVisible(true);
@@ -826,6 +838,10 @@ public class Tablas extends JFrame implements ActionListener
 			break;
 		case SALIR:
 			this.dispose();
+			break;
+		
+		case CORREOC:
+			clsMensaje.correoC();
 			
 			break;}
 		
