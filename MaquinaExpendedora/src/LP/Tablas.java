@@ -100,128 +100,128 @@ public class Tablas extends JFrame implements ActionListener
 		Compras= clsGestor.leerAdquisicion();
 	}		
 	
-//	public void actualizarTablaCompras()
-//	{
-//		Compras= clsGestor.leerAdquisicion();
-//		
-//		TablaComprasModel tam=(TablaComprasModel)jtCompras.getModel();
-//		tam.setData(Compras);
-//		tam.fireTableDataChanged();
-//	}
+	public void actualizarTablaCompras()
+	{
+		Compras= clsGestor.leerAdquisicion();
+		
+		TablaComprasModel tam=(TablaComprasModel)jtCompras.getModel();
+		tam.setData(Compras);
+		tam.fireTableDataChanged();
+	}
 	
-//	class TablaComprasModel extends AbstractTableModel
-//    {
-//		private static final long serialVersionUID = 1L;
-//		
-//		
-//		private String[] columnNames = {"Id producto","Dni"};
-//        Object[][] data;
-//        
-//        public TablaComprasModel(ArrayList<clsAdquisicion> compras)
-//        {
-//        	
-//        	super();
-//        	
-//    		int filas = compras.size();
-//    		int cont;
-//    		data=new Object[filas][];
-//    		cont=0;
-//    		
-//    		
-//    		//Nos recorremos el map para cargar la variable data[][]
-//    		for (clsAdquisicion aux : compras)
-//    		{
-//    		   
-//    			Object[]a={
-//    					new String(aux.getDni_usuario()), new String (aux.getId_producto())
-//    					
-//    				
-//    					   };
-//    			data[cont]=a;
-//    			cont++;
-//    		}
-//    		
-//        	
-//        }
-//        
-//        public void setData(ArrayList<clsAdquisicion> compras) 
-//        {
-//        	int filas = compras.size();
-//    		int cont;
-//    		data=new Object[filas][];
-//    		cont=0;
-//    		
-//    		
-//    		
-//    		for (clsAdquisicion aux : compras)
-//    		{
-//    		   
-//    		Object[]a={
-//    				
-//    				new String(aux.getDni_usuario()), new String (aux.getId_producto())
-// 					
-// 					   };
-//    				
-//    			data[cont]=a;
-//    			cont++;
-//    		}
-//        }
-//        
-//       public int getColumnCount() 
-//        {
-//            return columnNames.length;
-//        }
-//
-//        public int getRowCount() {
-//            return data.length;
-//        }
-//
-//        public String getColumnName(int col) 
-//        {
-//        	
-//            return columnNames[col];
-//        }
-//
-//        public Object getValueAt(int row, int col) 
-//        {
-//            return data[row][col];
-//        }
-//
-//        /*
-//         * JTable uses this method to determine the default renderer/
-//         * editor for each cell.  If we didn't implement this method,
-//         * then the last column would contain text ("true"/"false"),
-//         * rather than a check box.
-//         */
-//        @SuppressWarnings("unchecked")
-//		public Class getColumnClass(int c) 
-//        {
-//            return getValueAt(0, c).getClass();
-//        }
-//
-//        /*
-//         * Don't need to implement this method unless your table's
-//         * editable.
-//         */
-//        public boolean isCellEditable(int row, int col) {
-//           
-//                return false;
-//           
-//        }
-//
-//        /*
-//         * Don't need to implement this method unless your table's
-//         * data can change.
-//         */
-//        public void setValueAt(Object value, int row, int col) 
-//        {
-//            
-//            data[row][col] = value;
-//            fireTableCellUpdated(row, col);
-//
-//        }
-//
-//    }
+	class TablaComprasModel extends AbstractTableModel
+    {
+		private static final long serialVersionUID = 1L;
+		
+		
+		private String[] columnNames = {"Id producto","Dni"};
+        Object[][] data;
+        
+        public TablaComprasModel(ArrayList<clsAdquisicion> compras)
+        {
+        	
+        	super();
+        	
+    		int filas = compras.size();
+    		int cont;
+    		data=new Object[filas][];
+    		cont=0;
+    		
+    		
+    		//Nos recorremos el map para cargar la variable data[][]
+    		for (clsAdquisicion aux : compras)
+    		{
+    		   
+    			Object[]a={
+    					new String(aux.getDni_usuario()), new String (aux.getId_producto())
+    					
+    				
+    					   };
+    			data[cont]=a;
+    			cont++;
+    		}
+    		
+        	
+        }
+        
+        public void setData(ArrayList<clsAdquisicion> compras) 
+        {
+        	int filas = compras.size();
+    		int cont;
+    		data=new Object[filas][];
+    		cont=0;
+    		
+    		
+    		
+    		for (clsAdquisicion aux : compras)
+    		{
+    		   
+    		Object[]a={
+    				
+    				new String(aux.getDni_usuario()), new String (aux.getId_producto())
+ 					
+ 					   };
+    				
+    			data[cont]=a;
+    			cont++;
+    		}
+        }
+        
+       public int getColumnCount() 
+        {
+            return columnNames.length;
+        }
+
+        public int getRowCount() {
+            return data.length;
+        }
+
+        public String getColumnName(int col) 
+        {
+        	
+            return columnNames[col];
+        }
+
+        public Object getValueAt(int row, int col) 
+        {
+            return data[row][col];
+        }
+
+        /*
+         * JTable uses this method to determine the default renderer/
+         * editor for each cell.  If we didn't implement this method,
+         * then the last column would contain text ("true"/"false"),
+         * rather than a check box.
+         */
+        @SuppressWarnings("unchecked")
+		public Class getColumnClass(int c) 
+        {
+            return getValueAt(0, c).getClass();
+        }
+
+        /*
+         * Don't need to implement this method unless your table's
+         * editable.
+         */
+        public boolean isCellEditable(int row, int col) {
+           
+                return false;
+           
+        }
+
+        /*
+         * Don't need to implement this method unless your table's
+         * data can change.
+         */
+        public void setValueAt(Object value, int row, int col) 
+        {
+            
+            data[row][col] = value;
+            fireTableCellUpdated(row, col);
+
+        }
+
+    }
 	public void actualizarTablaBebidas()
 	{
 		Bebidas= clsGestor.BebidasGuardadas();
@@ -502,14 +502,14 @@ public class Tablas extends JFrame implements ActionListener
 		
         jtCompras=null;		
 		
-//        TablaComprasModel tam4=new TablaComprasModel(Compras);
-//	
-//		jtCompras = new JTable(tam4);
-//		jtCompras.setPreferredScrollableViewportSize(new Dimension(500, 200));
-//		jtCompras.setFillsViewportHeight(true);
-//		jtCompras.setEnabled(true);
-//		jtCompras.setRowSelectionAllowed(true);
-//		tam4.fireTableDataChanged();
+        TablaComprasModel tam4=new TablaComprasModel(Compras);
+	
+		jtCompras = new JTable(tam4);
+		jtCompras.setPreferredScrollableViewportSize(new Dimension(500, 200));
+		jtCompras.setFillsViewportHeight(true);
+		jtCompras.setEnabled(true);
+		jtCompras.setRowSelectionAllowed(true);
+		tam4.fireTableDataChanged();
 		ordenacion();
 				
 	}
@@ -746,14 +746,22 @@ public class Tablas extends JFrame implements ActionListener
 			panelB.setBounds(50,250,600,170);
 			panelB.add(jspBebidas);//,BorderLayout.CENTER); 
 			
-			jlUsuarios=new JLabel("Listado de Usuarios");
-			jlUsuarios.setBounds(tablaPanel.getWidth()/3, 430, 200, 20);
-			tablaPanel.add(jlUsuarios);//),BorderLayout.NORTH);
+			jlAlimentos=new JLabel("Listado de Alimentos");
+			jlAlimentos.setBounds(tablaPanel.getWidth()/3, 430, 200, 20);
+			tablaPanel.add(jlAlimentos);//),BorderLayout.NORTH);
 			
 			JPanel panelA= new JPanel();
 			panelA.setBounds(50, 480,600,170);
 	        jspAlimentos= new JScrollPane(jtAlimentos);
 			panelA.add(jspAlimentos);//,BorderLayout.PAGE_END);
+			
+			jlCompras=new JLabel("Listado de Compras");
+			jlCompras.setBounds(tablaPanel.getWidth()/3, 430, 200, 20);
+			tablaPanel.add(jlCompras);//),BorderLayout.NORTH);
+			
+			JPanel panelC= new JPanel();
+			panelC.setBounds(50,710,600,170);
+			jspCompras= new JScrollPane(jtCompras);
 			
 			
 			tablaPanel.add(panelU);

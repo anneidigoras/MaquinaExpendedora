@@ -34,7 +34,8 @@ import LN.clsMensaje;
 import LN.clsUsuario;
 /**
  * 
- * Clase en la que pondremos la interfaz con la que interactuara el usuario para escoger el producto que quiera
+ * Clase de interaccion del usuario con los productos. 
+ * En esta clase tendra la opcion de comprar , recargar su saldo y de poder cerrar sesion
  * @author Anne y Mayi
  *
  */
@@ -85,7 +86,10 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
     
 
     clsBebida objBebida= new clsBebida();
-	
+	/**
+	 * 
+	 * Metodo que nos indica el usuario que esta usando actualmente la interfaz
+	 */
 	public static void usuarioacual ()
 	{
 		ArrayList<clsUsuario> listausuarios =clsGestor.leerUsuario();
@@ -99,6 +103,11 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		
 		
 	}
+	/**
+	 * 
+	 * Constructor con todo el tema de swing
+	 * @param dni: pasamos el dni del usuario 
+	 */
 	public InterfazSeleccionProductos(String dni)
 	{
 		this.dni_usuario= dni;
@@ -368,7 +377,10 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	
 	}
 
-	
+	/**
+	 * 
+	 * Metodo que nos permite hacer uso de las acciones indicadas
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
@@ -485,7 +497,12 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	//metodo para que el usuario recargue dinero
 	
 	//metodo para que cuando no queden mas existencias de un producto el usuario no pueda consumir más : que el boton no funcione o poner una etiqueta de agotado.
-	
+	/**
+	 * 
+	 * Metodo de compra en el que segun lo que compre se reducira el saldo del usuario y la cantidad de stock de dicho producto
+	 * 
+	 * @param consumicion
+	 */
 	public void compra (String consumicion)
 	{
 		float precio =0;
@@ -497,16 +514,12 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		LinkedList<clsAlimento>listaAlimentos= new LinkedList<clsAlimento>();
 		listaAlimentos=clsGestor.AlimentosGuardados();
 		
-		ArrayList<clsAdquisicion> listaAdq= new ArrayList<clsAdquisicion>();
-		for(clsAdquisicion aux:listaAdq)
-		{
-				
-		clsGestor.crearAdquisicion(aux.getId_producto(),aux.getDni_usuario() );	
-		}
+		
 		
 		for (clsBebida aux: listaBebidas)
 		{
 			if(aux.getId().equals(consumicion)) bebidaconsumida = aux;
+			clsGestor.crearAdquisicion(aux.getId(),usuario.getDni());
 		}
 		precio = bebidaconsumida.getPrecioP();
 		if (usuario.getDinero()<precio)
@@ -538,6 +551,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		for (clsAlimento aux: listaAlimentos)
 		{
 			if(aux.getId().equals(consumicion)) alimentoConsumido = aux;
+			clsGestor.crearAdquisicion(aux.getId(),usuario.getDni());
 		}
 		precio = alimentoConsumido.getPrecioP();
 		if (usuario.getDinero()<precio)

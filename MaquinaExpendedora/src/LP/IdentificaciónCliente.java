@@ -16,7 +16,9 @@ import javax.swing.JFrame;
 /**
  * 
  * 
- * @author Mayi
+ * @author Mayi y Anne
+ * 
+ * Clase en la que el usuario se identificara metiendo como datos su dni y contraseñas que puso al registrarse
  *
  */
 public class IdentificaciónCliente extends JFrame implements ActionListener
@@ -116,6 +118,10 @@ public class IdentificaciónCliente extends JFrame implements ActionListener
 	}
 	
 	}
+	/**
+	 * 
+	 * Metodo de ingreso en el que se valida con el dni y la contraseña si el cliente se ha registrado con anterioridad
+	 */
 	private void Ingresar()
 	{
 		boolean existe= false;

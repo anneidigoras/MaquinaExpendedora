@@ -1,4 +1,9 @@
-
+/**
+ * 
+ * @author Anne y Mayi
+ * 
+ * Clase principal que vera el administrador al iniciar su sescion 
+ */
 package LP;
 
 import java.awt.Color;
@@ -89,7 +94,10 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	private final static String SALTO = "\n";
 	private boolean ver=false;
 	
-	
+	/**
+	 * Constructor con todo el tema de swing 
+	 * @param title
+	 */
 	
 	public PantallaAdmin(String title)
 	{
@@ -513,6 +521,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     		//actualizarSliders();
 		
 	}
+	
 
 	public static class MiAccion implements ChangeListener
 	{
@@ -593,7 +602,11 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		
 	}
 	
-
+/**
+ * 
+ * Actualizamos el stock de bebidas
+ * @return
+ */
 	protected static LinkedList<clsBebida> actualizarlistabebidas()
 	{
 		
@@ -623,7 +636,11 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		}
 		return lista;
 	}
-	
+	/**
+	 * 
+	 * Actualizamos el stock de alimentos
+	 * @return
+	 */
 	protected static LinkedList<clsAlimento> actualizarlistaAlimentos()
 	{
 		
@@ -657,13 +674,19 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		
 	}
 
-
+/**
+ * Metodo gracias al cual podremos hacer uso de las acciones indicadas
+ */
 
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
 		switch (e.getActionCommand())
 		{
+		/**
+		 * 
+		 * Cerrar sescion
+		 */
 		case SALIR:
 			 int salir;
 
@@ -674,6 +697,10 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			   frame.setVisible(true);}
 		
 		     break;
+		     /**
+		      * 
+		      * Mandar correo a la direccion que queramos con el formato indicado
+		      */
 		case CORREO:
 			if(clsAdministrador.Correo.isEmpty())
 			clsAdministrador.Correo = JOptionPane.showInputDialog("Introduzca su correo electrónico (con la forma ...@example.com)");
@@ -698,12 +725,18 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		
 		case AJUSTES:
 			ajustes();
-			
+			/**
+			 * 
+			 * Se esconde el panel de alimentos y se muestra solo el de bebidas
+			 */
 		case RBEBIDAS:
         panel=false;
         mostrarPanel();
 				break;
-		
+		/**
+		 * 
+		 * Se esconde el panel de bebidas y se muestra solo el de alimentos
+		 */
 			
 		case ALIMENTOS:
 			
@@ -717,6 +750,10 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		
 		
 	}
+	/**
+	 * 
+	 * Guardamos las actualizaciones realizadas por el administrador
+	 */
 	protected void guardar ()
 	{
 		LinkedList <clsBebida> lista = actualizarlistabebidas();
@@ -732,6 +769,11 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		//actualizarSliders();
 		
 	}
+	/**
+	 * 
+	 * Metodo de ajustes con las siguientes opciones: cambiar de nombre, cambiar de contraseña
+	 * proyecto (informacion sobre nuestro proyecto)
+	 */
 	protected void ajustes()
 	{
 
@@ -760,10 +802,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 			 clsGestor.admin.setContraseña(contraseña);
 			 //clsGestor.crearAdmin();
 			 break;
-		 case "Registro Productos":
-			 RegistroProductos registro= new RegistroProductos();
-			 registro.setVisible(true);
-			 break;
+		
 			 
 		 case "Proyecto":
 			 UIManager.put("swing.boldMetal", Boolean.FALSE);
@@ -774,7 +813,10 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	}
 	
 
-
+/**
+ * Metodo utilizado para que cuando el boolean este en false, el panel de bebidas sea el unico que se muestre; esto sucedera cuando estemos en el 
+ * radiobutton de bebidas, y viceversa con el tema de alimentos
+ */
 	protected void mostrarPanel()
 	{
 		if (panel==false)

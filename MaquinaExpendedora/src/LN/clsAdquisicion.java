@@ -1,6 +1,8 @@
 package LN;
 
-public class clsAdquisicion
+import java.io.Serializable;
+
+public class clsAdquisicion implements Serializable
 {
 	private String id_producto, dni_usuario;
 

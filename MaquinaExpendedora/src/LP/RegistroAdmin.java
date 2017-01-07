@@ -34,8 +34,8 @@ import LN.clsGestor;
 import LN.clsMensaje;
 /**
  * 
- * Clase de registro del administrador, con un clave unicada ya predeterminada
- * @author Anne
+ * Clase de registro del administrador, con una clave y usuario predeterminados
+ * @author Anne y Mayi
  *
  */
 public class RegistroAdmin extends JFrame implements ActionListener
@@ -52,7 +52,10 @@ public class RegistroAdmin extends JFrame implements ActionListener
 	static final String CORREO= "Correo";
 	 
 	
-	
+	/**
+	 * 
+	 * Constructor de la clase 
+	 */
 	public RegistroAdmin()
 	{
 		if (ingreso==false)
@@ -153,7 +156,13 @@ public class RegistroAdmin extends JFrame implements ActionListener
 	 }
 		
 		
-	
+	/**
+	 * 
+	 * Verificacion de que la contrasenya es la correcta
+	 * @param input: contraseña 
+	 * @param nombre: nombre de usuario
+	 * @return nos devuelve un boolean 
+	 */
 	  public boolean isPasswordCorrect(char[] input, String nombre) 
 	 {
 	        boolean isCorrect = true;
@@ -175,7 +184,11 @@ public class RegistroAdmin extends JFrame implements ActionListener
 	    }
 
 
-
+/**
+ * Metodo en que al darle al boton de aceptar llamaremos al metodo de verificacion de la contraseña
+ * En caso de pasarle los parametros correctos nos dejara pasar a la pantalla principal del administrador
+ * En caso de habernos confundido podremos volver a intentarlo
+ */
 	
 	 private void pulsadoIngreso()
 		{
@@ -219,7 +232,10 @@ public class RegistroAdmin extends JFrame implements ActionListener
 	    }
 
 
-
+/**
+ * 
+ * MEtodo que nos permite realizar las funciones indicadas
+ */
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{

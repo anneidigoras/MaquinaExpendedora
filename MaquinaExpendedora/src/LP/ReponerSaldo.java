@@ -1,4 +1,10 @@
 package LP;
+/**
+ * 
+ * @author Anne y Mayi
+ * 
+ * Clase en la cual el usuario podra reponer el saldo
+ */
 
 import java.awt.Color;
 import java.awt.Image;

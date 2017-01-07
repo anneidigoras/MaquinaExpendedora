@@ -71,8 +71,10 @@ public class ConexionSql
 				
 				JOptionPane.showMessageDialog(null, "¡Usuario añadido correctamente!");	
 			
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			} 
+			catch (SQLException e) 
+			{
+				
 				e.printStackTrace();
 			}	
 		

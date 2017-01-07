@@ -350,26 +350,15 @@ public class clsGestor
 	
 	objadquisicion.setId_producto(id_producto);objadquisicion.setDni_usuario(dni_user);
 	
-	boolean cont= setadquisicion.add(objadquisicion);
+
 	
-	if(cont==false)
-	{
-		
-		try {
-			throw new clsAdquisicionRepetido();
-		} catch (clsAdquisicionRepetido e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	else
-	{
+
 		objDatos.ComenzarSave(enFicheros.RELACIONUSUARIO_BEBIDA);
 		objDatos.Save((Serializable) objadquisicion);
 		objDatos.TerminarSave();
 		
 		
-	}
+	
 
 }
 public static ArrayList<clsAdquisicion> leerAdquisicion()
