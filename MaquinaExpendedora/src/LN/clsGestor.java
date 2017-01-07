@@ -351,14 +351,14 @@ public class clsGestor
     	CrearListaUsuario(lista_actual);
     	
     }
-public static void crearAdquisicion(String id_producto, String dni_user)
+public static void crearAdquisicionBebida(String id_producto, String dni_user)
 {
 	ArrayList<clsAdquisicion> adquisicion= new ArrayList<clsAdquisicion>();
 	HashSet<clsAdquisicion> setadquisicion= new HashSet<clsAdquisicion>();
 	clsDatos objDatos= new clsDatos();
 	clsAdquisicion objadquisicion= new clsAdquisicion();
 	
-	adquisicion=leeradquisicion();
+	adquisicion=leeradquisicionBebida();
 	setadquisicion.addAll(adquisicion);
 	
 	objadquisicion.setId_producto(id_producto);objadquisicion.setDni_usuario(dni_user);
@@ -385,7 +385,7 @@ public static void crearAdquisicion(String id_producto, String dni_user)
 	}
 
 }
-public static ArrayList<clsAdquisicion> leeradquisicion()
+public static ArrayList<clsAdquisicion> leeradquisicionBebida()
 {
 	ArrayList<Serializable>serializable= new ArrayList<Serializable>();
 	ArrayList<clsAdquisicion> adquisicion= new ArrayList<clsAdquisicion>();
@@ -433,35 +433,8 @@ public static void EliminarA(String  dni)
 	CrearListaUsuario(lista1);
 }
 
-//public static void crearAdmin()
-//
-//{
-//	LinkedList<clsAdministrador> administradores = new LinkedList<clsAdministrador>();
-//	administradores.add(admin);
-//	
-//	clsDatos objD=new clsDatos();
-//	
-//	objD.ResetFile(enFicheros.ADMINISTRADOR);
-//	
-//	objD.ComenzarSave(enFicheros.ADMINISTRADOR);
-//	
-//	//clsAdministrador objAdmin = new clsAdministrador();
-//	for(clsAdministrador aux: administradores )
-//	{
-//		objD.Save((Serializable) aux);
-//	}
-//	
-//	objD.TerminarSave();
-//	
-//}
-
-public void asignarBebida()
-
-{
-	
 
 
-}
 
 public boolean anyadirFilaATabla( Statement st ) {
 	// Adicional uno
@@ -593,7 +566,23 @@ public static void gastadinero(String dni, String id)
 	
 	LinkedList<clsBebida>listaBebidas= new LinkedList<clsBebida>();
 	listaBebidas=BebidasGuardadas();
+	LinkedList<clsAlimento>listaAlimentos= new LinkedList<clsAlimento>();
+	
 	for (clsBebida aux: listaBebidas)
+	{
+		if(aux.getId().equals(id)) precio = aux.getPrecioP();
+	}
+	for (clsUsuario aux: listaClientes)
+	{
+		if (aux.getDni().equals(dni))
+		{
+			cliente= aux;
+			listaClientes.remove(aux);
+			break;
+		}
+	}
+	
+	for (clsAlimento aux: listaAlimentos)
 	{
 		if(aux.getId().equals(id)) precio = aux.getPrecioP();
 	}

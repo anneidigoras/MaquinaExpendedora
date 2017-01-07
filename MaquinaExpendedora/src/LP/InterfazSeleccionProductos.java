@@ -27,6 +27,7 @@ import javax.swing.border.EmptyBorder;
 import COMUN.clsConstantes;
 import LN.clsAdministrador;
 import LN.clsAdquisicion;
+import LN.clsAlimento;
 import LN.clsBebida;
 import LN.clsGestor;
 import LN.clsMensaje;
@@ -34,7 +35,7 @@ import LN.clsUsuario;
 /**
  * 
  * Clase en la que pondremos la interfaz con la que interactuara el usuario para escoger el producto que quiera
- * @author Anne
+ * @author Anne y Mayi
  *
  */
 public class InterfazSeleccionProductos extends JFrame implements ActionListener
@@ -486,15 +487,20 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	
 	//metodo para que cuando no queden mas existencias de un producto el usuario no pueda consumir más : que el boton no funcione o poner una etiqueta de agotado.
 	
-	public void compra (String bebida)
+	public void compra (String consumicion)
 	{
 		float precio =0;
 		clsBebida bebidaconsumida = new clsBebida();
 		LinkedList<clsBebida>listaBebidas= new LinkedList<clsBebida>();
 		listaBebidas=clsGestor.BebidasGuardadas();
+		
+		clsAlimento alimentoConsumido = new clsAlimento();
+		LinkedList<clsAlimento>listaAlimentos= new LinkedList<clsAlimento>();
+		listaAlimentos=clsGestor.AlimentosGuardados();
+		
 		for (clsBebida aux: listaBebidas)
 		{
-			if(aux.getId().equals(bebida)) bebidaconsumida = aux;
+			if(aux.getId().equals(consumicion)) bebidaconsumida = aux;
 		}
 		precio = bebidaconsumida.getPrecioP();
 		if (usuario.getDinero()<precio)
@@ -508,12 +514,13 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 			if (bebidaconsumida.getNum()>0) 
 			{
 				usuario.setDinero((float) (usuario.getDinero()- bebidaconsumida.getPrecioP()));
-				clsGestor.gastadinero(usuario.getDni(), bebida);
+				clsGestor.gastadinero(usuario.getDni(), consumicion);
 				
 				dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
-				clsGestor.consumobebida(bebida);
+				clsGestor.consumobebida(consumicion);
 			}
-			else {
+			else 
+			{
 					JOptionPane.showMessageDialog(null, "No quedan más " +bebidaconsumida.getNombreP(),
 				    "ESTE PRODUCTO SE HA AGOTADO",
 				    JOptionPane.ERROR_MESSAGE);
@@ -521,10 +528,43 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 		
 		
 		}
+		
+		for (clsAlimento aux: listaAlimentos)
+		{
+			if(aux.getId().equals(consumicion)) alimentoConsumido = aux;
+		}
+		precio = alimentoConsumido.getPrecioP();
+		if (usuario.getDinero()<precio)
+		{
+			JOptionPane.showMessageDialog(null, "No tiene suficiente saldo",
+				    "SALDO INSUFICIENTE",
+				    JOptionPane.ERROR_MESSAGE);
+		}
+		else
+		{
+			if (alimentoConsumido.getNum()>0) 
+			{
+				usuario.setDinero((float) (usuario.getDinero()- alimentoConsumido.getPrecioP()));
+				clsGestor.gastadinero(usuario.getDni(), consumicion);
+				
+				dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
+				clsGestor.consumoAlimento(consumicion);
+			}
+			else 
+			{
+					JOptionPane.showMessageDialog(null, "No quedan más " +alimentoConsumido.getNombreP(),
+				    "ESTE PRODUCTO SE HA AGOTADO",
+				    JOptionPane.ERROR_MESSAGE);
+			}
+		
+		
+		}
+		
 	ArrayList<clsAdquisicion> listaAdq= new ArrayList<clsAdquisicion>();
-	for(clsAdquisicion aux:listaAdq){
+	for(clsAdquisicion aux:listaAdq)
+	{
 			
-	clsGestor.crearAdquisicion(aux.getId_producto(),aux.getDni_usuario() );	
+	clsGestor.crearAdquisicionBebida(aux.getId_producto(),aux.getDni_usuario() );	
 	}}
 
 	}
