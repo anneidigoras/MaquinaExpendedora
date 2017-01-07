@@ -84,15 +84,17 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	//	connection = ConexionSql.dbConnector("");
 		
+		int ancho_pantalla =java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
+		int alto_pantalla =java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
 		contentPane = new JPanel();
         contentPane.setLayout(null);
 		contentPane.setBackground(new Color(204, 204, 255));		
-		contentPane.setBounds(100,100,1000,700);
+		contentPane.setBounds(0,0,ancho_pantalla,alto_pantalla);
 		
 		bienv = new JLabel ("¡BIENVENIDO!");
 		bienv.setFont(new Font("Algerian", Font.BOLD, 45));
 		bienv.setForeground(Color.WHITE);
-		bienv.setBounds(contentPane.getWidth()/2 +50,50,500,150);
+		bienv.setBounds(contentPane.getWidth()/3 +100 ,0,500,150);
 		
 		
 		
@@ -102,7 +104,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		Image imagen = icono.getImage();
 		ImageIcon iconoEscalado = new ImageIcon (imagen.getScaledInstance(350,600,Image.SCALE_SMOOTH));
         imagenlbl = new JLabel (iconoEscalado);
-        imagenlbl.setBounds(contentPane.getWidth()/2 -50,200,500,600);
+        imagenlbl.setBounds(contentPane.getWidth()/3  ,alto_pantalla /7,500,600);
         
         
         btUsuario = new JButton ();
@@ -129,7 +131,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 	    btIngresar.addActionListener((ActionListener)this);
 	    
 		btAdmin = new JButton ();
-		btAdmin.setBounds(contentPane.getWidth(),350, 200,200);
+		btAdmin.setBounds(contentPane.getWidth() - contentPane.getWidth()/6 -200,350, 200,200);
 		ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/admin.png"));
 		 Image imagen3 = icono3.getImage();
 		 ImageIcon iconoEsc3 = new ImageIcon (imagen3.getScaledInstance(200,200,Image.SCALE_SMOOTH));
