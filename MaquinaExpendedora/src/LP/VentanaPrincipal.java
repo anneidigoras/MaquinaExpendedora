@@ -222,34 +222,34 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 	}
 	
 
-	@SuppressWarnings("unchecked")
-	public void cargarLista()
-	{
-				
-		Connection conn=ConexionSql.dbConnector("Base datos Usuarios");
-		Statement stmt;
-		try {
-			stmt = (Statement) conn.createStatement();
-			
-						
-			ResultSet rs = ((java.sql.Statement) stmt).executeQuery("select nombre_e from usuario");
-					     
-		      while(rs.next())
-		      { 
-		    	  // Leer el resultset
-		    	  ArrayList<clsUsuario>usuario;
-		    	  usuario= clsGestor.leerUsuario();
-		    	 clsModeloListaUsuario objM= new clsModeloListaUsuario(usuario);
-		    	//  objM.añadirElemento((clsUsuario) rs.getString());
-		    	  		    
-
-		      }
-		   
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	//@SuppressWarnings("unchecked")
+//	public void cargarLista()
+//	{
+//				
+//		Connection conn=ConexionSql.dbConnector("Base datos Usuarios");
+//		Statement stmt;
+//		try {
+//			stmt = (Statement) conn.createStatement();
+//			
+//						
+//			ResultSet rs = ((java.sql.Statement) stmt).executeQuery("select nombre_e from usuario");
+//					     
+//		      while(rs.next())
+//		      { 
+//		    	  // Leer el resultset
+//		    	  ArrayList<clsUsuario>usuario;
+//		    	  usuario= clsGestor.leerUsuario();
+//		    	 clsModeloListaUsuario objM= new clsModeloListaUsuario(usuario);
+//		    	//  objM.añadirElemento((clsUsuario) rs.getString());
+//		    	  		    
+//
+//		      }
+//		   
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	//}
 	
 
 

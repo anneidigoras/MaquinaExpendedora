@@ -22,6 +22,7 @@ import javax.swing.JButton;
 
 import LD.ConexionSql;
 import LN.clsGestor;
+import LN.clsUsuario;
 
 /**
  * 
@@ -37,7 +38,9 @@ public class RegistroUsuario extends JFrame implements ActionListener
     private JButton btAceptar, btCancelar;
 	private JPanel contentPane;
 	private JLabel lblNombre, lblApe, lblEdad, lblDni, lblPass1, lblPass2;
-	
+	static Connection conn;
+	static Statement st;
+	clsUsuario u;
 
 	clsGestor objGestor;
 	
@@ -200,7 +203,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 	public void anyadir()
 	{
 
-		Connection conn=ConexionSql.dbConnector("Base datos Usuarios");
+		//Connection conn=ConexionSql.dbConnector("Base datos Usuarios");
 		ConexionSql base=new ConexionSql();
 		
 		String nombre=txtNombre.getText();	
@@ -208,8 +211,10 @@ public class RegistroUsuario extends JFrame implements ActionListener
 		String ape=txtApe.getText();
 		String dni=txtDni.getText();
 		
-		
-		base.anyadirUsuario(nombre,ape,dni,edad);
+	//	ConexionSql.crearTablaUsuario();
+		//base.anyadirUsuario(nombre,ape,dni,edad);
+		ConexionSql.usarCrearTablasBD(conn);
+		ConexionSql.usuarioInsert(st, u);
 		
 		txtNombre.setText("");
 		txtApe.setText("");

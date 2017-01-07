@@ -106,7 +106,8 @@ public class clsGestor
 			guardarAlimentos(listaA);
 		}
 		ConexionSql con= new ConexionSql();
-		con.anyadirProductos("CocaCola", (float) 1.2, "CC", 5);
+	//	ConexionSql.crearTablaBebida();
+		//con.anyadirProductos("CocaCola", (float) 1.2, "CC", 5);
 	}
 	
 
