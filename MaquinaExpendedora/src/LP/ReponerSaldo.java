@@ -163,36 +163,34 @@ public class ReponerSaldo extends JFrame implements ActionListener
 	
 	public void Aceptar()
 	{
-		JOptionPane.showConfirmDialog(null, "¿Seguro que quiere reponer el saldo?","Carga de  "+comando_anterior, JOptionPane.OK_CANCEL_OPTION);
-		if (comando_anterior.equals(CINCO))
+		int aceptar =JOptionPane.showConfirmDialog(null, "¿Seguro que quiere reponer el saldo?","Carga de  "+comando_anterior, JOptionPane.OK_CANCEL_OPTION);
+		if (aceptar == 0)
 		{
-			
-			usuario.setDinero(usuario.getDinero()+5);
-			clsGestor.ModificarUsuario(usuario, usuario.getDni());
-			
-		}
-		if (txtIntro.equals("10 €"))
-		{
-			
-			usuario.setDinero(usuario.getDinero()+10);
-			clsGestor.ModificarUsuario(usuario, usuario.getDni());
-
-		}
-		if (txtIntro.equals("15 €"))
-		{
-			
-			usuario.setDinero(usuario.getDinero()+15);
-			clsGestor.ModificarUsuario(usuario, usuario.getDni());
-
-		}
-		if (txtIntro.equals("20 €"))
-		{
-			
-			usuario.setDinero(usuario.getDinero()+20);
-			clsGestor.ModificarUsuario(usuario, usuario.getDni());
-
-		}
+			switch (comando_anterior)
+			{
+			case CINCO:
+				usuario.setDinero(usuario.getDinero()+5);
+				clsGestor.ModificarUsuario(usuario, usuario.getDni());
+				break;
+			case DIEZ:
+				usuario.setDinero(usuario.getDinero()+10);
+				clsGestor.ModificarUsuario(usuario, usuario.getDni());
+				break;
+			case QUINCE:
+				usuario.setDinero(usuario.getDinero()+15);
+				clsGestor.ModificarUsuario(usuario, usuario.getDni());
+				break;
+			case VEINTE:
+				usuario.setDinero(usuario.getDinero()+20);
+				clsGestor.ModificarUsuario(usuario, usuario.getDni());
+				break;
+				
+			}
 		
+			InterfazSeleccionProductos frame= new InterfazSeleccionProductos(usuario.getDni());
+			frame.setVisible(true);
+		
+		}
 		
 	}
 }
