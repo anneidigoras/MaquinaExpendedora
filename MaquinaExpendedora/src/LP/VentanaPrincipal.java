@@ -87,12 +87,12 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		contentPane = new JPanel();
         contentPane.setLayout(null);
 		contentPane.setBackground(new Color(204, 204, 255));		
-		contentPane.setBounds(100,100,700,700);
+		contentPane.setBounds(100,100,1000,700);
 		
 		bienv = new JLabel ("¡BIENVENIDO!");
 		bienv.setFont(new Font("Algerian", Font.BOLD, 45));
 		bienv.setForeground(Color.WHITE);
-		bienv.setBounds(800,50,500,150);
+		bienv.setBounds(contentPane.getWidth()/2 +50,50,500,150);
 		
 		
 		
@@ -102,11 +102,11 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 		Image imagen = icono.getImage();
 		ImageIcon iconoEscalado = new ImageIcon (imagen.getScaledInstance(350,600,Image.SCALE_SMOOTH));
         imagenlbl = new JLabel (iconoEscalado);
-        imagenlbl.setBounds(700,200,500,600);
+        imagenlbl.setBounds(contentPane.getWidth()/2 -50,200,500,600);
         
         
         btUsuario = new JButton ();
-		btUsuario.setBounds(300, 350, 200, 200);
+		btUsuario.setBounds(contentPane.getWidth()/6, 350, 200, 200);
 		ImageIcon icono2 = new ImageIcon(getClass().getResource("/img/usuario.png"));
 		 Image imagen2 = icono2.getImage();
 		 ImageIcon iconoEsc2 = new ImageIcon (imagen2.getScaledInstance(200,200,Image.SCALE_SMOOTH));
@@ -120,7 +120,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 
 		
 		btIngresar = new JButton ();
-		btIngresar.setBounds(300, 550, 90, 90);
+		btIngresar.setBounds(contentPane.getWidth()/6, 550, 90, 90);
 		ImageIcon icono0 = new ImageIcon(getClass().getResource("/img/login.png"));
 		 Image imagen0 = icono0.getImage();
 		 ImageIcon iconoEsc0 = new ImageIcon (imagen0.getScaledInstance(90,90,Image.SCALE_SMOOTH));
@@ -129,7 +129,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 	    btIngresar.addActionListener((ActionListener)this);
 	    
 		btAdmin = new JButton ();
-		btAdmin.setBounds(1200,350, 200,200);
+		btAdmin.setBounds(contentPane.getWidth(),350, 200,200);
 		ImageIcon icono3 = new ImageIcon(getClass().getResource("/img/admin.png"));
 		 Image imagen3 = icono3.getImage();
 		 ImageIcon iconoEsc3 = new ImageIcon (imagen3.getScaledInstance(200,200,Image.SCALE_SMOOTH));
@@ -138,7 +138,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 	    btAdmin.addActionListener((ActionListener)this);
 	    
 	    btRegistro = new JButton ();
-		btRegistro.setBounds(410, 550, 90, 90);
+		btRegistro.setBounds(contentPane.getWidth()/6 +110, 550, 90, 90);
 		ImageIcon icono1 = new ImageIcon(getClass().getResource("/img/registro.jpg"));
 		 Image imagen1 = icono1.getImage();
 		 ImageIcon iconoEsc1 = new ImageIcon (imagen1.getScaledInstance(90,90,Image.SCALE_SMOOTH));
