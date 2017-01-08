@@ -569,6 +569,9 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 				
 				dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
 				clsGestor.consumoAlimento(consumicion);
+				
+				dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
+				clsGestor.consumobebida(consumicion);
 			}
 			else 
 			{

@@ -257,7 +257,7 @@ public class Tablas extends JFrame implements ActionListener
     		{
     		   
     			Object[]a={
-    					new String(aux.getNombreP()), new String(aux.getId()), new Integer(aux.getNum()),new Integer((int) aux.getPrecioP())
+    					new String(aux.getNombreP()), new String(aux.getId()), new Integer(aux.getNum()),new Float( aux.getPrecioP())
     					
     				
     					   };
@@ -281,7 +281,7 @@ public class Tablas extends JFrame implements ActionListener
     		{
     		   
     		Object[]a={
-    				new String(aux.getNombreP()), new String(aux.getId()), new Integer(aux.getNum()),new Integer((int) aux.getPrecioP())
+    				new String(aux.getNombreP()), new String(aux.getId()), new Integer(aux.getNum()),new Float( aux.getPrecioP())
     					
  					
  					   };
@@ -370,7 +370,7 @@ public class Tablas extends JFrame implements ActionListener
     		{
     		   
     			Object[]a={
-    					new String(aux.getNombreP()), new String(aux.getId()), new Integer(aux.getNum()),new Integer((int) aux.getPrecioP())
+    					new String(aux.getNombreP()), new String(aux.getId()), new Integer(aux.getNum()),new Float( aux.getPrecioP())
     					
     				
     					   };
@@ -394,7 +394,7 @@ public class Tablas extends JFrame implements ActionListener
     		{
     		   
     		Object[]a={
-    				new String(aux.getNombreP()), new String(aux.getId()), new Integer(aux.getNum()),new Integer((int) aux.getPrecioP())
+    				new String(aux.getNombreP()), new String(aux.getId()), new Integer(aux.getNum()),new Float( aux.getPrecioP())
     					
  					
  					   };
