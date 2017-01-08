@@ -504,85 +504,68 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	 * @param consumicion
 	 */
 	public void compra (String consumicion)
-	{
-		float precio =0;
-		clsBebida bebidaconsumida = new clsBebida();
-		LinkedList<clsBebida>listaBebidas= new LinkedList<clsBebida>();
-		listaBebidas=clsGestor.BebidasGuardadas();
-		
-		clsAlimento alimentoConsumido = new clsAlimento();
-		LinkedList<clsAlimento>listaAlimentos= new LinkedList<clsAlimento>();
-		listaAlimentos=clsGestor.AlimentosGuardados();
-		
-		
-		
-		for (clsBebida aux: listaBebidas)
-		{
-			if(aux.getId().equals(consumicion)) bebidaconsumida = aux;
-			clsGestor.crearAdquisicion(aux.getId(),usuario.getDni());
-		}
-		precio = bebidaconsumida.getPrecioP();
-		if (usuario.getDinero()<precio)
-		{
-			JOptionPane.showMessageDialog(null, "No tiene suficiente saldo",
-				    "SALDO INSUFICIENTE",
-				    JOptionPane.ERROR_MESSAGE);
-		}
-		else
-		{
-			if (bebidaconsumida.getNum()>0) 
-			{
-				usuario.setDinero((float) (usuario.getDinero()- bebidaconsumida.getPrecioP()));
-				clsGestor.gastadinero(usuario.getDni(), consumicion);
-				
-				dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
-				clsGestor.consumobebida(consumicion);
-			}
-			else 
-			{
-					JOptionPane.showMessageDialog(null, "No quedan más " +bebidaconsumida.getNombreP(),
-				    "ESTE PRODUCTO SE HA AGOTADO",
-				    JOptionPane.ERROR_MESSAGE);
-			}
-		
-		
-		}
-		
-		for (clsAlimento aux: listaAlimentos)
-		{
-			if(aux.getId().equals(consumicion)) alimentoConsumido = aux;
-			clsGestor.crearAdquisicion(aux.getId(),usuario.getDni());
-		}
-		precio = alimentoConsumido.getPrecioP();
-		if (usuario.getDinero()<precio)
-		{
-			JOptionPane.showMessageDialog(null, "No tiene suficiente saldo",
-				    "SALDO INSUFICIENTE",
-				    JOptionPane.ERROR_MESSAGE);
-		}
-		else
-		{
-			if (alimentoConsumido.getNum()>0) 
-			{
-				usuario.setDinero((float) (usuario.getDinero()- alimentoConsumido.getPrecioP()));
-				clsGestor.gastadinero(usuario.getDni(), consumicion);
-				
-				dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
-				clsGestor.consumoAlimento(consumicion);
-				
-				dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
-				clsGestor.consumobebida(consumicion);
-			}
-			else 
-			{
-					JOptionPane.showMessageDialog(null, "No quedan más " +alimentoConsumido.getNombreP(),
-				    "ESTE PRODUCTO SE HA AGOTADO",
-				    JOptionPane.ERROR_MESSAGE);
-			}
-		
-		
-		}
-		
+    {
+                  float precio =0; float precio2=0;
+                  clsBebida bebidaconsumida = new clsBebida();
+                  LinkedList<clsBebida>listaBebidas= new LinkedList<clsBebida>();
+                  listaBebidas=clsGestor.BebidasGuardadas();
+                 
+                  clsAlimento alimentoConsumido = new clsAlimento();
+                  LinkedList<clsAlimento>listaAlimentos= new LinkedList<clsAlimento>();
+                  listaAlimentos=clsGestor.AlimentosGuardados();
+                 
+                  for (clsAlimento aux: listaAlimentos)
+                  {
+                                 if(aux.getId().equals(consumicion)) alimentoConsumido = aux;
+                                 clsGestor.crearAdquisicion(aux.getId(),usuario.getDni());
+                  }
+                  for (clsBebida aux: listaBebidas)
+                  {
+                                 if(aux.getId().equals(consumicion)) bebidaconsumida = aux;
+                                 clsGestor.crearAdquisicion(aux.getId(),usuario.getDni());
+                  }
+                 
+                  precio = alimentoConsumido.getPrecioP();
+                  precio2=bebidaconsumida.getPrecioP();
+                 
+                  if (usuario.getDinero()<precio || usuario.getDinero()<precio2)
+                  {
+                                 JOptionPane.showMessageDialog(null, "No tiene suficiente saldo",
+                                                   "SALDO INSUFICIENTE",
+                                                   JOptionPane.ERROR_MESSAGE);
+                  }
+                  else
+                  {
+                                 if (alimentoConsumido.getNum()>0 || bebidaconsumida.getNum()>0)
+                                 {
+                                               usuario.setDinero((float) (usuario.getDinero()- alimentoConsumido.getPrecioP()));
+                                               clsGestor.gastadinero(usuario.getDni(), consumicion);
+                                              
+                                               usuario.setDinero((float) (usuario.getDinero()- bebidaconsumida.getPrecioP()));
+                                               clsGestor.gastadinero(usuario.getDni(), consumicion);
+                                              
+                                               dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
+                                               clsGestor.consumoAlimento(consumicion);
+                                              
+                                               dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
+                                               clsGestor.consumobebida(consumicion);
+                                 }
+                                 else if(alimentoConsumido.getNum()==0 )
+                                 {
+                                                             JOptionPane.showMessageDialog(null, "No quedan más " +alimentoConsumido.getNombreP(),
+                                                   "ESTE PRODUCTO SE HA AGOTADO",
+                                                   JOptionPane.ERROR_MESSAGE);
+                                 }
+                                 else if( bebidaconsumida.getNum()==0)
+                                 {
+                                               JOptionPane.showMessageDialog(null, "No quedan más " +bebidaconsumida.getNombreP(),
+                                     "ESTE PRODUCTO SE HA AGOTADO",
+                                     JOptionPane.ERROR_MESSAGE);
+                  }
+                 
+                 
+                  }
+
 	
 
 	}	}
