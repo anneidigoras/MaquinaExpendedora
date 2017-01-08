@@ -466,9 +466,12 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 			case ED_EDAD:
 				//comprobar que sea un int y sacar error si no es el caso
 				usuario.setEdad(Integer.parseInt(txtedad.getText()));
+				
+	
 				clsGestor.ModificarUsuario(usuario, dni_usuario);
 				lbledad.setText("Edad: "+ usuario.getEdad() );
 				txtedad.setText("nueva edad");
+			
 				break;
 				
 			case ED_PASS:

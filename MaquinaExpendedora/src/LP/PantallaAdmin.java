@@ -513,19 +513,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 				rdbAlimentos.addActionListener((ActionListener)this);
 				rdbAlimentos.setText("ALIMENTOS");
 				
-				
-//				if (panel==false)
-//				{
-//					panelBebidas.setVisible(true);
-//					panelAlimentos.setVisible(false);
-//				}
-//				if (panel==true)
-//				{
-//					panelBebidas.setVisible(false);
-//					panelAlimentos.setVisible(true);
-//				}
-    		
-    		//actualizarSliders();
+
 		
 	}
 	
@@ -751,8 +739,6 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 		mostrarPanel();
 			break;
 			
-			
-		
 		}
 		
 		
