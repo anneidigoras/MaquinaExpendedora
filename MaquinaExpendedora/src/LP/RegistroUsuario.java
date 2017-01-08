@@ -207,7 +207,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 
 		//Connection conn=ConexionSql.dbConnector("Base datos Usuarios");
 		//Connection conn = ConexionSql.conectarA("src\\BD\\Prueba.db");
-		ConexionSql base=new ConexionSql();
+		//ConexionSql base=new ConexionSql();
 		
 		String nombre=txtNombre.getText();	
 	    int edad=Integer.parseInt(this.txtEdad.getText());
@@ -221,7 +221,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 		Connection nueva_conexion =ConexionSql.initBD("src\\BD\\BaseDeDatoos.db" );
 		Statement st =ConexionSql.usarCrearTablasBD(nueva_conexion);
 		ConexionSql.usuarioInsert(st, u);
-		//ConexionSql.cerrarBD(nueva_conexion, st);
+		ConexionSql.cerrarBD(nueva_conexion, st);
 		try {
 			   //Y para terminar cerramos la conexión
 			
