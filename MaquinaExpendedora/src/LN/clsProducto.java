@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class clsProducto implements Serializable
 {
 
-	/**
+	/**clase padre de alimentos y bebidas
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -21,6 +21,14 @@ public class clsProducto implements Serializable
 	{
 		
 	}
+	/**
+	 * 
+	 * Constructor de la clase 
+	 * @param id
+	 * @param nombre
+	 * @param precio
+	 * @param num
+	 */
 	public clsProducto(String id,String nombre, float precio, int num)
 	{
 		this.id = id;

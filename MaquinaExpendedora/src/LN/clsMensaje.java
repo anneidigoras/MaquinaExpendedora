@@ -57,10 +57,14 @@ public class clsMensaje{
      msg.setSubject("Estadísticas");
      msg.setText("Adjuntamos los datos de los siguientes usuarios:");
      usuario=clsGestor.leerUsuario();
+    
      for(clsUsuario aux:usuario)
      {
+    	
     	 msg.setText( " Nombre: "+ aux.getNombre()+  " Apellido: "+ aux.getApellido()+ " Dni: "+ aux.getDni());
+    	 
      }
+   
      
      msg.setSentDate(new Date());
      Transport.send(msg);
@@ -150,7 +154,8 @@ public class clsMensaje{
      bebida=clsGestor.BebidasGuardadas();
      for(clsBebida aux:bebida)
      {
-    	 msg.setText( " Nombre: "+ aux.getNombreP()+  " ID: "+ aux.getId()+ " Precio: "+ aux.getPrecioP());
+    	 for(int i=0; i<bebida.size();i++){
+    	 msg.setText( " Nombre: "+ aux.getNombreP()+  " ID: "+ aux.getId()+ " Precio: "+ aux.getPrecioP());}
      }
      
      msg.setSentDate(new Date());
@@ -198,7 +203,8 @@ public class clsMensaje{
      alimento=clsGestor.AlimentosGuardados();
      for(clsAlimento aux:alimento)
      {
-    	 msg.setText( alimento.size()+" Nombre: "+ aux.getNombreP()+  " ID: "+ aux.getId()+ " Precio: "+ aux.getPrecioP()+"Cantidad: "+aux.getNum());
+    	 for(int i=0; i<alimento.size();i++){
+    	 msg.setText( alimento.size()+" Nombre: "+ aux.getNombreP()+  " ID: "+ aux.getId()+ " Precio: "+ aux.getPrecioP()+"Cantidad: "+aux.getNum());}
      }
      
      msg.setSentDate(new Date());
@@ -247,8 +253,9 @@ public class clsMensaje{
      compras=clsGestor.leerAdquisicion();
      for(clsAdquisicion aux:compras)
      {
+    	 for(int i=0; i<compras.size();i++){
     	 
-    	 msg.setText( " Nombre: "+ aux.getDni_usuario()+  " ID: "+aux.getId_producto() );
+    	 msg.setText( " Nombre: "+ aux.getDni_usuario()+  " ID: "+aux.getId_producto() );}
      }
      
      msg.setSentDate(new Date());

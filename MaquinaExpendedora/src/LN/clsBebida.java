@@ -4,7 +4,7 @@ public class clsBebida extends clsProducto
 {
 
 /**
-	 * 
+	 * Clase que here
 	 */
 	private static final long serialVersionUID = 127134869965129608L;
 	private int miliL;

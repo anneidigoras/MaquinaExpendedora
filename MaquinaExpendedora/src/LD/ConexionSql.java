@@ -1,4 +1,10 @@
 package LD;
+/**
+ * 
+ * @author Mayi, Anne y Andoni Eguiluz
+ * 
+ * Hemos tomado como base un proyecto que tenia hecho Andoni con base de datos 
+ */
 
 import java.io.File;
 import java.sql.*;
@@ -256,34 +262,7 @@ public class ConexionSql
 		}
 	}
 	
-	public void anyadirUsuario(String nombre, String ape, String dni, int edad)
-	{	
-		
-		
-			try {
-				
-							
-				String sentencia="insert into usuario values('"+nombre+"', '"+ape+"', '"+dni+"','"+edad+"')";
-				st.executeUpdate(sentencia);
-				
-				String sentencia2="insert into registro values('"+nombre+" , '"+ape+"')";
-				st.executeUpdate(sentencia2);
-				
-				String sentencia3="insert into compras values('"+dni+" )";
-				st.executeUpdate(sentencia3);
-				
-				
-				JOptionPane.showMessageDialog(null, "¡Usuario añadido correctamente!");	
-			
-			} 
-			catch (SQLException e) 
-			{
-				
-				e.printStackTrace();
-			}	
-		
-	
-	}
+
 	
 
 }
