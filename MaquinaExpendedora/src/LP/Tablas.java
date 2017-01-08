@@ -99,10 +99,7 @@ public class Tablas extends JFrame implements ActionListener
 		Bebidas=clsGestor.BebidasGuardadas();
 		Usuarios=clsGestor.leerUsuario();
 		Alimentos= clsGestor.AlimentosGuardados();
-		//Compras= clsGestor.leerAdquisicion();
-		
 		Compras= clsGestor.leerAdquisicionBD();
-		
 
 	}		
 	

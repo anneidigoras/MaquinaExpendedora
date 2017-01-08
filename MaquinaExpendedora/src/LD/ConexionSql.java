@@ -259,8 +259,6 @@ public class ConexionSql
 			}
 			rs.close();
 			//log( Level.INFO, "BD\t" + sentSQL, null );
-			System.out.println(ret);
-			System.out.println(ret.get(0).getDni_usuario());
 			return ret;
 		} catch (IllegalArgumentException e) {  // Error en tipo usuario (enumerado)
 			//log( Level.SEVERE, "Error en BD en tipo de usuario\t" + sentSQL, e );
