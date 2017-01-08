@@ -45,34 +45,43 @@ public class clsGestor
 	{
 		
 		
-//		clsDatos objD = new clsDatos();
-//		if (objD.comprobarexiste(enFicheros.ADMINISTRADOR)==true)
-//		{
-//			LinkedList<clsAdministrador> lista=new LinkedList<clsAdministrador>();
-//			
-//			try {
-//				objD.ComenzarRead(enFicheros.ADMINISTRADOR);
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			
-//				for(Serializable aux:objD.Read())
-//				{
-//					lista.add((clsAdministrador)aux);
-//				}
-//			
-//			objD.TerminarRead();
-//			admin= lista.getFirst();
-//		}
-//		else
-//			{
+		clsDatos objD = new clsDatos();
+		if (objD.comprobarexiste(enFicheros.ADMINISTRADOR)==true)
+		{
+			LinkedList<clsAdministrador> lista=new LinkedList<clsAdministrador>();
+			
+			try {
+				objD.ComenzarRead(enFicheros.ADMINISTRADOR);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+				for(Serializable aux:objD.Read())
+				{
+					lista.add((clsAdministrador)aux);
+				}
+			
+			objD.TerminarRead();
+			admin= lista.getFirst();
+		}
+		else
+			{
 			admin= new clsAdministrador();
-//			crearAdmin(); 
-//			}
+			crearAdmin(); 
+			}
 	
 	}
-	public static void creabebidas ()
+	public static void crearAdmin()
+	{	     
+	               clsDatos objD = new clsDatos();
+	               objD.ResetFile(enFicheros.ADMINISTRADOR);
+	               objD.ComenzarSave(enFicheros.ADMINISTRADOR);
+	               objD.Save((Serializable)admin);
+	               objD.TerminarSave();
+	}
+
+	public static void creaproductos ()
 	{
 		LinkedList<clsBebida> listaB; 
 		

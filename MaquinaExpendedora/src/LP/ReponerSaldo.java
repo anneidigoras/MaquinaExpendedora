@@ -169,7 +169,7 @@ public class ReponerSaldo extends JFrame implements ActionListener
 	
 	public void Aceptar()
 	{
-		int aceptar =JOptionPane.showConfirmDialog(null, "¿Seguro que quiere reponer el saldo?","Carga de  "+comando_anterior, JOptionPane.OK_CANCEL_OPTION);
+		int aceptar =JOptionPane.showConfirmDialog(null, "¿Seguro que quiere reponer el saldo?","Carga de  "+comando_anterior+ " €", JOptionPane.OK_CANCEL_OPTION);
 		if (aceptar == 0)
 		{
 			switch (comando_anterior)

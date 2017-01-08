@@ -68,6 +68,11 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
     static int num_snickers=0;
     static int num_kitkat=0;
     
+   
+ 
+
+    
+    
     JPanel panel1;
     JPanel panelBebidas,panelAlimentos;
     
@@ -93,7 +98,9 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	static final String ALIMENTOS = "Alimentos";
 	private final static String SALTO = "\n";
 	private boolean ver=false;
-	
+	 static final String CAMBIAR_NOMBRE = "Cambiar Nombre";
+    static final String CAMBIAR_PASS = "Cambiar contrase<F1>a";
+    static final String PROYECTO = "Proyecto";
 	/**
 	 * Constructor con todo el tema de swing 
 	 * @param title
@@ -792,7 +799,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	                    + "Su nombre actual es: "+ clsGestor.admin.getNombre(),
 	                    "Customized Dialog",JOptionPane.PLAIN_MESSAGE,new ImageIcon(getClass().getResource("/img/ajustes.jpg")), null,"");
 			 clsGestor.admin.setNombre(nombre);
-			 //clsGestor.crearAdmin();
+			 clsGestor.crearAdmin();
 			 break;
 		 case "Cambiar contraseña":
 			 String contraseña =(String)JOptionPane.showInputDialog(null,
@@ -800,7 +807,7 @@ public class PantallaAdmin extends JFrame   implements ActionListener,ItemListen
 	                    + "Su contraseña actual es: "+ clsGestor.admin.getContraseña(),
 	                    "Customized Dialog",JOptionPane.PLAIN_MESSAGE,new ImageIcon(getClass().getResource("/img/ajustes.jpg")), null,"");
 			 clsGestor.admin.setContraseña(contraseña);
-			 //clsGestor.crearAdmin();
+			 clsGestor.crearAdmin();
 			 break;
 		
 			 

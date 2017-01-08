@@ -1,7 +1,14 @@
 package LN;
 
-public class clsAdministrador 
+import java.io.Serializable;
+
+public class clsAdministrador implements Serializable
 {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static boolean existe= false;
 	private String contraseña;
 	private String nombre;

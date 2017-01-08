@@ -15,7 +15,7 @@ public class clsMain
 	public static void main(String[]args)
 	{
 		
-		clsGestor.creabebidas();
+		clsGestor.creaproductos();
 		clsGestor.cargaradmin();
 		javax.swing.SwingUtilities.invokeLater(new Runnable()
 		{
