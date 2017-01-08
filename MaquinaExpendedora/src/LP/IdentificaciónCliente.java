@@ -126,8 +126,8 @@ public class IdentificaciónCliente extends JFrame implements ActionListener
 	{
 		boolean existe= false;
 		String nombre;
-		char [] Arraypass=null;
-		String password = null;
+		char [] Arraypass;
+		String password = "";
 		
 		nombre= this.textDni.getText();
 		Arraypass = this.textContra.getPassword();

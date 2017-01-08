@@ -1,3 +1,4 @@
+
 package LN;
 
 /**
@@ -327,7 +328,6 @@ public class clsGestor
 					break;
 				}
 			}
-			
 			return existe;
 			
 		}

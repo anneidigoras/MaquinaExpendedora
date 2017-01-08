@@ -168,7 +168,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 	private void Aceptar(ActionEvent e)
 	{
 		char [] Arraypass1;char [] Arraypass2;
-		String password1 =null; String password2 =null;
+		String password1 = ""; String password2="";
 		
 		String nombre=this.txtNombre.getText(); String ape1= this.txtApe.getText(); String dni= this.txtDni.getText(); int edad= Integer.parseInt(this.txtEdad.getText());
 		Arraypass1 = this.password1.getPassword();Arraypass2 = this.password2.getPassword();
@@ -183,6 +183,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 		{
 			try 
 			{
+			System.out.println(password1);
 			objGestor.nuevoUsuario(nombre, ape1, dni, edad,password1);
 			this.dispose();
 			InterfazSeleccionProductos frame= new InterfazSeleccionProductos(dni);
