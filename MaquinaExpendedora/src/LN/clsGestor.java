@@ -1,6 +1,11 @@
 package LN;
 
-
+/**
+ * @author Anne y Mayi
+ * 
+ * clase en la que se gestionan los metodos para guardado y lectura de los ficheros
+ * 
+ */
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -35,12 +40,10 @@ public class clsGestor
 	{
 		// TODO Auto-generated constructor stub
 	}
-	/**
-	 * Este metodo se ejecuta una sola vez al principio del programa para crear las bebidas disponibles 
-	 * Y guardarlas en la base de datos.
-	 * Llama al metodo BebidasGuardadas(), si las bebidas ya estan en la base de datos solo las recoje en una LinkedList (Persistencia de datos)
-	 * Si la base de datos de bebidas esta vacía, inserta las bebidas disponobles. (1º ejecucion del programa)
-	 */
+/**
+ * 
+ * lectura del fichero del administrador
+ */
 	public static void cargaradmin()
 	{
 		
@@ -72,6 +75,10 @@ public class clsGestor
 			}
 	
 	}
+	/**
+	 * 
+	 * guardado del administrador en el fichero
+	 */
 	public static void crearAdmin()
 	{	     
 	               clsDatos objD = new clsDatos();
@@ -80,7 +87,12 @@ public class clsGestor
 	               objD.Save((Serializable)admin);
 	               objD.TerminarSave();
 	}
-
+	/**
+	 * Este metodo se ejecuta una sola vez al principio del programa para crear las bebidas y los alimentos disponibles 
+	 * Y guardarlas en la base de datos.
+	 * Llama al metodo BebidasGuardadas(), si las bebidas ya estan en la base de datos solo las recoje en una LinkedList (Persistencia de datos)
+	 * Si la base de datos de bebidas esta vacía, inserta las bebidas disponobles. (1º ejecucion del programa) y el mismo procedimiento con los alimentos
+	 */
 	public static void creaproductos ()
 	{
 		LinkedList<clsBebida> listaB; 
@@ -114,12 +126,14 @@ public class clsGestor
 
 			guardarAlimentos(listaA);
 		}
-		ConexionSql con= new ConexionSql();
-	//	ConexionSql.crearTablaBebida();
-		//con.anyadirProductos("CocaCola", (float) 1.2, "CC", 5);
+	
 	}
 	
-
+/**
+ * 
+ * guardado de alimentos en ficheros
+ * @param listaAlim: pasamos como parametro la linkedlist de tipo clsAlimento
+ */
 	public static void guardarAlimentos (LinkedList <clsAlimento> listaAlim)
 	{
 		clsDatos objD=new clsDatos();
@@ -136,6 +150,10 @@ public class clsGestor
 		objD.TerminarSave();
 		
 	}
+	/**
+	 * lectura del fichero de alimentos
+	 * @return lista de alimentos
+	 */
 	
 	public static LinkedList <clsAlimento> AlimentosGuardados() 
 	{
@@ -159,6 +177,10 @@ public class clsGestor
 		
 		return lista;
 	}
+	/**
+	 * giardado de las bebidas en el fichero
+	 * @param listabebidas
+	 */
 	public static void guardarBebidas (LinkedList <clsBebida> listabebidas)
 	{
 		clsDatos objD=new clsDatos();
@@ -175,6 +197,11 @@ public class clsGestor
 		objD.TerminarSave();
 		
 	}
+	/**
+	 * 
+	 * lectura de la lista de bebidas guardadas en el fichero
+	 * @return lista de bebidas
+	 */
 	
 	public static LinkedList <clsBebida> BebidasGuardadas() 
 	{
@@ -198,7 +225,11 @@ public class clsGestor
 		
 		return lista;
 	}
-	
+	/**
+	 * 
+	 * metodo utilizado para que al comprar las bebidas se reduzca su stock
+	 * @param id: pasamos como parametro el id del producto
+	 */
 	public static void consumobebida (String id)
 	{
 		
@@ -212,6 +243,11 @@ public class clsGestor
 		
 		
 	}
+	/**
+	 * 
+	 * metodo utilizado para que al comprar los alimentos, el stock de estos se reduzca
+	 * @param id
+	 */
 	
 	public static void consumoAlimento (String id)
 	{
@@ -226,6 +262,16 @@ public class clsGestor
 		
 		
 	}
+	/**
+	 * 
+	 * metodo utilizado para el registro de los usuarios
+	 * @param nombre
+	 * @param apellido1
+	 * @param DNI
+	 * @param edad
+	 * @param pass
+	 * @throws clsUsuarioExistente
+	 */
 	
 	public  void nuevoUsuario(String nombre, String apellido1, String DNI, int edad,  String pass)throws clsUsuarioExistente
 	{
@@ -262,7 +308,12 @@ public class clsGestor
         objDatos.TerminarSave();
         }
 		}
-
+/**
+ * metodo utilizado para que una vez el usuario este registrado, podamos ingresar a la interfaz de compras
+ * @param nombre
+ * @param pass
+ * @return existe: boolean que se pone a true en caso de que la contraseña y el dni esten guardados
+ */
     public static boolean IngresoCliente(String nombre, String pass)
 		{
 			boolean existe = false;
@@ -270,7 +321,7 @@ public class clsGestor
 			listaClientes=leerUsuario();
 			for (clsUsuario aux: listaClientes)
 			{
-				if (aux.getPassword().equals(pass) & aux.getNombre().equals(nombre))
+				if (aux.getPassword().equals(pass) & aux.getDni().equals(nombre))
 				{
 					existe=true;
 					break;
@@ -280,6 +331,11 @@ public class clsGestor
 			return existe;
 			
 		}
+    /**
+     * 
+     * lectura de usuarios guardados en fichero
+     * @return lista de usuarios
+     */
 
     public static ArrayList<clsUsuario> leerUsuario()
 		{
@@ -309,7 +365,11 @@ public class clsGestor
 		    return listaUsuario;
 		}
 
-
+/**
+ * 
+ * guardados de los usuarios en ficheros
+ * @param lista de usuarios que queremos guardar
+ */
     public static void CrearListaUsuario(LinkedList<clsUsuario> lista)
 {
 	clsDatos objD=new clsDatos();

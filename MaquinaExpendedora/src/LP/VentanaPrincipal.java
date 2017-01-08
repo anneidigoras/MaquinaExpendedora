@@ -52,11 +52,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
     private	JLabel imagenlbl;
 	private JPanel contentPane;
 	private JMenuBar MenuPrincipal;
-//	private JMenu Cliente;
-//	private JMenuItem C_Ingresar;
-//	private JMenuItem C_Registrarse;
-//	private JMenu Admin;
-//	private JMenuItem A_Ingresar;
+
 
 	private JButton Salir, btIngresar, btRegistro, btAdmin, btUsuario;
 	Connection connection = null;
