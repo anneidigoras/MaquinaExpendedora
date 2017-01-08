@@ -48,10 +48,6 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	JLabel lbldni, lblnombre,lbledad, lblpass,lblape;
 	
 	
-	
-	
-	
-	
 	String comando= null;
 	static String dni_usuario;
 	static clsUsuario usuario = new clsUsuario (); 
@@ -411,7 +407,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 				break;
 
 			case SNI:
-				this.txtPantalla.append("Snickers:	 "+String.format(java.util.Locale.US,"%.2f",clsConstantes.PRECIO_SNICKERS)+" €");
+				this.txtPantalla.append("Snickers:	 "+String.format(java.util.Locale.US,"%.2f",0.8)+" €");
 				break;
 			case OREO:
 				this.txtPantalla.append("Oreos:	 "+String.format(java.util.Locale.US,"%.2f",clsConstantes.PRECIO_OREO)+" €");

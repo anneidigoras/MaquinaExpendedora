@@ -121,7 +121,7 @@ public class clsGestor
 		if (listaA.isEmpty())
 		{
 			
-			listaA.add(new clsAlimento ("Snickers", (float) 0.8, clsConstantes.ID_SNICKERS, 125, clsConstantes.NUM_INICIAL_PRODUCTOS));
+			listaA.add(new clsAlimento ("Snickers", clsConstantes.PRECIO_SNICKERS, clsConstantes.ID_SNICKERS, 125, clsConstantes.NUM_INICIAL_PRODUCTOS));
 			listaA.add(new clsAlimento("KitKat",clsConstantes.PRECIO_KITKAT,clsConstantes.ID_KITKAT,125,clsConstantes.NUM_INICIAL_PRODUCTOS));
 			listaA.add(new clsAlimento("Oreo",clsConstantes.PRECIO_OREO,clsConstantes.ID_OREO,150,clsConstantes.NUM_INICIAL_PRODUCTOS));
 
@@ -497,124 +497,11 @@ public static ArrayList<clsAdquisicion> leerAdquisicionBD()
 
 }
 
-public boolean anyadirFilaATabla( Statement st ) {
-	// Adicional uno
-	if (chequearYaEnTabla(st)) {  // Si está ya en la tabla
-		return modificarFilaEnTabla(st);
-	}
-	// Inserción normal
-	try {
-		String sentSQL = "insert into fichero_multimedia values(" +
-				"'" + file.getAbsolutePath() + "', " +
-				"'" + dni+ "', " +
-				"'" + nombre + "')";
-		System.out.println( sentSQL );  // (Quitar) para ver lo que se hace-CONSEJO: hacer siempre un syso del string para ver como se ve
-		int val = st.executeUpdate( sentSQL );
-		if (val!=1) return false;  // Se tiene que añadir 1 - error si no
-		return true;
-	} catch (SQLException e) {
-		e.printStackTrace();
-		return false;
-	}
-}
-public boolean chequearYaEnTabla( Statement st ) {
-	try {
-		String sentSQL = "select * from fichero_multimedia " +
-				"where (fichero = '" + file.getAbsolutePath() + "')"; //con getAbs.. no pueden existir dos arhivos con el mismo nombre
-		System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
-		ResultSet rs = st.executeQuery( sentSQL ); // con resultset gestionamos los archivos vlc
-		if (rs.next()) {  // Normalmente se recorre con un while, pero aquí solo hay que ver si ya existe
-			rs.close();
-			return true; //si existe un valor return true, si no false
-		}
-		return false;
-	} catch (SQLException e) {
-		e.printStackTrace();
-		return false;
-	}
-}
 
-public boolean modificarFilaEnTabla( Statement st ) {
-	try {
-		String sentSQL = "update fichero_multimedia set " +
-				"nombre = '" + nombre + "', " +
-				"dni = '" + dni + "', " +
-				
-				"where (fichero = '" + file.getAbsolutePath() + "')";
-		System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
-		int val = st.executeUpdate( sentSQL ); 
-		if (val!=1) return false;  // Se tiene que modificar 1, error si no
-		return true;
-	} catch (SQLException e) {
-		e.printStackTrace();
-		return false;
-	}
-}
 
-public void cargarDeTabla( Statement st ) {
-	try {
-		String sentSQL = "select * from fichero_multimedia " +
-				"where (fichero = '" + this.file.getAbsolutePath() + "')";
-		System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
-		ResultSet rs = st.executeQuery( sentSQL );
-		if (rs.next()) {  // Normalmente se recorre con un while, pero aquí solo hay que ver si ya existe
-		
-			this.nombre = rs.getString( "nombre" );
-			this.dni = rs.getString( "dni" );
-			
-			rs.close();
-		}
-		// else No hay ninguno en la tabla
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-}
 
-public static clsGestor cargarDeTabla( Statement st, String nombreFichero ) {
-	try {
-		String sentSQL = "select * from fichero_multimedia " +
-				"where (fichero = '" + nombreFichero + "')";
-		System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
-		ResultSet rs = st.executeQuery( sentSQL );
-		if (rs.next()) {  // Normalmente se recorre con un while, pero aquí solo hay que ver si ya existe
-			clsGestor fm = new clsGestor( new File(nombreFichero) );
-			
-			fm.nombre = rs.getString( "nombre" );
-			fm.dni = rs.getString( "dni" );
-			
-			rs.close();
-			return fm;
-		}
-		// else No hay ninguno en la tabla
-		return null;
-	} catch (SQLException e) {
-		e.printStackTrace();
-		return null;  // Error
-	}
-}
 
-public static ArrayList<clsGestor> cargarVariosDeTabla( Statement st, String exprWhere ) {
-	try {
-		ArrayList<clsGestor> lista = new ArrayList<>();
-		String sentSQL = "select * from fichero_multimedia" +
-				((exprWhere==null||exprWhere.equals(""))?"":(" where " + exprWhere));
-		System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
-		ResultSet rs = st.executeQuery( sentSQL );
-		while (rs.next()) { 
-			clsGestor fm = new clsGestor( new File(rs.getString( "fichero_multimedia" )) );
-			
-			fm.nombre = rs.getString( "nombre" );
-			fm.dni = rs.getString( "dni" );
-			
-			rs.close();
-			lista.add( fm );
-		}
-		return lista;
-	} catch (SQLException e) {
-		e.printStackTrace();
-		return null;  // Error
-	}
-}
+
 /**
  * 
  * Metodo al que llamamos cuando se comprar algun producto, y el saldo del usuario se reduce
