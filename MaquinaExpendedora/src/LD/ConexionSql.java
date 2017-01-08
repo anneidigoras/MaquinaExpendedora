@@ -80,12 +80,12 @@ public class ConexionSql
 			 // Tabla ya existe. Nada que hacer
 			try {
 				statement.executeUpdate("create table adquisicion " +
-"(ID_producto string " 
-					+ ",nombre_producto string, DNI_cliente string, nombre_cliente string,primary key(ID_producto, dni_cliente ), unique key (ID_producto, dni_cliente))");
+                "(ID_producto string " 
+					+ ",nombre_producto string, DNI_cliente string, nombre_cliente string,primary key(ID_producto, dni_cliente ))");
 			} catch (SQLException e) {}
 			try {
 				statement.executeUpdate("create table usuario " +
-					// "(nick string "  // (2) Esto sería sin borrado en cascada ni relación de claves ajenas
+				
 					"(dni string PRIMARY KEY" + ", password string, nombre string, apellido string" +", edad integer )");
 			} catch (SQLException e) {}// Tabla ya existe. Nada que hacer
 			try {

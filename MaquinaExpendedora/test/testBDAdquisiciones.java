@@ -19,19 +19,34 @@ public class testBDAdquisiciones {
 		String idP = "cc";
 	String dni = "12345678";
 
-		Connection nueva_conexion =ConexionSql.initBD("src\\BD\\BaseDeDatoos.db" );
-		Statement st =ConexionSql.usarCrearTablasBD(nueva_conexion); 
+	
+	    
+clsAdquisicion compra = new clsAdquisicion(idP,dni,nombreP,nombreU);
+		ConexionSql bd= new ConexionSql();
+		Connection nueva_conexion =ConexionSql.initBD("src\\BD\\Adquisiciones.db" );
+		Statement st =ConexionSql.usarCrearTablasBD(nueva_conexion);
+		ConexionSql.adquisicionInsert(st, compra);
+		ConexionSql.cerrarBD(nueva_conexion, st);
+		try {
+			   //Y para terminar cerramos la conexión
+			
+			   nueva_conexion.close();
+			
+			  }
+
+			  catch (SQLException e) {
+
+			   //Esto se ejecuta si hay algún problema al realizar la conexión.
+
+			   e.printStackTrace();
+			  }
 		
-		
-		
-		ConexionSql bd=new ConexionSql();
-		clsAdquisicion u= new clsAdquisicion();
-		u.setDni_usuario(dni);u.setId_producto(idP);u.setNombre_p(nombreP);u.setNombre_u(nombreU);
-		
-	    ConexionSql.adquisicionInsert(st, u);
-		
-		assertNotNull(bd);
 		
 
-}
+	assertNotNull(bd);
+	}
+		
+
+
+
 }
