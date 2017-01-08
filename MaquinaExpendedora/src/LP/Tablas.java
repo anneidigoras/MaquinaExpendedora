@@ -117,7 +117,7 @@ public class Tablas extends JFrame implements ActionListener
 		private static final long serialVersionUID = 1L;
 		
 		
-		private String[] columnNames = {"Dni","Id Producto"};
+		private String[] columnNames = {"Id producto","dni"};
         Object[][] data;
         
         public TablaComprasModel(ArrayList<clsAdquisicion> compras)
