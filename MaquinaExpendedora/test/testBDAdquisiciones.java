@@ -9,7 +9,12 @@ import org.junit.Test;
 import LD.ConexionSql;
 import LN.clsAdquisicion;
 
-
+/**
+ * 
+ * verificamos que funciona la base de datos de adquisiciones, introduciendo los siguientes datos
+ * @author Anne
+ *
+ */
 public class testBDAdquisiciones {
 
 	@Test
