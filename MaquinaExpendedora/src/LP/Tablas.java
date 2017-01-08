@@ -474,7 +474,7 @@ public class Tablas extends JFrame implements ActionListener
         TablaUsuariosModel tam=new TablaUsuariosModel(Usuarios);
 	
 		jtUsuarios = new JTable(tam);
-		jtUsuarios.setPreferredScrollableViewportSize(new Dimension(500, 120));
+		jtUsuarios.setPreferredScrollableViewportSize(new Dimension(500, 90));
 		jtUsuarios.setFillsViewportHeight(true);
 		jtUsuarios.setEnabled(true);
 		jtUsuarios.setRowSelectionAllowed(true);
@@ -485,7 +485,7 @@ public class Tablas extends JFrame implements ActionListener
         TablaBebidasModel tam2=new TablaBebidasModel(Bebidas);
 	
 		jtBebidas = new JTable(tam2);
-		jtBebidas.setPreferredScrollableViewportSize(new Dimension(500, 120));
+		jtBebidas.setPreferredScrollableViewportSize(new Dimension(500, 90));
 		jtBebidas.setFillsViewportHeight(true);
 		jtBebidas.setEnabled(true);
 		jtBebidas.setRowSelectionAllowed(true);
@@ -496,7 +496,7 @@ public class Tablas extends JFrame implements ActionListener
         TablaAlimentosModel tam3=new TablaAlimentosModel(Alimentos);
 	
 		jtAlimentos = new JTable(tam3);
-		jtAlimentos.setPreferredScrollableViewportSize(new Dimension(500, 120));
+		jtAlimentos.setPreferredScrollableViewportSize(new Dimension(500, 90));
 		jtAlimentos.setFillsViewportHeight(true);
 		jtAlimentos.setEnabled(true);
 		jtAlimentos.setRowSelectionAllowed(true);
@@ -507,7 +507,7 @@ public class Tablas extends JFrame implements ActionListener
         TablaComprasModel tam4=new TablaComprasModel(Compras);
 	
 		jtCompras = new JTable(tam4);
-		jtCompras.setPreferredScrollableViewportSize(new Dimension(500, 200));
+		jtCompras.setPreferredScrollableViewportSize(new Dimension(500, 90));
 		jtCompras.setFillsViewportHeight(true);
 		jtCompras.setEnabled(true);
 		jtCompras.setRowSelectionAllowed(true);
@@ -735,34 +735,34 @@ public class Tablas extends JFrame implements ActionListener
 		    tablaPanel.add(jlUsuarios);//),BorderLayout.NORTH);
 		    
 			JPanel panelU= new JPanel();
-			panelU.setBounds(50,30,600,170);
+			panelU.setBounds(50,30,600,120);
 			jspUsuarios=new JScrollPane(jtUsuarios);
 			panelU.add(jspUsuarios);//BorderLayout.NORTH);
 			
 			jlBebidas=new JLabel("Listado de Bebidas");
-			jlBebidas.setBounds(tablaPanel.getWidth()/3,220,200,20);
+			jlBebidas.setBounds(tablaPanel.getWidth()/3,170,200,20);
 			tablaPanel.add(jlBebidas); //labelPanel.add(jlAlimentos);
 			
 			JPanel panelB= new JPanel();
 			jspBebidas=new JScrollPane(jtBebidas);
-			panelB.setBounds(50,250,600,170);
+			panelB.setBounds(50,180,600,120);
 			panelB.add(jspBebidas);//,BorderLayout.CENTER); 
 			
 			jlAlimentos=new JLabel("Listado de Alimentos");
-			jlAlimentos.setBounds(tablaPanel.getWidth()/3, 430, 200, 20);
+			jlAlimentos.setBounds(tablaPanel.getWidth()/3, 320, 200, 20);
 			tablaPanel.add(jlAlimentos);//),BorderLayout.NORTH);
 			
 			JPanel panelA= new JPanel();
-			panelA.setBounds(50, 480,600,170);
+			panelA.setBounds(50, 350,600,120);
 	        jspAlimentos= new JScrollPane(jtAlimentos);
 			panelA.add(jspAlimentos);//,BorderLayout.PAGE_END);
 			
 			jlCompras=new JLabel("Listado de Compras");
-			jlCompras.setBounds(tablaPanel.getWidth()/3, 640, 200, 20);
+			jlCompras.setBounds(tablaPanel.getWidth()/3, 490, 200, 20);
 			tablaPanel.add(jlCompras);//),BorderLayout.NORTH);
 			
 			JPanel panelC= new JPanel();
-			panelC.setBounds(50,710,600,170);
+			panelC.setBounds(50,520,600,120);
 			jspCompras= new JScrollPane(jtCompras);
 			panelC.add(jspCompras);
 			
