@@ -169,9 +169,20 @@ public class clsDatos
 			File file = new File (ruta);
 			if (file.exists())
 			{
+				
 				existe=true;		
 			}
 			return existe;
+		}
+		
+		public void tamañoFichero(COMUN.clsConstantes.enFicheros ficheros)
+		{
+			String ruta= setFichero(ficheros);
+			File file = new File (ruta);
+			if (file.exists())
+			{
+				file.length();		
+			}
 		}
 		/**
 		 * Abre el archivo a modo de lectura.

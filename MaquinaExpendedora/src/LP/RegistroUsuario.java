@@ -202,6 +202,10 @@ public class RegistroUsuario extends JFrame implements ActionListener
 	
 	
 	}
+	/**
+	 * 
+	 * Metodo utilizado
+	 */
 	public void anyadir()
 	{
 
@@ -215,8 +219,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 		String dni=txtDni.getText();
 		
 		clsUsuario u = new clsUsuario (nombre, ape, dni, edad, null);
-	//	ConexionSql.crearTablaUsuario();
-		//base.anyadirUsuario(nombre,ape,dni,edad);
+	
 		
 		Connection nueva_conexion =ConexionSql.initBD("src\\BD\\BaseDeDatoos.db" );
 		Statement st =ConexionSql.usarCrearTablasBD(nueva_conexion);

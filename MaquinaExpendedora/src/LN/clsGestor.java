@@ -18,7 +18,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-import COMUN.clsAdquisicionRepetido;
 import COMUN.clsConstantes;
 
 import COMUN.clsConstantes.enFicheros;
@@ -386,7 +385,12 @@ public class clsGestor
 	objD.TerminarSave();
 	
 }
-    
+    /**
+     * 
+     * Metodo que nos permite modific
+     * @param usuario
+     * @param dni_anterior
+     */
     public static void ModificarUsuario(clsUsuario usuario, String dni_anterior)
     {
     	ArrayList<clsUsuario> lista_anterior = leerUsuario();
@@ -408,6 +412,12 @@ public class clsGestor
     	CrearListaUsuario(lista_actual);
     	
     }
+    /**
+     * 
+     * Metodo usado para relacionar a los productos con los usuarios 
+     * @param id_producto
+     * @param dni_user
+     */
     public static void crearAdquisicion(String id_producto, String dni_user)
 {
 	ArrayList<clsAdquisicion> adquisicion= new ArrayList<clsAdquisicion>();
@@ -424,6 +434,7 @@ public class clsGestor
 	
 
 		objDatos.ComenzarSave(enFicheros.RELACIONUSUARIO_BEBIDA);
+		objDatos.ComenzarSave(enFicheros.RELACIONUSUARIO_ALIMENTO);
 		objDatos.Save((Serializable) objadquisicion);
 		objDatos.TerminarSave();
 		
@@ -459,27 +470,6 @@ public static ArrayList<clsAdquisicion> leerAdquisicion()
 	return adquisicion;
 	
 }
-public static void Eliminar()
-{
-	System.out.println("Has seleccionado reiniciar ficheros");
-	clsDatos objD=new clsDatos();
-	
-	objD.ResetFile(enFicheros.USUARIOS);
-}
-
-public static void EliminarA(String  dni)
-{
-	
-	ArrayList<clsUsuario>lista = leerUsuario();
-	LinkedList<clsUsuario>lista1 =new LinkedList<clsUsuario>(); 		
-	for(clsUsuario aux:lista)
-	{
-		if(!aux.getDni().equals(dni))
-			lista1.add(aux);
-	}
-	CrearListaUsuario(lista1);
-}
-
 
 
 
@@ -601,7 +591,12 @@ public static ArrayList<clsGestor> cargarVariosDeTabla( Statement st, String exp
 		return null;  // Error
 	}
 }
-
+/**
+ * 
+ * Metodo al que llamamos cuando se comprar algun producto, y el saldo del usuario se reduce
+ * @param dni : dni del usuario
+ * @param id: id del producto
+ */
 
 public static void gastadinero(String dni, String id)
 {
