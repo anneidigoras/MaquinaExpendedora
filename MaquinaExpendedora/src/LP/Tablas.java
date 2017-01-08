@@ -461,11 +461,6 @@ public class Tablas extends JFrame implements ActionListener
     }
 	
 
-
-
-	
-	
-
 	private void crearTablas()
 	{
 		

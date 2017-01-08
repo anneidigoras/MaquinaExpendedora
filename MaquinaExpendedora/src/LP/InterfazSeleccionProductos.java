@@ -532,7 +532,7 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
             if(aux.getId().equals(consumicion)){ bebidaconsumida = aux;es_bebida =true;}
             clsGestor.crearAdquisicion(aux.getId(),usuario.getDni());
         }
-        if (es_bebida = false)
+        if (es_bebida == false)
         {
            clsGestor.crearAdquisicion(alimentoConsumido.getId(),usuario.getDni());
            precio = alimentoConsumido.getPrecioP();

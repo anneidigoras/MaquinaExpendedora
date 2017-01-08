@@ -57,11 +57,10 @@ public class clsMensaje{
      msg.setSubject("Estadísticas");
      msg.setText("Adjuntamos los datos de los siguientes usuarios:");
      usuario=clsGestor.leerUsuario();
-    
-     for(clsUsuario aux:usuario)
-     {
+    for(int i=0; i<usuario.size();i++){
+     
     	
-    	 msg.setText( " Nombre: "+ aux.getNombre()+  " Apellido: "+ aux.getApellido()+ " Dni: "+ aux.getDni());
+    	 msg.setText( " Nombre: "+ usuario.get(i).getNombre()+  " Apellido: "+ usuario.get(i).getApellido()+ " Dni: "+ usuario.get(i).getDni());
     	 
      }
    

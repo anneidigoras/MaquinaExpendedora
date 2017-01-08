@@ -88,11 +88,11 @@ public class ConexionSql
 				statement.executeUpdate("create table adquisicion " +
 					// "(nick string "  // (2) Esto sería sin borrado en cascada ni relación de claves ajenas
 					"(ID_producto string " // (1) Solo para foreign keys
-					+ ",nombre_producto string, DNI_cliente string, nombre_cliente string, primary key(ID_producto, DNI_cliente))");
+					+ ",nombre_producto string, DNI_cliente string, nombre_cliente string,primary key(ID_producto, dni_cliente ))");
 			} catch (SQLException e) {} // Tabla ya existe. Nada que hacer
 			try {
 				statement.executeUpdate("create table bebida " +
-					"(id string PRIMARY JEY"+", precio integer, num integer)"); // (1) Solo para foreign keys
+					"(id string PRIMARY KEY"+", precio integer, num integer)"); // (1) Solo para foreign keys
 					// "(usuario_nick string, fechapartida bigint, puntuacion integer)"); // (2) Esto sería sin borrado en cascada
 			} catch (SQLException e) {} // Tabla ya existe. Nada que hacer
 		//	log( Level.INFO, "Creada base de datos", null );
