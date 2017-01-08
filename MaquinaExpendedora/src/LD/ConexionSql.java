@@ -6,7 +6,7 @@ package LD;
  * Hemos tomado como base un proyecto que tenia hecho Andoni con base de datos 
  */
 
-import java.io.File;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -77,19 +77,17 @@ public class ConexionSql
 		try {
 			Statement statement = con.createStatement();
 			statement.setQueryTimeout(30);  // poner timeout 30 msg
+			 // Tabla ya existe. Nada que hacer
+			try {
+				statement.executeUpdate("create table adquisicion " +
+"(ID_producto string " 
+					+ ",nombre_producto string, DNI_cliente string, nombre_cliente string,primary key(ID_producto, dni_cliente ), unique key (ID_producto, dni_cliente))");
+			} catch (SQLException e) {}
 			try {
 				statement.executeUpdate("create table usuario " +
 					// "(nick string "  // (2) Esto sería sin borrado en cascada ni relación de claves ajenas
-					"(dni string PRIMARY KEY" // (1) Solo para foreign keys
-					+ ", password string, nombre string, apellido string" +
-					", edad integer, )");
-			} catch (SQLException e) {} // Tabla ya existe. Nada que hacer
-			try {
-				statement.executeUpdate("create table adquisicion " +
-					// "(nick string "  // (2) Esto sería sin borrado en cascada ni relación de claves ajenas
-					"(ID_producto string " // (1) Solo para foreign keys
-					+ ",nombre_producto string, DNI_cliente string, nombre_cliente string,primary key(ID_producto, dni_cliente ))");
-			} catch (SQLException e) {} // Tabla ya existe. Nada que hacer
+					"(dni string PRIMARY KEY" + ", password string, nombre string, apellido string" +", edad integer )");
+			} catch (SQLException e) {}// Tabla ya existe. Nada que hacer
 			try {
 				statement.executeUpdate("create table bebida " +
 					"(id string PRIMARY KEY"+", precio integer, num integer)"); // (1) Solo para foreign keys
@@ -302,5 +300,3 @@ public class ConexionSql
 	
 
 }
-	
-	

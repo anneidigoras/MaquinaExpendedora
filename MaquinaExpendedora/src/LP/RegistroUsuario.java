@@ -214,10 +214,12 @@ public class RegistroUsuario extends JFrame implements ActionListener
 		
 		clsUsuario u = new clsUsuario (nombre, ape, dni, edad, null);
 	
-		
+		System.out.println("antes");
 		Connection nueva_conexion =ConexionSql.initBD("src\\BD\\BaseDeDatoos.db" );
 		Statement st =ConexionSql.usarCrearTablasBD(nueva_conexion);
+		System.out.println("durante");
 		ConexionSql.usuarioInsert(st, u);
+		System.out.println("despies");
 		ConexionSql.cerrarBD(nueva_conexion, st);
 		try {
 			   //Y para terminar cerramos la conexión
