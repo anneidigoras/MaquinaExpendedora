@@ -16,6 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import COMUN.clsConstantes;
 import COMUN.clsUsuarioExistente;
 
 import javax.swing.JButton;
@@ -39,8 +40,8 @@ public class RegistroUsuario extends JFrame implements ActionListener
 	private JPanel contentPane;
 	private JLabel lblNombre, lblApe, lblEdad, lblDni, lblPass1, lblPass2;
 	static Connection conn;
-	static Statement st;
-	clsUsuario u;
+//	static Statement st;
+//	clsUsuario u;
 
 	clsGestor objGestor;
 	
@@ -147,7 +148,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 			System.out.println("Ha pulsado aceptar");
 			btAceptar.setBackground(Color.blue);
 			Aceptar(e);
-			//anyadir();
+			anyadir();
 		
 			
 		break;
@@ -205,6 +206,7 @@ public class RegistroUsuario extends JFrame implements ActionListener
 	{
 
 		//Connection conn=ConexionSql.dbConnector("Base datos Usuarios");
+		//Connection conn = ConexionSql.conectarA("src\\BD\\Prueba.db");
 		ConexionSql base=new ConexionSql();
 		
 		String nombre=txtNombre.getText();	
@@ -212,10 +214,28 @@ public class RegistroUsuario extends JFrame implements ActionListener
 		String ape=txtApe.getText();
 		String dni=txtDni.getText();
 		
+		clsUsuario u = new clsUsuario (nombre, ape, dni, edad, null);
 	//	ConexionSql.crearTablaUsuario();
 		//base.anyadirUsuario(nombre,ape,dni,edad);
-		ConexionSql.usarCrearTablasBD(conn);
+		
+		Connection nueva_conexion =ConexionSql.initBD("src\\BD\\BaseDeDatoos.db" );
+		Statement st =ConexionSql.usarCrearTablasBD(nueva_conexion);
 		ConexionSql.usuarioInsert(st, u);
+		//ConexionSql.cerrarBD(nueva_conexion, st);
+		try {
+			   //Y para terminar cerramos la conexión
+			
+			   nueva_conexion.close();
+			
+			  }
+
+			  catch (SQLException e) {
+
+			   //Esto se ejecuta si hay algún problema al realizar la conexión.
+
+			   e.printStackTrace();
+			  }
+		
 		
 		txtNombre.setText("");
 		txtApe.setText("");

@@ -226,7 +226,7 @@ public class VentanaPrincipal  extends JFrame implements ActionListener,ItemList
 //	public void cargarLista()
 //	{
 //				
-//		Connection conn=ConexionSql.dbConnector("Base datos Usuarios");
+//		Connection conn=ConexionSql.dbConnector("Base-datos-Usuarios");
 //		Statement stmt;
 //		try {
 //			stmt = (Statement) conn.createStatement();

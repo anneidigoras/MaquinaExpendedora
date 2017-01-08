@@ -49,7 +49,8 @@ public class ConexionSql
 	 * @param con	Conexión ya creada y abierta a la base de datos
 	 * @return	sentencia de trabajo si se crea correctamente, null si hay cualquier error
 	 */
-	public static Statement usarBD( Connection con ) {
+	public static Statement usarBD( Connection con ) 
+	{
 		try {
 			Statement statement = con.createStatement();
 			statement.setQueryTimeout(30);  // poner timeout 30 msg
@@ -141,7 +142,7 @@ public class ConexionSql
 					"'" + u.getPassword() + "', " +
 					"'" + u.getNombre() + "', " +
 					"'" + u.getApellido() + "', " +
-					u.getEdad()   + "')";
+					"'" +u.getEdad()   + "')";
 			// System.out.println( sentSQL );  // para ver lo que se hace en consola
 			int val = st.executeUpdate( sentSQL );
 			//log( Level.INFO, "BD añadida " + val + " fila\t" + sentSQL, null );
