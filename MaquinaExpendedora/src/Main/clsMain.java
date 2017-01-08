@@ -2,6 +2,7 @@ package Main;
 
 import javax.swing.ImageIcon;
 
+import COMUN.clsConstantes;
 import LN.clsGestor;
 
 import LP.VentanaPrincipal;

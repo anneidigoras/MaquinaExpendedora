@@ -474,7 +474,7 @@ public class Tablas extends JFrame implements ActionListener
         TablaUsuariosModel tam=new TablaUsuariosModel(Usuarios);
 	
 		jtUsuarios = new JTable(tam);
-		jtUsuarios.setPreferredScrollableViewportSize(new Dimension(500, 90));
+		jtUsuarios.setPreferredScrollableViewportSize(new Dimension(clsConstantes.ancho_pantalla/2 -50, clsConstantes.alto_pantalla/8));
 		jtUsuarios.setFillsViewportHeight(true);
 		jtUsuarios.setEnabled(true);
 		jtUsuarios.setRowSelectionAllowed(true);
@@ -485,7 +485,7 @@ public class Tablas extends JFrame implements ActionListener
         TablaBebidasModel tam2=new TablaBebidasModel(Bebidas);
 	
 		jtBebidas = new JTable(tam2);
-		jtBebidas.setPreferredScrollableViewportSize(new Dimension(500, 90));
+		jtBebidas.setPreferredScrollableViewportSize(new Dimension(clsConstantes.ancho_pantalla/2 -50, clsConstantes.alto_pantalla/8));
 		jtBebidas.setFillsViewportHeight(true);
 		jtBebidas.setEnabled(true);
 		jtBebidas.setRowSelectionAllowed(true);
@@ -496,7 +496,7 @@ public class Tablas extends JFrame implements ActionListener
         TablaAlimentosModel tam3=new TablaAlimentosModel(Alimentos);
 	
 		jtAlimentos = new JTable(tam3);
-		jtAlimentos.setPreferredScrollableViewportSize(new Dimension(500, 90));
+		jtAlimentos.setPreferredScrollableViewportSize(new Dimension(clsConstantes.ancho_pantalla/2 -50, clsConstantes.alto_pantalla/8));
 		jtAlimentos.setFillsViewportHeight(true);
 		jtAlimentos.setEnabled(true);
 		jtAlimentos.setRowSelectionAllowed(true);
@@ -507,7 +507,7 @@ public class Tablas extends JFrame implements ActionListener
         TablaComprasModel tam4=new TablaComprasModel(Compras);
 	
 		jtCompras = new JTable(tam4);
-		jtCompras.setPreferredScrollableViewportSize(new Dimension(500, 90));
+		jtCompras.setPreferredScrollableViewportSize(new Dimension(clsConstantes.ancho_pantalla/2 -50, clsConstantes.alto_pantalla/8));
 		jtCompras.setFillsViewportHeight(true);
 		jtCompras.setEnabled(true);
 		jtCompras.setRowSelectionAllowed(true);
@@ -735,34 +735,34 @@ public class Tablas extends JFrame implements ActionListener
 		    tablaPanel.add(jlUsuarios);//),BorderLayout.NORTH);
 		    
 			JPanel panelU= new JPanel();
-			panelU.setBounds(50,30,600,120);
+			panelU.setBounds(clsConstantes.ancho_pantalla/20,30,clsConstantes.ancho_pantalla/2, clsConstantes.alto_pantalla/6);
 			jspUsuarios=new JScrollPane(jtUsuarios);
 			panelU.add(jspUsuarios);//BorderLayout.NORTH);
 			
 			jlBebidas=new JLabel("Listado de Bebidas");
-			jlBebidas.setBounds(tablaPanel.getWidth()/3,170,200,20);
+			jlBebidas.setBounds(tablaPanel.getWidth()/3,clsConstantes.alto_pantalla/4,200,20);
 			tablaPanel.add(jlBebidas); //labelPanel.add(jlAlimentos);
 			
 			JPanel panelB= new JPanel();
 			jspBebidas=new JScrollPane(jtBebidas);
-			panelB.setBounds(50,180,600,120);
+			panelB.setBounds(clsConstantes.ancho_pantalla/20,clsConstantes.alto_pantalla/4 +30,clsConstantes.ancho_pantalla/2, clsConstantes.alto_pantalla/6);
 			panelB.add(jspBebidas);//,BorderLayout.CENTER); 
 			
 			jlAlimentos=new JLabel("Listado de Alimentos");
-			jlAlimentos.setBounds(tablaPanel.getWidth()/3, 320, 200, 20);
+			jlAlimentos.setBounds(tablaPanel.getWidth()/3, clsConstantes.alto_pantalla/4 *2, 200, 20);
 			tablaPanel.add(jlAlimentos);//),BorderLayout.NORTH);
 			
 			JPanel panelA= new JPanel();
-			panelA.setBounds(50, 350,600,120);
+			panelA.setBounds(clsConstantes.ancho_pantalla/20, (clsConstantes.alto_pantalla/2)+30,clsConstantes.ancho_pantalla/2, clsConstantes.alto_pantalla/6);
 	        jspAlimentos= new JScrollPane(jtAlimentos);
 			panelA.add(jspAlimentos);//,BorderLayout.PAGE_END);
 			
 			jlCompras=new JLabel("Listado de Compras");
-			jlCompras.setBounds(tablaPanel.getWidth()/3, 490, 200, 20);
+			jlCompras.setBounds(tablaPanel.getWidth()/3, (clsConstantes.alto_pantalla/4)*3, 200, 20);
 			tablaPanel.add(jlCompras);//),BorderLayout.NORTH);
 			
 			JPanel panelC= new JPanel();
-			panelC.setBounds(50,520,600,120);
+			panelC.setBounds(clsConstantes.ancho_pantalla/20,(clsConstantes.alto_pantalla/4)*3 +30,clsConstantes.ancho_pantalla/2, clsConstantes.alto_pantalla/6);
 			jspCompras= new JScrollPane(jtCompras);
 			panelC.add(jspCompras);
 			
@@ -780,26 +780,26 @@ public class Tablas extends JFrame implements ActionListener
     		ImageIcon correoEsc = new ImageIcon (imagencorreo.getScaledInstance(120,100,Image.SCALE_SMOOTH));
        		
 			correoUsuarios = new JButton ();
-	       	correoUsuarios.setBounds(800, 50, 120, 100);
+	       	correoUsuarios.setBounds(clsConstantes.ancho_pantalla*2/3, 40, 120, 100);
 	       	correoUsuarios.setIcon(correoEsc);
 	        correoUsuarios.setActionCommand(CORREOU);
 	       	correoUsuarios.addActionListener((ActionListener)this);
 	       	
 	       	correoBebidas = new JButton ();
-	       	correoBebidas.setBounds(800, 270, 120, 100);
+	       	correoBebidas.setBounds(clsConstantes.ancho_pantalla*2/3, clsConstantes.alto_pantalla/4 +40, 120, 100);
 	        correoBebidas.setIcon(correoEsc);
 	        correoBebidas.setActionCommand(CORREOB);
 	       	correoBebidas.addActionListener((ActionListener)this);
 	       	
 	       	correoAlimentos = new JButton ();
-	       	correoAlimentos.setBounds(800, 500, 120, 100);
+	       	correoAlimentos.setBounds(clsConstantes.ancho_pantalla*2/3, (clsConstantes.alto_pantalla/2) +40, 120, 100);
 	        correoAlimentos.setIcon(correoEsc);
 	        correoAlimentos.setActionCommand(CORREOA);
 	       	correoAlimentos.addActionListener((ActionListener)this);
 	       	
 	       	
 	       	correoCompras = new JButton ();
-	       	correoCompras.setBounds(800, 730, 120, 100);
+	       	correoCompras.setBounds(clsConstantes.ancho_pantalla*2/3, (clsConstantes.alto_pantalla/4)*3 +40, 120, 100);
 	        correoCompras.setIcon(correoEsc);
 	        correoCompras.setActionCommand(CORREOC);
 	       	correoCompras.addActionListener((ActionListener)this);
