@@ -8,6 +8,9 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -25,6 +28,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import COMUN.clsConstantes;
+import LD.ConexionSql;
 import LN.clsAdministrador;
 import LN.clsAdquisicion;
 import LN.clsAlimento;
@@ -508,67 +512,122 @@ public class InterfazSeleccionProductos extends JFrame implements ActionListener
 	 */
 	public void compra (String consumicion)
     {
-                  float precio =0; float precio2=0;
-                  clsBebida bebidaconsumida = new clsBebida();
-                  LinkedList<clsBebida>listaBebidas= new LinkedList<clsBebida>();
-                  listaBebidas=clsGestor.BebidasGuardadas();
+		boolean es_bebida= false;
+        float precio =0; float precio2=0;
+        clsBebida bebidaconsumida = new clsBebida();
+        LinkedList<clsBebida>listaBebidas= new LinkedList<clsBebida>();
+        listaBebidas=clsGestor.BebidasGuardadas();
                  
-                  clsAlimento alimentoConsumido = new clsAlimento();
-                  LinkedList<clsAlimento>listaAlimentos= new LinkedList<clsAlimento>();
-                  listaAlimentos=clsGestor.AlimentosGuardados();
+        clsAlimento alimentoConsumido = new clsAlimento();
+        LinkedList<clsAlimento>listaAlimentos= new LinkedList<clsAlimento>();
+        listaAlimentos=clsGestor.AlimentosGuardados();
+                
+        for (clsAlimento aux: listaAlimentos)
+        {
+        	if(aux.getId().equals(consumicion)){ alimentoConsumido = aux; es_bebida=false;} 
+                                 
+        }
+        for (clsBebida aux: listaBebidas)
+        {
+            if(aux.getId().equals(consumicion)){ bebidaconsumida = aux;es_bebida =true;}
+            clsGestor.crearAdquisicion(aux.getId(),usuario.getDni());
+        }
+        if (es_bebida = false)
+        {
+           clsGestor.crearAdquisicion(alimentoConsumido.getId(),usuario.getDni());
+           precio = alimentoConsumido.getPrecioP();
+           if (usuario.getDinero()<precio )
+           {
+               JOptionPane.showMessageDialog(null, "No tiene suficiente saldo","SALDO INSUFICIENTE",JOptionPane.ERROR_MESSAGE);
+           }
+           else
+           {
+        	   if (alimentoConsumido.getNum()>0 )
+        	   {
+        		   	usuario.setDinero((float) (usuario.getDinero()- alimentoConsumido.getPrecioP()));
+        		   	clsGestor.gastadinero(usuario.getDni(), consumicion);
+                                                                                                    
+        		   	dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
+        		   	clsGestor.consumoAlimento(consumicion);
+           
+        		   	crearTablaCompra(alimentoConsumido.getId(),alimentoConsumido.getNombreP());
+               }
+               else if(alimentoConsumido.getNum()==0 )
+               {
+                               JOptionPane.showMessageDialog(null, "No quedan más " +alimentoConsumido.getNombreP(), "ESTE PRODUCTO SE HA AGOTADO",JOptionPane.ERROR_MESSAGE);
+               }
+                                    
+             }
+                     
+                     
+         }
+        else
+        {
+        	  precio2=bebidaconsumida.getPrecioP();
+              
+              if ( usuario.getDinero()<precio2)
+              {
+                             JOptionPane.showMessageDialog(null, "No tiene suficiente saldo",
+                                               "SALDO INSUFICIENTE",
+                                               JOptionPane.ERROR_MESSAGE);
+              }
+              else
+              {
+                             if (bebidaconsumida.getNum()>0)
+                             {
+                                                                                     
+                                           usuario.setDinero((float) (usuario.getDinero()- bebidaconsumida.getPrecioP()));
+                                           clsGestor.gastadinero(usuario.getDni(), consumicion);
+                                          
+                                                                                   
+                                           dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
+                                           clsGestor.consumobebida(consumicion);
+                                           
+                                           crearTablaCompra(bebidaconsumida.getId(),bebidaconsumida.getNombreP());
+                             }
+                             else if( bebidaconsumida.getNum()==0)
+                             {
+                                           JOptionPane.showMessageDialog(null, "No quedan más " +bebidaconsumida.getNombreP(),
+                                 "ESTE PRODUCTO SE HA AGOTADO",
+                                 JOptionPane.ERROR_MESSAGE);
+                             }
+             
+             
+              }
+        	
+        }
+
+                	  
+          
                  
-                  for (clsAlimento aux: listaAlimentos)
-                  {
-                                 if(aux.getId().equals(consumicion)) alimentoConsumido = aux;
-                                 clsGestor.crearAdquisicion(aux.getId(),usuario.getDni());
-                  }
-                  for (clsBebida aux: listaBebidas)
-                  {
-                                 if(aux.getId().equals(consumicion)) bebidaconsumida = aux;
-                                 clsGestor.crearAdquisicion(aux.getId(),usuario.getDni());
-                  }
-                 
-                  precio = alimentoConsumido.getPrecioP();
-                  precio2=bebidaconsumida.getPrecioP();
-                 
-                  if (usuario.getDinero()<precio || usuario.getDinero()<precio2)
-                  {
-                                 JOptionPane.showMessageDialog(null, "No tiene suficiente saldo",
-                                                   "SALDO INSUFICIENTE",
-                                                   JOptionPane.ERROR_MESSAGE);
-                  }
-                  else
-                  {
-                                 if (alimentoConsumido.getNum()>0 || bebidaconsumida.getNum()>0)
-                                 {
-                                               usuario.setDinero((float) (usuario.getDinero()- alimentoConsumido.getPrecioP()));
-                                               clsGestor.gastadinero(usuario.getDni(), consumicion);
-                                              
-                                               usuario.setDinero((float) (usuario.getDinero()- bebidaconsumida.getPrecioP()));
-                                               clsGestor.gastadinero(usuario.getDni(), consumicion);
-                                              
-                                               dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
-                                               clsGestor.consumoAlimento(consumicion);
-                                              
-                                               dinero.setText("Saldo: "+ String.format(java.util.Locale.US,"%.2f", usuario.getDinero())+ " €");
-                                               clsGestor.consumobebida(consumicion);
-                                 }
-                                 else if(alimentoConsumido.getNum()==0 )
-                                 {
-                                                             JOptionPane.showMessageDialog(null, "No quedan más " +alimentoConsumido.getNombreP(),
-                                                   "ESTE PRODUCTO SE HA AGOTADO",
-                                                   JOptionPane.ERROR_MESSAGE);
-                                 }
-                                 else if( bebidaconsumida.getNum()==0)
-                                 {
-                                               JOptionPane.showMessageDialog(null, "No quedan más " +bebidaconsumida.getNombreP(),
-                                     "ESTE PRODUCTO SE HA AGOTADO",
-                                     JOptionPane.ERROR_MESSAGE);
-                  }
-                 
-                 
-                  }
+                  
+                
 
 	
 
-	}	}
+	}
+	public void crearTablaCompra (String id_producto, String nombre_producto)
+	{
+		clsAdquisicion compra = new clsAdquisicion(id_producto,usuario.getDni(),nombre_producto, usuario.getNombre());
+		
+		Connection nueva_conexion =ConexionSql.initBD("src\\BD\\Adquisiciones.db" );
+		Statement st =ConexionSql.usarCrearTablasBD(nueva_conexion);
+		ConexionSql.adquisicionInsert(st, compra);
+		ConexionSql.cerrarBD(nueva_conexion, st);
+		try {
+			   //Y para terminar cerramos la conexión
+			
+			   nueva_conexion.close();
+			
+			  }
+
+			  catch (SQLException e) {
+
+			   //Esto se ejecuta si hay algún problema al realizar la conexión.
+
+			   e.printStackTrace();
+			  }
+		
+		
+	}
+	}

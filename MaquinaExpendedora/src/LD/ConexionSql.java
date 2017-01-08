@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 import javax.swing.*;
 
-
+import LN.clsAdquisicion;
 import LN.clsUsuario;
 
 
@@ -82,7 +82,13 @@ public class ConexionSql
 					// "(nick string "  // (2) Esto sería sin borrado en cascada ni relación de claves ajenas
 					"(dni string PRIMARY KEY" // (1) Solo para foreign keys
 					+ ", password string, nombre string, apellido string" +
-					", edad integer)");
+					", edad integer, )");
+			} catch (SQLException e) {} // Tabla ya existe. Nada que hacer
+			try {
+				statement.executeUpdate("create table adquisicion " +
+					// "(nick string "  // (2) Esto sería sin borrado en cascada ni relación de claves ajenas
+					"(ID_producto string " // (1) Solo para foreign keys
+					+ ",nombre_producto string, DNI_cliente string, nombre_cliente string, primary key(ID_producto, DNI_cliente))");
 			} catch (SQLException e) {} // Tabla ya existe. Nada que hacer
 			try {
 				statement.executeUpdate("create table bebida " +
@@ -149,6 +155,36 @@ public class ConexionSql
 					"'" + u.getNombre() + "', " +
 					"'" + u.getApellido() + "', " +
 					"'" +u.getEdad()   + "')";
+			// System.out.println( sentSQL );  // para ver lo que se hace en consola
+			int val = st.executeUpdate( sentSQL );
+			//log( Level.INFO, "BD añadida " + val + " fila\t" + sentSQL, null );
+			if (val!=1) {  // Se tiene que añadir 1 - error si no
+				//log( Level.SEVERE, "Error en insert de BD\t" + sentSQL, null );
+				return false;  
+			}
+			return true;
+		} catch (SQLException e) {
+		//	log( Level.SEVERE, "Error en BD\t" + sentSQL, e );
+			lastError = e;
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public static boolean adquisicionInsert( Statement st, clsAdquisicion a ) {
+		String sentSQL = "";
+		try {
+			String listaEms = "";
+			String sep = "";
+//			for (String email : u.getListaEmails()) 
+//			{
+//				listaEms = listaEms + sep + secu(email);
+//				sep = ",";
+//			}
+			sentSQL = "insert into adquisicion values(" +
+					"'" +a.getId_producto() + "', " +
+					"'" + a.getNombre_p() + "', " +
+					"'" + a.getDni_usuario()+ "', " +
+					"'" + a.getNombre_u() + "')";
 			// System.out.println( sentSQL );  // para ver lo que se hace en consola
 			int val = st.executeUpdate( sentSQL );
 			//log( Level.INFO, "BD añadida " + val + " fila\t" + sentSQL, null );

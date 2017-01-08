@@ -4,7 +4,24 @@ import java.io.Serializable;
 
 public class clsAdquisicion implements Serializable
 {
-	private String id_producto, dni_usuario;
+	private String id_producto, dni_usuario, nombre_p, nombre_u;
+	
+
+	public String getNombre_p() {
+		return nombre_p;
+	}
+
+	public void setNombre_p(String nombre_p) {
+		this.nombre_p = nombre_p;
+	}
+
+	public String getNombre_u() {
+		return nombre_u;
+	}
+
+	public void setNombre_u(String nombre_u) {
+		this.nombre_u = nombre_u;
+	}
 
 	public String getId_producto() {
 		return id_producto;
@@ -26,6 +43,13 @@ public class clsAdquisicion implements Serializable
 	{
 		
 		
+	}
+	public clsAdquisicion(String id_p, String id_u, String nmb_p, String nmb_u)
+	{
+		this.id_producto= id_p;
+		this.dni_usuario = id_u;
+		this.nombre_p= nmb_p;
+		this.nombre_u= nmb_u;
 	}
 
 	@Override
