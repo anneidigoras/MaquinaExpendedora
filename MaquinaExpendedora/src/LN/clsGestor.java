@@ -10,6 +10,7 @@ package LN;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -471,7 +472,30 @@ public static ArrayList<clsAdquisicion> leerAdquisicion()
 	
 }
 
+public static ArrayList<clsAdquisicion> leerAdquisicionBD()
+{
+	Connection nueva_conexion =ConexionSql.initBD("src\\BD\\Adquisiciones.db" );
+	Statement st =ConexionSql.usarCrearTablasBD(nueva_conexion);
+	
+	ArrayList<clsAdquisicion> lista = ConexionSql.adquisicionSelect(st,null);
+	ConexionSql.cerrarBD(nueva_conexion, st);
+//	try {
+//		   //Y para terminar cerramos la conexión
+//		
+//		   nueva_conexion.close();
+//		
+//		  }
+//
+//		  catch (SQLException e) {
+//
+//		   //Esto se ejecuta si hay algún problema al realizar la conexión.
+//
+//		   e.printStackTrace();
+//		  }
+	
+	return lista;
 
+}
 
 public boolean anyadirFilaATabla( Statement st ) {
 	// Adicional uno

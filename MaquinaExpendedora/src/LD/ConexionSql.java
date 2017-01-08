@@ -80,12 +80,12 @@ public class ConexionSql
 			 // Tabla ya existe. Nada que hacer
 			try {
 				statement.executeUpdate("create table adquisicion " +
-                "(ID_producto string " 
-					+ ",nombre_producto string, DNI_cliente string, nombre_cliente string,primary key(ID_producto, dni_cliente ))");
+"(ID_producto string " 
+					+ ",nombre_producto string, DNI_cliente string, nombre_cliente string,primary key(ID_producto, dni_cliente ), unique key (ID_producto, dni_cliente))");
 			} catch (SQLException e) {}
 			try {
 				statement.executeUpdate("create table usuario " +
-				
+					// "(nick string "  // (2) Esto sería sin borrado en cascada ni relación de claves ajenas
 					"(dni string PRIMARY KEY" + ", password string, nombre string, apellido string" +", edad integer )");
 			} catch (SQLException e) {}// Tabla ya existe. Nada que hacer
 			try {
@@ -183,7 +183,7 @@ public class ConexionSql
 					"'" + a.getNombre_p() + "', " +
 					"'" + a.getDni_usuario()+ "', " +
 					"'" + a.getNombre_u() + "')";
-			// System.out.println( sentSQL );  // para ver lo que se hace en consola
+			System.out.println( sentSQL );  // para ver lo que se hace en consola
 			int val = st.executeUpdate( sentSQL );
 			//log( Level.INFO, "BD añadida " + val + " fila\t" + sentSQL, null );
 			if (val!=1) {  // Se tiene que añadir 1 - error si no
@@ -238,7 +238,44 @@ public class ConexionSql
 			return null;
 		}
 	}
+	public static ArrayList<clsAdquisicion> adquisicionSelect( Statement st, String codigoSelect ) {
+		String sentSQL = "";
+		ArrayList<clsAdquisicion> ret = new ArrayList<>();
+		try {
+			sentSQL = "select * from adquisicion";
+			if (codigoSelect!=null && !codigoSelect.equals(""))
+				sentSQL = sentSQL + " where " + codigoSelect;
+			// System.out.println( sentSQL );  // Para ver lo que se hace en consola
+			ResultSet rs = st.executeQuery( sentSQL );
+			while (rs.next()) {
+				clsAdquisicion a = new clsAdquisicion();
+				a.setId_producto( rs.getString( "ID_producto" ) );
+				a.setNombre_p( rs.getString( "nombre_producto" ) );
+				a.setDni_usuario( rs.getString( "DNI_cliente" ) );
+				a.setNombre_u(rs.getString( "nombre_cliente" ) );
+				ret.add(a);
+				
+				
+			}
+			rs.close();
+			//log( Level.INFO, "BD\t" + sentSQL, null );
+			System.out.println(ret);
+			System.out.println(ret.get(0).getDni_usuario());
+			return ret;
+		} catch (IllegalArgumentException e) {  // Error en tipo usuario (enumerado)
+			//log( Level.SEVERE, "Error en BD en tipo de usuario\t" + sentSQL, e );
+			lastError = e;
+			e.printStackTrace();
+			return null;
+		} catch (SQLException e) {
+			//log( Level.SEVERE, "Error en BD\t" + sentSQL, e );
+			lastError = e;
+			e.printStackTrace();
+			return null;
+		}
+	}
 
+	
 	/** Modifica un usuario en la tabla abierta de BD, usando la sentencia UPDATE de SQL
 	 * @param st	Sentencia ya abierta de Base de Datos (con la estructura de tabla correspondiente al usuario)
 	 * @param u	Usuario a modificar en la base de datos. Se toma su nick como clave
