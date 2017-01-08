@@ -270,13 +270,14 @@ public class clsGestor
 			listaClientes=leerUsuario();
 			for (clsUsuario aux: listaClientes)
 			{
-				if (aux.getPassword().equals(pass) & aux.getNombre().equals(nombre))
+
+				if (aux.getPassword().equals(pass) & aux.getDni().equals(nombre))
 				{
 					existe=true;
 					break;
 				}
 			}
-			
+			System.out.println(existe);
 			return existe;
 			
 		}
