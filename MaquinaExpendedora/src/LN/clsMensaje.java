@@ -198,7 +198,7 @@ public class clsMensaje{
      alimento=clsGestor.AlimentosGuardados();
      for(clsAlimento aux:alimento)
      {
-    	 msg.setText( " Nombre: "+ aux.getNombreP()+  " ID: "+ aux.getId()+ " Precio: "+ aux.getPrecioP());
+    	 msg.setText( alimento.size()+" Nombre: "+ aux.getNombreP()+  " ID: "+ aux.getId()+ " Precio: "+ aux.getPrecioP()+"Cantidad: "+aux.getNum());
      }
      
      msg.setSentDate(new Date());
@@ -247,7 +247,8 @@ public class clsMensaje{
      compras=clsGestor.leerAdquisicion();
      for(clsAdquisicion aux:compras)
      {
-    	 msg.setText( " Nombre: "+ aux.getDni_usuario()+  " ID: "+aux.getId_producto());
+    	 
+    	 msg.setText( " Nombre: "+ aux.getDni_usuario()+  " ID: "+aux.getId_producto() );
      }
      
      msg.setSentDate(new Date());
